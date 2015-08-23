@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
   
+  devise_for :trainers
   resources :expertises
 
   resources :trainers do
