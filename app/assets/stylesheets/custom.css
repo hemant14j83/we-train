@@ -139,3 +139,21 @@
 .inline{
     display: inline-block;
 }
+.homebanner{
+    width: 100%;
+    max-width: 100%;
+    height: 700px;
+    margin-bottom: 10px;
+}
+.tcenter{
+    text-align: center;
+}
+.greytxt{
+    padding:5px 20px 20px 40px;
+    color:grey;
+    font: smaller;
+}
+.titletxt{
+    font-weight:bold;
+    padding:1px 0px 0px 40px;
+}
