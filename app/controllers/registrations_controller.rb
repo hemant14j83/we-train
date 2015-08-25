@@ -1,6 +1,6 @@
 class RegistrationsController < Devise::RegistrationsController
   def new
-    super
+    super    
  end 
  
  def create
@@ -29,9 +29,5 @@ class RegistrationsController < Devise::RegistrationsController
 
   def update_resource(resource, params)
     resource.update_without_password(params)
-  end
-
-  def after_sign_up_path_for(resource)
-    trainer_path # Or :prefix_to_your_route
   end
 end
