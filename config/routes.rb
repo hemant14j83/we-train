@@ -8,6 +8,7 @@ Rails.application.routes.draw do
   #end
 
   get 'trainers/profile' => "trainers#show", as: :trainer_root
+  get 'trainers/:id/update' => "devise/registrations#edit"
   get "home/index"
   root 'home#index'
   # The priority is based upon order of creation: first created -> highest priority.
