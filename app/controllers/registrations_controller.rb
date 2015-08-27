@@ -24,8 +24,8 @@ class RegistrationsController < Devise::RegistrationsController
       set_flash_message :notice, :updated
 
       sign_in @trainer, :bypass=>true
-
-      redirect_to edit_trainer_registration_path
+      redirect_to trainer_root_path
+      #redirect_to edit_trainer_registration_path
     else
       render "edit"
     end
@@ -33,7 +33,7 @@ class RegistrationsController < Devise::RegistrationsController
  end
 
  def edit
-   super    
+   super  
  end 
  
  def cancel
