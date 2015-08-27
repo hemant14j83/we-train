@@ -11,7 +11,23 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150823104519) do
+ActiveRecord::Schema.define(version: 20150827064740) do
+
+  create_table "qualifications", force: :cascade do |t|
+    t.string   "course_name",        limit: 150
+    t.string   "course_type",        limit: 200
+    t.text     "course_description", limit: 65535
+    t.date     "start_date"
+    t.date     "end_date"
+    t.string   "duration",           limit: 100
+    t.string   "percentage",         limit: 100
+    t.string   "grade",              limit: 100
+    t.integer  "trainer_id",         limit: 4
+    t.datetime "created_at",                       null: false
+    t.datetime "updated_at",                       null: false
+  end
+
+  add_index "qualifications", ["trainer_id"], name: "index_qualifications_on_trainer_id", using: :btree
 
   create_table "test", id: false, force: :cascade do |t|
     t.string "name",  limit: 50
@@ -19,12 +35,12 @@ ActiveRecord::Schema.define(version: 20150823104519) do
   end
 
   create_table "trainers", force: :cascade do |t|
-    t.string   "email",                  limit: 255, default: "", null: false
-    t.string   "encrypted_password",     limit: 255, default: "", null: false
+    t.string   "email",                  limit: 255,   default: "",             null: false
+    t.string   "encrypted_password",     limit: 255,   default: "",             null: false
     t.string   "reset_password_token",   limit: 255
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
-    t.integer  "sign_in_count",          limit: 4,   default: 0,  null: false
+    t.integer  "sign_in_count",          limit: 4,     default: 0,              null: false
     t.datetime "current_sign_in_at"
     t.datetime "last_sign_in_at"
     t.string   "current_sign_in_ip",     limit: 255
@@ -33,11 +49,25 @@ ActiveRecord::Schema.define(version: 20150823104519) do
     t.datetime "confirmed_at"
     t.datetime "confirmation_sent_at"
     t.string   "unconfirmed_email",      limit: 255
-    t.datetime "created_at",                                      null: false
-    t.datetime "updated_at",                                      null: false
+    t.datetime "created_at",                                                    null: false
+    t.datetime "updated_at",                                                    null: false
+    t.string   "login_type",             limit: 80
+    t.string   "full_name",              limit: 150
+    t.string   "primary_number",         limit: 12
+    t.date     "birth_date"
+    t.string   "gender",                 limit: 30,    default: "not selected"
+    t.text     "address",                limit: 65535
+    t.string   "city",                   limit: 100
+    t.string   "state",                  limit: 100
+    t.string   "country",                limit: 150
+    t.string   "profile_status",         limit: 100,   default: "pending"
+    t.string   "subscribed_plan",        limit: 100,   default: "trail"
+    t.date     "busy_from"
+    t.date     "busy_till"
   end
 
   add_index "trainers", ["email"], name: "index_trainers_on_email", unique: true, using: :btree
   add_index "trainers", ["reset_password_token"], name: "index_trainers_on_reset_password_token", unique: true, using: :btree
 
+  add_foreign_key "qualifications", "trainers"
 end

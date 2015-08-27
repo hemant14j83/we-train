@@ -1,0 +1,23 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  course_name: MyString
+  course_type: MyString
+  course_description: MyString
+  start_date: 2015-08-27
+  end_date: 2015-08-27
+  duration: MyString
+  percentage: MyString
+  grade: MyString
+  trainer_id: 
+
+two:
+  course_name: MyString
+  course_type: MyString
+  course_description: MyString
+  start_date: 2015-08-27
+  end_date: 2015-08-27
+  duration: MyString
+  percentage: MyString
+  grade: MyString
+  trainer_id: 

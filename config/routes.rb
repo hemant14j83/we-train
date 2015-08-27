@@ -3,9 +3,9 @@ Rails.application.routes.draw do
   devise_for :trainers, controller: {registrations: "registrations"}
   resources :expertises
 
-  #resources :trainers do
-	 # resources :expertises
-  #end
+  resources :trainers do
+	 resources :qualifications
+  end
 
   get 'trainers/profile' => "trainers#show", as: :trainer_root
   get 'trainers/:id/update' => "devise/registrations#edit"

@@ -71,7 +71,18 @@
           </table>
         </div>         
         <div class="col-xs-12">
-        
+          <div class="panel panel-default">
+            <div class="panel-heading">
+              <b>Qualification Details</b>
+            </div>
+          </div>
+      
+      		    <%= render @trainer.qualifications %>
+      	    <hr>
+            <div class="col-xs-12">
+            <h4><u>Add More Qualification</u></h4>   
+              <%= render "qualifications/form" %>
+            </div>
       	</div>
       </div>
     </div>

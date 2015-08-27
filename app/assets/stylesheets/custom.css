@@ -157,3 +157,55 @@
     font-weight:bold;
     padding:1px 0px 0px 40px;
 }
+.qbox {
+    margin: 5px auto;
+    display: block;
+    width: auto;
+    height: auto;
+    padding: 10px;
+    position: relative;
+    background-image: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #aaaeaf), color-stop(100%, #689ecd));
+    background-image: -webkit-linear-gradient(#aaaeaf, #689ecd);
+    background-image: -moz-linear-gradient(#aaaeaf, #689ecd);
+    background-image: -o-linear-gradient(#aaaeaf, #689ecd);
+    background-image: -ms-linear-gradient(#aaaeaf, #689ecd);
+    background-image: linear-gradient(#aaaeaf, #689ecd);
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    -ms-border-radius: 3px;
+    -o-border-radius: 3px;
+    border-radius: 3px;
+    -webkit-box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+    -moz-box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+}
+
+.qbox * {
+    position: relative;
+}
+
+.qbox::before {
+    background: white;
+    -webkit-border-radius: 2px;
+    -moz-border-radius: 2px;
+    -ms-border-radius: 2px;
+    -o-border-radius: 2px;
+    border-radius: 2px;
+    bottom: 1px;
+    content: '';
+    left: 1px;
+    position: absolute;
+    right: 1px;
+    top: 1px;
+}
+.qh1{
+    font-size: 20px;
+    font-weight: bold;
+    margin-top: 5px; 
+    text-shadow: 1px 1px 3px rgba(0,0,0,0.3);
+}
+
+.qp{ 
+    margin-top: 15px;
+    text-align: justify;
+}

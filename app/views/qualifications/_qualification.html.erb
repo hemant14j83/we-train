@@ -1,0 +1,34 @@
+<div class="col-xs-12">
+	<div class="qbox">
+		<h3 class="qh1"><%= qualification.course_type %></h3>
+			<table class="table">
+				<tr>
+					<th><b>Course</b></th>
+					<th><b>Joining Date</b></th>
+					<th><b>Completed On</b></th>
+					<th><b>Course Duration</b></th>
+					<th><b>Percentage</b></th>
+					<th><b>Grade</b></th>
+				</tr>
+				<tr>
+					<td><%= qualification.course_name %></td>
+					<td><%= qualification.start_date %></td>
+					<td><%= qualification.end_date %></td>
+					<td><%= qualification.duration %></td>
+					<td><%= qualification.percentage %></td>
+					<td><%= qualification.grade %></td>
+				</tr>
+			</table>
+			<!--<table>
+				<tr>
+					<td colspan="6">
+						<b>Course Details</b>
+					</td>
+				</tr>
+		        <tr>
+		        	<td colspan="6"><%= qualification.course_description %></td>
+		        </tr>
+		    </table>-->
+		    <div align="right"><a href="#">Remove</a></div>
+	</div>
+</div>
