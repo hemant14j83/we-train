@@ -209,3 +209,15 @@
     margin-top: 15px;
     text-align: justify;
 }
+#tabcontent .nav-tabs {
+  /*background: #dd5b5b;*/
+  padding: 15px 0 0 0;
+}
+#tabcontent .nav-tabs > li > a {
+  padding: 5px 40px;
+  background: #eaedf2;
+  border: 1px solid #a48686;
+  border-bottom: none;
+  /*border-top-right-radius: 2em;
+  border-top-left-radius: 1.5em;*/
+}

@@ -1,5 +1,5 @@
 <%= form_for([@trainer, @trainer.qualifications.build]) do |f| %>
-	<div class="form-horizontal">        
+	<div class="form-horizontal" id="addqual">        
 		<div class="col-xs-6">
         	<div class="form-group col-xs-12">
 				<%= f.label :course_name, "Course Name" %> : <%= f.text_field :course_name, :class=>"form-control" %>
