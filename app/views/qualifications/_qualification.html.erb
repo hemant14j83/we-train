@@ -31,6 +31,8 @@
 		        	<td colspan="6"><%= qualification.course_description %></td>
 		        </tr>
 		    </table>-->
-		    <div align="right"><a href="#">Remove</a></div>
+		    <div align="right">
+		    	<%= link_to 'Remove', qualification, method: :delete, data: { confirm: 'Are you sure?' }, :class=>"btn btn-danger btn-sm" %>
+		    </div>
 	</div>
 </div>

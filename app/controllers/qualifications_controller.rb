@@ -10,4 +10,16 @@ class QualificationsController < ApplicationController
 	redirect_to trainer_root_path
 	#redirect_to edit_trainer_registration_path
  end
+ def destroy
+ 	@qualification = Qualification.find(params[:id])
+    @qualification.destroy
+
+    redirect_to trainer_root_path
+ end
+
+ private
+ 	def set_qualification
+      @qualification = Qualification.find(params[:id])
+    end
+
 end

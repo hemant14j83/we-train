@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
   
   devise_for :trainers, controller: {registrations: "registrations"}
-  resources :expertises
+  resources :qualifications
 
   resources :trainers do
 	 resources :qualifications

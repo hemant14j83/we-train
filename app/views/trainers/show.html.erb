@@ -101,19 +101,23 @@
             </div>
             <div id="quali" class="tab-pane">
               <br>
-              <div class="col-xs-6">
-                <h4><b>Qualification Details</b></h4>
+              <div class="col-xs-12">
+                <table width="30%">
+                  <tr>
+                    <td>
+                      <b>Qualification Details</b>
+                    </td>
+                    <td>
+                      <a href="#addqual" class="btn btn-success  btn-sm">Add More</a>
+                    </td>
+                  </tr>
+                </table>
               </div>
-              <div class="col-xs-6">
-                <a href="#addqual">Add More</a>
-              </div>
-              <hr>
               <%= render @trainer.qualifications %>
-              <hr>
-              <div>
+              
                 <h4><u>Add More Qualification</u></h4>   
                 <%= render "qualifications/form" %>
-              </div>
+              
             </div>
             <div id="expertise" class="tab-pane">
               Test
