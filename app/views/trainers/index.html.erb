@@ -1,0 +1,63 @@
+<p id="notice"><%= notice %></p>
+
+<h3 class="heading">List of Registered Trainers (<font color="blue"><b>Admin View</b></font>)</h3>
+
+<table class="table table-bordered">
+  <thead>
+    <tr>
+      <th>Status</th>
+      <th>Email</th>
+      <th>Sign In Count</th>
+      <th>Last Sign In At</th>
+      <th>Login Type</th>
+      <th>Name</th>
+      <th>Number</th>
+      <th>D.O.B</th>
+      <th>Gender</th>
+      <th>Address</th>
+      <th>Plan</th>
+      <th>Schedule</th>
+      <th>Created At</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @trainer.each do |trainer| %>
+      <tr>
+      <% if trainer.full_name? && trainer.primary_number? %>
+        <td class="approved">Approved</td>
+      <% else %>
+        <td class="pending">Pending</td>
+      <%end%>
+        <td><%= trainer.email %></td>
+        <td><b><%= trainer.sign_in_count %></b></td>
+        <td><%= trainer.last_sign_in_at %></td>
+        <td><%= trainer.login_type %></td>
+        <% if trainer.address? %>
+          <td><%= trainer.full_name %></td>
+        <% else %>
+          <td><font color="red">Blank</font></td>
+        <% end %>
+        <td><%= trainer.primary_number %></td>
+        <td><%= trainer.birth_date %></td>
+        <% if trainer.gender =="not selected" %>
+          <td><font color="red">Blank</font></td>
+        <% else %>
+          <td><%= trainer.gender %></td>
+        <% end %>
+        <% if trainer.address? %>
+          <td><%= trainer.address %>,<br><%= trainer.city %>, <%= trainer.state %>,<%= trainer.country %></td>
+        <% else %>
+          <td><font color="red">Blank</font></td>
+        <% end %>
+        <td><%= trainer.subscribed_plan %></td>
+        <% if trainer.address? %>
+          <td>Busy From: <%= trainer.busy_from %><br>Busy Till: <%= trainer.busy_till %></td>
+        <% else %>
+          <td><font color="red">Blank</font></td>
+        <% end %>  
+        <td><%= trainer.created_at %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
