@@ -1,0 +1,24 @@
+<%= form_for([@trainer, @trainer.expertises.build]) do |f| %>
+	<div class="form-horizontal" id="addexpe">        
+		<div class="col-xs-12">
+        	<div class="form-group col-xs-6">
+				<%= f.label :expertise_in, "Expert In" %> : <%= f.text_field :expertise_in, :class=>"form-control" %>
+			</div>
+			<div class="form-group col-xs-6">
+				<%= f.label :professional_expertise_info, "Professional Expertise Details" %> <br> <%= f.text_field :professional_expertise_info, :class=>"form-control" %>
+			</div>
+			<div class="form-group col-xs-4">
+				<%= f.label :reference_name, "Reference Name" %> <br> <%= f.text_field :reference_name, :class=>"form-control" %>
+			</div>
+			<div class="form-group col-xs-4">
+				<%= f.label :reference_number, "Reference Number" %> : <%= f.text_field :reference_number,:class=>"form-control" %>
+			</div>
+			<div class="form-group col-xs-4">
+				<%= f.label :reference_email, "Email Id of Reference" %> : <%= f.email_field :reference_email,:class=>"form-control" %>
+			</div>
+		</div>
+		<div class="form-group col-xs-8">
+			<%= f.submit "Add Expertise", :class=>"btn btn-success" %>
+		</div>
+	</div>
+<% end %>

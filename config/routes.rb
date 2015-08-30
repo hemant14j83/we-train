@@ -2,9 +2,11 @@ Rails.application.routes.draw do
   
   devise_for :trainers, controller: {registrations: "registrations"}
   resources :qualifications
+  resources :expertises
 
   resources :trainers do
 	 resources :qualifications
+   resources :expertises
   end
 
   get 'trainers/profile' => "trainers#show", as: :trainer_root
