@@ -1,0 +1,122 @@
+<div class="col-xs-12">
+  <!--<p id="notice"><%= notice %></p>  -->
+  <div class="col-xs-3">
+    <div class="panel panel-default">
+      <div class="panel-body">
+      	<%= image_tag("profile_pics/pic_def.png", :class => "profile_pic") %>        
+      </div>      
+    </div>
+    <div class="panel panel-success">
+      <div class="panel-heading">
+        <h3 class="panel-title">Related Links</h3>
+      </div>
+      <div class="panel-body">
+        <p>News feed of latest relevant job available</p>
+      </div>
+    </div>
+  </div>
+  <div class="col-xs-9">
+    <div class="panel panel-success">
+      <div class="panel-heading">
+        <b><%= @trainer.full_name %></b> | 
+        <span style="align:right;"><%= link_to 'Update', edit_trainer_registration_path %></span>
+      </div>
+      <div class="panel-body">
+        <div class="col-xs-6">
+          <div class="panel panel-default">
+          	<div class="panel-heading">
+            	<h4 class="panel-title"><b>Profile</b></h4>
+          	</div>
+          </div>        
+          <table class="table">
+            <tr><td>Name:</td><td><%= @trainer.full_name %></td></tr>
+            <tr><td>Rank:</td><td><font color="red">Display ranking of trainer</font></td></tr>
+            <tr><td>Date of Birth:</td><td><%= @trainer.birth_date %></td></tr>
+            <tr>
+              <td>Gender:</td>
+              <td>
+                <% if @trainer.gender=="Select Gender" %>
+                  Not Specified
+                <%else%>
+                  <%= @trainer.gender %>
+                <%end%>
+              </td>
+            </tr>
+            <tr>
+              <td>Profile Status:</td>
+              <td>
+                <% if @trainer.profile_status=="pending" %>
+                  <span class="label label-warning">Pending Approval</span><br>
+                  <div style="margin-top:5px;"><a href="">Contact Us</a> to know why.</div>
+                <%else%>
+                  <%= @trainer.profile_status %>
+                <%end%>
+              </td>
+            </tr>
+            <tr>
+              <td>Your Plan:</td>
+              <td>
+                <% if @trainer.subscribed_plan=="trail" %>
+                  Trail, <a href="">Click</a> to Upgrade your Plan
+                <%else%>
+                  <%= @trainer.subscribed_plan %>
+                <%end%>
+              </td>
+            </tr>
+          </table>          
+        </div>    
+        <div class="col-xs-6">
+          <div class="panel panel-default">
+            <div class="panel-heading">
+              <h4 class="panel-title"><b>Contact Details</b></h4>
+            </div>
+          </div>
+          <table class="table">
+            <tr><td>Email:</td><td><%= @trainer.email %></td></tr>
+            <tr><td>Primary Number:</td><td><%= @trainer.primary_number %></td></tr>
+            <tr>
+              <td>Address:</td>
+              <td>
+                <% if @trainer.address? %>
+                  <%= @trainer.address %>, <%= @trainer.city %><br>
+                  <%= @trainer.state %>, <%= @trainer.country %>
+                <%else%>
+                  <span class="disabled"><%= link_to 'Add Address' %></span>
+                <% end %>                
+              </td>
+            </tr>
+          </table>
+        </div>         
+        <div class="col-xs-12">
+          <div class="panel panel-default">
+            <div class="panel-heading">
+              <h4 class = "panel-title"><b>Qualification Details</b></h4>
+            </div>
+          </div>
+      		    <%= render @trainer.qualifications %>
+      	    <hr>
+            <div class="col-xs-12 qbox">
+            <h4><u>Add More Qualification</u></h4>   
+              <%= render "qualifications/form" %>
+            </div>
+      	</div>
+      </div>
+    </div>
+  </div>
+</div>
+<!--
+<div class="panel-group" id="accordion">
+  <div class="panel panel-default">
+    <div class="panel-heading">
+        <h4 class="panel-title">
+            <a data-toggle="collapse" data-parent="#accordion" href="#qual"><b>Qualification Details</b></a>
+        </h4>
+    </div>
+    <div id="qual" class="panel-collapse collapse">
+        <div class="panel-body">
+          <%= render @trainer.qualifications %>
+        </div>
+    </div>
+  </div>  
+</div>
+           -->

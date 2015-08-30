@@ -1,0 +1,42 @@
+<p id="notice"><%= notice %></p>
+
+<h3 class="heading">List of expertises (<font color="blue"><b>Admin View</b></font>)</h3>
+
+<table class="table table-bordered">
+  <thead>
+    <tr>
+      <th>Trainer Email</th>
+      <th>Trainer Name</th>
+      <th>Expertise</th>
+      <th>Professional Expertise Info</th>
+      <th>Reference Name</th>
+      <th>Reference Email</th>
+      <th>Reference Number</th>
+      <th>Verified Status</th>
+      <th>Update Status</th>
+      <th colspan="2">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Action</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @expertise.each do |expertise| %>
+      <tr>
+        <td><%= expertise.trainer.email %></td>
+        <td><%= expertise.trainer.full_name %></td>
+        <td><%= expertise.expertise_in %></td>
+        <td><%= expertise.professional_expertise_info %></td>
+        <td><%= expertise.reference_name %></td>
+        <td><%= expertise.reference_email %></td>
+        <td><%= expertise.reference_number %></td>
+        <td><%= expertise.expertise_verified_status %></td>
+        <% if expertise.comments? %>
+          <td><%= expertise.comments %></td>
+        <%else%>
+          <td><font color="red">Please verify</font></td>
+        <%end%>
+        <td><%= link_to 'Edit', edit_expertise_path(expertise) %></td>
+        <td><%= link_to 'Destroy', expertise, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

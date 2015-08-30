@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150830151157) do
+ActiveRecord::Schema.define(version: 20150830164826) do
 
   create_table "expertises", force: :cascade do |t|
     t.string   "expertise_in",                limit: 255
@@ -19,10 +19,11 @@ ActiveRecord::Schema.define(version: 20150830151157) do
     t.string   "reference_name",              limit: 150
     t.string   "reference_number",            limit: 15
     t.string   "reference_email",             limit: 100
-    t.string   "expertise_verified_status",   limit: 255, default: "UnVerified"
+    t.string   "expertise_verified_status",   limit: 255,   default: "UnVerified"
     t.integer  "trainer_id",                  limit: 4
-    t.datetime "created_at",                                                     null: false
-    t.datetime "updated_at",                                                     null: false
+    t.datetime "created_at",                                                       null: false
+    t.datetime "updated_at",                                                       null: false
+    t.text     "comments",                    limit: 65535
   end
 
   add_index "expertises", ["trainer_id"], name: "index_expertises_on_trainer_id", using: :btree
@@ -79,6 +80,7 @@ ActiveRecord::Schema.define(version: 20150830151157) do
     t.string   "subscribed_plan",        limit: 100,   default: "trail"
     t.date     "busy_from"
     t.date     "busy_till"
+    t.string   "role",                   limit: 50
   end
 
   add_index "trainers", ["email"], name: "index_trainers_on_email", unique: true, using: :btree

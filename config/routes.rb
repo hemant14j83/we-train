@@ -11,6 +11,7 @@ Rails.application.routes.draw do
 
   get 'trainers/profile' => "trainers#show", as: :trainer_root
   get 'trainers-list' => "trainers#index"
+  get 'expertise-list' => "expertises#index"
   get 'trainers/:id/update' => "devise/registrations#edit"
   #get 'trainers' => "devise/registrations#edit"
   get "home/index"
