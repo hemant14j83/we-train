@@ -7,8 +7,7 @@
     <tr>
       <th>Status</th>
       <th>Email</th>
-      <th>Sign In Count</th>
-      <th>Last Sign In At</th>
+      <th>Current Sign In At</th>
       <th>Login Type</th>
       <th>Name</th>
       <th>Number</th>
@@ -16,22 +15,21 @@
       <th>Gender</th>
       <th>Address</th>
       <th>Plan</th>
-      <th>Schedule</th>
       <th>Created At</th>
+      <th>Action</th>
     </tr>
   </thead>
 
   <tbody>
     <% @trainer.each do |trainer| %>
       <tr>
-      <% if trainer.full_name? && trainer.primary_number? %>
-        <td class="approved">Approved</td>
-      <% else %>
+      <% if trainer.profile_status=="pending" %>
         <td class="pending">Pending</td>
+      <% else %>
+        <td class="approved">Approved</td>
       <%end%>
         <td><%= trainer.email %></td>
-        <td><b><%= trainer.sign_in_count %></b></td>
-        <td><%= trainer.last_sign_in_at %></td>
+        <td><%= trainer.current_sign_in_at %></td>
         <td><%= trainer.login_type %></td>
         <% if trainer.address? %>
           <td><%= trainer.full_name %></td>
@@ -50,13 +48,9 @@
         <% else %>
           <td><font color="red">Blank</font></td>
         <% end %>
-        <td><%= trainer.subscribed_plan %></td>
-        <% if trainer.address? %>
-          <td>Busy From: <%= trainer.busy_from %><br>Busy Till: <%= trainer.busy_till %></td>
-        <% else %>
-          <td><font color="red">Blank</font></td>
-        <% end %>  
+        <td><%= trainer.subscribed_plan %></td>        
         <td><%= trainer.created_at %></td>
+        <td><%= link_to 'Approve / Reject', edit_trainer_registration_path, :class=>"label label-success" %></td>
       </tr>
     <% end %>
   </tbody>

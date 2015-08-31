@@ -13,16 +13,25 @@ class ExpertisesController < ApplicationController
   @trainer=Trainer.find(current_trainer.id)
  end
 
+ def edit
+  @expertise=Expertise.find(params[:id])
+ end
+
  def update
+  @expertise=Expertise.find(params[:id])
     respond_to do |format|
       if @expertise.update(expertise_params)
-        format.html { redirect_to @expertise, notice: 'Details updated successfully.' }
-        format.json { render :show, status: :ok, location: @trainer }
+        format.html { redirect_to expertise_list_path, notice: 'Details updated successfully.' }
+        format.json { render :show, status: :ok, location: @expertise }
       else
         format.html { render :edit }
         format.json { render json: @expertise.errors, status: :unprocessable_entity }
       end
     end
+ end
+
+ def approved
+
  end
 
  def destroy
@@ -37,6 +46,6 @@ class ExpertisesController < ApplicationController
      @expertise = Expertise.find(params[:id])
   end
   def expertise_params
-      params.require(:expertise).permit(:expertise_in, :professional_expertise_info, :reference_name, :reference_number, :reference_email, :expertise_verified_status)
+      params.require(:expertise).permit(:expertise_in, :professional_expertise_info, :reference_name, :reference_number, :reference_email, :expertise_verified_status,:comments)
   end
 end

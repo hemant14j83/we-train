@@ -13,16 +13,27 @@
       <th>Reference Email</th>
       <th>Reference Number</th>
       <th>Verified Status</th>
-      <th>Update Status</th>
-      <th colspan="2">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Action</th>
+      <th>Comments</th>
     </tr>
   </thead>
 
   <tbody>
     <% @expertise.each do |expertise| %>
-      <tr>
+      <% if expertise.expertise_verified_status=="Verified" %>
+        <tr class="success">
+      <%else%>
+        <tr class="warning">
+      <%end%>
         <td><%= expertise.trainer.email %></td>
-        <td><%= expertise.trainer.full_name %></td>
+        <td>
+          <%= expertise.trainer.full_name %><br>
+          <% if expertise.expertise_verified_status=="Verified" %>
+            <%= link_to 'Delete', expertise, method: :delete, data: { confirm: 'Are you sure?' }, :class=>"label label-danger" %>
+          <%else%>
+            <%= link_to 'Approve / Reject', edit_expertise_path(expertise),:class=>"label label-success" %>
+            <%= link_to 'Delete', expertise, method: :delete, data: { confirm: 'Are you sure?' }, :class=>"label label-danger" %>
+          <%end%>
+        </td>
         <td><%= expertise.expertise_in %></td>
         <td><%= expertise.professional_expertise_info %></td>
         <td><%= expertise.reference_name %></td>
@@ -34,8 +45,6 @@
         <%else%>
           <td><font color="red">Please verify</font></td>
         <%end%>
-        <td><%= link_to 'Edit', edit_expertise_path(expertise) %></td>
-        <td><%= link_to 'Destroy', expertise, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
   </tbody>

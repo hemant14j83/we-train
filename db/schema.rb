@@ -80,7 +80,7 @@ ActiveRecord::Schema.define(version: 20150830164826) do
     t.string   "subscribed_plan",        limit: 100,   default: "trail"
     t.date     "busy_from"
     t.date     "busy_till"
-    t.string   "role",                   limit: 50
+    t.string   "role",                   limit: 50,    default: "trainer"
   end
 
   add_index "trainers", ["email"], name: "index_trainers_on_email", unique: true, using: :btree

@@ -9,26 +9,30 @@
 <div class="col-xs-12">
   <p id="notice"><%= notice %></p>  
   <table class="table table-bordered">
-    <tr><td>Expertise</td><td><%= f.text_field :expertise_in, :class=>"form-control" %></td></tr>
-    <tr><td>Professional</td><td><%= f.text_field :professional_expertise_info, :class=>"form-control" %></td></tr>
-    <tr><td>Reference Name</td><td><%= f.text_field :reference_name, :class=>"form-control" %></td></tr>
-    <tr><td>Reference Number</td><td><%= f.text_field :reference_number, :class=>"form-control" %></td></tr>
-    <tr><td>Reference Email</td><td><%= f.text_field :reference_email, :class=>"form-control" %></td></tr>
-    <tr><td>Verified Status</td><td><%= f.text_field :expertise_verified_status, :class=>"form-control" %></td>
+    <tr><td>Expertise</td><td><%= f.text_field :expertise_in, :disabled=>true, :class=>"form-control col-xs-6" %></td></tr>
+    <tr><td>Professional</td><td><%= f.text_field :professional_expertise_info, :disabled=>true, :class=>"form-control col-xs-6" %></td></tr>
+    <tr><td>Reference Name</td><td><%= f.text_field :reference_name, :disabled=>true, :class=>"form-control" %></td></tr>
+    <tr><td>Reference Number</td><td><%= f.text_field :reference_number, :disabled=>true, :class=>"form-control" %></td></tr>
+    <tr><td>Reference Email</td><td><%= f.text_field :reference_email, :disabled=>true, :class=>"form-control" %></td></tr>
+    <tr>
+      <td>Verified Status</td>
+      <td><%= f.select :expertise_verified_status,['UnVerified','Verified'], :class=>"form-control" %></td>
+    </tr>
     <tr>
       <td>Select Comments</td>
       <td>
-        <%= f.select :expertise_verified_status,['Call Not Received','Wrong Details','Positive','Negative'] :class=>"form-control" %>
+        <%= f.select :comments,['Call Not Received','Wrong Details','Positive','Negative','Asked to call back'], :class=>"form-control" %>
       </td>
     </tr>
   </table>
 
   <table width="100%">
       <tr>
-        <td><b><%= f.submit :"Update Details", :class=> 'btn btn-success col-xs-11' %></b></td>
+        <td><%= f.submit :"Update Details", :class=> 'btn btn-success col-xs-11' %></td>
         <td><%= f.submit :"Cancel", :class=> 'btn btn-warning col-xs-11' %></td>
       </tr>
   </table>
+  <div style="height:10px;"></div>
   <%end%>
   </div>
 </div>
