@@ -1,5 +1,5 @@
 class QualificationsController < ApplicationController
- 
+before_filter :authenticate_trainer! 
  def create
 	#@trainer = Trainer.find(params[:trainer.id])
 	@trainer=Trainer.find(current_trainer.id)

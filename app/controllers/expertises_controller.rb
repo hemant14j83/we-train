@@ -1,4 +1,5 @@
 class ExpertisesController < ApplicationController
+ before_filter :authenticate_trainer!
  def create
 	@trainer=Trainer.find(current_trainer.id)
 	
