@@ -49,7 +49,7 @@
           <td><font color="red">Blank</font></td>
         <% end %>
         <td><%= trainer.subscribed_plan %></td>        
-        <td><%= trainer.created_at %></td>
+        <td><%= trainer.created_at.to_date %></td>
         <td><%= link_to 'Approve / Reject', edit_trainer_registration_path, :class=>"label label-success" %></td>
       </tr>
     <% end %>
