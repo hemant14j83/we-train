@@ -1,6 +1,8 @@
 Rails.application.routes.draw do
   
+  devise_for :recruiters, controller: {recruiterregistrations: "recruiterregistrations"}
   devise_for :trainers, controller: {registrations: "registrations"}
+
   resources :qualifications
   resources :expertises
 
@@ -8,6 +10,9 @@ Rails.application.routes.draw do
 	 resources :qualifications
    resources :expertises
   end
+
+  get 'recruiters/myaccount' => "recruiters#show", as: :recruiter_root
+  get 'recruiters/:id/update' => "recruiters/registrations#edit"
 
   get 'trainers/profile' => "trainers#show", as: :trainer_root
   get 'trainers-list' => "trainers#index"

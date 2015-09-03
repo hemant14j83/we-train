@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150830164826) do
+ActiveRecord::Schema.define(version: 20150902130439) do
 
   create_table "expertises", force: :cascade do |t|
     t.string   "expertise_in",                limit: 255
@@ -44,6 +44,41 @@ ActiveRecord::Schema.define(version: 20150830164826) do
   end
 
   add_index "qualifications", ["trainer_id"], name: "index_qualifications_on_trainer_id", using: :btree
+
+  create_table "recruiters", force: :cascade do |t|
+    t.string   "email",                  limit: 255,   default: "",             null: false
+    t.string   "encrypted_password",     limit: 255,   default: "",             null: false
+    t.string   "reset_password_token",   limit: 255
+    t.datetime "reset_password_sent_at"
+    t.datetime "remember_created_at"
+    t.integer  "sign_in_count",          limit: 4,     default: 0,              null: false
+    t.datetime "current_sign_in_at"
+    t.datetime "last_sign_in_at"
+    t.string   "current_sign_in_ip",     limit: 255
+    t.string   "last_sign_in_ip",        limit: 255
+    t.string   "confirmation_token",     limit: 255
+    t.datetime "confirmed_at"
+    t.datetime "confirmation_sent_at"
+    t.string   "unconfirmed_email",      limit: 255
+    t.datetime "created_at",                                                    null: false
+    t.datetime "updated_at",                                                    null: false
+    t.string   "firm_name",              limit: 200
+    t.string   "firm_type",              limit: 200,   default: "not selected"
+    t.string   "firm_number",            limit: 15
+    t.text     "firm_address",           limit: 65535
+    t.string   "city",                   limit: 255
+    t.string   "state",                  limit: 255
+    t.string   "country",                limit: 255
+    t.string   "pincode",                limit: 6
+    t.string   "contact_person_name",    limit: 150
+    t.string   "contact_person_email",   limit: 255
+    t.string   "contact_person_number",  limit: 15
+    t.string   "subscribed_plan",        limit: 255,   default: "trail"
+    t.string   "account_status",         limit: 255,   default: "pending"
+  end
+
+  add_index "recruiters", ["email"], name: "index_recruiters_on_email", unique: true, using: :btree
+  add_index "recruiters", ["reset_password_token"], name: "index_recruiters_on_reset_password_token", unique: true, using: :btree
 
   create_table "test", id: false, force: :cascade do |t|
     t.string "name",  limit: 50
