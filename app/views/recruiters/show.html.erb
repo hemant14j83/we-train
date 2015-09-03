@@ -1,0 +1,130 @@
+<div class="col-xs-12">
+  <!--<p id="notice"><%= notice %></p>  -->
+  <div class="col-xs-3">
+    <div class="panel panel-default">
+      <div class="panel-body">
+      	<%= image_tag("profile_pics/pic_def.png", :class => "profile_pic") %>        
+      </div>      
+    </div>
+    <div class="panel panel-success">
+      <div class="panel-heading">
+        <h3 class="panel-title">Related Links</h3>
+      </div>
+      <div class="panel-body">
+        <p>News feed of latest relevant job available</p>
+      </div>
+    </div>
+  </div>
+  <div class="col-xs-9">
+    <div class="panel panel-success">
+      <div class="panel-heading">
+        <% if @recruiter.firm_name? %>
+          <b><%= @recruiter.firm_name %></b> |
+        <% else %>
+          <b>Your Account</b> | 
+        <% end %>
+        <span style="align:right;"><%= link_to 'Update', edit_recruiter_registration_path %></span>
+      </div>
+      <div class="panel-body">
+        <div class="col-xs-12" id="tabcontent1">
+          <ul class="nav nav-tabs">
+            <li class="active">
+              <a href="#profile" data-toggle="tab">
+                My Account
+              </a>
+            </li>
+            <li>
+              <a href="#quali" data-toggle="tab">
+                Posted Jobs
+              </a>
+            </li>
+            <li>
+              <a href="#expertise" data-toggle="tab">
+                Perspective Trainers List
+              </a>
+            </li>
+          </ul>
+          <div class="tab-content">
+            <div id="profile" class="tab-pane fade in active">
+              <h3>Account Details</h3>
+              <div class="col-xs-6">
+                <table class="table">
+                  <tr><td>Firm Name</td><td><%= @recruiter.firm_name %></td></tr>
+                  <tr>
+                    <% if @recruiter.firm_type =="not selected" %>
+                      <td>Firm Type</td>
+                      <td><%= link_to "Select Firm Type", edit_recruiter_registration_path %></td>
+                    <% else %>
+                      <td>Firm Type</td><td><%= @recruiter.firm_type %></td>
+                    <% end %>
+                  </tr>
+                  <tr><td>Contact Number</td><td><%= @recruiter.firm_number %></td></tr>
+                  <% if @recruiter.firm_address? %>
+                    <tr><td>Firm Address</td>
+                        <td>
+                          <%= @recruiter.firm_address %>,<%= @recruiter.city %><br>
+                          <%= @recruiter.state %>, <%= @recruiter.country %><br>
+                          Pin code : <%= @recruiter.pincode %>
+                        </td>
+                    </tr>
+                  <%else%>
+                    <tr>
+                      <td>Firm Address</td>
+                      <td><%= link_to "Add Address", edit_recruiter_registration_path %></td>
+                    </tr>
+                  <%end%>
+                </table>
+              </div>
+              <div class="col-xs-6">
+                <table class="table">
+                  <tr><td>Contact Person Name</td><td><%= @recruiter.contact_person_name %></td></tr>
+                  <tr>
+                    <td>Email<br>
+                        Number<br>
+                    </td>
+                    <td>
+                        <%= @recruiter.contact_person_email %><br>
+                        <%= @recruiter.contact_person_number %>
+                    </td>
+                  </tr>                  
+                </table>
+              </div>
+            </div>
+            <div id="quali" class="tab-pane">
+              <br>
+              <div class="col-xs-12">
+                <table width="30%">
+                  <tr>
+                    <td>
+                      <b>Qualification Details</b>
+                    </td>
+                    <td>
+                      <a href="#addqual" class="btn btn-success  btn-sm">Add More</a>
+                    </td>
+                  </tr>
+                </table>
+              </div>
+                render here
+            </div>
+            <div id="expertise" class="tab-pane">
+              <br>
+              <div class="col-xs-12">
+                <table width="30%">
+                  <tr>
+                    <td>
+                      <b>Expertise Details</b>
+                    </td>
+                    <td>
+                      <a href="#addexpe" class="btn btn-success  btn-sm">Add More</a>
+                    </td>
+                  </tr>
+                </table>
+              </div>
+                render here
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Recruiter My Account - Traix </title>
+  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <%= csrf_meta_tags %>
+</head>
+<body>
+  <div id="main-container" class="container-fluid">
+      <div class="row">
+        <div class="col-xs-12">
+          <div id="links" style="float:right;margin-top:5px;">
+            <% if recruiter_signed_in? %>
+              <% if current_recruiter.firm_name? %>
+                Signed in as <%= current_recruiter.firm_name %>. Not You?
+                <%= link_to "Sign out", destroy_recruiter_session_path, :class=>"label label-warning" %>
+              <%else%>
+                Signed in as <%= current_recruiter.email %>. Not You?
+                <%= link_to "Sign out", destroy_trainer_session_path, :class=>"label label-warning" %>
+              <%end%>
+            <% else %>
+              <%= link_to "Sign_up", new_recruiter_registration_path, :class=>"label label-success"  %>  <%= link_to "sign_in", new_recruiter_session_path, :class=>"label label-success" %>
+            <% end %>             
+          </div>
+          <div id="header" class="col-xs-3">
+            <div style="float:left;margin-top:10px;margin-left:5px;">
+              <%= link_to(image_tag("logo.jpg", :width=>"60%"),"/") %>
+            </div>
+          </div>
+        </div>
+      </div>
+      <hr>
+      <div class="row">        
+        <div id="content" class="col-xs-12">
+          <p id="notice"><%= notice %></p>
+          <%= yield %>
+        </div>
+      </div>
+      <div class="row">
+        <div id="footer" class="col-xs-12">
+          <div class="footerbody">
+            <div class="col-xs-3">
+              <h4 style="margin-left:40px;"><b><u>Traix</u></b></h4>
+              <ul>
+                <li><a href="#">Trainer's Club</a></li>
+                <li><a href="#">Available Training Programs</a></li>
+                <li><a href="#">Available Trainers</a></li>
+                <li><a href="#">Pricing</a></li>
+                <li><a href="#">Privacy Policy</a></li>
+                <li><a href="#">Terms and Conditions</a></li>
+              </ul>
+            </div>
+            <div class="col-xs-3">
+              <h4 style="margin-left:40px;"><b><u>About</u></b></h4>
+              <ul>
+                <li><a href="#">About us</a></li>
+                <li><a href="#">How it Works</a></li>
+                <li><a href="#">Security</a></li>
+                <li><a href="#">Report Bug</a></li>
+                <li><a href="#">Get in Touch</a></li>
+                <li><a href="#">Careers</a></li>
+              </ul>
+            </div>
+            <div class="col-xs-3">
+              <h4 style="margin-left:15px;"><b><u>Connect</u></b></h4>
+              <div class="social">
+                <ul>
+                  <li><a href="#"><i class="fa fa-lg fa-linkedin"></i></a></li>
+                  <li><a href="#"><i class="fa fa-lg fa-facebook"></i></a></li>
+                  <li><a href="#"><i class="fa fa-lg fa-twitter"></i></a></li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+  </div>
+
+</body>
+</html>
