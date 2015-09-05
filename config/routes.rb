@@ -5,12 +5,18 @@ Rails.application.routes.draw do
 
   resources :qualifications
   resources :expertises
-
+  resources :programs
+  
   resources :trainers do
 	 resources :qualifications
    resources :expertises
   end
 
+  resources :recruiters do
+   resources :programs
+   #resources :expertises
+  end
+  
   get 'recruiters/myaccount' => "recruiters#show", as: :recruiter_root
   get 'recruiters/:id/update' => "recruiters/registrations#edit"
 

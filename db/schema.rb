@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150902130439) do
+ActiveRecord::Schema.define(version: 20150903090020) do
 
   create_table "expertises", force: :cascade do |t|
     t.string   "expertise_in",                limit: 255
@@ -27,6 +27,33 @@ ActiveRecord::Schema.define(version: 20150902130439) do
   end
 
   add_index "expertises", ["trainer_id"], name: "index_expertises_on_trainer_id", using: :btree
+
+  create_table "programs", force: :cascade do |t|
+    t.string   "name",                      limit: 255
+    t.text     "program_details",           limit: 65535
+    t.string   "duration",                  limit: 100
+    t.string   "duration_type",             limit: 20
+    t.string   "payment_detail",            limit: 20
+    t.string   "payment_type",              limit: 20
+    t.string   "currency",                  limit: 100,   default: "INR"
+    t.string   "food_expense",              limit: 20,    default: "No"
+    t.string   "food_expense_conditions",   limit: 255
+    t.string   "travel_expense",            limit: 20,    default: "No"
+    t.text     "travel_expense_conditions", limit: 65535
+    t.string   "stay_expense",              limit: 20,    default: "No"
+    t.text     "stay_expense_conditions",   limit: 65535
+    t.date     "start_date"
+    t.date     "end_date"
+    t.text     "venue",                     limit: 65535
+    t.string   "city",                      limit: 255,   default: "not mentioned"
+    t.string   "state",                     limit: 255,   default: "not mentioned"
+    t.string   "country",                   limit: 255,   default: "India"
+    t.integer  "recruiter_id",              limit: 4
+    t.datetime "created_at",                                                        null: false
+    t.datetime "updated_at",                                                        null: false
+  end
+
+  add_index "programs", ["recruiter_id"], name: "index_programs_on_recruiter_id", using: :btree
 
   create_table "qualifications", force: :cascade do |t|
     t.string   "course_name",        limit: 150
@@ -122,5 +149,6 @@ ActiveRecord::Schema.define(version: 20150902130439) do
   add_index "trainers", ["reset_password_token"], name: "index_trainers_on_reset_password_token", unique: true, using: :btree
 
   add_foreign_key "expertises", "trainers"
+  add_foreign_key "programs", "recruiters"
   add_foreign_key "qualifications", "trainers"
 end

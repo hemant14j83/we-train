@@ -1,0 +1,51 @@
+<div class="col-xs-12 progbox">	
+		<div class="textheading">
+			<%= program.name %>
+		</div>
+		<div style="padding:5px;">
+			<b>Program Details</b>
+			<p><%= program.program_details %>
+			<hr>
+			<b>Venue Details:</b>
+			<p><%= program.venue %>, <%= program.city%>, <%=program.state%>, <%= program.country %></p>
+			<hr>
+		</div>
+		<b>Payment / Duration </b>
+		<div style="padding:5px;">			
+			<table class="table table-bordered">
+				<tr>
+					<td>Duration</td>
+					<td>
+						<%= program.duration %> 
+						<% if program.duration_type=="Select Duration" %>
+							Not Mentioned
+						<%else%>
+							<%= program.duration_type %>
+						<%end%>
+					</td>
+					<td>Payment Details</td><td><b><%= program.payment_detail %> <%= program.currency %> <%= program.payment_type %></b></td>
+				</tr>
+			</table>
+		</div>
+		<b>Includes Following:</b>
+		<div style="padding:5px;;">			
+			<table class="table table-bordered">
+				<tr>
+					<td>Food Expenses</td><td><%= program.food_expense %></td>
+					<td>Food Expense Conditions</td><td><%= program.food_expense_conditions %></td>
+				</tr>
+				<tr>
+					<td>Travel Expense</td><td><%= program.travel_expense %></td>	
+					<td>Travel Expense Conditions</td><td><%= program.travel_expense_conditions %></td>
+				</tr>
+				<tr>
+					<td>Stay Expense</td><td><%= program.stay_expense %></td>	
+					<td>Stay Expense Conditions</td><td><%= program.stay_expense_conditions %></td>
+				</tr>
+			</table>
+		</div>
+		<div align="right">
+			<%= link_to 'Edit', edit_program_path(program), :class=>"btn btn-success btn-sm" %>
+			<%= link_to 'Remove', program, method: :delete, data: { confirm: 'Are you sure?' }, :class=>"btn btn-danger btn-sm" %>
+	    </div>
+</div>

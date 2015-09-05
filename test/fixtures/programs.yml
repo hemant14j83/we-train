@@ -1,0 +1,31 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  name: MyString
+  program_details: MyText
+  duration: MyString
+  payment_detail: MyString
+  currency: MyString
+  inc_food: MyString
+  travel_expense: MyString
+  stay_expense: MyString
+  start_date: 2015-09-03
+  end_date: 2015-09-03
+  city: MyString
+  state: MyString
+  recruiters_id: 
+
+two:
+  name: MyString
+  program_details: MyText
+  duration: MyString
+  payment_detail: MyString
+  currency: MyString
+  inc_food: MyString
+  travel_expense: MyString
+  stay_expense: MyString
+  start_date: 2015-09-03
+  end_date: 2015-09-03
+  city: MyString
+  state: MyString
+  recruiters_id: 

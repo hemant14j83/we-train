@@ -34,8 +34,8 @@
               </a>
             </li>
             <li>
-              <a href="#quali" data-toggle="tab">
-                Posted Jobs
+              <a href="#prog" data-toggle="tab">
+                Posted Programs
               </a>
             </li>
             <li>
@@ -90,21 +90,27 @@
                 </table>
               </div>
             </div>
-            <div id="quali" class="tab-pane">
+            <div id="prog" class="tab-pane">
               <br>
               <div class="col-xs-12">
-                <table width="30%">
+                <table width="50%">
                   <tr>
                     <td>
-                      <b>Qualification Details</b>
+                      <b>Posted Programs Details</b>
                     </td>
                     <td>
-                      <a href="#addqual" class="btn btn-success  btn-sm">Add More</a>
+                      <a href="#addprog" class="btn btn-success  btn-sm" id="moreprog">Add More</a>
                     </td>
                   </tr>
                 </table>
               </div>
-                render here
+              <div class="col-xs-12">
+                <%= render @recruiter.programs %>
+              </div>
+              <hr>
+              <div class="col-xs-12">
+                <%= render "programs/form" %>
+              </div>
             </div>
             <div id="expertise" class="tab-pane">
               <br>

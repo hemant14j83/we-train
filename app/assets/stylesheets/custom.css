@@ -4,6 +4,13 @@
 .header{
 
 }
+.textheading{
+    font-weight: bold;
+    background-color: darkgray;
+    color: white;
+    padding: 5px 5px 5px 15px;
+    border-radius: 5px;
+}
 .heading{
     color:#70BF41;
     font-weight: bold;
@@ -243,4 +250,64 @@
     background-color: #FF8000;
     color: black;
     font-weight: bold;
+}
+.progbox {
+    margin: 5px auto;
+    display: block;
+    width: auto;
+    height: auto;
+    padding: 10px;
+    position: relative;
+    background-image: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #aaaeaf), color-stop(100%, #689ecd));
+    background-image: -webkit-linear-gradient(#aaaeaf, #689ecd);
+    background-image: -moz-linear-gradient(#aaaeaf, #689ecd);
+    background-image: -o-linear-gradient(#aaaeaf, #689ecd);
+    background-image: -ms-linear-gradient(#aaaeaf, #689ecd);
+    background-image: linear-gradient(#aaaeaf, #689ecd);
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    -ms-border-radius: 3px;
+    -o-border-radius: 3px;
+    border-radius: 3px;
+    -webkit-box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+    -moz-box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+}
+
+.progbox * {
+    position: relative;
+}
+
+.progbox::before {
+    background: white;
+    -webkit-border-radius: 2px;
+    -moz-border-radius: 2px;
+    -ms-border-radius: 2px;
+    -o-border-radius: 2px;
+    border-radius: 2px;
+    bottom: 1px;
+    content: '';
+    left: 1px;
+    position: absolute;
+    right: 1px;
+    top: 1px;
+}
+.dotborder{
+    border-left:1px dotted darkgrey;
+    border-right:1px dotted darkgrey;
+    border-bottom:1px dotted darkgrey;
+}
+.expbox{
+    border:1px dotted darkgrey;
+    margin-top:5px;
+    margin-bottom:5px;
+    width:92.5%;
+    padding:5px;
+}
+.smexpbox{
+    border:1px dotted red;
+    margin-top:5px;
+    margin-bottom:5px;
+    width:92.5%;
+    padding:5px;
 }
