@@ -1,22 +1,62 @@
 <p id="notice"><%= notice %></p>
 
-<h3 class="heading">List of expertises (<font color="blue"><b>Admin View</b></font>)</h3>
-
-<table class="table table-bordered">
-  <thead>
-    <tr>
-      <th>Program Name</th>
-      <th>Program </th>
-      <th>Expertise</th>
-      <th>Professional Expertise Info</th>
-      <th>Reference Name</th>
-      <th>Reference Email</th>
-      <th>Reference Number</th>
-      <th>Verified Status</th>
-      <th>Comments</th>
-    </tr>
-  </thead>
-
-  <tbody>
-  </tbody>
-</table>
+<div class="col-xs-3">
+  <div style="border:1px solid black;height:400px;">
+    Space for Filters
+  </div>
+</div>
+<div class="col-xs-9">
+  <h3 class="heading">Available Programs</h3>
+  <% @program.each do |program| %>
+    <div class="col-xs-12 progbox">
+      <h3 class="textheading"><%= program.name %></h3>
+        <div style="text-align:justified">
+	 Required Skills :<b> <%=program.expertise %></b><br>
+	  <%= program.program_details %>
+        </div> 
+        <div class="col-xs-6">
+          <h5 class="heading"><u>Payment & Other perks</u></h5>
+          <div class="progbox">
+            <table class="table" width="100%">
+              <tr>
+                <td>Payment</td>
+                <td><%= program.payment_detail%> <%= program.currency%> <%= program.payment_type %></td>
+              </tr>
+              <tr>
+                <td>Other perks</td>
+                <td>
+                  <% if program.food_expense != 'No' %>
+                    Food, <%= program.food_expense_conditions %><br>
+                  <%end%>
+                  <% if program.travel_expense != 'No' %>
+                    Travel, <%= program.travel_expense_conditions %>.<br>
+                  <%end%>
+                  <% if program.stay_expense != 'No' %>
+                    Stay, <%= program.stay_expense_conditions %>.
+                  <%end%>
+                </td>
+            </table>  
+          </div>
+        </div>
+        <div class="col-xs-6">
+          <h5 class="heading"><u>Program Schedule</u></h5>
+          <div class="progbox">
+            <table class="table" width="100%">
+              <tr>
+                <td>Program Starts on</td><td><%= program.start_date %></td>
+              </tr>
+              <tr>
+                <td>Program Ends on</td><td><%= program.end_date %></td>
+              </tr>
+              <tr>
+                <td>Location</td><td><%= program.city %></td>
+              </tr>
+            </table>
+          </div>
+        </div>
+    <div align="right">
+      <%= link_to 'Apply', program, :class=>"btn btn-success" %>
+    </div>
+    </div>
+  <%end%>
+</div>

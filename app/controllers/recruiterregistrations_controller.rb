@@ -1,4 +1,5 @@
 class RecruiterregistrationsController < Devise::RegistrationsController
+layout 'recruiters'
   def new
     super    
  end 

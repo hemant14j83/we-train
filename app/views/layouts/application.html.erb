@@ -13,10 +13,10 @@
           <div id="links" style="float:right;margin-top:5px;">
             <% if trainer_signed_in? %>
               <% if current_trainer.full_name? %>
-                Signed in as <%= current_trainer.full_name %>. Not You?
+                Signed in as <font color="green"><b><%= current_trainer.full_name %></b></font> Not You?
                 <%= link_to "Sign out", destroy_trainer_session_path, :class=>"label label-warning" %>
               <%else%>
-                Signed in as <%= current_trainer.email %>. Not You?
+                Signed in as <font color="green"><b><%= current_trainer.email %></b></font> Not You?
                 <%= link_to "Sign out", destroy_trainer_session_path, :class=>"label label-warning" %>
               <%end%>
             <% else %>

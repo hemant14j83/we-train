@@ -1,5 +1,4 @@
 <div class="col-xs-12">
-  <!--<p id="notice"><%= notice %></p>  -->
   <div class="col-xs-3">
     <div class="panel panel-default">
       <div class="panel-body">
@@ -26,6 +25,8 @@
         <span style="align:right;"><%= link_to 'Update', edit_recruiter_registration_path %></span>
       </div>
       <div class="panel-body">
+      <p id="notice"><%= notice %></p>
+      <%if @recruiter.firm_name? || @recruiter.firm_number? || @recruiter.firm_address? %>
         <div class="col-xs-12" id="tabcontent1">
           <ul class="nav nav-tabs">
             <li class="active">
@@ -130,6 +131,12 @@
             </div>
           </div>
         </div>
+      <%else%>
+        <div class="col-xs-12 label label-warning">
+          <font size="2px">Your profile is "<font color="red">Incomplete</font>", click <%= link_to 'here', edit_recruiter_registration_path %> to update it. </font>
+        </div>
+
+        <% end %>
       </div>
     </div>
   </div>

@@ -4,8 +4,8 @@ class ProgramsController < ApplicationController
  def create
 	@recruiter=Recruiter.find(current_recruiter.id)
 	
-	@program = @recruiter.programs.create(params[:program].permit(:name, :program_details, :duration, :duration_type, :payment_detail, :payment_type, :currency, :food_expense,:food_expense_conditions, :travel_expense,:travel_expense_conditions, :stay_expense, :stay_expense_conditions, :start_date, :end_date,:venue, :city, :state, :country))
-
+	@program = @recruiter.programs.create(params[:program].permit(:name, :program_details, :duration, :duration_type, :payment_detail, :payment_type, :currency, :food_expense,:food_expense_conditions, :travel_expense,:travel_expense_conditions, :stay_expense, :stay_expense_conditions, :start_date, :end_date,:venue, :city, :state, :country, :expertise, :status, :category, :plan))
+  flash[:notice]='Program Added Successfully.'
 	redirect_to recruiter_root_path
 	#redirect_to edit_recruiter_registration_path
  end
@@ -55,6 +55,6 @@ class ProgramsController < ApplicationController
      @program = Program.find(params[:id])
   end
   def program_params
-      params.require(:program).permit(:name, :program_details, :duration, :duration_type, :payment_detail, :payment_type, :currency, :food_expense,:food_expense_conditions, :travel_expense,:travel_expense_conditions, :stay_expense, :stay_expense_conditions, :start_date, :end_date,:venue, :city, :state, :country)
+      params.require(:program).permit(:name, :program_details, :duration, :duration_type, :payment_detail, :payment_type, :currency, :food_expense,:food_expense_conditions, :travel_expense,:travel_expense_conditions, :stay_expense, :stay_expense_conditions, :start_date, :end_date,:venue, :city, :state, :country, :expertise, :category, :status, :plan)
   end
 end

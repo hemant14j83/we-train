@@ -59,12 +59,23 @@
 	        	<div class="form-group col-xs-12">
 					<%= f.label :name, "Program Name" %> <%= f.text_field :name, :class=>"form-control" %>
 				</div>
-				<div class="form-group col-xs-9">
-					<%= f.label :duration, "Program Duration" %> <%= f.text_field :duration, :class=>"form-control" %>
-				</div>				
-		        <div class="form-group col-xs-3">
-		          <%= f.label :duration_type, "Duration Type" %><br> <%= f.select :duration_type,['Select Duration','Hours','Days','Weeks'], :class=>"form-control" %>
-		        </div>
+				<div class="col-xs-6">
+					<div class="form-group col-xs-4" style="margin-left:-30px;">
+						<%= f.label :duration, "Duration" %> <%= f.text_field :duration, :class=>"form-control" %>
+					</div>				
+			        <div class="form-group col-xs-4" style="margin-left:10px;">
+			          <%= f.label :duration_type, "Duration Type" %><br> <%= f.select :duration_type,['Select Duration','Hours','Days','Weeks'], :class=>"form-control" %>
+			        </div>
+			        <div class="form-group col-xs-4" style="margin-left:20px;">
+			          <%= f.label :plan, "Select Plan" %><br> <%= f.select :plan,['Free','Featured','Urgent'], :class=>"form-control" %>
+			        </div>
+			     </div>
+				<div class="form-group col-xs-3">
+					<%= f.label :expertise, "Select Expertise" %><br><%= f.select :expertise,['Select Expertise','Programming','Personality Development'], :class=>"form-control" %>
+				</div>
+				<div class="form-group col-xs-3">
+					<%= f.label :category, "Select Category" %><br><%= f.select :category,['Select Category','IT','Commerce','Hacking','Personality Development'], :class=>"form-control" %>
+				</div>
 				<div class="form-group col-xs-12">
 					<%= f.label :program_details, "Program Details" %> <%= f.text_area :program_details, :size=>'0x5',:class=>"form-control" %>
 				</div>
@@ -124,7 +135,12 @@
 			</div>
 		</div>
 		<div class="form-group col-xs-8">
-			<%= f.submit "Post Program", :class=>"btn btn-success" %>
+			<table>
+				<tr>
+					<td><%= f.submit "Post Program", :class=>"btn btn-success" %></td>
+					<td><%= f.submit "Cancel", :class=>"btn btn-warning" %></td>
+				</tr>
+			</table>
 		</div>
 	</div>
 <% end %>
