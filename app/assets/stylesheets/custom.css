@@ -238,6 +238,38 @@
     height: 85px;
     margin-bottom: 10px;
 }
+.mainbanner{
+    background: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)),url('banners/home/homebanner.jpg');
+    width:100%;
+    text-align: center;
+    background-size: cover;
+    overflow: hidden;
+    height: 600px;
+}
+#bannerlink{
+    margin-top: 30px;
+    margin-bottom: 10px;
+    padding: 30px;
+}
+.bannertext{
+    font-size:50px; font-weight:bold;color:white;
+    margin-top: 6%;
+    margin-bottom: 5%;
+    padding: 15px;
+}
+.bannerbtn{
+    font-weight:bold;
+    font-size:20px;
+    width: auto;
+    padding: 10px;
+    font-family:monospace;
+}
+.bannerbtntext{
+    color:lightgreen;
+    font-family: monospace;
+    font-size: 20px;
+    font-weight: bold;
+}
 .topborder{
     border-top: grey 1px solid;
 }
