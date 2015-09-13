@@ -5,14 +5,30 @@ class ProgramsController < ApplicationController
 	@recruiter=Recruiter.find(current_recruiter.id)
 	
 	@program = @recruiter.programs.create(params[:program].permit(:name, :program_details, :duration, :duration_type, :payment_detail, :payment_type, :currency, :food_expense,:food_expense_conditions, :travel_expense,:travel_expense_conditions, :stay_expense, :stay_expense_conditions, :start_date, :end_date,:venue, :city, :state, :country, :expertise, :status, :category, :plan))
-  flash[:notice]='Program Added Successfully.'
-	redirect_to recruiter_root_path
-	#redirect_to edit_recruiter_registration_path
+  if @program.save
+    case @program.plan
+    when "Featured"
+      Notifier.newprogram_featured(@program).deliver_now
+      flash[:notice]='Featured Program Added Successfully.'
+      redirect_to recruiter_root_path
+    when "Urgent"
+      Notifier.newprogram_urgent(@program).deliver_now
+      flash[:notice]='Urgent Program Added Successfully.'
+      redirect_to recruiter_root_path
+    when "Free"
+      Notifier.newprogram(@program).deliver_now
+      flash[:notice]='Program Added Successfully.'
+      redirect_to recruiter_root_path
+    else
+      flash[:notice]='Failed, Getlost!!!'
+      redirect_to recruiter_root_path
+    end
+  end	
  end
 
  def index
  	@program = Program.all
-    @recruiter=Recruiter.find(current_recruiter.id)
+  @recruiter=Recruiter.find(current_recruiter.id)
  end
 
  def edit
