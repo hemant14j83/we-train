@@ -4,8 +4,13 @@ class ExpertisesController < ApplicationController
 	@trainer=Trainer.find(current_trainer.id)
 	
 	@expertise = @trainer.expertises.create(params[:expertise].permit(:expertise_in, :professional_expertise_info, :reference_name, :reference_number, :reference_email, :expertise_verified_status))
-
-	redirect_to trainer_root_path
+  if @expertise.save
+    flash[:notice]='Program Added Successfully.'
+    redirect_to trainer_root_path
+  else
+    flash[:notice]='Maximum 5 Expertise Allowed.'
+	  redirect_to trainer_root_path
+  end
 	#redirect_to edit_trainer_registration_path
  end
 
