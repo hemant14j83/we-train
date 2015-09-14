@@ -25,9 +25,13 @@
 	<p id="notice"><%= notice %></p>
 	<div class="mainbanner">
 		<br>
-		<% if recruiter_signed_in? %>
+		<% if recruiter_signed_in?  %>
 			<div class="bannertext" style="margin-top:10%">
-				HIRE THE BEST TRAINERS FPR YOUR <br> NEXT TRAINING PROGRAM
+				HIRE THE BEST TRAINERS FOR YOUR <br> NEXT TRAINING PROGRAM
+			</div>
+		<%elsif trainer_signed_in? %>
+			<div class="bannertext" style="margin-top:10%">
+				FIND YOUR NEXT TRAINING <br> PROGRAM WITH LESS LEGWORK
 			</div>
 		<%else%>
 				<div id="buttons">
@@ -95,10 +99,14 @@
 <div id="work">
 	<div class="mainbanner">
 		<br>
-		<% if trainer_signed_in? %>
+		<% if trainer_signed_in? || recruiter_signed_in? %>
 			<div class="bannertext" style="margin-top:10%">
 				FIND YOUR NEXT TRAINING <br> PROGRAM WITH LESS LEGWORK
-			</div>			
+			</div>
+		<%elsif recruiter_signed_in?  %>
+			<div class="bannertext" style="margin-top:10%">
+				HIRE THE BEST TRAINERS FOR YOUR <br> NEXT TRAINING PROGRAM
+			</div>					
 		<%else%>
 			<div id="">
 				<a class="btn btn-default bannerbtn"  id="recruitbs">Recruit</a>
