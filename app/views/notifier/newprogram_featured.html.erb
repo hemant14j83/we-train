@@ -1,0 +1,23 @@
+<p>This is just to notify about <%= @program.name %>, which recently got uploaded on our Platform. </p><br>
+<p><b>Program Details</b></p>
+<table class="customtable">
+	<tr>
+		<td>Featured Listed by</td><td><%= @program.recruiter.firm_name %> </td>
+	</tr>
+	<tr>
+		<td>Expertise Required </td><td><%= @program.expertise %></td>
+	</tr>
+	<tr>
+		<td>Added On </td><td><%= @program.created_at %></td>
+	</tr>
+	<tr>
+		<td colspan="2">			
+			<p><%= @program.program_details%></p><br>
+			<p>Duration :<%= @program.duration%> <%= @program.duration_type%></p>
+			<p>Willing to pay :<b><%= @program.payment_detail %> <%= @program.currency%> <%= @program.payment_type %></b></p>
+			<p>Venue : <%= @program.city %>, <%= @program.country %></p>
+		</td>
+	</tr>
+</table>
+<p>Regards,<p>
+<p>Traix</p>
