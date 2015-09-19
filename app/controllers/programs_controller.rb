@@ -1,5 +1,5 @@
 class ProgramsController < ApplicationController
-	before_filter :authenticate_recruiter!
+	before_filter :authenticate_recruiter!, :except=>'index'
 
  def create
 	@recruiter=Recruiter.find(current_recruiter.id)
@@ -28,7 +28,7 @@ class ProgramsController < ApplicationController
 
  def index
  	@program = Program.all
-  @recruiter=Recruiter.find(current_recruiter.id)
+  #@recruiter=Recruiter.find(current_recruiter.id)
  end
 
  def edit
