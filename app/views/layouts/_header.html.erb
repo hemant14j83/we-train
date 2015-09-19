@@ -4,10 +4,12 @@
             <% if trainer_signed_in? %>
               <% if current_trainer.full_name? %>
                 Signed in as <font color="green"><b><%= current_trainer.full_name %></b></font> Not You?
-                <%= link_to "Sign out", destroy_trainer_session_path, :class=>"label label-warning" %>
+                <%= link_to "Sign out", destroy_trainer_session_path, :class=>"label label-warning" %> 
+                <%= link_to "My Account", "/trainers/profile", :class=>"label label-success" %>
               <%elsif current_trainer.email? %>
                 Signed in as <font color="green"><b><%= current_trainer.email %></b></font> Not You?
                 <%= link_to "Sign out", destroy_trainer_session_path, :class=>"label label-warning" %>
+                <%= link_to "My Account", "/trainers/profile", :class=>"label label-success" %>
               <%else%>
                 <%= link_to "Sign_up", new_trainer_registration_path, :class=>"label label-success"  %>  <%= link_to "sign_in", new_trainer_session_path, :class=>"label label-success" %>
               <%end%>
@@ -16,9 +18,11 @@
                 <% if current_recruiter.firm_name? %>
                   Signed in as <font color="green"><b><%= current_recruiter.firm_name %></b></font> Not You?
                   <%= link_to "Sign out", destroy_recruiter_session_path, :class=>"label label-warning" %>
+                  <%= link_to "My Account", "/recruiters/profile", :class=>"label label-success" %>
                 <%elsif current_recruiter.email? %>
                   Signed in as <font color="green"><%= current_recruiter.email %></font> Not You?
                   <%= link_to "Sign out", destroy_trainer_session_path, :class=>"label label-warning" %>
+                  <%= link_to "My Account", "/recruiters/profile", :class=>"label label-success" %>
                 <%else%>
                   <%= link_to "Sign_up", new_recruiter_registration_path, :class=>"label label-success"  %>  <%= link_to "sign_in", new_recruiter_session_path, :class=>"label label-success" %>
                 <% end %>    
