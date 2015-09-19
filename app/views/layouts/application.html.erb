@@ -17,26 +17,7 @@
 <body>
   <div id="main-container" class="container-fluid">
       <div class="row">
-        <div class="col-xs-12">
-          <div id="links" style="float:right;margin-top:5px;">
-            <% if trainer_signed_in? %>
-              <% if current_trainer.full_name? %>
-                Signed in as <font color="green"><b><%= current_trainer.full_name %></b></font> Not You?
-                <%= link_to "Sign out", destroy_trainer_session_path, :class=>"label label-warning" %>
-              <%else%>
-                Signed in as <font color="green"><b><%= current_trainer.email %></b></font> Not You?
-                <%= link_to "Sign out", destroy_trainer_session_path, :class=>"label label-warning" %>
-              <%end%>
-            <% else %>
-              <%= link_to "Sign_up", new_trainer_registration_path, :class=>"label label-success"  %>  <%= link_to "sign_in", new_trainer_session_path, :class=>"label label-success" %>
-            <% end %>             
-          </div>
-          <div id="header" class="col-xs-3">
-            <div style="float:left;margin-top:10px;margin-left:5px;">
-              <%= link_to(image_tag("logo.jpg", :width=>"60%"),"/") %>
-            </div>
-          </div>
-        </div>
+        <%= render "layouts/header" %>
       </div>
       <hr>
       <div class="row">        
