@@ -22,7 +22,9 @@
   </script>
 
 <div id="recruit">
-	<p id="notice"><%= notice %></p>
+	<% if notice %>
+		<p id="notice"><%= notice %></p>
+	<%end%>
 	<div class="mainbanner">
 		<br>
 		<% if recruiter_signed_in?  %>

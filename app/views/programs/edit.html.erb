@@ -17,8 +17,10 @@
 <%= form_for(@program) do |f| %>
 <div class="col-xs-9">
   <div class="progbox">
-    <p id="notice"><%= notice %></p>  
-    <h4 class="textheading">Update <%= @program.name %></h4>       
+    <% if notice %>
+    <p id="notice"><%= notice %></p>
+  <%end%>
+  <h4 class="textheading">Update <%= @program.name %></h4>       
     <div style="margin-left:10px;margin-right:-50px">
         <div class="form-group col-xs-6">
           <%= f.label :name, "Program Name" %> <%= f.text_field :name, :class=>"form-control" %>

@@ -7,7 +7,6 @@
 
 <%= form_for(@expertise) do |f| %>
 <div class="col-xs-12">
-  <p id="notice"><%= notice %></p>  
   <table class="table table-bordered">
     <tr><td>Expertise</td><td><%= f.text_field :expertise_in, :disabled=>true, :class=>"form-control col-xs-6" %></td></tr>
     <tr><td>Professional</td><td><%= f.text_field :professional_expertise_info, :disabled=>true, :class=>"form-control col-xs-6" %></td></tr>
