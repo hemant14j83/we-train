@@ -291,7 +291,7 @@
 .progbox {
     margin: 5px auto;
     display: block;
-    width: auto;
+    width: 100%;
     height: auto;
     padding: 10px;
     position: relative;
