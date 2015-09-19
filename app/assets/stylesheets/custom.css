@@ -91,10 +91,15 @@
     text-align: center;
 }
 .profile_pic{
-    height: 200px;
-    margin-left: 42px;
-    /*border-radius: 50%;   */
-    border: 1px solid green;
+    max-height: 200px;
+    height: auto;
+    margin-left: 0px;
+    /*border-radius: 50%;   
+    border: 1px solid green;*/
+    width: auto;
+    max-width: 260px;
+    padding: 5px;
+    text-align: center;
 }
 .profile_lpanel{
 
