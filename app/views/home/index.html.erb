@@ -36,19 +36,19 @@
 				FIND YOUR NEXT TRAINING <br> PROGRAM WITH LESS LEGWORK
 			</div>
 		<%else%>
-				<div id="buttons">
-				<a class="btn btn-default bannerbtn">Recruit</a>
+			<div id="buttons">
+				<a class="btn btn-default bannerbtn selected">Recruit</a>
 				<a class="btn btn-default bannerbtn" id="workb">Work</a>
 			</div>
 			<div class="bannertext">
 				HIRE THE BEST TRAINERS FOR YOUR <br> NEXT TRAINING PROGRAM
 			</div>
 			<div>
-				<%= link_to "in | Sign Up with LinkedIn", new_recruiter_session_path, :class=>"btn btn-success bannerbtn" %>
+				<%= link_to "in | Sign Up with LinkedIn", new_recruiter_registration_path, :class=>"btn btn-success bannerbtn" %>
 				<br>
 				<span style="color:white;font-weight:bold;font-size:20px;">Or</span>
 				<br>
-				<%= link_to "Sign Up with Mail", new_recruiter_session_path, :class=>"bannerbtntext" %>
+				<%= link_to "Sign Up with Mail", new_recruiter_registration_path, :class=>"bannerbtntext" %>
 			</div>
 		<%end%>	
 	</div>
@@ -112,17 +112,17 @@
 		<%else%>
 			<div id="">
 				<a class="btn btn-default bannerbtn"  id="recruitbs">Recruit</a>
-				<a class="btn btn-default bannerbtn"  >Work</a>
+				<a class="btn btn-default bannerbtn selected" >Work</a>
 			</div>
 			<div class="bannertext">
 				FIND YOUR NEXT TRAINING <br> PROGRAM WITH LESS LEGWORK
 			</div>
 			<div>
-				<%= link_to "in | Sign Up with LinkedIn", new_trainer_session_path, :class=>"btn btn-success bannerbtn" %>
+				<%= link_to "in | Sign Up with LinkedIn", new_trainer_registration_path, :class=>"btn btn-success bannerbtn" %>
 				<br>
 				<span style="color:white;font-weight:bold;font-size:20px;">Or</span>
 				<br>
-				<%= link_to "Sign Up with Mail", new_trainer_session_path, :class=>"bannerbtntext" %>
+				<%= link_to "Sign Up with Mail", new_trainer_registration_path, :class=>"bannerbtntext" %>
 			</div>
 		<%end%>
 	</div>
