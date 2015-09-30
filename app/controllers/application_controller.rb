@@ -6,6 +6,25 @@ class ApplicationController < ActionController::Base
 
   before_filter :configure_r_permitted_parameters, if: :devise_controller?
 
+  def after_inactive_sign_in_path_for(resource_or_scope)
+    if resource_or_scope.is_a?(Trainer)
+      new_trainer_session_path
+    elsif resource_or_scope.is_a?(Recruiter)
+      new_recruiter_session_path
+    else
+      super
+    end
+  end
+  #def after_inactive_sign_in_path_for(resource_or_scope)
+  #  if resource_or_scope.is_a?(Trainer)
+  #    new_trainer_session_path
+  #  elsif resource_or_scope.is_a?(Recruiter)
+  #    new_recruiter_session_path
+  #  else
+  #    super
+  #  end
+  #end
+
   def stored_location_for(resource)
   	if current_trainer
   		if (current_trainer.full_name.blank? || current_trainer.primary_number.blank? || current_trainer.city.blank? || current_trainer.state.blank?)
@@ -35,5 +54,5 @@ class ApplicationController < ActionController::Base
   private
     def record_not_found
       render :text => "404 Not Found", :status => 404
-    end
+    end    
 end
