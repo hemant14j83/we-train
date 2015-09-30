@@ -1,11 +1,12 @@
 Rails.application.routes.draw do
   
   devise_for :recruiters, controller: {recruiterregistrations: "recruiterregistrations"}
-  devise_for :trainers, controller: {registrations: "registrations"}
+  devise_for :trainers, controllers: {registrations: "registrations",omniauth_callbacks: "trainers/omniauth_callbacks"}
 
   resources :qualifications
   resources :expertises
   resources :programs
+  resources :savedprograms
   
   resources :trainers do
 	 resources :qualifications
@@ -17,9 +18,10 @@ Rails.application.routes.draw do
    #resources :expertises
   end
   
+  get '/auth/:provider/callback', to: 'sessions#create', via: :get
   get 'recruiters/myaccount' => "recruiters#show", as: :recruiter_root
   get 'recruiters/:id/update' => "recruiters/registrations#edit"
-
+  get ":page" => "pages#show"
   get 'trainers/profile' => "trainers#show", as: :trainer_root
   get 'trainers-list' => "trainers#index"
   get 'expertise-list' => "expertises#index"
