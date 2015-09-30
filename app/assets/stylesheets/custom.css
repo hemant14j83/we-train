@@ -1,8 +1,16 @@
-.body{
-
-	}
+body {
+  font-family: "lato","Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-size: 16px;
+  line-height: 1.428571429;
+  color: #333333;
+  background-color: #fff;
+}
 .header{
 
+}
+p{
+    font-family: lato;
+    font-size:14px;   
 }
 .textheading{
     font-weight: bold;
@@ -384,4 +392,40 @@
     text-align: left;
     top: 100%;
     z-index: 1000;
+}
+.pricingbox-header {
+position: relative;
+height: 85px;
+padding: 5px;
+color:white;
+text-align: center;
+background: #808080;
+}
+.pricingbox-header h2{
+    margin-bottom: 0;
+    padding: 0;
+    font-size: 2.5rem;
+    color: #fff;
+}
+.pricingbox-header h3{
+    font-size: 1.25rem;
+    font-weight: bold;
+    padding: 0;
+    color: rgba(255,255,255,.8);
+}
+.pricingbox-header._featured {
+background: #59CB59;
+}
+
+.pricingbox-header._urgent {
+background: #1d67a7;
+}
+.pricingbox-detail {
+padding: 20px 20px 10px;
+background: #fff;
+height: 200px;
+font-family: lato;
+font-size: 16px;
+margin-bottom:10px;
+border:1px solid grey;
 }
