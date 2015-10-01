@@ -1,0 +1,19 @@
+.staticbg{
+	background:#DADADA;
+}
+.pricingbox{
+	width:90%;
+	background-color: #fff;
+	margin:0 auto;
+	height:100px;
+	/*border:1px solid grey;*/
+}
+.pricinggreytxt{
+	color:grey;
+    font: smaller;
+}
+.lato-700-italic{
+	font-family: 'lato', arial, sans-serif;
+	font-style: italic;
+	font-weight: 700;
+}
