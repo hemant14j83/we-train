@@ -25,44 +25,61 @@
 	<% if notice %>
 		<p id="notice"><%= notice %></p>
 	<%end%>
-	<div class="mainbanner">
-		<br>
+	<div class="home-hire">
+		<br>       
+        <div id="header" class="col-xs-12">
+            <div style="float:left;margin-top:10px;margin-left:0px;">
+              <%= link_to(image_tag("logo.jpg", :width=>"60%"),"/") %>
+            </div>
+			<div id="links" style="float:right;margin-top:2%;margin-right:1%;">
+	            <% if recruiter_signed_in? %>
+	                <% if current_recruiter.firm_name? %>
+	                  Signed in as <font color="green"><b><%= current_recruiter.firm_name %></b></font> Not You?
+	                  <%= link_to "Sign out", destroy_recruiter_session_path, :class=>"label label-warning" %>
+	                  <%= link_to "My Account", "/recruiters/profile", :class=>"label label-success" %>
+	                <%elsif current_recruiter.email? %>
+	                  Signed in as <font color="green"><%= current_recruiter.email %></font> Not You?
+	                  <%= link_to "Sign out", destroy_trainer_session_path, :class=>"label label-warning" %>
+	                  <%= link_to "My Account", "/recruiters/profile", :class=>"label label-success" %>
+	              	<%end%>
+	            <%else%>
+	            	<%= link_to "Sign Up", new_recruiter_registration_path, :class=>"homelinks" %>
+	              	<%= link_to "Sign In", new_recruiter_session_path, :class=>"homelinks" %>
+	              		<%#= link_to "Post Project","/", :class=>"homebutton"%>	              	
+	            <% end %>             
+	        </div>
+      </div>
 		<% if recruiter_signed_in?  %>
 			<div class="bannertext" style="margin-top:10%">
-				HIRE THE BEST TRAINERS FOR YOUR <br> NEXT TRAINING PROGRAM
+				List of trainers with expertise verified <br>by our team. To hire the best trainer<br> for your next program post your<br> project now.
 			</div>
 		<%elsif trainer_signed_in? %>
 			<div class="bannertext" style="margin-top:10%">
-				FIND YOUR NEXT TRAINING <br> PROGRAM WITH LESS LEGWORK
+				Find the most suitable taining <br>program matching your areas of <br>expertise. Apply Now.
 			</div>
 		<%else%>
-			<div id="buttons">
-				<a class="btn btn-default bannerbtn selected">Recruit</a>
+			<div id="buttons">				
 				<a class="btn btn-default bannerbtn" id="workb">Work</a>
+				<a class="btn btn-default bannerbtn selected">Hire</a>
 			</div>
 			<div class="bannertext">
-				HIRE THE BEST TRAINERS FOR YOUR <br> NEXT TRAINING PROGRAM
+				List of trainers with expertise verified <br>by our team. To hire the best trainer<br> for your next program post your<br> project now.
 			</div>
 			<div>
-				<%= link_to "in | Sign Up with LinkedIn", new_recruiter_registration_path, :class=>"btn btn-success bannerbtn" %>
-				<br>
-				<span style="color:white;font-weight:bold;font-size:20px;">Or</span>
-				<br>
-				<%= link_to "Sign Up with Mail", new_recruiter_registration_path, :class=>"bannerbtntext" %>
+				<%= link_to "Post Project", new_program_path, :class=>"homebutton hbtn-lg" %>
 			</div>
 		<%end%>	
 	</div>
 	<div id="how" class="col-xs-12">
 		<div class="col-xs-6">
-			<h3 class="titletxt"><u>How it Works</u></h3>
+			<h3 class="titletxt">Hire the best trainers for your next <br> program.</h3>
 			<div class="greytxt">
-				<p>Find a trainer in 5 easy steps</p>
-				<ol style="list-style-type:decimal">
-					<li>Sign Up as a recruiter.</li>
-					<li>Complete and submit your profile.</li>
-					<li>Define the pay range.</li>
-					<li>Search for trainers in our database.</li>
-					<li>Let us contact them for you.</li>
+				<ul style="list-style-type:dics">
+					<li>Register your Company/College.</li>
+					<li>Search for Expertise(Skill Sets) you are looking for.</li>
+					<li>Post the details of your project.</li>
+					<li>Shortlist the best trainer among the applicants.</li>
+					<li>And pheww done. You are all set for the great results.</li>
 				</ol>
 			</div>
 		</div>
@@ -70,73 +87,90 @@
 			<%= image_tag("howitworksrec.gif",:class=>"gifimage") %>
 		</div>
 	</div>
-	<div id="why" class="col-xs-12">
-		
-			<h1 class="heading tcenter">WHY TRAIX</h1>
-			<p style="text-align:center"><b>In pre-traix era companies as well as trainers were hugely dependant on personal connections. Many training programs went haywire because of unavailability of trainers.</b></p>
-		<div class="col-xs-4">
-			<div style="padding:10px 10px 0px 130px">
-				<%= image_tag("circle.jpg")%>
+	<div id="why" class="col-xs-12 gradient">
+		<div class="col-xs-12 feed-heading tcenter">Most Seeked Trainers</div>
+		<div class="col-xs-12">
+			<div class="col-xs-4 feed-bg">
+				<div class="tcenter feeddetails">Trainer's First Name</div>
+				<div clas=""></div>
 			</div>
-			<h3 class="titletxt tcenter">Complete Integration</h3>
-			<p class="greytxt tcenter">Traix provides complete integration platform for trainers to manage their training programs, from scheduling to payments.</p>
+			<div class="col-xs-4 feed-bg">
+				<div class="tcenter feeddetails">Trainer's First Name</div>
+				<div clas=""></div>
+			</div>
+			<div class="col-xs-4 feed-bg">
+				<div class="tcenter feeddetails">Trainer's First Name</div>
+				<div clas=""></div>
+			</div>
 		</div>
-		<div class="col-xs-4">
-			<div style="padding:10px 10px 0px 130px">
-				<%= image_tag("circle.jpg")%>
-			</div>
-			<h3 class="titletxt tcenter">Verified Database</h3>
-			<p class="greytxt tcenter">The team at Traix verifies each company and individuals at out platform along with the training programmes posted on our site.</p>
+		<div class="col-xs-2"></div>
+		<div class="col-xs-8 tcenter">
+			<div class="feedbutton">Find the best match for your next training program</div>
 		</div>
-		<div class="col-xs-4">
-			<div style="padding:10px 10px 0px 130px">
-				<%= image_tag("circle.jpg")%>
-			</div>
-			<h3 class="titletxt tcenter">Privacy and Total Control</h3>
-			<p class="greytxt tcenter">All details you post on our platform are private and are visible to only those you allow.</p>
+		<div class="col-xs-2"></div>
+	</div>
+	<div class="col-xs-12">
+		<div class="tcenter greytxt">
+			<div class="homesol">Want a complete training solution?? <a href="">Contact Us</a></div>
 		</div>
 	</div>
 </div>
 
 <div id="work">
-	<div class="mainbanner">
-		<br>
+	<div class="home-work">
+		<br>  
+        <div id="header" class="col-xs-12">
+            <div style="float:left;margin-top:10px;margin-left:0px;">
+              <%= link_to(image_tag("logo.jpg", :width=>"60%"),"/") %>
+            </div>
+		<div id="links" style="margin-top:2%;margin-right:1%;float:right">
+            <% if trainer_signed_in? %>
+              <% if current_trainer.full_name? %>
+                Signed in as <font color="green"><b><%= current_trainer.full_name %></b></font> Not You?
+                <%= link_to "Sign out", destroy_trainer_session_path, :class=>"label label-warning" %> 
+                <%= link_to "My Account", "/trainers/profile", :class=>"label label-success" %>
+              <%elsif current_trainer.email? %>
+                Signed in as <font color="green"><b><%= current_trainer.email %></b></font> Not You?
+                <%= link_to "Sign out", destroy_trainer_session_path, :class=>"label label-warning" %>
+                <%= link_to "My Account", "/trainers/profile", :class=>"label label-success" %>
+              <%end%>
+            <%else%>
+              	<%= link_to "Sign Up", new_trainer_registration_path, :class=>"homelinks" %>
+              	<%= link_to "Sign In", new_trainer_session_path, :class=>"homelinks" %>
+              		<%#= link_to "Post Project","/", :class=>"homebutton"%>
+            <% end %>             
+        </div>
+      </div>
 		<% if trainer_signed_in? || recruiter_signed_in? %>
 			<div class="bannertext" style="margin-top:10%">
-				FIND YOUR NEXT TRAINING <br> PROGRAM WITH LESS LEGWORK
+				Find the most suitable taining <br>program matching your areas of <br>expertise. Apply Now.
 			</div>
 		<%elsif recruiter_signed_in?  %>
 			<div class="bannertext" style="margin-top:10%">
-				HIRE THE BEST TRAINERS FOR YOUR <br> NEXT TRAINING PROGRAM
+				List of trainers with expertise verified <br>by our team. To hire the best trainer<br> for your next program post your<br> project now.
 			</div>					
 		<%else%>
-			<div id="">
-				<a class="btn btn-default bannerbtn"  id="recruitbs">Recruit</a>
+			<div id="buttons">
 				<a class="btn btn-default bannerbtn selected" >Work</a>
+				<a class="btn btn-default bannerbtn"  id="recruitbs">Hire</a>				
 			</div>
 			<div class="bannertext">
-				FIND YOUR NEXT TRAINING <br> PROGRAM WITH LESS LEGWORK
+				Find the most suitable taining <br>program matching your areas of <br>expertise. Apply Now.
 			</div>
 			<div>
-				<%= link_to "in | Sign Up with LinkedIn", trainer_omniauth_authorize_path(:linkedin), :class=>"btn btn-success bannerbtn" %>
-				<br>
-				<span style="color:white;font-weight:bold;font-size:20px;">Or</span>
-				<br>
-				<%= link_to "Sign Up with Mail", new_trainer_registration_path, :class=>"bannerbtntext" %>
+				<%= link_to "Find Project", "/programs", :class=>"homebutton hbtn-lg" %>
 			</div>
 		<%end%>
 	</div>
 	<div id="how" class="col-xs-12">
 		<div class="col-xs-6">
-			<h3 class="titletxt"><u>How it Works</u></h3>
+			<h3 class="titletxt">Work for leading companies /<br> colleges.</h3>
 			<div class="greytxt">
-				<p>Find a training project in 5 easy steps</p>
-				<ol style="list-style-type:decimal">
-					<li>Sign Up as a trainer.</li>
-					<li>Complete and submit your profile</li>
-					<li>Fill up referrals</li>
-					<li>Select list of your domains</li>
-					<li>Set your schedule and fees</li>
+				<ul style="list-style-type:dics">
+					<li>Register your profile.</li>
+					<li>Add the Expertise (Skill Sets) you excel in.</li>
+					<li>Search for the programs you find interesting.</li>
+					<li>Companies colleges will get in touch with you.</li>
 				</ol>
 			</div>
 		</div>
@@ -144,30 +178,31 @@
 			<%= image_tag("howitwork.gif",:class=>"gifimage") %>
 		</div>
 	</div>
+	<div id="why" class="col-xs-12 gradient">
+		<div class="col-xs-12 feed-heading tcenter">Latest Training Programs</div>
+		<div class="col-xs-12">
+			<div class="col-xs-4 feed-bg">
+				<div class="tcenter feeddetails">Trainer's First Name</div>
+				<div clas=""></div>
+			</div>
+			<div class="col-xs-4 feed-bg">
+				<div class="tcenter feeddetails">Trainer's First Name</div>
+				<div clas=""></div>
+			</div>
+			<div class="col-xs-4 feed-bg">
+				<div class="tcenter feeddetails">Trainer's First Name</div>
+				<div clas=""></div>
+			</div>
+		</div>
+		<div class="col-xs-2"></div>
+		<div class="col-xs-8 tcenter">
+			<div class="feedbutton">Create your profile to get the best opportunities</div>
+		</div>
+		<div class="col-xs-2"></div>
+	</div>
 	<div id="why" class="col-xs-12">
-		
-			<h1 class="heading tcenter">WHY TRAIX</h1>
-			<p style="text-align:center"><b>In pre-traix era companies as well as trainers were hugely dependant on personal connections. Many good trainers don't get the programs because either they don't had connections or they never came to know about the availability of such programs</b></p>
-		<div class="col-xs-4">
-			<div style="padding:10px 10px 0px 130px">
-				<%= image_tag("circle.jpg")%>
-			</div>
-			<h3 class="titletxt tcenter">Complete Integration</h3>
-			<p class="greytxt tcenter">Traix provides complete integration platform for trainers to manage their training programs, from scheduling to payments.</p>
-		</div>
-		<div class="col-xs-4">
-			<div style="padding:10px 10px 0px 130px">
-				<%= image_tag("circle.jpg")%>
-			</div>
-			<h3 class="titletxt tcenter">Verified Database</h3>
-			<p class="greytxt tcenter">The team at Traix verifies each company and individuals at out platform along with the training programmes posted on our site.</p>
-		</div>
-		<div class="col-xs-4">
-			<div style="padding:10px 10px 0px 130px">
-				<%= image_tag("circle.jpg")%>
-			</div>
-			<h3 class="titletxt tcenter">Privacy and Total Control</h3>
-			<p class="greytxt tcenter">All details you post on our platform are private and are visible to only those you allow.</p>
+		<div class="tcenter greytxt">
+			<div class="homesol">Want a complete training solution?? <a href="">Contact Us</a></div>
 		</div>
 	</div>
 </div>

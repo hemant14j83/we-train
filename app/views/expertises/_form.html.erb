@@ -7,14 +7,30 @@
 			<div class="form-group col-xs-6">
 				<%= f.label :professional_expertise_info, "Professional Expertise Details" %> <br> <%= f.text_field :professional_expertise_info, :class=>"form-control" %>
 			</div>
+		</div>
+		<div class="col-xs-12">
+			<h4>References (For verification)</h4>
+			<div style="text-align:left"><b># 1</b></div>
 			<div class="form-group col-xs-4">
-				<%= f.label :reference_name, "Reference Name" %> <br> <%= f.text_field :reference_name, :class=>"form-control" %>
+				<%= f.label :reference_name, "Name" %> <br> <%= f.text_field :reference_name, :class=>"form-control" %>
 			</div>
 			<div class="form-group col-xs-4">
-				<%= f.label :reference_number, "Reference Number" %> : <%= f.text_field :reference_number,:class=>"form-control" %>
+				<%= f.label :reference_number, "Number" %> : <%= f.text_field :reference_number,:class=>"form-control" %>
 			</div>
 			<div class="form-group col-xs-4">
-				<%= f.label :reference_email, "Email Id of Reference" %> : <%= f.email_field :reference_email,:class=>"form-control" %>
+				<%= f.label :reference_email, "Email Id" %> : <%= f.email_field :reference_email,:class=>"form-control" %>
+			</div>
+		</div>
+		<div class="col-xs-12">
+			<div style="text-align:left"><b># 2</b></div>
+			<div class="form-group col-xs-4">
+				<%= f.label :reference_name1, "Name" %> <br> <%= f.text_field :reference_name1, :class=>"form-control" %>
+			</div>
+			<div class="form-group col-xs-4">
+				<%= f.label :reference_number1, "Number" %> : <%= f.text_field :reference_number1,:class=>"form-control" %>
+			</div>
+			<div class="form-group col-xs-4">
+				<%= f.label :reference_email1, "Email Id" %> : <%= f.email_field :reference_email1,:class=>"form-control" %>
 			</div>
 		</div>
 		<div class="form-group col-xs-8">

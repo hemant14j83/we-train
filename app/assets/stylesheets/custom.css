@@ -24,7 +24,7 @@ p{
     font-weight: bold;
 }
 #footer{
-	background-color: #70c341;
+	background:linear-gradient(to right, #5d8588, #72d3aa);;
 	color:#ffffff;
 	font-family:Arial;
 }
@@ -165,6 +165,14 @@ p{
     height: 700px;
     margin-bottom: 10px;
 }
+.feed-heading{
+    font-family: 'lato',arial;
+    font-size: 40px;
+    margin-top: 4%;
+    color: #fff;
+    letter-spacing: 2px;
+    word-spacing: 5px;
+}
 .tcenter{
     text-align: center;
 }
@@ -174,8 +182,19 @@ p{
     font: smaller;
 }
 .titletxt{
-    font-weight:bold;
+    font-family: 'lato', arial;
+    font-weight:normal;
+    font-size:32px;
+    text-align:center;
+    margin-top: 6%;
     padding:1px 0px 0px 40px;
+}
+.gradient {
+    height: auto;
+    background: -webkit-linear-gradient(left, rgb(093,133,136), rgb(114,211,170)); /* For Safari 5.1 to 6.0 */
+    background: -o-linear-gradient(right, rgb(093,133,136), rgb(114,211,170)); /* For Opera 11.1 to 12.0 */
+    background: -moz-linear-gradient(right, rgb(093,133,136), rgb(114,211,170)); /* For Firefox 3.6 to 15 */
+    background: linear-gradient(to right, rgb(093,133,136), rgb(114,211,170)); /* Standard syntax (must be last) */
 }
 .qbox {
     margin: 5px auto;
@@ -251,13 +270,102 @@ p{
     height: 85px;
     margin-bottom: 10px;
 }
-.mainbanner{
-    background: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)),url('banners/home/homebanner.jpg');
+.home-work{
+    /*background: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)),url('banners/home/homebanner.jpg');*/
+    background: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)),url('banners/home/workbg.jpg');
     width:100%;
     text-align: center;
     background-size: cover;
     overflow: hidden;
-    height: 600px;
+    height: 680px;
+}
+.home-hire{
+    background: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)),url('banners/home/hirebg.jpg');
+    width:100%;
+    text-align: center;
+    background-size: cover;
+    overflow: hidden;
+    height: 680px;
+} 
+.homebutton{
+    background-color: #DE6B10;
+    color: #fff;
+    font-family: 'lato', arial;
+    font-size:20px;
+    font-weight: bold;
+    padding: 5px;
+    margin-right: 1%;
+    border-radius: 3px;
+    -webkit-box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    -moz-box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+}
+.feed-bg{
+    background: url('banners/home/Macbookorangebg.png');
+    text-align: center;
+    background-size: cover;
+    overflow: hidden;
+    height: 300px;
+} 
+.feeddetails{
+    margin-top:15%;
+    color:#fff;
+    font-family: 'lato',arial;
+    overflow: hidden;
+}
+.feedbutton{
+    background-color: #DE6B10;
+    color: #fff;
+    font-family: 'lato', arial;
+    font-size:20px;
+    font-weight: normal;
+    letter-spacing: 2px;
+    word-spacing: 4px;
+    padding: 5px;
+    -webkit-align-content: center;
+    align-content: center;
+    margin-right: 1%;
+    margin-bottom: 5%;
+    border-radius: 3px;
+    -webkit-box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    -moz-box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+}
+.hbtn-lg{
+    font-size:26px;
+    padding: 10px 50px 10px 50px;
+}
+.homesol{
+    font-family: 'lato',arial;
+    letter-spacing: 2px;
+    font-size: 20px;
+    padding: 10px;
+    font-style: italic;
+}
+.homesol a{
+    font-family: 'lato',arial;
+    letter-spacing: 2px;
+    font-size: 20px;
+    padding: 10px;
+    font-style: italic;   
+    text-decoration: none;
+}
+.homebutton a, a:hover{
+    text-decoration:none;
+    color:#fff;
+    cursor: pointer;
+}
+.homelinks{
+    color: #fff;
+    font-family: 'lato', arial;
+    font-size:20px;
+    font-weight: normal;
+    padding: 5px 10px
+}
+.homelinks a, a:hover{
+    text-decoration:none;
+    color:#fff;
+    cursor: pointer;
 }
 #bannerlink{
     margin-top: 30px;
@@ -265,23 +373,37 @@ p{
     padding: 30px;
 }
 .bannertext{
-    font-size:50px; font-weight:bold;color:white;
-    margin-top: 6%;
-    margin-bottom: 5%;
+    font-family:'lato', arial, sans-serif;
+    font-style: italic;
+    font-size:50px; 
+    font-weight:normal;
+    letter-spacing: 2px;
+    color:white;
+    margin-top: 2%;
+    margin-bottom: 4%;
     padding: 15px;
+}
+#buttons{
+    text-align:left;
+    padding: 10px;
+    margin-left:3%;
+    margin-top:5%;
 }
 .bannerbtn{
     font-weight:bold;
     font-size:20px;
     width: auto;
-    padding: 10px;
-    font-family:monospace;
+    padding: 10px;;
+    text-align: left;
+    background-color: transparent;
+    color: white;
 }
 .bannerbtntext{
-    color:lightgreen;
-    font-family: monospace;
+    color:#255255255;
+    font-family: 'lato',arial;
     font-size: 20px;
     font-weight: bold;
+    text-align:left;
 }
 .topborder{
     border-top: grey 1px solid;
@@ -371,7 +493,7 @@ p{
 }
 .selected {
       /*border: 1px solid #0000ff;*/
-      background-color: grey;
+      background-color: #000000;
       color: white;
   }
 .dropdown-menu{
