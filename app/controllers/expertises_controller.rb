@@ -3,7 +3,7 @@ class ExpertisesController < ApplicationController
  def create
 	@trainer=Trainer.find(current_trainer.id)
 	
-	@expertise = @trainer.expertises.create(params[:expertise].permit(:expertise_in, :professional_expertise_info, :reference_name, :reference_number, :reference_email, :expertise_verified_status))
+	@expertise = @trainer.expertises.create(params[:expertise].permit(:expertise_in, :professional_expertise_info, :reference_name, :reference_number, :reference_email, :expertise_verified_status,:reference_name1, :reference_number1, :reference_email1,))
   if @expertise.save
     flash[:notice]='Program Added Successfully.'
     redirect_to trainer_root_path
