@@ -1,0 +1,20 @@
+// Place all the styles related to the home controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+.image-cropper {
+    width: 70%;
+    height: 70%;
+    position: relative;
+    margin-top: 2%;
+    overflow: hidden;
+    border-radius: 50%;
+}
+.gifimage {
+    /*width: 70%;
+    height: 70%;*/
+    position: relative;
+    margin-top: 2%;
+    margin-left: 14%;
+    overflow: hidden;
+}

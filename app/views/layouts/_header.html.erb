@@ -1,5 +1,10 @@
-       <div class="col-xs-12">
-          <div id="links" style="float:right;margin-top:5px;">
+       <div class="col-xs-12 gradient">          
+          <div id="header" class="col-xs-3 logo">
+            <div style="float:left;margin-top:10px;margin-left:5px;">
+              <%= link_to(image_tag("logo.png", :width=>"60%"),"/") %>
+            </div>
+          </div>
+          <div id="links" class="toplinks">
             <% if trainer_signed_in? %>
               <% if current_trainer.full_name? %>
                 Signed in as <font color="green"><b><%= current_trainer.full_name %></b></font> Not You?
@@ -24,21 +29,17 @@
                 <%else%>
                   <%= link_to "Sign_up", new_recruiter_registration_path, :class=>"label label-success"  %>  <%= link_to "sign_in", new_recruiter_session_path, :class=>"label label-success" %>
                 <% end %>
-
               <%else%>
-                <div class="btn-group">
-                    <button type="button" data-toggle="dropdown" class="btn btn-success dropdown-toggle">Login <span class="caret"></span></button>
+                <li class="dropdown pull-right" style="list-style:none;color:white">
+                    <a href="#" data-toggle="dropdown" class="dropdown-toggle">
+                      <font color="#fff"><b>Login <span class="caret"></span></b></font>
+                    </a>
                     <ul class="dropdown-menu">
                         <li><a href="/trainers/sign_in">Trainer</a></li>
                         <li class="divider"></li>
                         <li><a href="/recruiters/sign_in">Recruiter</a></li>                    
-                    </ul>                        
-                </div>
+                    </ul>
+                  </li>
             <% end %>             
-          </div>
-          <div id="header" class="col-xs-3">
-            <div style="float:left;margin-top:10px;margin-left:5px;">
-              <%= link_to(image_tag("logo.jpg", :width=>"60%"),"/") %>
-            </div>
           </div>
         </div>
