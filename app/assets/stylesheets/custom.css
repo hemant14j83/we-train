@@ -1,5 +1,5 @@
 body {
-  font-family: "lato","Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-family: "lato", Arial, sans-serif;
   font-size: 16px;
   line-height: 1.428571429;
   color: #333333;
@@ -12,6 +12,15 @@ p{
     font-family: lato;
     font-size:14px;   
 }
+.logo{
+    float:left;padding:5px;margin-left:0px;
+}
+.toplinks{
+    float:right;margin-top:1%;margin-right:1%;color:white;
+}
+.transparent{
+    background-color: transparent;
+}
 .textheading{
     font-weight: bold;
     background-color: darkgray;
@@ -21,7 +30,8 @@ p{
 }
 .heading{
     color:#70BF41;
-    font-weight: bold;
+    font-family: 'lato',arial;
+    font-weight: normal;
 }
 #footer{
 	background:linear-gradient(to right, #5d8588, #72d3aa);;
@@ -274,7 +284,7 @@ p{
     /*background: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)),url('banners/home/homebanner.jpg');*/
     background: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)),url('banners/home/workbg.jpg');
     width:100%;
-    text-align: center;
+    /*text-align: center;*/
     background-size: cover;
     overflow: hidden;
     height: 680px;
@@ -282,7 +292,7 @@ p{
 .home-hire{
     background: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)),url('banners/home/hirebg.jpg');
     width:100%;
-    text-align: center;
+    /*text-align: center;*/
     background-size: cover;
     overflow: hidden;
     height: 680px;
@@ -390,12 +400,12 @@ p{
     margin-top:5%;
 }
 .bannerbtn{
+    font-family: 'lato',arial;
     font-weight:bold;
     font-size:20px;
     width: auto;
     padding: 10px;;
     text-align: left;
-    background-color: transparent;
     color: white;
 }
 .bannerbtntext{
@@ -550,4 +560,27 @@ font-family: lato;
 font-size: 16px;
 margin-bottom:10px;
 border:1px solid grey;
+}
+.center {
+    text-align:center;
+    display:inline-block;
+}
+
+.center form {
+    display:inline-block;
+}
+.padding5{
+    padding-left: 15px;
+    padding-right: 15px;
+}
+.orange{
+    color: #DE6B10;
+}
+.smalltext{
+    font-size: 18px;
+}
+a:hover{
+    text-decoration:none;
+    color:#DE6B10;
+    cursor: pointer;
 }
