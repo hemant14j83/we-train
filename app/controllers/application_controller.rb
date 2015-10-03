@@ -38,11 +38,11 @@ class ApplicationController < ActionController::Base
   protected
     def configure_r_permitted_parameters
     devise_parameter_sanitizer.for(:account_update) do |t|
-      t.permit(:firm_name,:email, :password, :password_confirmation, :current_password, :firm_type, :firm_number, :firm_address, :address,:city,:state, :country, :pincode, :account_status,:subscribed_plan, :contact_person_name, :contact_person_email, :contact_person_number,:full_name,:email, :password, :password_confirmation, :current_password, :primary_number, :birth_date,:gender,:address,:city,:state, :country, :profile_status,:subscribed_plan, :busy_from, :busy_till, :image)      
+      t.permit(:firm_name,:email, :password, :password_confirmation, :current_password, :firm_type, :firm_number, :firm_address, :address,:city,:state, :country, :pincode, :account_status,:subscribed_plan, :contact_person_name, :contact_person_email, :contact_person_number,:full_name,:email, :password, :password_confirmation, :current_password, :primary_number, :birth_date,:gender,:address,:city,:state, :country, :profile_status,:subscribed_plan, :busy_from, :busy_till, :image, :last_name)      
     end
 
     devise_parameter_sanitizer.for(:sign_up) do |t|
-      t.permit(:email, :password, :password_confirmation)
+      t.permit(:email, :password, :password_confirmation,:full_name,:last_name,:firm_type,:firm_name)
     end
     devise_parameter_sanitizer.for(:sign_in) do |t|
       t.permit(:email, :password)
