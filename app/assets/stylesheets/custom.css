@@ -284,7 +284,7 @@ p{
     /*background: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)),url('banners/home/homebanner.jpg');*/
     background: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)),url('banners/home/workbg.jpg');
     width:100%;
-    /*text-align: center;*/
+    text-align: center;
     background-size: cover;
     overflow: hidden;
     height: 680px;
@@ -292,7 +292,7 @@ p{
 .home-hire{
     background: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)),url('banners/home/hirebg.jpg');
     width:100%;
-    /*text-align: center;*/
+    text-align: center;
     background-size: cover;
     overflow: hidden;
     height: 680px;
@@ -302,8 +302,9 @@ p{
     color: #fff;
     font-family: 'lato', arial;
     font-size:20px;
-    font-weight: bold;
+    font-weight: normal;
     padding: 5px;
+    position: relative;
     margin-right: 1%;
     border-radius: 3px;
     -webkit-box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
@@ -360,7 +361,7 @@ p{
     font-style: italic;   
     text-decoration: none;
 }
-.homebutton a, a:hover{
+a.homebutton:hover{
     text-decoration:none;
     color:#fff;
     cursor: pointer;
@@ -573,6 +574,11 @@ border:1px solid grey;
     padding-left: 15px;
     padding-right: 15px;
 }
+.padding10{
+    padding-left: 30px;
+    padding-right: 30px;
+    padding-top: 30px;
+}
 .orange{
     color: #DE6B10;
 }
@@ -583,4 +589,29 @@ a:hover{
     text-decoration:none;
     color:#DE6B10;
     cursor: pointer;
+}
+
+.profile-nav{
+    font-family: 'lato',arial;
+    font-size: 22px;
+    font-weight: 400;
+    display: block;
+    padding-left: 20px;
+}
+a{
+    color: #DE6B10;
+}
+.tright{
+    float:right; 
+}
+.white{
+    color:white;
+}
+.lato{
+    font-family: 'lato',arial;
+    font-weight: normal;
+    display: block;
+}
+.active{
+    background-color: #e7e7e7;
 }
