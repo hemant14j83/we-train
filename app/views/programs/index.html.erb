@@ -1,18 +1,23 @@
-<p id="notice"><%= notice %></p>
-
-<div class="col-xs-3">
+<div class="col-xs-2">
   <div style="border:1px solid black;height:400px;">
-    Space for Filters
+    <div class="searchheader">Categories</div>
+      <% @program.each do |program| %>
+        <% if program.category?%>
+            <li style="list-style:none;margin-left:10px;">
+              <input type="checkbox"> <%= program.category %></input>
+            </li>
+        <%end%>
+      <%end%>
   </div>
 </div>
-<div class="col-xs-9">
-  <h3 class="heading">Available Programs</h3>
+<div class="col-xs-10">
+  <h4 class="heading">List of Available Training Programs</h4>
   <% @program.each do |program| %>
     <div class="col-xs-12 progbox">
-      <h3 class="textheading"><%= program.name %></h3>
+      <h4 class="textheading"><%= program.name %></h4>
         <div style="text-align:justified">
-	 Required Skills :<b> <%=program.expertise %></b><br>
-	  <%= program.program_details %>
+	         Required Skills :<b> <%=program.expertise %></b><br>
+	         <%= program.program_details %>
         </div> 
         <div class="col-xs-6">
           <h5 class="heading"><u>Payment & Other perks</u></h5>
@@ -54,9 +59,16 @@
             </table>
           </div>
         </div>
-    <div align="right">
-      <%= link_to 'Apply', program, :class=>"btn btn-success" %>
-    </div>
+        <div class="col-xs-9">
+        </div>
+        <div class="col-xs-3">
+          <table>
+          <tr>
+            <td align="right"><%= button_to 'Save for later', savedprograms_path(:program_id=>program), :class=>"btn btn-success" %></td>
+            <td align="right"><%= link_to 'Apply', program, :class=>"btn btn-success" %></td>
+            </tr>
+          </table>
+        </div>
     </div>
   <%end%>
 </div>

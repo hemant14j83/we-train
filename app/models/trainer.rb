@@ -45,7 +45,7 @@ class Trainer < ActiveRecord::Base
           password: Devise.friendly_token[0,20],
           email: data.email,
           uid: auth.uid,
-          image_file_name: data.image,
+          #image_file_name: data.image,
           provider: auth.provider
       )
       trainer.save!
