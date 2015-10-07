@@ -70,7 +70,16 @@
     	  setTimeout(function(){
       	  $("#notice").hide("slow");
      	},1000);
-  	});
+  	});  	
+    $(document).ready(function(){
+    	<% if recruiter_signed_in? %>
+    		$("#work").hide();
+    		$("#recruit").show();
+    	<% elsif trainer_signed_in? %>
+    		$("#recruit").hide();
+    		$("#work").show();
+    	<%end%>
+    });
   </script>
 
 <div id="recruit">
@@ -100,15 +109,21 @@
 	              		<%#= link_to "Post Project","/", :class=>"homebutton"%>	              	
 	            <% end %>             
 	        </div>
-      </div>
-      <div class="col-lg-12 col-sm-12 col-md-12">
+     </div>
+    <div class="col-lg-12 col-sm-12 col-md-12">
 		<% if recruiter_signed_in?  %>
 			<div class="bannertext" style="margin-top:10%">
 				List of trainers with expertise verified <br>by our team. To hire the best trainer<br> for your next program post your<br> project now.
 			</div>
+			<div>
+				<%= link_to "Post Project", new_program_path, :class=>"homebutton hbtn-lg" %>
+			</div>
 		<%elsif trainer_signed_in? %>
 			<div class="bannertext" style="margin-top:10%">
 				Find the most suitable taining <br>program matching your areas of <br>expertise. Apply Now.
+			</div>
+			<div>
+				<%= link_to "Find Project", "/programs", :class=>"homebutton hbtn-lg" %>
 			</div>
 		<%else%>
 			<div id="buttons">				
@@ -121,8 +136,8 @@
 			<div>
 				<%= link_to "Post Project", new_program_path, :class=>"homebutton hbtn-lg" %>
 			</div>
-		<%end%>	
-		</div>
+		<%end%>		
+	</div>
 	</div>
 	<div id="how" class="col-lg-12">
 		<div class="col-lg-6 col-xs-12">
@@ -198,10 +213,16 @@
 		<% if trainer_signed_in? || recruiter_signed_in? %>
 			<div class="bannertext" style="margin-top:10%">
 				Find the most suitable taining <br>program matching your areas of <br>expertise. Apply Now.
+			</div>			
+			<div>
+				<%= link_to "Find Project", "/programs", :class=>"homebutton hbtn-lg" %>
 			</div>
 		<%elsif recruiter_signed_in?  %>
 			<div class="bannertext" style="margin-top:10%">
 				List of trainers with expertise verified <br>by our team. To hire the best trainer<br> for your next program post your<br> project now.
+			</div>
+			<div>
+				<%= link_to "Post Project", new_program_path, :class=>"homebutton hbtn-lg" %>
 			</div>					
 		<%else%>
 			<div id="buttons">
