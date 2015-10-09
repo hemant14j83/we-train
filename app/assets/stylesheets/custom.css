@@ -141,7 +141,32 @@ p{
     border:1px solid #459A00;
     margin-top:5px;
 }*/
-.customtable {
+.customtable{
+    width: auto;
+    max-width: 100%;
+    margin-bottom: 20px;
+    background-color: transparent;
+    border-collapse: collapse;
+    border-spacing: 0;
+    display:table;
+}
+.customtable tbody{
+    display: table-row-group;
+    vertical-align: middle;
+    border-color: inherit;
+}
+.customtable tr {
+    display: table-row;
+    vertical-align: inherit;
+    border-color: inherit;
+}
+.customtable td{
+    padding: 8px;
+    line-height: 1.428571429;
+    vertical-align: top;
+    /*border-top: 1px solid #ddd;*/
+}
+/*.customtable {
     width: 100%;
     max-width: 100%;
     margin-bottom: 20px;
@@ -162,9 +187,12 @@ p{
     line-height: 1.428571429;
     vertical-align: top;
     border-top: 1px solid #ddd;
-}
+}*/
 .left{
     float: left;
+}
+.justify{
+    text-align: justify;
 }
 .inline{
     display: inline-block;
@@ -304,6 +332,7 @@ p{
     font-size:20px;
     font-weight: normal;
     padding: 5px;
+    white-space:nowrap;
     position: relative;
     margin-right: 1%;
     border-radius: 3px;

@@ -1,19 +1,49 @@
-<p id="notice"><%= notice %></p>
-
-<p>
-  <strong>Position:</strong>
-  <%= @career.position %>
-</p>
-
-<p>
-  <strong>Description:</strong>
-  <%= @career.description %>
-</p>
-
-<p>
-  <strong>Status:</strong>
-  <%= @career.status %>
-</p>
+<%#<p id="notice"><%= notice</p> %>
+<div class="col-xs-12 col-md-3 col-sm-12">
+	<%#Links%>
+</div>
+<div class="col-xs-12 col-md-9 col-sm-12 lato">
+	<h3 class="heading orange">Job Details</h3><hr>
+	<table class="customtable">
+		<tr>
+			<td width="30%"><b>Position</b></td><td><%= @career.position %></td>
+		</tr>
+		<tr>
+			<td width="30%"><b>Department</b></td><td><%= @career.department %></td>
+		</tr>
+		<tr>
+			<td colspan="2"><b>Description</b><p class="lato justify"><%= @career.description %></p></td>
+		</tr>
+	</table>
+	<% if @career.functions.size > 0 %>
+		<h4>Key Responsibility</h4>
+	<% end -%>
+	<% @career.functions.each do |function| %>				  
+		    <p><li><span class="lato justify"><%= function.responsibility %></span></li></p>
+	<% end %>
+	<div style="margin-bottom:20px;">
+		<%= mail_to "hello@traix.in" do %>
+  			<strong><span class="btn btn-success">Apply</span></strong>
+		<% end %>
+	</div>
+</div>
+<div class="col-xs-12 col-md-3 col-sm-12"></div>
+<div class="col-xs-12 col-md-6 col-sm-12 lato">
+<% if trainer_signed_in? %>
+	<% if current_trainer.role =='admin' %>
+	<h2>Add Responsibility:</h2>
+		<%= form_for([@career, @career.functions.build]) do |f| %>
+		  <p>
+		    <%= f.label :responsibility %><br>
+		    <%= f.text_field :responsibility, :class=>'form-control' %>
+		  </p>
+		  <p>
+		    <%= f.submit "Add Responsibility", :class=>"btn btn-success" %>
+		  </p>
+		<% end %>
+	<% end %>
 
 <%= link_to 'Edit', edit_career_path(@career) %> |
 <%= link_to 'Back', careers_path %>
+<% end %>
+</div>

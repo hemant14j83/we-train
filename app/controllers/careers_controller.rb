@@ -15,6 +15,7 @@ class CareersController < ApplicationController
   # GET /careers/new
   def new
     @career = Career.new
+    10.times{@career.functions.build}
   end
 
   # GET /careers/1/edit
@@ -25,16 +26,15 @@ class CareersController < ApplicationController
   # POST /careers.json
   def create
     @career = Career.new(career_params)
-
-    respond_to do |format|
-      if @career.save
-        format.html { redirect_to @career, notice: 'Career was successfully created.' }
-        format.json { render :show, status: :created, location: @career }
-      else
-        format.html { render :new }
-        format.json { render json: @career.errors, status: :unprocessable_entity }
+      respond_to do |format|
+        if @career.save
+          format.html { redirect_to @career, notice: 'Career was successfully created.' }
+          format.json { render :show, status: :created, location: @career }
+        else
+          format.html { render :new }
+          format.json { render json: @career.errors, status: :unprocessable_entity }
+        end
       end
-    end
   end
 
   # PATCH/PUT /careers/1
@@ -69,6 +69,6 @@ class CareersController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def career_params
-      params.require(:career).permit(:position, :description, :status)
+      params.require(:career).permit(:position, :description, :department, :status, functions_attributes:[:responsibility])
     end
 end
