@@ -1,5 +1,9 @@
 Rails.application.routes.draw do
   
+  resources :careers do
+    resources :functions
+  end
+
   devise_for :recruiters, controller: {recruiterregistrations: "recruiterregistrations"}
   devise_for :trainers, controllers: {registrations: "registrations",omniauth_callbacks: "trainers/omniauth_callbacks"}
 
@@ -17,6 +21,7 @@ Rails.application.routes.draw do
    resources :programs
    #resources :expertises
   end
+
   
   get '/auth/:provider/callback', to: 'sessions#create', via: :get
   get 'recruiters/myaccount' => "recruiters#show", as: :recruiter_root
