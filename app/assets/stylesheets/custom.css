@@ -626,6 +626,7 @@ a:hover{
     font-weight: 400;
     display: block;
     padding-left: 20px;
+    background-color: #fff;
 }
 a{
     color: #DE6B10;
@@ -643,4 +644,10 @@ a{
 }
 .active{
     background-color: #e7e7e7;
+}
+.whitebg{
+    background-color: #fff;
+}
+.topmargin{
+    margin-top: 20px;
 }

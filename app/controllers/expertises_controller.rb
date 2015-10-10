@@ -43,7 +43,6 @@ class ExpertisesController < ApplicationController
  def destroy
  	@expertise = Expertise.find(params[:id])
     @expertise.destroy
-
     redirect_to trainer_root_path
  end
 
