@@ -1,146 +1,140 @@
-  <div class="col-xs-12">
-  <p id="notice"><%= notice %></p>
-  <div class="col-xs-3">
-    <div class="panel panel-default">
-      <div class="panel-body" style="text-align:center">
-      	<%= image_tag(@trainer.image.url, :class => "profile_pic") %>        
-      </div>      
+<script type="text/javascript">
+    $(document).ready(function(){
+      $("#expertise").hide();
+      $("#qualification").hide();
+      $("#profile").show();
+
+      $("#showexpert").click(function(){
+        $("#expertise").show();
+        $("#profile").hide();
+        $("#qualification").hide();
+      });
+      $("#showqual").click(function(){
+        $("#qualification").show();
+        $("#profile").hide();
+        $("#expertise").hide();
+      });
+      $("#showprofile").click(function(){
+        $("#qualification").hide();
+        $("#profile").show();
+        $("#expertise").hide();
+      });
+      }
+  );
+</script>
+<div class="col-xs-12 col-md-12 col-sm-12">
+    <ul class="nav navbar-nav profile-nav">
+      <li class="active"><a href="#">Dashboard</a></li>
+      <li><a href="#">Projects Applied</a></li>
+      <li><a href="#">Saved Projects</a></li>
+      <%#<li><a href="#">Inbox</a></li>%>
+      <li><a href="#">My Profile</a></li>
+    </ul>    
+  <span class="tright" style="margin-top:1%;">
+    <%= link_to 'Find Project', "/programs", :class=>"homebutton" %>
+  </span>
+</div>
+<div class="col-xs-12 col-md-12 col-sm-12 gradient">
+
+  <div class="col-xs-12 col-md-12 col-sm-12 whitebg" id="dash" style="padding: 10px;margin-top: 4%;">
+    <div class="col-xs-6 col-md-3 col-sm-6" style="margin-top:-4%;">
+      <%= image_tag(@trainer.image.url, :class => "profile_pic") %>
     </div>
-    <div class="panel panel-success">
-      <div class="panel-heading">
-        <h3 class="panel-title">Related Links</h3>
-      </div>
-      <div class="panel-body">
-        <p><%= link_to 'Available Programs', programs_path %></p>
-      </div>
+    <div class="col-xs-6 col-md-9 col-sm-6">
+        <h3><b><%= @trainer.full_name %></b></h3>
+        <%= @trainer.email %> 
+        <div class="col-md-12 col-xs-12 col-sm-12 topmargin" style="margin-left:-20px;">
+          <%= link_to "Profile",'#',:class=>"btn btn-default col-xs-6 col-sm-12 col-md-2", :id=>"showprofile",:style=>"margin-right:10px;" %>
+          <%= link_to "Expertise",'#',:class=>"btn btn-default col-xs-6 col-sm-12 col-md-2",:style=>"margin-right:10px;", :id=>"showexpert" %>
+          <%= link_to "Qualification",'#',:class=>"btn btn-default col-xs-6 col-sm-12 col-md-2", :id=>"showqual" %>
+        </div>
     </div>
-  </div>
-  <div class="col-xs-9">
-    <div class="panel panel-success">
-      <div class="panel-heading">
-        <b><%= @trainer.full_name %></b> | 
-        <span style="align:right;"><%= link_to 'Update', edit_trainer_registration_path %></span>
+    <div class="col-xs-12 col-md-12 col-sm-12 topmargin lato" id="expertise">      
+      <div class="col-md-2 col-xs-12 col-sm-6">
+        <h4><b>List of Expertise</b></h4>
       </div>
-      <div class="panel-body">
-        <div class="col-xs-12" id="tabcontent1">
-          <ul class="nav nav-tabs">
-            <li class="active">
-              <a href="#profile" data-toggle="tab">
-                Profile
-              </a>
-            </li>
-            <li>
-              <a href="#quali" data-toggle="tab">
-                Qualifications
-              </a>
-            </li>
-            <li>
-              <a href="#expertise" data-toggle="tab">
-                Expertise
-              </a>
-            </li>
-          </ul>
-          <div class="tab-content">
-            <div id="profile" class="tab-pane fade in active">
-              <h3>Personal Details</h3>
-              <div class="col-xs-6">
-                <table class="table">
-                  <tr><td>Name:</td><td><%= @trainer.full_name %></td></tr>
-                  <tr><td>Rank:</td><td><font color="red">Display ranking of trainer</font></td></tr>
-                  <tr><td>Date of Birth:</td><td><%= @trainer.birth_date %></td></tr>
-                  <tr>
-                    <td>Gender:</td>
-                    <td>
-                      <% if @trainer.gender=="Select Gender" %>
-                        Not Specified
-                      <%else%>
-                        <%= @trainer.gender %>
-                      <%end%>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>Profile Status:</td>
-                    <td>
-                      <% if @trainer.profile_status=="pending" %>
-                        <span class="label label-warning">Pending Approval</span><br>
-                        <div style="margin-top:5px;"><a href="">Contact Us</a> to know why.</div>
-                      <%else%>
-                        <%= @trainer.profile_status %>
-                      <%end%>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>Your Plan:</td>
-                    <td>
-                      <% if @trainer.subscribed_plan=="trail" %>
-                        Trail, <a href="">Click</a> to Upgrade your Plan
-                      <%else%>
-                        <%= @trainer.subscribed_plan %>
-                      <%end%>
-                    </td>
-                  </tr>
-                </table>
+      <div class="col-md-2 col-xs-12 col-sm-6">
+        <%= link_to "Add More","#expertisemodal",:class=>"btn btn-success","data-toggle" => "modal",:id=>"addexpertise"%>
+        <div id="expertisemodal" class="modal fade">
+          <div class="modal-dialog">
+              <div class="modal-content">
+                  <div class="modal-header">
+                      <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                      <h4 class="modal-title">Add Expertise</h4>
+                  </div>
+                  <div class="modal-body">
+                    <%= render "expertises/form" %>
+                    &nbsp;
+                  </div>
               </div>
-              <div class="col-xs-6">
-                <table class="table">
-                  <tr><td>Email:</td><td><%= @trainer.email %></td></tr>
-                  <tr><td>Primary Number:</td><td><%= @trainer.primary_number %></td></tr>
-                  <tr>
-                    <td>Address:</td>
-                    <td>
-                      <% if @trainer.address? %>
-                        <%= @trainer.address %>, <%= @trainer.city %><br>
-                        <%= @trainer.state %>, <%= @trainer.country %>
-                      <%else%>
-                        <span class="disabled"><%= link_to 'Add Address' %></span>
-                      <% end %>                
-                    </td>
-                  </tr>
-                </table>
-              </div>
-            </div>
-            <div id="quali" class="tab-pane">
-              <br>
-              <div class="col-xs-12">
-                <table width="30%">
-                  <tr>
-                    <td>
-                      <b>Qualification Details</b>
-                    </td>
-                    <td>
-                      <a href="#addqual" class="btn btn-success  btn-sm">Add More</a>
-                    </td>
-                  </tr>
-                </table>
-              </div>
-              <%= render @trainer.qualifications %>
-              
-                <h4><u>Add More Qualification</u></h4>   
-                <%= render "qualifications/form" %>
-              
-            </div>
-            <div id="expertise" class="tab-pane">
-              <br>
-              <div class="col-xs-12">
-                <table width="30%">
-                  <tr>
-                    <td>
-                      <b>Expertise Details</b>
-                    </td>
-                    <td>
-                      <a href="#addexpe" class="btn btn-success  btn-sm">Add More</a>
-                    </td>
-                  </tr>
-                </table>
-              </div>
-              <%= render @trainer.expertises %>
-              
-                <h4><u>Add More Expertise</u></h4>   
-                <%= render "expertises/form" %>
-            </div>
           </div>
         </div>
       </div>
+      <%= render @trainer.expertises %>
     </div>
+    <div class="col-xs-12 col-md-12 col-sm-12 topmargin lato" id="qualification">      
+      <h4><b>Qualification Details</b></h4>
+      <%= render @trainer.qualifications %>
+    </div>
+    <div class="col-xs-12 col-md-12 col-sm-12 topmargin lato" id="profile">
+      <span class="tright glyphicon glyphicon-pencil orange"></span>
+      <div class="col-xs-12 col-md-6 col-sm-12">
+        <h3>Basic Details</h3>
+        <table class="table">
+            <tr><td>Name:</td><td><%= @trainer.full_name %></td></tr>
+            <tr><td>Rank:</td><td><font color="red">Display ranking of trainer</font></td></tr>
+            <tr><td>Date of Birth:</td><td><%= @trainer.birth_date %></td></tr>
+            <tr>
+                <td>Gender:</td>
+                <td>
+                  <% if @trainer.gender=="Select Gender" %>
+                    Not Specified
+                  <%else%>
+                    <%= @trainer.gender %>
+                  <%end%>
+                </td>
+            </tr>
+            <tr>
+              <td>Profile Status:</td>
+              <td>
+                <% if @trainer.profile_status=="pending" %>
+                  <span class="label label-warning">Pending Approval</span><br>
+                  <div style="margin-top:5px;"><a href="">Contact Us</a> to know why.</div>
+                <%else%>
+                  <%= @trainer.profile_status %>
+                <%end%>
+              </td>
+            </tr>
+            <tr>
+              <td>Your Plan:</td>
+              <td>
+                <% if @trainer.subscribed_plan=="trail" %>
+                  Trail, <a href="">Click</a> to Upgrade your Plan
+                <%else%>
+                  <%= @trainer.subscribed_plan %>
+                <%end%>
+              </td>
+            </tr>
+        </table>
+      </div>
+      <div class="col-xs-12 col-md-6 col-sm-12">
+        <h3>Contact Details</h3>
+        <table class="table">
+          <tr><td>Number:</td><td><%= @trainer.primary_number %></td></tr>
+          <tr>
+            <td>Address:</td>
+            <td>
+              <% if @trainer.address? %>
+                <%= @trainer.address %><br>
+                <%= @trainer.city %><br>
+                <%= @trainer.state %>, <%= @trainer.country %>
+              <%else%>
+                <span class="disabled"><%= link_to 'Add Address' %></span>
+              <%end%>
+            </td>
+          </tr>
+        </table>
+      </div>
+    </div>    
   </div>
 </div>
