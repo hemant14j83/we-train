@@ -11,15 +11,24 @@
 		<tr>
 			<td width="30%"><b>Department</b></td><td><%= @career.department %></td>
 		</tr>
-		<tr>
-			<td colspan="2"><b>Description</b><p class="lato justify"><%= @career.description %></p></td>
-		</tr>
+		<%if @career.description!="" %>
+			<tr>
+				<td colspan="2"><b>Description</b><p class="lato justify"><%= @career.description.html_safe %></p></td>
+			</tr>
+		<% end %>
 	</table>
+	<% if @career.jobskills.size > 0 %>
+		<h4 class="orange">What we require</h4>
+	<%end%>
+	<% @career.jobskills.each do |js| %>				  
+		    <p><li><span class="lato justify" style="margin-left:20px;"><%= js.skill %></span></li></p>
+	<% end %>
 	<% if @career.functions.size > 0 %>
-		<h4>Key Responsibility</h4>
+		<br>
+		<h4 class="orange">Key Responsibility</h4>
 	<% end -%>
 	<% @career.functions.each do |function| %>				  
-		    <p><li><span class="lato justify"><%= function.responsibility %></span></li></p>
+		    <p><li><span class="lato justify" style="margin-left:20px;"><%= function.responsibility %></span></li></p>
 	<% end %>
 	<div style="margin-bottom:20px;">
 		<%= mail_to "hello@traix.in" do %>
@@ -31,7 +40,18 @@
 <div class="col-xs-12 col-md-6 col-sm-12 lato">
 <% if trainer_signed_in? %>
 	<% if current_trainer.role =='admin' %>
-	<h2>Add Responsibility:</h2>
+	<h4>What we require:</h4>
+		<%= form_for([@career, @career.jobskills.build]) do |js| %>
+		  <p>
+		    <%= js.label :skill %><br>
+		    <%= js.text_field :skill, :class=>'form-control' %>
+		  </p>
+		  <p>
+		    <%= js.submit "Add Skills", :class=>"btn btn-success" %>
+		  </p>
+		<% end %>
+		<hr>
+	<h4>Add Responsibility:</h4>
 		<%= form_for([@career, @career.functions.build]) do |f| %>
 		  <p>
 		    <%= f.label :responsibility %><br>
@@ -40,9 +60,8 @@
 		  <p>
 		    <%= f.submit "Add Responsibility", :class=>"btn btn-success" %>
 		  </p>
-		<% end %>
+		<% end %>	
 	<% end %>
-
 <%= link_to 'Edit', edit_career_path(@career) %> |
 <%= link_to 'Back', careers_path %>
 <% end %>

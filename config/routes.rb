@@ -2,6 +2,7 @@ Rails.application.routes.draw do
   
   resources :careers do
     resources :functions
+    resources :jobskills
   end
 
   devise_for :recruiters, controller: {recruiterregistrations: "recruiterregistrations"}
