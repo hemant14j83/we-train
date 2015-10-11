@@ -1,121 +1,111 @@
-<div class="col-xs-12">
-  <div class="col-xs-3">
-    <div class="panel panel-default">
-      <div class="panel-body">
-        <%= image_tag(@trainer.image.url, :class => "profile_pic") %>
-      </div>      
+<div class="col-xs-12 col-md-12 col-sm-12">
+    <ul class="nav navbar-nav profile-nav">
+      <li class="active"><a href="#">Dashboard</a></li>
+      <li><a href="#">Projects Applied</a></li>
+      <li><a href="#">Saved Projects</a></li>
+      <%#<li><a href="#">Inbox</a></li>%>
+      <li><a href="#">My Profile</a></li>
+    </ul>    
+  <span class="tright" style="margin-top:1%;">
+    <%= link_to 'Find Project', "/programs", :class=>"homebutton" %>
+  </span>
+</div>
+<div class="col-xs-12 col-md-12 col-sm-12 gradient">
+  <div class="col-xs-12 col-md-12 col-sm-12 whitebg" id="dash" style="padding: 10px;margin-top: 4%;margin-bottom:1%">
+    <div class="col-xs-6 col-md-3 col-sm-6" style="margin-top:-4%;">
+      <%= image_tag(@trainer.image.url, :class => "profile_pic") %>
     </div>
-    <div class="panel panel-success">
-      <div class="panel-heading">
-        <h3 class="panel-title">Related Links</h3>
-      </div>
-      <div class="panel-body">
-        <p><%= link_to 'Available Programs', programs_path %></p>
-      </div>
-    </div>
-  </div>
-  <div class="col-xs-9">
-      <% if @trainer.profile_status=="pending" %>
-        <div class="col-xs-12 label label-warning">
-          <font size="2px">Your profile is in "<font color="red">Pending</font>" state, please <a href="/">contact us</a> if you want it approved instantly.</font>          
-        </div>
-        <div style="height:20px;"></div>
-      <%end%>
-      <h3>Update <%= resource_name.to_s.humanize %> Profile</h3>
+    <div class="col-xs-6 col-md-9 col-sm-6">
+        <h3><b><%= @trainer.full_name %></b></h3>
+        <%= @trainer.email %>         
+        <% if @trainer.profile_status=="pending" %>
+          <div class="col-xs-12 col-sm-12 col-md-12 topmargin lato label label-warning">
+              <span style="word-spacing:6px;"><font size="2px">Your profile is in "<font color="red">Pending</font>" state, please <a href="/">contact us</a> if you want it approved instantly.</font></span>
+          </div>
+      <% end -%>
+    </div>    
+    <div class="col-xs-12 col-md-12 col-sm-12 topmargin">      
       <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { multipart: true, method: :put }) do |f| %>
-        <%= devise_error_messages! %>
+        <%= render partial: "shared/flash_messages", flash: flash %> 
         <div class="form-horizontal">
-          <div class="col-xs-6">
-            <div class="form-group col-xs-8">
-              <%= f.label :full_name %>
+          <div class="col-xs-12 col-md-6 col-sm-12">
+            <h3>Basic Details</h3>
+            <hr>
+            <div class="form-group col-xs-12 col-md-6 col-sm-12">
+              <p class="lato"><b>First Name</b></p>
               <%= f.text_field :full_name, :class=>"form-control" %>
             </div>
-            <div class="form-group col-xs-4">
-              <%= f.label :image,"Select Profile Pic" %>
-              <%= f.file_field :image, :class=>"" %>
+            <div class="form-group col-xs-12 col-md-6 col-sm-12">
+              <p class="lato"><b>Last Name</b></p>
+              <%= f.text_field :last_name, :class=>"form-control" %>
             </div>
-            <div class="form-group col-xs-12">
-              <%= f.label :email %>
-              <%= f.email_field :email, autofocus: true, :disabled => true, :class=>"form-control" %>
+            <div class="form-group col-xs-12 col-md-6 col-sm-12">
+              <p class="lato"><b>Update Pic</b></p>
+              <%= f.file_field :image, :class=>"form-control" %>
             </div>
-            <div class="form-group col-xs-12">
-              <%= f.label :current_password %>
-              <%= f.password_field :current_password, :class=>"form-control" %>
-            </div>            
-            <div class="form-group col-xs-12">
-              <%= f.label :birth_date %>
-              <%= f.date_select :birth_date, :start_year=>1930, :end_year=>2005, :class=>"form-control" %>
-            </div> 
-            </div>
-          <div class="col-xs-6">
-            <div class="form-group col-xs-6">
-              <%= f.label :primary_number %>
+            <div class="form-group col-xs-12 col-md-6 col-sm-12">
+              <p class="lato"><b>Primary Number</b></p>
               <%= f.text_field :primary_number, :class=>"form-control" %>
             </div>
-            <div class="form-group col-xs-6">
-              <%= f.label :gender %><br>
-              <%= f.select :gender, ['Select Gender','Male','Female'], :class=>"form-control" %>
+            <div class="form-group col-xs-12 col-md-6 col-sm-12">
+              <p class="lato"><b>Date of Birth</b></p>
+              <%= f.date_select :birth_date, :start_year=>1930, :end_year=>2005, :class=>"form-control" %>
             </div>
-            <div class="form-group col-xs-12">
-              <%= f.label :address %>
+            <div class="form-group col-xs-12 col-md-3 col-sm-12">
+              <p class="lato"><b>Gender</b></p>
+              <%= f.select :gender, ['Male','Female'], :class=>"form-control" %>              
+            </div>            
+            <div class="form-group col-xs-12 col-md-3 col-sm-12">
+              <p class="lato"><b>Password</b><span class="orange"><b>*</b></span></p>
+              <%= f.password_field :current_password, :class=>"form-control" %>
+            </div>
+          </div>
+          <div class="col-xs-12 col-md-6 col-sm-12">
+            <h3>Address Details</h3>
+            <hr>       
+            <div class="form-group col-xs-12 col-md-12 col-sm-12">
+              <p class="lato"><b>Addres</b></p>
               <%= f.text_area(:address, size: '50x4', :class=>"form-control")%>
             </div>
-            <div class="form-group col-xs-4">
-              <%= f.label :city %>
+            <div class="form-group col-xs-12 col-md-4 col-sm-12">
+              <p class="lato"><b>City</b></p>
               <%= f.text_field :city, :class=>"form-control" %>
             </div>
-            <div class="form-group col-xs-4">
-              <%= f.label :state %>
+            <div class="form-group col-xs-12 col-md-4 col-sm-12">
+              <p class="lato"><b>State</b></p>
               <%= f.text_field :state, :class=>"form-control" %>
-            </div>          
-            <div class="form-group col-xs-4">
-              <%= f.label :country %>
-              <%= f.select :country, ['Select Country','India'], :class=>"form-control" %>
+            </div>
+            <div class="form-group col-xs-12 col-md-4 col-sm-12">
+              <p class="lato"><b>Country</b></p>
+              <%= f.select :country, ['India'], :class=>"form-control" %>
             </div>
           </div>
-          
-          <!--<div class="form-group col-xs-12">
-            <%= f.label :current_password %>
-            <%= f.password_field :current_password, autocomplete: false, :class=>"form-control" %>
-          </div>
-          <div class="form-group col-xs-12">
-            <%= f.password_field :password, autocomplete: "off", :class=>"form-control" %>
-          </div>
-          <div class="form-group col-xs-12">
-            <%= f.password_field :password_confirmation, autocomplete: "off", :class=>"form-control" %>
-          </div>-->
-          <div class="col-xs-12"> 
+          <div class="col-xs-12 col-md-12 col-sm-12">
             <h5><b>Other Details</b></h5>
-            <div class="otherbox">       
-              <div class="form-group col-xs-2">
-                <%= f.label :subscribed_plan, "Subscribed Plan" %>
-                <%= f.text_field :subscribed_plan, :disabled=> true, :class=>"form-control" %>
-              </div>
-              <div class="form-group col-xs-2">
-                <br><a href="/">Upgrade<br>Plan</a>
-              </div>
-              <div class="form-group col-xs-4">
-                <%= f.label :busy_from %><br>
+            <div class="otherbox">
+              <div class="form-group col-xs-12 col-md-6 col-sm-6">
+                <%= f.label :busy_from %>
                 <%= f.date_select :busy_from, :start_year=>2015, :end_year=>2015, :class=>"form-control" %>
               </div>
-              <div class="form-group col-xs-4">
-                <%= f.label :busy_till %><br>
+              <div class="form-group col-xs-12 col-md-6 col-sm-6">
+                <%= f.label :busy_till %>
                 <%= f.date_select :busy_till, :start_year=>2015, :end_year=>2016,  :class=>"form-control" %>
               </div>
             </div>
-          </div>          
-          <div class="form-group col-xs-3">
-            <%= f.submit "Update Details", :class=>"form-control btn btn-success" %>
           </div>
-          <div class="form-group col-xs-3">
-            <%= link_to "Cancel", 'profile', :class=>"form-control btn btn-warning" %>
+          <div class="col-xs-12 col-md-6 col-sm-12">
+            <div class="form-group col-xs-6 col-md-3 col-sm-6">
+              <%= f.submit "Update Details", :class=>"form-control btn btn-success" %>
+            </div>
+            <div class="form-group col-xs-6 col-md-3 col-sm-6">
+              <%= link_to "Cancel", 'profile', :class=>"form-control btn btn-warning" %>
+            </div>
           </div>
         </div>
-        <%end%>
+      <%end%>
+    </div>
   </div>
 </div>
-<!--<h3>Cancel my account</h3>
-
-<p>Unhappy? <%= button_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete %></p>
-
-<%= link_to "Back", :back %> -->
+<div class="col-xs-12 col-md-12 col-sm-12 whitebg center lato">
+  <p class="orange"><font size="4px;">On our blog, you will find many resources which will help you to prepare for your <br>next training program in a better way. Lets get going.</font></p>
+</div>

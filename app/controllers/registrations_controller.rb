@@ -12,23 +12,38 @@ class RegistrationsController < Devise::RegistrationsController
     @trainer=Trainer.find(current_trainer.id)
 
     if needs_password?
-      successfully_updated = @trainer.update_with_password(account_update_params)
+      if @trainer.update_with_password(account_update_params)
+        set_flash_message :notice, :updated
+        sign_in @trainer, :bypass=>true
+        redirect_to trainer_root_path
+      else
+        set_flash_message :notice, :password_missing
+        redirect_to edit_trainer_registration_path
+      end
     else
       account_update_params.delete('password')
       account_update_params.delete('confirmation_password')
       account_update_params.delete('current_password')
       successfully_updated=@trainer.update_attributes(account_update_params)
+      if @trainer.update_with_password(account_update_params)
+        set_flash_message :notice, :updated
+        sign_in @trainer, :bypass=>true
+        redirect_to trainer_root_path
+      else
+        set_flash_message :notice, :password_missing
+        redirect_to edit_trainer_registration_path
+      end
     end
 
-    if successfully_updated?
-      set_flash_message :notice, :updated
+    #if successfully_updated?
+    #  set_flash_message :notice, :updated
 
-      sign_in @trainer, :bypass=>true
-      redirect_to trainer_root_path
+      #sign_in @trainer, :bypass=>true
+      #redirect_to trainer_root_path
       #redirect_to edit_trainer_registration_path
-    else
-      render "edit"
-    end
+    #else
+    #  render "edit"
+    #end
 
  end
 

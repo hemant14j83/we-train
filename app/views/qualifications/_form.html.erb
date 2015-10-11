@@ -1,37 +1,37 @@
 <%= form_for([@trainer, @trainer.qualifications.build]) do |f| %>
 	<div class="form-horizontal" id="addqual">        
-		<div class="col-xs-6">
-        	<div class="form-group col-xs-12">
-				<%= f.label :course_name, "Course Name" %> : <%= f.text_field :course_name, :class=>"form-control" %>
+		<div class="col-xs-12 col-md-12 col-sm-12">
+        	<div class="col-xs-12 col-md-6 col-sm-12">
+				<%= f.text_field :course_name,:placeholder=>"Course Name", :class=>"form-control" %>
 			</div>
-			<div class="form-group col-xs-6">
-				<%= f.label :completed_from, "University/College" %> <br> <%= f.text_field :completed_from, :class=>"form-control" %>
+			<div class="col-xs-12 col-md-6 col-sm-12">
+				<%= f.text_field :completed_from,:placeholder=>"University/College", :class=>"form-control" %>
 			</div>
-			<div class="form-group col-xs-6">
+			<div class="col-xs-12 col-md-6 col-sm-12">
 				<%= f.label :course_type, "Select Course Type" %> <br> <%= f.select :course_type, ['Graduation','Post Graduation','Diploma','Others'], :class=>"form-control" %>
 			</div>
-			<div class="form-group col-xs-12">
-				<%= f.label :start_date, "Course Start Date" %> : <%= f.date_select :start_date,:class=>"form-control" %>
-			</div>
-			<div class="form-group col-xs-12">
-				<%= f.label :end_date, "Course End Date" %> : <%= f.date_select :end_date,:class=>"form-control" %>
-			</div>
-		</div>
-		<div class="col-xs-6">
-			<div class="form-group col-xs-4">
-				<%= f.label :duration, "Duration" %> : <%= f.text_field :duration,:class=>"form-control",:disabled=>true %>
-			</div>
-			<div class="form-group col-xs-4">
+			<div class="col-xs-12 col-md-6 col-sm-12">
 				<%= f.label :percentage, "percentage" %> : <%= f.text_field :percentage,:class=>"form-control" %>
 			</div>
-			<div class="form-group col-xs-4">
+		</div>
+		<div class="col-xs-12 col-md-12 col-sm-12">
+			<div class="col-xs-12 col-md-6 col-sm-12">
+				<%= f.label :start_date, "Course Start Date" %> <br> <%= f.date_select :start_date,:class=>"form-control" %>
+			</div>
+			<div class="col-xs-12 col-md-6 col-sm-12">
+				<%= f.label :end_date, "Course End Date" %> <br> <%= f.date_select :end_date,:class=>"form-control" %>
+			</div>
+			<div class="col-xs-12 col-md-6 col-sm-12">
+				<%= f.label :duration, "Duration" %> : <%= f.text_field :duration,:class=>"form-control",:disabled=>true %>
+			</div>			
+			<div class="col-xs-12 col-md-6 col-sm-12">
 				<%= f.label :grade, "Your Grade" %> : <%= f.text_field :grade,:class=>"form-control" %>
 			</div>
-			<div class="form-group col-xs-12">
+			<div class="col-xs-12 col-md-12 col-sm-12">
 				<%= f.label :course_description, "Brief Description" %> : <%= f.text_area :course_description,:class=>"form-control",:placeholder => "Mention area of specializations", size: '40x6' %>
 			</div>
 		</div>
-		<div class="form-group col-xs-8">
+		<div class="col-xs-12 col-md-12 col-sm-12 topmargin" style="margin-bottom:10px;">
 			<%= f.submit "Add Qualification", :class=>"btn btn-success" %>
 		</div>
 	</div>

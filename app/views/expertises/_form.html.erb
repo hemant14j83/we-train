@@ -1,5 +1,6 @@
 <%= form_for([@trainer, @trainer.expertises.build]) do |f| %>
-	<div class="form-horizontal" id="addexpe">        
+	<div class="form-horizontal" id="addexpe">      
+		<span style="color:red;margin-left:20px;">* All Fields are mandatory.</span>  
 		<div class="col-xs-12 col-md-12 col-sm-12">
         	<%= f.text_field :expertise_in,:placeholder=>"Expert In", :class=>"form-control" %>			
 		</div>
