@@ -2,7 +2,7 @@ class Expertise < ActiveRecord::Base
 	belongs_to :trainer
 	validate :expertise_count, :on =>:create
 
-	validates :expertise_in, :reference_name, :reference_email, :reference_number, :presence => true
+	validates :expertise_in, :reference_name, :reference_name1, :reference_email, :reference_number, :presence => true
 	validates_format_of :reference_email, with: /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\z/i, on: :create, message:'Invalid email format'
 	validates_format_of :reference_email1, with: /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\z/i, on: :create, message:'Invalid email format'
 	validates :reference_number, :numericality => {:only_integer=>true, :message => ' is not valid'}

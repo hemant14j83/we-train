@@ -24,7 +24,7 @@ layout 'recruiters'
     if successfully_updated?
       set_flash_message :notice, :updated
 
-      sign_in @trainer, :bypass=>true
+      sign_in @recruiter, :bypass=>true
       redirect_to trainer_root_path
       #redirect_to edit_trainer_registration_path
     else
