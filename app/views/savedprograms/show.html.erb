@@ -1,0 +1,14 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Program:</strong>
+  <%= @savedprogram.program %>
+</p>
+
+<p>
+  <strong>Trainer:</strong>
+  <%= @savedprogram.trainer %>
+</p>
+
+<%= link_to 'Edit', edit_savedprogram_path(@savedprogram) %> |
+<%= link_to 'Back', savedprograms_path %>
