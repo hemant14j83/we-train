@@ -59,10 +59,15 @@ class SavedprogramsController < ApplicationController
   # DELETE /savedprograms/1
   # DELETE /savedprograms/1.json
   def destroy
-    @savedprogram.destroy
+    #@savedprogram.destroy
     respond_to do |format|
-      format.html { redirect_to savedprograms_url, notice: 'Savedprogram was successfully destroyed.' }
-      format.json { head :no_content }
+      if @savedprogram.update_attributes(:status=>'deleted')
+        format.html { redirect_to "/trainers/profile", notice: 'Removed from your saved list.' }
+        format.json { head :no_content }
+      else
+        format.json {render json: @savedprogram.errors, status: :unprocessable_entity}
+        redirect_to "/trainers/profile"
+      end
     end
   end
 
@@ -74,6 +79,6 @@ class SavedprogramsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def savedprogram_params
-      params.require(:savedprogram).permit(:program_id, :trainer_id)
+      params.require(:savedprogram).permit(:program_id, :trainer_id, :status)
     end
 end
