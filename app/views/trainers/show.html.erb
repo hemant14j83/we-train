@@ -11,6 +11,7 @@
         $("#profilepage").show();
         $("#dashboard").hide();
         $("#savedprogram").hide()
+        $("#showsavedprogram").removeClass("active");
         return false;
       });
       $("#showsavedprogram").click(function(){
@@ -51,6 +52,9 @@
   </span>
 </div>
 <div class="col-xs-12 col-md-12 col-sm-12 gradient">
+    <div class="col-xs-12 col-md-12 col-sm-12 topmargin">
+        <%= render partial: "shared/flash_messages", flash: flash %> 
+    </div>
   <div class="col-xs-12 col-md-12 col-sm-12" id="savedprogram" style="padding: 10px;margin-top: 4%;margin-bottom:4%">    
         <%= render @trainer.savedprograms %>
         &nbsp;
@@ -66,9 +70,6 @@
           <%= link_to "Profile",'#',:class=>"btn btn-default col-xs-6 col-sm-12 col-md-2", :id=>"showprofile",:style=>"margin-right:10px;" %>
           <%= link_to "Expertise",'#',:class=>"btn btn-default col-xs-6 col-sm-12 col-md-2",:style=>"margin-right:10px;", :id=>"showexpert" %>
           <%= link_to "Qualification",'#',:class=>"btn btn-default col-xs-6 col-sm-12 col-md-2", :id=>"showqual" %>
-        </div>
-        <div class="col-xs-12 col-md-12 col-sm-12 topmargin">
-          <%= render partial: "shared/flash_messages", flash: flash %> 
         </div>
     </div>
     <div class="col-xs-12 col-md-12 col-sm-12 topmargin lato" id="expertise">      
