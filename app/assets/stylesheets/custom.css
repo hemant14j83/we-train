@@ -205,6 +205,9 @@ p{
 .inline{
     display: inline-block;
 }
+.padding5{
+    padding: 5px 5px 5px 5px;
+}
 .homebanner{
     width: 100%;
     max-width: 100%;
@@ -241,6 +244,9 @@ p{
     background: -o-linear-gradient(right, rgb(093,133,136), rgb(114,211,170)); /* For Opera 11.1 to 12.0 */
     background: -moz-linear-gradient(right, rgb(093,133,136), rgb(114,211,170)); /* For Firefox 3.6 to 15 */
     background: linear-gradient(to right, rgb(093,133,136), rgb(114,211,170)); /* Standard syntax (must be last) */
+}
+.disabled{
+    background-color: grey;
 }
 .qbox {
     margin: 5px auto;

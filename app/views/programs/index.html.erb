@@ -1,3 +1,10 @@
+<script type="text/javascript">
+$(document).ready(function(){
+      setTimeout(function(){
+      $("#notice").hide("slow");
+     },2000);
+  });
+</script>
 <div class="col-xs-2">
   <div style="border:1px solid black;height:400px;">
     <div class="searchheader">Categories</div>
@@ -11,6 +18,9 @@
   </div>
 </div>
 <div class="col-xs-10">
+  <div class="col-xs-12 col-md-12 col-sm-12 topmargin">
+        <%= render partial: "shared/flash_messages", flash: flash %> 
+  </div>
   <h4 class="heading">List of Available Training Programs</h4>
   <% @program.each do |program| %>
     <div class="col-xs-12 progbox">
