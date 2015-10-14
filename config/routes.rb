@@ -11,8 +11,7 @@ Rails.application.routes.draw do
   resources :qualifications
   resources :expertises
   resources :programs
-  resources :savedprograms
-  
+  resources :savedprograms 
   resources :trainers do
 	 resources :qualifications
    resources :expertises
@@ -34,6 +33,7 @@ Rails.application.routes.draw do
   get 'expertise-list' => "expertises#index"
   get 'trainers/:id/update' => "devise/registrations#edit"
   #get 'trainers' => "devise/registrations#edit"
+  post 'savedprograms/:id'=>'savedprograms#savedlist'
   get "home/index"
   root 'home#index'
   # The priority is based upon order of creation: first created -> highest priority.

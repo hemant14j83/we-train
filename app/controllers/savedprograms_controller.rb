@@ -1,5 +1,5 @@
 class SavedprogramsController < ApplicationController
-  before_action :set_savedprogram, only: [:show, :edit, :update, :destroy]
+  before_action :set_savedprogram, only: [:show, :edit, :update, :destroy, :savedlist]
   before_filter :authenticate_trainer!
   # GET /savedprograms
   # GET /savedprograms.json
@@ -63,6 +63,18 @@ class SavedprogramsController < ApplicationController
     respond_to do |format|
       if @savedprogram.update_attributes(:status=>'deleted')
         format.html { redirect_to "/trainers/profile", notice: 'Removed from your saved list.' }
+        format.json { head :no_content }
+      else
+        format.json {render json: @savedprogram.errors, status: :unprocessable_entity}
+        redirect_to "/trainers/profile"
+      end
+    end
+  end
+
+  def savedlist
+    respond_to do |format|
+      if @savedprogram.update_attributes(:status=>'active')
+        format.html { redirect_to "/trainers/profile", notice: 'Added to saved list.' }
         format.json { head :no_content }
       else
         format.json {render json: @savedprogram.errors, status: :unprocessable_entity}
