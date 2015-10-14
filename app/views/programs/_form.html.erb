@@ -1,140 +1,61 @@
-<script type="text/javascript">
-	$(document).ready(function(){
-			$("#addprog").hide();
-			$("#moreprog").click(function(){
-				$("#addprog").show();
-			});
-		  }
-	);
-	$(document).ready(function(){
-			$("#foodexp").hide();
-			$('#exparea').hide();
-			$("#program_food_expense").change(function(){
-				var selfoodopt=$('#program_food_expense option:selected').text();
-				if(selfoodopt=="No"){
-					$("#foodexp").hide();
-				}
-				else{
-					$("#foodexp").show();
-				}
-			});
-		  }
-	);
-	$(document).ready(function(){
-			$("#travelexp").hide();
-			$("#program_travel_expense").change(function(){
-				var seltropt=$('#program_travel_expense option:selected').text();
-				if(seltropt=="No")
-				{
-					$('#travelexp').hide();
-				}
-				else
-				{
-					$("#travelexp").show();
-				}				
-			});
-		}
-	);
-	$(document).ready(function(){
-			$("#lodgeexp").hide();
-			$("#program_stay_expense").change(function(){
-				var selstayopt=$('#program_stay_expense option:selected').text();
-				if(selstayopt=="No")
-				{
-					$('#lodgeexp').hide();
-				}
-				else
-				{
-					$("#lodgeexp").show();
-				}				
-			});
-		}
-	);
-</script>
 <%= form_for([@recruiter, @recruiter.programs.build]) do |f| %>
 	<div class="form-horizontal" id="addprog"> 	  
-		<div class="col-xs-12 progbox" style="padding:10px;">
-		  <h4 class="textheading">Post More Programs</h4>       
-        	<div style="margin-left:10px;margin-right:-50px">
-	        	<div class="form-group col-xs-12">
-					<%= f.label :name, "Program Name" %> <%= f.text_field :name, :class=>"form-control" %>
+		<div class="col-xs-12 col-md-12 col-sm-12 white">
+			<div class="col-xs-12 col-md-12 col-sm-12 tcenter">
+				What Expertise(Skill Set) you are looking for?
+				<br> 
+				<%= f.select :category, ['It','Social Networking','Marketing'], :class=>"form-control" %>
+			</div>
+			<div class="col-xs-12 col-md-6 col-sm-12">
+				Program Name<br><%= f.text_field :name, :class=>"form-control" %>
+			</div>
+			<div class="col-xs-12 col-md-6 col-sm-12">
+				Program Location<br><%= f.text_field :city,:class=>"form-control"  %>
+			</div>
+			<div class="col-xs-12 col-md-12 col-sm-12">
+				<div class="col-md-1"></div>
+				<div class="col-xs-12 col-md-10 col-sm-12">
+					Program Brief<br><%= f.text_area :program_details, :size=>'0x5',:class=>"form-control"  %>
 				</div>
-				<div class="col-xs-6">
-					<div class="form-group col-xs-4" style="margin-left:-30px;">
-						<%= f.label :duration, "Duration" %> <%= f.text_field :duration, :class=>"form-control" %>
-					</div>				
-			        <div class="form-group col-xs-4" style="margin-left:10px;">
-			          <%= f.label :duration_type, "Duration Type" %><br> <%= f.select :duration_type,['Select Duration','Hours','Days','Weeks'], :class=>"form-control" %>
-			        </div>
-			        <div class="form-group col-xs-4" style="margin-left:20px;">
-			          <%= f.label :plan, "Select Plan" %><br> <%= f.select :plan,['Free','Featured','Urgent'], :class=>"form-control" %>
-			        </div>
-			     </div>
-				<div class="form-group col-xs-3">
-					<%= f.label :expertise, "Select Expertise" %><br><%= f.select :expertise,['Select Expertise','Programming','Personality Development'], :class=>"form-control" %>
+				<div class="col-md-1"></div>
+			</div>
+			<div class="col-xs-12 col-md-12 col-sm-12">
+				Program Dates<br>
+				<%= f.date_select :start_date,:class=>"form-control" %>&nbsp;to&nbsp;<%= f.date_select :end_date,:class=>"form-control" %>
+			</div>
+			<div class="col-xs-12 col-md-12 col-sm-12 topmargin">
+				<div class="col-md-2"></div>
+				<div class="col-xs-12 col-md-5 col-sm-12">
+					<%= f.text_field :duration, :placeholder=>"Program Duration",:class=>"form-control" %>
 				</div>
-				<div class="form-group col-xs-3">
-					<%= f.label :category, "Select Category" %><br><%= f.select :category,['Select Category','IT','Commerce','Hacking','Personality Development'], :class=>"form-control" %>
+				<div class="col-xs-12 col-md-3 col-sm-12">
+					<%= f.select :duration_type,['Select Duration','Hours','Days','Weeks'], :class=>"form-control" %>
 				</div>
-				<div class="form-group col-xs-12">
-					<%= f.label :program_details, "Program Details" %> <%= f.text_area :program_details, :size=>'0x5',:class=>"form-control" %>
+				<div class="col-md-2"></div>
+			</div>
+			<div class="col-xs-12 col-md-12 col-sm-12">
+				<div class="col-md-5">
+					Program Fees<br>
+					<%= f.text_field :payment_detail,:class=>"form-control" %>
 				</div>
-				<div class="col-xs-5 label label-success"><b>Payment Details</b></div>				
-				<div class="col-xs-6 label label-success" style="margin-left:8px;"><b>All Inclusive Details</b></div>
-				<div class="col-xs-5 dotborder">
-					<div class="form-group col-xs-4">
-						<%= f.label :payment_detail, "Amount" %> <%= f.text_field :payment_detail,:class=>"form-control" %>
-					</div>
-					<div class="form-group col-xs-4" style="margin-left:5px;">
-						<%= f.label :payment_type, "Type" %><br> <%= f.select :payment_type,['Per Day','Per Hour'],:class=>"form-control" %>
-					</div>
-					<div class="form-group col-xs-4" style="margin-left:5px;">
-						<%= f.label :currency, "currency" %><br> <%= f.select :currency,['INR','USD'],:class=>"form-control" %>
-					</div>
-				</div>
-				<div class="col-xs-6 dotborder" style="margin-left:8px;height:75px;">		  
-					<div class="form-group col-xs-4">
-						<%= f.label :food_expense, "Food Exp" %><br> <%= f.select :food_expense,['No','Yes', 'Partial'],:class=>"form-control", :onchange=>"showfood();" %>
-					</div>
-					<div class="form-group col-xs-4">
-						<%= f.label :travel_expense, "Travel Exp" %> <br> <%= f.select :travel_expense,['No','Yes', 'Partial'],:class=>"form-control", :onchange=>"showfood();"%>
-					</div>			
-					<div class="form-group col-xs-5">
-						<%= f.label :stay_expense, "Lodging Exp" %> <br> <%= f.select :stay_expense,['No','Yes','Partial'],:class=>"form-control", :onchange=>"showfood();"%>
-					</div>
-				</div>
-				<div class="form-group col-xs-12 smexpbox" id="foodexp" style="margin-left:1px;">
-						<%= f.label :food_expense_conditions, "Food Expense Conditions(if any?)" %><%= f.text_area :food_expense_conditions,:class=>"form-control" %>
-				</div>
-				<div class="form-group col-xs-12 smexpbox" id="travelexp" style="margin-left:1px;">
-						<%= f.label :travel_expense_conditions, "Travel Expense Conditions(if any?)" %><%= f.text_area :travel_expense_conditions,:class=>"form-control" %>
-				</div>
-				<div class="form-group col-xs-12 smexpbox" id="lodgeexp" style="margin-left:1px;">
-						<%= f.label :stay_expense_conditions, "Stay Expense Conditions(if any?)" %><%= f.text_area :stay_expense_conditions,:class=>"form-control" %>
-				</div>
-				<div class="col-xs-12 expbox">
-					<div class="form-group col-xs-6">
-						<%= f.label :start_date, "Program Starts On" %> : <%= f.date_select :start_date,:class=>"form-control" %>
-					</div>
-					<div class="form-group col-xs-6">
-						<%= f.label :end_date, "Program Ends On" %> : <%= f.date_select :end_date,:class=>"form-control" %>
-					</div>
-					<div class="form-group col-xs-4">
-						<%= f.label :venue, "Venue Address" %><br><%= f.text_area :venue,:class=>"form-control" %>
-					</div>
-					<div class="form-group col-xs-3">
-						<%= f.label :city, "City" %><br><%= f.text_field :city,:class=>"form-control" %>
-					</div>
-					<div class="form-group col-xs-3">
-						<%= f.label :state, "State" %><br><%= f.text_field :state,:class=>"form-control" %>
-					</div>
-					<div class="form-group col-xs-2">
-						<%= f.label :country, "Country" %> <br> <%= f.select :country,['India'],:class=>"form-control" %>
-					</div>
+				<div class="col-md-7 topmargin"> 
+					Per <%= f.select :payment_type,['Day','Hour'],:class=>"form-control" %> in <%= f.select :currency,['INR','USD'],:class=>"form-control" %>
 				</div>
 			</div>
-		</div>
-		<div class="form-group col-xs-8">
+			<div class="col-xs-12 col-md-12 col-sm-12 tcenter topmargin">
+				<p>Along With</p>
+				<div class="col-md-4 col-xs-12 col-sm-12">
+					<%= f.check_box :travel_expense %> Travel Expenses
+				</div>
+				<div class="col-md-4 col-xs-12 col-sm-12"> 
+					<%= f.check_box :food_expense %> Food Expenses
+				</div>
+				<div class="col-md-4 col-xs-12 col-sm-12">
+					<%= f.check_box :stay_expense %> Travel Expenses
+				</div>
+			</div>
+		</div>		
+		<div class="col-xs-12 col-md-12 col-sm-12 topmargin" style="margin-bottom:10px;">
 			<table>
 				<tr>
 					<td><%= f.submit "Post Program", :class=>"btn btn-success" %></td>
@@ -143,4 +64,5 @@
 			</table>
 		</div>
 	</div>
-<% end %>
+<%end%>
+

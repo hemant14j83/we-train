@@ -1,28 +1,131 @@
-<div class="col-lg-12">
+<script type="text/javascript">
+    $(document).ready(function(){
+      $("#recdash").show();
+      $("#recprofilepage").show();
+      $("#postedprograms").hide();
+      $("#showpostedprograms").click(function(){
+        $("#recprofilepage").hide();
+        $("#postedprograms").show();
+        $('#showpostedprograms').removeClass("active");
+        return false;
+      });
+      $("#showrecprofilepage").click(function(){
+        $("#recprofilepage").show();
+        $("#postedprograms").hide();
+        $('#showrecprofilepage').removeClass("active");
+        return false;
+      });
+
+      $("#recprofile-l").click(function(){
+        $("#recprofile").show();
+        $("#recdash").hide();
+      });
+      }
+  );
+$(document).ready(function(){
+      setTimeout(function(){
+      $("#notice").hide("slow");
+     },2000);
+  });
+</script>
+<div class="col-xs-12 col-md-12 col-sm-12">
     <ul class="nav navbar-nav profile-nav">
-      <li class="active"><a href="#">Dashboard</a></li>
-      <li><a href="#">My Projects</a></li>
-      <li><a href="#">Inbox</a></li>
-      <li><a href="#">My Profile</a></li>
+      <li><a href="#recprofilepage" id="showrecprofilepage" onclick="this.className='active'">My Profile</a></li>
+      <%#<li class="active"><a href="#dashboard">Dashboard</a></li>%>
+      <li><a href="#postedprograms" id="showpostedprograms" onclick="this.className='active'">My Projects</a></li>      
+      <%#<li><a href="#">Inbox</a></li>%>      
     </ul>    
   <span class="tright" style="margin-top:1%;">
-    <%= link_to 'Post Project', "#", :class=>"homebutton" %>
+    <%= link_to 'Find Project', "/programs", :class=>"homebutton" %>
   </span>
 </div>
-<div class="col-lg-12 gradient white lato">
-  <div class="padding10">
-    <h3 class="padding5">Project Title (Latest)</h3>
+<div class="col-xs-12 col-md-12 col-sm-12 gradient">
+  <div class="col-xs-12 col-md-12 col-sm-12 topmargin">
+      <%= render partial: "shared/flash_messages", flash: flash %> 
+  </div>
+  <div class="col-xs-12 col-md-12 col-sm-12 whitebg" id="recprofilepage" style="padding: 10px;margin-top: 4%;margin-bottom:4%">
+    <div class="col-xs-6 col-md-3 col-sm-6" style="margin-top:-4%;">
+      <%= image_tag(@recruiter.image.url, :class => "profile_pic") %>
+    </div>
+    <div class="col-xs-6 col-md-9 col-sm-6">
+        <h3>
+          <% if @recruiter.firm_name? %>
+            <b><%= @recruiter.firm_name %></b>
+          <%else%>
+            <b>Welcome</b>
+          <% end -%>  
+        </h3>
+        <%= @recruiter.email %>
+    </div>
+    <div class="col-xs-12 col-md-12 col-sm-12 topmargin lato" id="profile">
+      <%= link_to raw('<span class="tright glyphicon glyphicon-pencil orange"></span>'), edit_recruiter_registration_path %>
+      <div class="col-xs-12 col-md-6 col-sm-12" style="margin-top:15px;">
+        <h3>Firm Details</h3>
+        <table class="table">
+            <tr><td>Firm Name:</td><td><%= @recruiter.firm_name %></td></tr>
+            <tr>
+              <% if @recruiter.firm_type =="not selected" %>
+                <td>Firm Type</td>
+                <td><%= link_to "Select Firm Type", edit_recruiter_registration_path %></td>
+              <% else %>
+                <td>Firm Type</td><td><%= @recruiter.firm_type %></td>
+              <% end %>
+            </tr>
+            <tr><td>Firm Number</td><td><%= @recruiter.firm_number %></td></tr>
+            <% if @recruiter.firm_address? %>
+              <tr>
+                <td>Firm Address</td>
+                <td>
+                    <%= @recruiter.firm_address %>,<%= @recruiter.city %><br>
+                    <%= @recruiter.state %>, <%= @recruiter.country %><br>
+                    Pin code : <%= @recruiter.pincode %>
+                </td>
+              </tr>
+            <%else%>
+              <tr>
+                  <td>Firm Address</td>
+                  <td><%= link_to "Add Address", edit_recruiter_registration_path %></td>
+              </tr>
+            <%end%>            
+        </table>
+      </div>
+      <div class="col-xs-12 col-md-6 col-sm-12">
+        <h3>Authorised Person Contact Details</h3>
+        <table class="table">
+          <tr><td>Person Name</td><td><%= @recruiter.contact_person_name %></td></tr>
+          <tr><td>Email:</td><td><%= @recruiter.contact_person_email %></td></tr>
+          <tr><td>Number:</td><td><%= @recruiter.contact_person_number %></td></tr>
+        </table>
+      </div>
+    </div>
+  </div>
+  <div class="col-xs-12 col-md-12 col-sm-12" id="postedprograms" style="padding: 10px;margin-top: 4%;margin-bottom:4%">
+    <div class="col-xs-12 col-md-12 col-sm-12 lato">      
+      <div class="col-md-3 col-xs-12 col-sm-6 whitebg">
+        <h4><b>Your Posted Programs</b></h4>
+      </div>
+      <div class="col-md-3 col-xs-12 col-sm-6">
+        <%= link_to "Add More","#programmodal",:class=>"btn btn-success","data-toggle" => "modal",:id=>"addprogram"%>
+        <div id="programmodal" class="modal fade">
+          <div class="modal-dialog">
+              <div class="modal-content">
+                  <div class="modal-header">
+                      <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                      <h4 class="modal-title">Add New Program</h4>
+                  </div>
+                  <div class="modal-body gradient">
+                    <%= render "programs/form" %>
+                    &nbsp;
+                  </div>
+              </div>
+          </div>
+        </div>
+      </div>
+      <%= render @recruiter.programs %>
+    </div>
+      
   </div>
 </div>
-<div class="col-lg-12">
-    <ul class="nav navbar-nav profile-nav">
-      <li class="active"><a href="#">Applicants</a></li>
-      <li><a href="#">Project Details</a></li>
-    </ul>
-</div>
-<div class="col-lg-12 tcenter gradient" style="height:230px">
-  &nbsp;
-</div>
-<div class="col-lg-12 tcenter orange">
-  <font size="4px;">Need better results? Upgrade your plan for the project to get more enquiries of get in touch with us.</font>
+<div class="col-xs-12 col-md-12 col-sm-12 whitebg center lato">
+  <p class="orange"><font size="4px;">Need better results? Upgrade the plan for the project to get more enquiries or <br>get in <a href="/contact-us">touch</a> with us.</font></p>
 </div>
