@@ -5,80 +5,71 @@ $(document).ready(function(){
      },2000);
   });
 </script>
-<div class="col-xs-2">
+<%#<div class="col-xs-2">
   <div style="border:1px solid black;height:400px;">
     <div class="searchheader">Categories</div>
-      <% @program.each do |program| %>
-        <% if program.category?%>
+      <% @program.each do |program| %><%#
+        <% if program.category?%><%#
             <li style="list-style:none;margin-left:10px;">
-              <input type="checkbox"> <%= program.category %></input>
+              <input type="checkbox"> <%= program.category %><%#</input>
             </li>
-        <%end%>
-      <%end%>
+        <%end%><%#
+      <%end%><%#
   </div>
-</div>
-<div class="col-xs-10">
+</div>%>
+<div class="col-xs-12 col-md-12 col-sm-12">
   <div class="col-xs-12 col-md-12 col-sm-12 topmargin">
         <%= render partial: "shared/flash_messages", flash: flash %> 
   </div>
-  <h4 class="heading">List of Available Training Programs</h4>
+  <h4 class="orange"><b>Available Training Programs</b></h4>
   <% @program.each do |program| %>
-    <div class="col-xs-12 progbox">
-      <h4 class="textheading"><%= program.name %></h4>
-        <div style="text-align:justified">
-	         Required Skills :<b> <%=program.expertise %></b><br>
-	         <%= program.program_details %>
-        </div> 
-        <div class="col-xs-6">
-          <h5 class="heading"><u>Payment & Other perks</u></h5>
-          <div class="progbox">
-            <table class="table" width="100%">
-              <tr>
-                <td>Payment</td>
-                <td><%= program.payment_detail%> <%= program.currency%> <%= program.payment_type %></td>
-              </tr>
-              <tr>
-                <td>Other perks</td>
-                <td>
-                  <% if program.food_expense != 'No' %>
-                    Food, <%= program.food_expense_conditions %><br>
-                  <%end%>
-                  <% if program.travel_expense != 'No' %>
-                    Travel, <%= program.travel_expense_conditions %>.<br>
-                  <%end%>
-                  <% if program.stay_expense != 'No' %>
-                    Stay, <%= program.stay_expense_conditions %>.
-                  <%end%>
-                </td>
-            </table>  
-          </div>
-        </div>
-        <div class="col-xs-6">
-          <h5 class="heading"><u>Program Schedule</u></h5>
-          <div class="progbox">
-            <table class="table" width="100%">
-              <tr>
-                <td>Program Starts on</td><td><%= program.start_date %></td>
-              </tr>
-              <tr>
-                <td>Program Ends on</td><td><%= program.end_date %></td>
-              </tr>
-              <tr>
-                <td>Location</td><td><%= program.city %></td>
-              </tr>
-            </table>
-          </div>
-        </div>
-        <div class="col-xs-9">
-        </div>
-        <div class="col-xs-3">
-          <table>
+    <div class="col-xs-12 col-sm-12 col-md-12 progbox">
+      <table class="table">
+        <thead>
+          <tr class="textheading">
+            <th>Project Title</th><th>Project Details</th><th>Dates</th><th>Option</th>
+          </tr>
+        </thead>
+        <tbody class="orange">
           <tr>
-            <td align="right"><%= button_to 'Save for later', savedprograms_path(:program_id=>program), :class=>"btn btn-success" %></td>
-            <td align="right"><%= link_to 'Apply', program, :class=>"btn btn-success" %></td>
-            </tr>
-          </table>
-        </div>
+            <td width="15%"><%= program.name %></td>
+            <td width="65%">
+              <%= program.program_details %>
+              <%#<hr>
+              <table width="100%">
+                <tr>
+                  <td width="15%"><b><u>Location</u></b><br><%= program.city %><%#</td>
+                  <td><b><u>Payment</u></b><br> <%= program.payment_detail%><%# <%= program.currency%><%# <%= program.payment_type %><%#</td>
+                  <% if program.food_expense !='No' || program.travel_expense != 'No' || program.stay_expense != 'No' %><%#
+                  <td width="50%">
+                    <b><u>Other Inc Expenses</u></b><br>
+                    <% if program.food_expense != 'No' %><%#
+                      Food Expenses,
+                    <%end%><%#
+                    <% if program.travel_expense != 'No' %><%#
+                      Travelling Expenses,
+                    <%end%><%#
+                    <% if program.stay_expense != 'No' %>
+                      Lodging Expenses.<%#
+                    <%end%><%#
+                  </td>
+                  <%end%><%#
+                </tr>
+              </table>%>
+            </td>
+            <td width="10%">
+              <span class="center"><%= program.start_date %><br>to<br><%= program.end_date %></span>
+            </td>
+            <td width="10%">
+              
+              <%= link_to image_tag("icons/save.png",:width=>"40%"), savedprograms_path(:program_id=>program, :trainer_id=>current_trainer.id),:method=>:post %>
+              <%= link_to (image_tag("icons/apply.png",:width=>"40%")), "#" %>
+              <%#<%= button_to "<img src='icons/save.png'>".html_safe, savedprograms_path(:program_id=>program)%><%#<%= button_to '', savedprograms_path(:program_id=>program), :class=>"btn btn-success" %>
+              <%#<%= link_to 'Apply', program, :class=>"btn btn-success" %>
+            </td>
+          </tr>
+        </tbody>
+      </table>
     </div>
   <%end%>
 </div>

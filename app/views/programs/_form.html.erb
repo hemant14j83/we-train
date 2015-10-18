@@ -42,18 +42,18 @@
 					Per <%= f.select :payment_type,['Day','Hour'],:class=>"form-control" %> in <%= f.select :currency,['INR','USD'],:class=>"form-control" %>
 				</div>
 			</div>
-			<div class="col-xs-12 col-md-12 col-sm-12 tcenter topmargin">
+			<%#<div class="col-xs-12 col-md-12 col-sm-12 tcenter topmargin">
 				<p>Along With</p>
 				<div class="col-md-4 col-xs-12 col-sm-12">
-					<%= f.check_box :travel_expense %> Travel Expenses
+					<%= f.check_box :travel_expense %><%# Travel Expenses
 				</div>
 				<div class="col-md-4 col-xs-12 col-sm-12"> 
-					<%= f.check_box :food_expense %> Food Expenses
+					<%= f.check_box :food_expense %> <%#Food Expenses
 				</div>
 				<div class="col-md-4 col-xs-12 col-sm-12">
-					<%= f.check_box :stay_expense %> Travel Expenses
+					<%= f.check_box :stay_expense %> <%#Travel Expenses
 				</div>
-			</div>
+			</div>%>
 		</div>		
 		<div class="col-xs-12 col-md-12 col-sm-12 topmargin" style="margin-bottom:10px;">
 			<table>
