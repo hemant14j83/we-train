@@ -1,128 +1,117 @@
-<div class="col-xs-12">
-  <div class="col-xs-3">
-    <div class="panel panel-default">
-      <div class="panel-body">
-        <%= image_tag(@recruiter.image.url, :class => "profile_pic") %>
-      </div>      
-    </div>
-    <div class="panel panel-success">
-      <div class="panel-heading">
-        <h3 class="panel-title">Related Links</h3>
-      </div>
-      <div class="panel-body">
-        <p>News feed of latest relevant job available</p>
+<script type="text/javascript">
+    $(document).ready(function(){
+      $("#recdash").show();
+      $("#recprofilepage").show();
+      $("#postedprograms").hide();
+      $("#showpostedprograms").click(function(){
+        $("#recprofilepage").hide();
+        $("#postedprograms").show();
+        $('#showpostedprograms').removeClass("active");
+        return false;
+      });
+      $("#showrecprofilepage").click(function(){
+        $("#recprofilepage").show();
+        $("#postedprograms").hide();
+        $('#showrecprofilepage').removeClass("active");
+        return false;
+      });
+
+      $("#recprofile-l").click(function(){
+        $("#recprofile").show();
+        $("#recdash").hide();
+      });
+      }
+  );
+$(document).ready(function(){
+      setTimeout(function(){
+      $("#notice").hide("slow");
+     },2000);
+  });
+</script>
+<div class="col-xs-12 col-md-12 col-sm-12">
+    <ul class="nav navbar-nav profile-nav">
+      <li><a href="/recruiters/myaccount">My Profile</a></li>
+      <li><a href="/recruiters/myaccount#programs">My Projects</a></li>
+    </ul>    
+  <span class="tright" style="margin-top:1%;">
+    <%= link_to "Post Project","#programmodal",:class=>"homebutton","data-toggle" => "modal",:id=>"addprogram"%>
+  </span>
+  <div id="programmodal" class="modal fade">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+          <h4 class="modal-title">Add New Program</h4>
+        </div>
+        <div class="modal-body">
+          <%= render "programs/form" %>
+          &nbsp;
+        </div>
       </div>
     </div>
   </div>
-  <div class="col-xs-9">
-    <% if notice %>
-      <p id="notice"><%= notice %></p>
-    <%end%>
-      <% if @recruiter.account_status=="pending" %>
-        <div class="col-xs-12 label label-warning">
-          <font size="2px">Your Account is in "<font color="red">Pending</font>" state, please <a href="/">contact us</a> if you want it approved instantly.</font>          
+</div>
+<div class="col-xs-12 col-md-12 col-sm-12 gradient">
+  <div class="col-xs-12 col-md-12 col-sm-12 topmargin">
+      <%= render partial: "shared/flash_messages", flash: flash %> 
+  </div>
+  <div class="col-xs-12 col-md-12 col-sm-12 whitebg" id="recprofilepage" style="padding: 10px;margin-top: 4%;margin-bottom:4%">
+  <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { multipart: true, method: :put }) do |f| %>
+    <div class="col-xs-6 col-md-3 col-sm-6" style="margin-top:-4%;">
+      <% if @recruiter.image.url=='/images/original/missing.png'%>
+        <%= image_tag("profile_pics/pic_def.png", :class => "profile_pic") %>
+      <% else %>
+        <%= image_tag(@recruiter.image.url, :class => "profile_pic") %>
+      <% end %>
+    </div>
+    <div class="col-xs-6 col-md-9 col-sm-6">
+      <h3>
+          <% if @recruiter.firm_name? %>
+            <b><%= @recruiter.firm_name %></b>
+          <%else%>
+            <b>Welcome</b>
+          <% end -%>  
+        </h3>
+        <%= @recruiter.email %><br>
+        <div class="col-xs-6 col-sm-6 col-md-3" style="margin-left:-15px;">
+          Current Password <span style="color:red">*</span> 
+          <%= f.password_field :current_password, :class=>"form-control" %>
         </div>
-        <div style="height:20px;"></div>
-      <%end%>
-      <h3>Update <%= resource_name.to_s.humanize %> Profile</h3>
-      <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { multipart: true, method: :put }) do |f| %>
-        <%= devise_error_messages! %>
-        <div class="form-horizontal">
-          <div class="col-xs-6">
-            <div class="form-group col-xs-8">
-              <%= f.label :firm_name %>
-              <%= f.text_field :firm_name, :class=>"form-control" %>
-            </div>
-            <div class="form-group col-xs-4">
-              <%= f.label :image, "Update Profile Pic" %>
-              <%= f.file_field :image, :class=>"" %>
-            </div>
-            <div class="form-group col-xs-12">
-              <%= f.label :email %>
-              <%= f.email_field :email, autofocus: true, :disabled => true, :class=>"form-control" %>
-            </div>
-            <div class="form-group col-xs-12">
-              <%= f.label :current_password %>
-              <%= f.password_field :current_password, :class=>"form-control" %>
-            </div>            
-            <div class="form-group col-xs-12">
-              <%= f.label :firm_type %>
-              <%= f.select :firm_type, ['','College','Company'], :class=>"form-control" %>
-            </div>
-            <div class="form-group col-xs-12">
-              <%= f.label :firm_number %>
-              <%= f.text_field :firm_number, :class=>"form-control" %>
-            </div>
-            <div class="form-group col-xs-12">
-              <%= f.label :firm_address %>
-              <%= f.text_area(:firm_address, size: '50x4', :class=>"form-control")%>
-            </div>
-          </div>
-          <div class="col-xs-6">
-            <div class="form-group col-xs-12">
-              <%= f.label :contact_person_name %>
-              <%= f.text_field :contact_person_name, :class=>"form-control" %>
-            </div>
-            <div class="form-group col-xs-12">
-              <%= f.label :contact_person_email %>
-              <%= f.email_field :contact_person_email, :class=>"form-control" %>
-            </div>
-            <div class="form-group col-xs-12">
-              <%= f.label :contact_person_number %>
-              <%= f.text_field :contact_person_number, :class=>"form-control" %>
-            </div>
-            <div class="form-group col-xs-6">
-              <%= f.label :city %>
-              <%= f.text_field :city, :class=>"form-control" %>
-            </div>
-            <div class="form-group col-xs-6">
-              <%= f.label :state %>
-              <%= f.text_field :state, :class=>"form-control" %>
-            </div> 
-            <div class="form-group col-xs-6">
-              <%= f.label :country %><br>
-              <%= f.select :country, ['Select Country','India'], :class=>"form-control" %>
-            </div>          
-            <div class="form-group col-xs-6">
-              <%= f.label :pincode %>
-              <%= f.text_field :pincode, :class=>"form-control" %>
-            </div> 
-          </div>
-          
-          <!--<div class="form-group col-xs-12">
-            <%= f.label :current_password %>
-            <%= f.password_field :current_password, autocomplete: false, :class=>"form-control" %>
-          </div>
-          <div class="form-group col-xs-12">
-            <%= f.password_field :password, autocomplete: "off", :class=>"form-control" %>
-          </div>
-          <div class="form-group col-xs-12">
-            <%= f.password_field :password_confirmation, autocomplete: "off", :class=>"form-control" %>
-          </div>-->
-          <div class="col-xs-12"> 
-            <h5><b>Other Details</b></h5>
-            <div class="otherbox">       
-              <div class="form-group col-xs-8">
-                <%= f.label :subscribed_plan, "Subscribed Plan" %>
-                <%= f.text_field :subscribed_plan, :disabled=> true, :class=>"form-control" %>
-              </div>
-              <div class="form-group col-xs-4">
-                <br><a href="/">Upgrade<br>Plan</a>
-              </div>
-            </div>
-          </div>          
+    </div>
+    <div class="col-xs-12 col-md-12 col-sm-12 topmargin lato" id="profile">      
+      <div class="col-xs-12 col-md-6 col-sm-12">
+        <h3>Firm Details</h3>
+        <table class="table">
+            <tr><td>Firm Name:</td><td><%= f.text_field :firm_name, :class=>"form-control" %></td></tr>
+            <tr><td>Firm Type:</td><td><%= f.select :firm_type, ['','College','Company'], :class=>"form-control" %></td></tr>
+            <tr><td>Firm Number</td><td><%= f.text_field :firm_number, :class=>"form-control" %></td></tr>
+            <tr><td>Firm Address</td><td><%= f.text_area(:firm_address, size: '50x4', :class=>"form-control")%></td></tr>
+        </table>
+        <table class="table">
+          <tr>
+            <td>City: </td><td><%= f.text_field :city, :class=>"form-control" %></td>
+            <td>State: </td><td><%= f.text_field :state, :class=>"form-control" %></td>
+            <td>Country: </td><td><%= f.select :country, ['Select Country','India'], :class=>"form-control" %></td>
+          </tr>
+        </table>
+      </div>
+      <div class="col-xs-12 col-md-6 col-sm-12">
+        <h3>Authorised Person Contact Details</h3>
+        <table class="table">
+          <tr><td>Person Name</td><td><%= f.text_field :contact_person_name, :class=>"form-control" %></td></tr>
+          <tr><td>Email:</td><td><%= f.email_field :contact_person_email, :class=>"form-control" %></td></tr>
+          <tr><td>Number:</td><td><%= f.text_field :contact_person_number, :class=>"form-control" %></td></tr>
+        </table>
+      </div>
+      <div class="col-xs-12 col-sm-12 col-md-6">                  
           <div class="form-group col-xs-3">
             <%= f.submit "Update Details", :class=>"form-control btn btn-success" %>
           </div>
           <div class="form-group col-xs-3">
             <%= link_to "Cancel",'profile', :class=>"form-control btn btn-warning" %>
           </div>
-        </div>
-        <%end%>
+      </div>
+      <%end%>
+    </div>
   </div>
 </div>
-<!--<h3>Cancel my account</h3>
-
-<p>Unhappy? <%= button_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete %></p>
-
-<%= link_to "Back", :back %> -->

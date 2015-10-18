@@ -13,22 +13,27 @@ layout 'recruiters'
     @recruiter=Recruiter.find(current_recruiter.id)
 
     if needs_password?
-      successfully_updated = @recruiter.update_with_password(account_update_params)
+      if @recruiter.update_with_password(account_update_params)
+        set_flash_message :notice, :updated
+        sign_in @recruiter, :bypass=>true
+        redirect_to recruiter_root_path
+      else
+        set_flash_message :notice, :password_missing
+        redirect_to edit_recruiter_registration_path
+      end
     else
       account_update_params.delete('password')
       account_update_params.delete('confirmation_password')
       account_update_params.delete('current_password')
       successfully_updated=@recruiter.update_attributes(account_update_params)
-    end
-
-    if successfully_updated?
-      set_flash_message :notice, :updated
-
-      sign_in @recruiter, :bypass=>true
-      redirect_to trainer_root_path
-      #redirect_to edit_trainer_registration_path
-    else
-      render "edit"
+      if @recruiter.update_with_password(account_update_params)
+        set_flash_message :notice, :updated
+        sign_in @recruiter, :bypass=>true
+        redirect_to recruiter_root_path
+      else
+        set_flash_message :notice, :password_missing
+        redirect_to edit_recruiter_registration_path
+      end
     end
 
  end
@@ -47,7 +52,7 @@ layout 'recruiters'
 
   private
   def needs_password?
-    @trainer.email != params[:trainer][:email] || params[:trainer][:password].present?
+    @recruiter.email != params[:trainer][:email] || params[:trainer][:password].present?
   end
 
   protected
