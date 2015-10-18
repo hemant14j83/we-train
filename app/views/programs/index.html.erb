@@ -60,13 +60,21 @@ $(document).ready(function(){
             <td width="10%">
               <span class="center"><%= program.start_date %><br>to<br><%= program.end_date %></span>
             </td>
-            <td width="10%">
-              
-              <%= link_to image_tag("icons/save.png",:width=>"40%"), savedprograms_path(:program_id=>program, :trainer_id=>current_trainer.id),:method=>:post %>
-              <%= link_to (image_tag("icons/apply.png",:width=>"40%")), "#" %>
-              <%#<%= button_to "<img src='icons/save.png'>".html_safe, savedprograms_path(:program_id=>program)%><%#<%= button_to '', savedprograms_path(:program_id=>program), :class=>"btn btn-success" %>
-              <%#<%= link_to 'Apply', program, :class=>"btn btn-success" %>
-            </td>
+            <% if trainer_signed_in? %> 
+              <td width="10%">
+                  <%= link_to image_tag("icons/save.png",:width=>"40%"), savedprograms_path(:program_id=>program, :trainer_id=>current_trainer.id),:method=>:post %>
+                  <%= link_to (image_tag("icons/apply.png",:width=>"40%")), "#" %>
+              </td>  
+            <%elsif recruiter_signed_in? %>
+              <td width="10%">
+                <p>Only Trainers can Apply</p>
+              </td>
+            <%else%>
+              <td width="10%">
+                <%= link_to image_tag("icons/save.png",:width=>"40%"), savedprograms_path(:program_id=>program),:method=>:post %>
+                <%= link_to (image_tag("icons/apply.png",:width=>"40%")), "#" %>
+              </td>
+            <%end%>
           </tr>
         </tbody>
       </table>
