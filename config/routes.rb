@@ -12,6 +12,7 @@ Rails.application.routes.draw do
   resources :expertises
   resources :programs
   resources :savedprograms 
+  
   resources :trainers do
 	 resources :qualifications
    resources :expertises
@@ -30,10 +31,12 @@ Rails.application.routes.draw do
   get ":page" => "pages#show"
   get 'trainers/profile' => "trainers#show", as: :trainer_root
   get 'trainers-list' => "trainers#index"
+  get 'programs.:id/update' => "programs#edit"
   get 'expertise-list' => "expertises#index"
   get 'trainers/:id/update' => "devise/registrations#edit"
   #get 'trainers' => "devise/registrations#edit"
   post 'savedprograms/:id'=>'savedprograms#savedlist'
+  #get 'recruiters/:id/edit' => "programs#edit"
   get "home/index"
   root 'home#index'
   # The priority is based upon order of creation: first created -> highest priority.

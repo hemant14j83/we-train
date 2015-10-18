@@ -1,74 +1,69 @@
-<div class="col-xs-12 progbox" style="width:100%;">	
+<% if program.recruiter_id.nil? %>
+	<div class="col-xs-12 col-sm-12 col-md-12 progbox" style="width:100%;">	
+		<div class="tcenter">
+			<h4 class="orange">You haven't posted any program yet.</h4>
+		</div>			
+	</div>
+<%else%>
+	<% if program.name!=nil %>
+	<div class="col-xs-12 col-sm-12 col-md-12 progbox" style="width:100%;">	
 		<div class="textheading">
 			<%= program.name %>, <% if program.category!="Select Category" %> posted in <%= program.category %> Category<%end%>
 		</div>
-		<div style="padding:5px;">
+		<div class="col-xs-12 col-md-12 col-sm-12" style="padding:5px;">
 			<b><u>Program Details</u></b>
 			<p>
 				<% if program.expertise != "Select Expertise" %>
-					<p>Desired Expertise :<b> <%= program.expertise %></b></p>
-			<%end%>
+				<p><b>Desired Expertise</b> : <%= program.expertise %></p>
+				<%end%>
 			</p>
 			<p><%= program.program_details %></p>
 			<hr>
-			<b>Venue Details:</b>
-			<p><%= program.venue %>, <%= program.city%>, <%=program.state%>, <%= program.country %></p>
-			<hr>
-		</div>
-		<b>Payment / Duration </b>
-		<div style="padding:5px;">			
-			<table class="table table-bordered">
-				<tr>
-					<td>Selected Plan : <b><%= program.plan %></b></td>
-					<td>Duration : <b>
-						<%= program.duration %> 
-						<% if program.duration_type=="Select Duration Type" %>
-							Not Mentioned
-						<%else%>
-							<%= program.duration_type %>
-						<%end%></b>
-					</td>
-					<td>Payment Details : <b><%= program.payment_detail %> <%= program.currency %> <%= program.payment_type %></b></td>
-				</tr>
-			</table>
-		</div>
-		<b>Includes Following:</b>
-		<div style="padding:5px;;">			
-			<table class="table table-bordered">
-				<tr>
-					<td>Food Expenses</td><td><%= program.food_expense %></td>
-					<% if program.food_expense!='No' %>
-						<td>Food Expense Conditions</td>
-						<td><font color="green"><%= program.food_expense_conditions %></font></td>
+			<div class="col-xs-6 col-sm-6 col-md-3">
+				<b>Venue Details</b>
+				<p><%= program.city%><%#<%= program.venue , , <%=program.state, <%= program.country %></p>
+				<p><span class="orange"><%= program.start_date %></span> to <span class="orange"><%= program.end_date %></span></p>
+			</div>				
+			<div class="col-xs-6 col-sm-6 col-md-3">
+				<b>Program Duration</b>
+				<p>
+					<%= program.duration %> 
+					<% if program.duration_type=="Select Duration Type" %>
+					Not Mentioned
 					<%else%>
-						<td>Food Expense Conditions</td>
-						<td><font color="orange">Food Expenses Not Included</font></td>
+					<%= program.duration_type %>
 					<%end%>
-				</tr>
-				<tr>
-					<td>Travel Expense</td><td><%= program.travel_expense %></td>	
-					<% if program.travel_expense!='No' %>
-						<td>Travel Expense Conditions</td>
-						<td><font color="green"><%= program.travel_expense_conditions %></font></td>
-					<% else %>
-						<td>Travel Expense Conditions</td>
-						<td><font color="orange">Travel Expenses Not Included.</font></td>
-					<% end %>
-				</tr>
-				<tr>
-					<td>Stay Expense</td><td><%= program.stay_expense %></td>	
-					<% if program.stay_expense!='No' %>
-						<td>Stay Expense Conditions</td>
-						<td><font color="green"><%= program.stay_expense_conditions %></font></td>
-					<% else %>
-						<td>Stay Expense Conditions</td>
-						<td><font color="orange">Stay Expenses Not Included.</font></td>
-					<% end %>
-				</tr>
-			</table>
+				</p>
+			</div>
+			<div class="col-xs-6 col-sm-6 col-md-3">
+				<b>Payment Details</b>
+				<p><%= program.payment_detail %> <%= program.currency %> <%= program.payment_type %></p>
+			</div>				
+			<div class="col-xs-6 col-sm-6 col-md-3">
+				<b>Included Expenses</b>
+				<% if program.food_expense!='No' || program.travel_expense!='No' ||  program.stay_expense!='No' %>
+				<p>
+					<% if program.food_expense!='No' %>
+					<ul><li>Food Expense Included</li></ul
+						<%end%>
+						<% if program.travel_expense!='No' %>
+						<ul><li>Travel Expense Included</li></ul>
+						<%end%>
+						<% if program.stay_expense!='No' %>
+						<ul><li>Lodging Expense Included</li></ul>
+						<%end%>
+					</p>
+					<%else%>
+					<p class="orange">Additional Expenses not Covered.</p>
+
+					<%end%>
+				</div>
+				<hr>
+			</div>
+			<div align="right">
+				<%#= link_to 'Edit', edit_program_path(id), :class=>"btn btn-success btn-sm" %>
+				<%= link_to 'Remove', program, method: :delete, data: { confirm: 'Are you sure?' }, :class=>"btn btn-danger btn-sm" %>
+			</div>
 		</div>
-		<div align="right">
-			<%= link_to 'Edit', edit_program_path(:id), :class=>"btn btn-success btn-sm" %>
-			<%= link_to 'Remove', program, method: :delete, data: { confirm: 'Are you sure?' }, :class=>"btn btn-danger btn-sm" %>
-	    </div>
-</div>
+	<%end%>
+<%end%>

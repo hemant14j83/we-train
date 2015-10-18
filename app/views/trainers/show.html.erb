@@ -66,7 +66,11 @@ $(document).ready(function(){
   </div>
   <div class="col-xs-12 col-md-12 col-sm-12 whitebg" id="profilepage" style="padding: 10px;margin-top: 4%;margin-bottom:4%">
     <div class="col-xs-6 col-md-3 col-sm-6" style="margin-top:-4%;">
-      <%= image_tag(@trainer.image.url, :class => "profile_pic") %>
+      <% if @trainer.image.url=='/images/original/missing.png'%>
+        <%= image_tag("profile_pics/pic_def.png", :class => "profile_pic") %>
+      <%else%>
+        <%= image_tag(@trainer.image.url, :class => "profile_pic") %>
+      <%end%>
     </div>
     <div class="col-xs-6 col-md-9 col-sm-6">
         <h3><b><%= @trainer.full_name %></b></h3>
