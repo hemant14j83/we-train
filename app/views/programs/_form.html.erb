@@ -1,6 +1,6 @@
 <%= form_for([@recruiter, @recruiter.programs.build]) do |f| %>
 	<div class="form-horizontal" id="addprog"> 	  
-		<div class="col-xs-12 col-md-12 col-sm-12 white">
+		<div class="col-xs-12 col-md-12 col-sm-12">
 			<div class="col-xs-12 col-md-12 col-sm-12 tcenter">
 				What Expertise(Skill Set) you are looking for?
 				<br> 
@@ -58,8 +58,8 @@
 		<div class="col-xs-12 col-md-12 col-sm-12 topmargin" style="margin-bottom:10px;">
 			<table>
 				<tr>
-					<td><%= f.submit "Post Program", :class=>"btn btn-success" %></td>
-					<td><%= f.submit "Cancel", :class=>"btn btn-warning" %></td>
+					<td><%= f.submit "Post Program", :class=>"btn btn-success" %></td><td>&nbsp;</td>
+					<td><%= link_to "Cancel", "myaccount", :class=>"btn btn-warning" %></td>
 				</tr>
 			</table>
 		</div>
