@@ -2,6 +2,10 @@ class ProgramsController < ApplicationController
 	before_filter :authenticate_recruiter!, :except=>:index
   before_action :set_program, only: [:show, :edit, :update, :destroy]
 
+ def new
+  redirect_to '/recruiters/profile#programmodal'
+ end
+
  def create
 	@recruiter=Recruiter.find(current_recruiter.id)
 	
