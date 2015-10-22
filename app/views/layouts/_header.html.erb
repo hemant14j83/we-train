@@ -7,27 +7,53 @@
           <div id="links" class="toplinks">
             <% if trainer_signed_in? %>
               <% if current_trainer.full_name? %>
-                Signed in as <font color="green"><b><%= current_trainer.full_name %></b></font> Not You?
-                <%= link_to "Sign out", destroy_trainer_session_path, :class=>"label label-warning" %> 
-                <%= link_to "My Account", "/trainers/profile", :class=>"label label-success" %>
+                <table>
+                  <tr>
+                    <td><font color="white"><b><%= current_trainer.full_name %></b></font></td>
+                    <td><%= link_to "My Account", "/trainers/profile", :class=>"label label-success" %></td>
+                    <td><%= link_to "Sign out", destroy_trainer_session_path, :class=>"label label-warning" %> </td>
+                  </tr>
+                </table>
               <%elsif current_trainer.email? %>
-                Signed in as <font color="green"><b><%= current_trainer.email %></b></font> Not You?
-                <%= link_to "Sign out", destroy_trainer_session_path, :class=>"label label-warning" %>
-                <%= link_to "My Account", "/trainers/profile", :class=>"label label-success" %>
+                <table>
+                  <tr>
+                    <td><font color="white"><b><%= current_trainer.email %></b></font></td>
+                    <td><%= link_to "My Account", "/trainers/profile", :class=>"label label-success" %></td>
+                    <td><%= link_to "Sign out", destroy_trainer_session_path, :class=>"label label-warning" %> </td>                    
+                  </tr>
+                </table>
               <%else%>
-                <%= link_to "Sign_up", new_trainer_registration_path, :class=>"label label-success"  %>  <%= link_to "sign_in", new_trainer_session_path, :class=>"label label-success" %>
+                <table>
+                  <tr>
+                    <td><%= link_to "Sign_up", new_trainer_registration_path, :class=>"label label-success"  %></td>
+                    <td><%= link_to "sign_in", new_trainer_session_path, :class=>"label label-success" %></td>
+                  </tr>
+                </table>                  
               <%end%>
             <% elsif recruiter_signed_in? %>
                 <% if current_recruiter.firm_name? %>
-                  Signed in as <font color="green"><b><%= current_recruiter.firm_name %></b></font> Not You?
-                  <%= link_to "Sign out", destroy_recruiter_session_path, :class=>"label label-warning" %>
-                  <%= link_to "My Account", "/recruiters/profile", :class=>"label label-success" %>
+                <table>
+                  <tr>
+                    <td style="padding:3px;"><font color="white"><b><%= current_recruiter.firm_name %></b></font></td>
+                    <td style="padding:3px;"><%= link_to "My Account", "/recruiters/profile", :class=>"label label-success" %></td>
+                    <td style="padding:3px;"><%= link_to "Sign out", destroy_recruiter_session_path, :class=>"label label-warning" %></td>                    
+                  </tr>
+                </table>
                 <%elsif current_recruiter.email? %>
-                  Signed in as <font color="green"><%= current_recruiter.email %></font> Not You?
-                  <%= link_to "Sign out", destroy_trainer_session_path, :class=>"label label-warning" %>
-                  <%= link_to "My Account", "/recruiters/profile", :class=>"label label-success" %>
+                  <table>
+                  <tr>
+                    <td style="padding:3px;"><font color="white"><b><%= current_recruiter.email %></b></font></td>
+                    <td style="padding:3px;"><%= link_to "My Account", "/recruiters/profile", :class=>"label label-success" %></td>
+                    <td style="padding:3px;"><%= link_to "Sign out", destroy_recruiter_session_path, :class=>"label label-warning" %></td>
+                  </tr>
+                </table>
                 <%else%>
-                  <%= link_to "Sign_up", new_recruiter_registration_path, :class=>"label label-success"  %>  <%= link_to "sign_in", new_recruiter_session_path, :class=>"label label-success" %>
+                  <table>
+                    <tr>
+                      <td><%= link_to "Sign_up", new_recruiter_registration_path, :class=>"label label-success"  %></td>
+                      <td> <%= link_to "sign_in", new_recruiter_session_path, :class=>"label label-success" %></td>
+                    </tr>
+                  </table>
                 <% end %>
               <%else%>
                 <li class="dropdown pull-right" style="list-style:none;color:white">

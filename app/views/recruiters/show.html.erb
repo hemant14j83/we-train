@@ -6,13 +6,13 @@
       $("#showpostedprograms").click(function(){
         $("#recprofilepage").hide();
         $("#postedprograms").show();
-        $('#showpostedprograms').removeClass("active");
+        $('#showrecprofilepage').removeClass("active");
         return false;
       });
       $("#showrecprofilepage").click(function(){
         $("#recprofilepage").show();
         $("#postedprograms").hide();
-        $('#showrecprofilepage').removeClass("active");
+        $('#showpostedprograms').removeClass("active");
         return false;
       });
 
@@ -27,6 +27,12 @@ $(document).ready(function(){
       $("#notice").hide("slow");
      },2000);
   });
+$(document).ready(function () {
+    if (window.location.href.indexOf("programmodal") != -1) {
+        $("#recprofilepage").hide();
+        $("#postedprograms").show();
+    }
+});
 </script>
 <div class="col-xs-12 col-md-12 col-sm-12">
     <ul class="nav navbar-nav profile-nav">
@@ -36,7 +42,11 @@ $(document).ready(function(){
       <%#<li><a href="#">Inbox</a></li>%>      
     </ul>    
   <span class="tright" style="margin-top:1%;">
-    <%= link_to "Post Project","#programmodal",:class=>"homebutton","data-toggle" => "modal",:id=>"addprogram"%>
+    <% if @recruiter.programs.blank? %>
+      <%= link_to "Post Project","#programmodal",:class=>"homebutton","data-toggle" => "modal",:id=>"addprogram"%>
+    <%else%>
+      <%= link_to "Post Another Project","#programmodal",:class=>"homebutton","data-toggle" => "modal",:id=>"addprogram"%>
+    <%end%>
   </span>
   <div id="programmodal" class="modal fade">
     <div class="modal-dialog">
@@ -80,28 +90,27 @@ $(document).ready(function(){
       <div class="col-xs-12 col-md-6 col-sm-12" style="margin-top:15px;">
         <h3>Firm Details</h3>
         <table class="table">
-            <tr><td>Firm Name:</td><td><%= @recruiter.firm_name %></td></tr>
+            <tr><td>Name:</td><td><%= @recruiter.firm_name %></td></tr>
             <tr>
               <% if @recruiter.firm_type =="not selected" %>
-                <td>Firm Type</td>
+                <td>Type</td>
                 <td><%= link_to "Select Firm Type", edit_recruiter_registration_path %></td>
               <% else %>
-                <td>Firm Type</td><td><%= @recruiter.firm_type %></td>
+                <td>Type</td><td><%= @recruiter.firm_type %></td>
               <% end %>
             </tr>
-            <tr><td>Firm Number</td><td><%= @recruiter.firm_number %></td></tr>
+            <tr><td>Contact Number</td><td><%= @recruiter.firm_number %></td></tr>
             <% if @recruiter.firm_address? %>
               <tr>
-                <td>Firm Address</td>
+                <td>Address</td>
                 <td>
                     <%= @recruiter.firm_address %>,<%= @recruiter.city %><br>
-                    <%= @recruiter.state %>, <%= @recruiter.country %><br>
-                    Pin code : <%= @recruiter.pincode %>
+                    <%= @recruiter.state %>, <%= @recruiter.country %>
                 </td>
               </tr>
             <%else%>
               <tr>
-                  <td>Firm Address</td>
+                  <td>Address</td>
                   <td><%= link_to "Add Address", edit_recruiter_registration_path %></td>
               </tr>
             <%end%>            
@@ -119,12 +128,12 @@ $(document).ready(function(){
   </div>
   <div class="col-xs-12 col-md-12 col-sm-12" id="postedprograms" style="padding: 10px;margin-top: 4%;margin-bottom:4%">
     <div class="col-xs-12 col-md-12 col-sm-12 lato">      
-      <div class="col-md-3 col-xs-12 col-sm-6 whitebg">
+      <%#<div class="col-md-3 col-xs-12 col-sm-6 whitebg">
         <h4><b>Your Posted Programs</b></h4>
       </div>
       <div class="col-md-3 col-xs-12 col-sm-6" style="margin-top:5px;">
         <%= link_to "Add More","#programmodal",:class=>"homebutton","data-toggle" => "modal",:id=>"addprogram"%>
-        <div id="programmodal" class="modal fade">
+        <%#<div id="programmodal" class="modal fade">
           <div class="modal-dialog">
               <div class="modal-content">
                   <div class="modal-header">
@@ -132,18 +141,17 @@ $(document).ready(function(){
                       <h4 class="modal-title">Add New Program</h4>
                   </div>
                   <div class="modal-body gradient">
-                    <%= render "programs/form" %>
+                    <%= render "programs/form" %><%#
                     &nbsp;
                   </div>
               </div>
           </div>
         </div>
-      </div>
+      </div>%>
         <%= render @recruiter.programs %>
     </div>
       
   </div>
-</div>
-<div class="col-xs-12 col-md-12 col-sm-12 whitebg center lato">
+<%#<div class="col-xs-12 col-md-12 col-sm-12 whitebg center lato">
   <p class="orange"><font size="4px;">Need better results? Upgrade the plan for the project to get more enquiries or <br>get in <a href="/contact-us">touch</a> with us.</font></p>
-</div>
+</div>%>

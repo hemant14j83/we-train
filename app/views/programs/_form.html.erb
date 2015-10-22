@@ -7,7 +7,7 @@
 				<%= f.select :category, ['It','Social Networking','Marketing'], :class=>"form-control" %>
 			</div>
 			<div class="col-xs-12 col-md-6 col-sm-12">
-				Program Name<br><%= f.text_field :name, :class=>"form-control" %>
+				Program Type<br><%= f.text_field :name, :class=>"form-control" %>
 			</div>
 			<div class="col-xs-12 col-md-6 col-sm-12">
 				Program Location<br><%= f.text_field :city,:class=>"form-control"  %>
@@ -24,22 +24,24 @@
 				<%= f.date_select :start_date,:class=>"form-control" %>&nbsp;to&nbsp;<%= f.date_select :end_date,:class=>"form-control" %>
 			</div>
 			<div class="col-xs-12 col-md-12 col-sm-12 topmargin">
-				<div class="col-md-2"></div>
+				<div class="col-md-1"></div>
 				<div class="col-xs-12 col-md-5 col-sm-12">
+					Program Duration<br>
 					<%= f.text_field :duration, :placeholder=>"Program Duration",:class=>"form-control" %>
 				</div>
-				<div class="col-xs-12 col-md-3 col-sm-12">
-					<%= f.select :duration_type,['Select Duration','Hours','Days','Weeks'], :class=>"form-control" %>
+				<div class="col-xs-12 col-md-4 col-sm-12 topmargin">
+					<%= f.select :duration_type,['Select Duration Type','Hours','Days','Weeks'], :class=>"form-control" %>
 				</div>
 				<div class="col-md-2"></div>
 			</div>
 			<div class="col-xs-12 col-md-12 col-sm-12">
-				<div class="col-md-5">
-					Program Fees<br>
-					<%= f.text_field :payment_detail,:class=>"form-control" %>
+				<div class="col-md-1"></div>
+				<div class="col-xs-12 col-md-5 col-sm-12">
+					Trainer Fees<br>
+					<%= f.text_field :payment_detail,:placeholder=>"Trainer Fees",:class=>"form-control" %>
 				</div>
-				<div class="col-md-7 topmargin"> 
-					Per <%= f.select :payment_type,['Day','Hour'],:class=>"form-control" %> in <%= f.select :currency,['INR','USD'],:class=>"form-control" %>
+				<div class="col-xs-12 col-md-5 col-sm-12 topmargin"> 
+					per<%= f.select :payment_type,['Day','Hour'],:class=>"form-control" %>&nbsp;in&nbsp;<%= f.select :currency,['INR','USD'],:class=>"form-control" %>
 				</div>
 			</div>
 			<%#<div class="col-xs-12 col-md-12 col-sm-12 tcenter topmargin">

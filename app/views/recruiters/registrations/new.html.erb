@@ -14,14 +14,16 @@
         <div class="form-group col-md-6 col-xs-12 col-sm-12">
           <%= f.text_field :firm_name, autofocus: true, :placeholder => "Firm Name", :class=>"form-control" %>
         </div>
-        <div class="form-group col-md-6 col-xs-12 col-sm-12" style="margin-left:1%;">
-          <%= f.text_field :firm_type, :placeholder=>"Firm Type : College / Company",  :class=>"form-control" %>
+        <div class="form-group col-md-6 col-xs-12 col-sm-12">
+          <%= f.select :firm_type,['Please Select Firm Type','College','Company','Others'], :class=>"form-control" %>
         </div>
-        <div class="form-group col-md-6 col-xs-12 col-sm-12" style="float:left;">
-          <%= f.password_field :password, autocomplete: "off", :placeholder => "Password", :class=>"form-control" %>
-        </div> 
-        <div class="form-group col-md-6 col-xs-12 col-sm-12" style="margin-left:1%;">
-          <%= f.password_field :password_confirmation, autocomplete: "off", :placeholder => "Confirm Password", :class=>"form-control" %>
+        <div class="col-xs-12 col-m2-12 col-sm-12">
+          <div class="form-group col-md-6 col-xs-12 col-sm-12" style="float:left;">
+            <%= f.password_field :password, autocomplete: "off", :placeholder => "Password", :class=>"form-control" %>
+          </div> 
+          <div class="form-group col-md-6 col-xs-12 col-sm-12" style="margin-left:-3%;">
+            <%= f.password_field :password_confirmation, autocomplete: "off", :placeholder => "Confirm Password", :class=>"form-control" %>
+          </div>
         </div>
         <div class="form-group col-md-12 col-xs-12 col-sm-12">
           <%= f.submit "Sign up", :class=>"btn btn-success" %>
