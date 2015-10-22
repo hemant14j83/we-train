@@ -5,7 +5,7 @@ Rails.application.routes.draw do
     resources :jobskills
   end
 
-  devise_for :recruiters, controller: {recruiterregistrations: "recruiterregistrations"}
+  devise_for :recruiters, controllers: {recruiterregistrations: "recruiterregistrations"}
   devise_for :trainers, controllers: {registrations: "registrations",omniauth_callbacks: "trainers/omniauth_callbacks"}
 
   resources :qualifications

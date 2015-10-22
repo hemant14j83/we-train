@@ -82,10 +82,10 @@ $(document).ready(function(){
       <div class="col-xs-12 col-md-6 col-sm-12">
         <h3>Firm Details</h3>
         <table class="table">
-            <tr><td>Firm Name:</td><td><%= f.text_field :firm_name, :class=>"form-control" %></td></tr>
-            <tr><td>Firm Type:</td><td><%= f.select :firm_type, ['','College','Company'], :class=>"form-control" %></td></tr>
-            <tr><td>Firm Number</td><td><%= f.text_field :firm_number, :class=>"form-control" %></td></tr>
-            <tr><td>Firm Address</td><td><%= f.text_area(:firm_address, size: '50x4', :class=>"form-control")%></td></tr>
+            <tr><td>Name:</td><td><%= f.text_field :firm_name, :class=>"form-control" %></td></tr>
+            <tr><td>Type:</td><td><%= f.select :firm_type, ['','College','Company'], :class=>"form-control" %></td></tr>
+            <tr><td>Number</td><td><%= f.text_field :firm_number, :class=>"form-control" %></td></tr>
+            <tr><td>Address</td><td><%= f.text_area(:firm_address, size: '50x4', :class=>"form-control")%></td></tr>
         </table>
         <table class="table">
           <tr>
