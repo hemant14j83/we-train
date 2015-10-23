@@ -247,7 +247,7 @@ p{
     background: linear-gradient(to right, rgb(093,133,136), rgb(114,211,170)); /* Standard syntax (must be last) */
 }
 .disabled{
-    background-color: grey;
+    background-color: #E5E5E5;
 }
 .qbox {
     margin: 5px auto;
@@ -674,4 +674,45 @@ a{
 }
 .select200width{
     width: 208px;
+}
+.regmailbox {
+    margin: 5px auto;
+    display: block;
+    width: 100%;
+    height: auto;
+    padding: 60px;
+    position: relative;
+    background-image: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #aaaeaf), color-stop(100%, #689ecd));
+    background-image: -webkit-linear-gradient(#aaaeaf, #689ecd);
+    background-image: -moz-linear-gradient(#aaaeaf, #689ecd);
+    background-image: -o-linear-gradient(#aaaeaf, #689ecd);
+    background-image: -ms-linear-gradient(#aaaeaf, #689ecd);
+    background-image: linear-gradient(#aaaeaf, #689ecd);
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    -ms-border-radius: 3px;
+    -o-border-radius: 3px;
+    border-radius: 60px;
+    -webkit-box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+    -moz-box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+}
+
+.regmailbox * {
+    position: relative;
+}
+
+.regmailbox::before {
+    background: white;
+    -webkit-border-radius: 60px;
+    -moz-border-radius: 60px;
+    -ms-border-radius: 60px;
+    -o-border-radius: 60px;
+    border-radius: 60px;
+    bottom: 1px;
+    content: '';
+    left: 1px;
+    position: absolute;
+    right: 1px;
+    top: 1px;
 }
