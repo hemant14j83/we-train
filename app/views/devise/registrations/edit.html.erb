@@ -1,17 +1,20 @@
 <div class="col-xs-12 col-md-12 col-sm-12">
     <ul class="nav navbar-nav profile-nav">
-      <li class="active"><a href="#">Dashboard</a></li>
-      <li><a href="#">Projects Applied</a></li>
-      <li><a href="#">Saved Projects</a></li>
+      <li><a href="/trainers/profile">My Profile</a></li>
+      <li><a href="/trainers/profile">Projects Applied</a></li>
+      <li><a href="/trainers/profile">Saved Programs</a></li>
       <%#<li><a href="#">Inbox</a></li>%>
-      <li><a href="#">My Profile</a></li>
+      
     </ul>    
   <span class="tright" style="margin-top:1%;">
     <%= link_to 'Find Project', "/programs", :class=>"homebutton" %>
   </span>
 </div>
 <div class="col-xs-12 col-md-12 col-sm-12 gradient">
-  <div class="col-xs-12 col-md-12 col-sm-12 whitebg" id="dash" style="padding: 10px;margin-top: 4%;margin-bottom:1%">
+  <div class="col-xs-12 col-md-12 col-sm-12 topmargin">
+      <%= render partial: "shared/flash_messages", flash: flash %> 
+  </div>
+  <div class="col-xs-12 col-md-12 col-sm-12 whitebg" id="dash" style="padding:10px;margin-top: 4%;margin-bottom:4%;">
     <div class="col-xs-6 col-md-3 col-sm-6" style="margin-top:-4%;">
       <%= image_tag(@trainer.image.url, :class => "profile_pic") %>
     </div>
@@ -51,11 +54,11 @@
               <p class="lato"><b>Date of Birth</b></p>
               <%= f.date_select :birth_date, :start_year=>1930, :end_year=>2005, :class=>"form-control" %>
             </div>
-            <div class="form-group col-xs-12 col-md-3 col-sm-12">
+            <div class="form-group col-xs-12 col-md-2 col-sm-12">
               <p class="lato"><b>Gender</b></p>
               <%= f.select :gender, ['Male','Female'], :class=>"form-control" %>              
             </div>            
-            <div class="form-group col-xs-12 col-md-3 col-sm-12">
+            <div class="form-group col-xs-12 col-md-4 col-sm-12" style="margin-left:2%;">
               <p class="lato"><b>Password</b><span class="orange"><b>*</b></span></p>
               <%= f.password_field :current_password, :class=>"form-control" %>
             </div>
@@ -80,20 +83,20 @@
               <%= f.select :country, ['India'], :class=>"form-control" %>
             </div>
           </div>
-          <div class="col-xs-12 col-md-12 col-sm-12">
+          <%#<div class="col-xs-12 col-md-12 col-sm-12">
             <h5><b>Other Details</b></h5>
             <div class="otherbox">
               <div class="form-group col-xs-12 col-md-6 col-sm-6">
-                <%= f.label :busy_from %>
-                <%= f.date_select :busy_from, :start_year=>2015, :end_year=>2015, :class=>"form-control" %>
+                <%= f.label :busy_from %><%#
+                <%= f.date_select :busy_from, :start_year=>2015, :end_year=>2015, :class=>"form-control" %><%#
               </div>
               <div class="form-group col-xs-12 col-md-6 col-sm-6">
-                <%= f.label :busy_till %>
-                <%= f.date_select :busy_till, :start_year=>2015, :end_year=>2016,  :class=>"form-control" %>
+                <%= f.label :busy_till %><%#
+                <%= f.date_select :busy_till, :start_year=>2015, :end_year=>2016,  :class=>"form-control" %><%#
               </div>
             </div>
-          </div>
-          <div class="col-xs-12 col-md-6 col-sm-12">
+          </div>%>
+          <div class="col-xs-12 col-md-12 col-sm-12">
             <div class="form-group col-xs-6 col-md-3 col-sm-6">
               <%= f.submit "Update Details", :class=>"form-control btn btn-success" %>
             </div>

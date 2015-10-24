@@ -9,17 +9,17 @@
               <% if current_trainer.full_name? %>
                 <table>
                   <tr>
-                    <td><font color="white"><b><%= current_trainer.full_name %></b></font></td>
-                    <td><%= link_to "My Account", "/trainers/profile", :class=>"label label-success" %></td>
-                    <td><%= link_to "Sign out", destroy_trainer_session_path, :class=>"label label-warning" %> </td>
+                    <td style="padding:3px;"><font color="white"><b><%= current_trainer.full_name %></b></font></td>
+                    <td style="padding:3px;"><%= link_to "My Account", "/trainers/profile", :class=>"label label-success" %></td>
+                    <td style="padding:3px;"><%= link_to "Sign out", destroy_trainer_session_path, :class=>"label label-warning" %> </td>
                   </tr>
                 </table>
               <%elsif current_trainer.email? %>
                 <table>
                   <tr>
-                    <td><font color="white"><b><%= current_trainer.email %></b></font></td>
-                    <td><%= link_to "My Account", "/trainers/profile", :class=>"label label-success" %></td>
-                    <td><%= link_to "Sign out", destroy_trainer_session_path, :class=>"label label-warning" %> </td>                    
+                    <td style="padding:3px;"><font color="white"><b><%= current_trainer.email %></b></font></td>
+                    <td style="padding:3px;"><%= link_to "My Account", "/trainers/profile", :class=>"label label-success" %></td>
+                    <td style="padding:3px;"><%= link_to "Sign out", destroy_trainer_session_path, :class=>"label label-warning" %> </td>                    
                   </tr>
                 </table>
               <%else%>
