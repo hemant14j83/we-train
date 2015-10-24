@@ -4,7 +4,7 @@
   		<h4>You haven't saved any program yet, please browse our listed <a href="/programs" title="training programs">programs</a>.</h4>
   	</div>	
   <% else %>
-  	<% if savedprogram.status=='active' %>
+  	<% if savedprogram.status=='active' && savedprogram.program.start_date >= Date.today %>
   	<div class="qbox">
   		<table class="table lato">
   			<tr>
@@ -18,7 +18,8 @@
   				<td width="70%">
   					<p><%= savedprogram.program.program_details %></p>
   					<p class="orange"><u>Venue Details</u></p>
-  					<p><%= savedprogram.program.venue %>, <%= savedprogram.program.city %>, <%= savedprogram.program.state %>, <%= savedprogram.program.country %></p><br>
+  					<p><%#<%= savedprogram.program.venue  <%= savedprogram.program.state %><%= savedprogram.program.city %>, <%= savedprogram.program.country %></p>
+            <p><span class="orange">Starts From</span> : <%= savedprogram.program.start_date %></p>
   				</td>
   				<td width="15%">
   					<p><%= savedprogram.program.currency %>. <%= savedprogram.program.payment_detail %> / <%= savedprogram.program.payment_type %></p>
