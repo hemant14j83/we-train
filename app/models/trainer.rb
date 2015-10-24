@@ -3,6 +3,9 @@ class Trainer < ActiveRecord::Base
   has_many :expertises, :dependent => :destroy
   has_many :savedprograms, :dependent => :destroy
 
+  validates_uniqueness_of :email
+  validates :email, :full_name, :last_name, :presence=>true
+
   has_attached_file :image, styles: { small: "64x64", med: "100x100", large: "200x200" }
   validates_attachment_content_type :image, content_type: /\Aimage\/.*\Z/
   

@@ -1,5 +1,38 @@
-<p>Welcome <%= @email %>!</p>
+<%#<p>Welcome <%= @email !</p>
 
 <p>You can confirm your account email through the link below:</p>
 
-<p><%= link_to 'Confirm my account', confirmation_url(@resource, confirmation_token: @token) %></p>
+<p><%= link_to 'Confirm my account', confirmation_url(@resource, confirmation_token: @token) %>
+<%#<p>Welcome <%= @email %><%#!</p>
+
+<p>You can confirm your account email through the link below:</p>
+
+<p><%= link_to 'Confirm my account', confirmation_url(@resource, confirmation_token: @token) %>
+<div class="col-xs-12 col-md-12 col-sm-12" style="background-color: #E5E5E5; padding:60px;">
+  <div class="col-xs-6 col-md-3 col-sm-6" style="padding-left:60px;">
+    <%= link_to(image_tag("http://traix.in/assets/logo.png", :width=>"25%"),"http://traix.in") %>
+  </div>
+  <div class="col-xs-12 col-md-12 col-sm-12">
+    <div style="margin: 5px auto; display: block; width: auto; height: auto; padding: 60px; position: relative; background-image: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #aaaeaf), color-stop(100%, #689ecd)); -webkit-border-radius: 3px; -moz-border-radius: 3px; -ms-border-radius: 3px; -o-border-radius: 3px; border-radius: 60px; -webkit-box-shadow: 0 0 15px rgba(0, 0, 0, 0.2); -moz-box-shadow: 0 0 15px rgba(0, 0, 0, 0.2); box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);background-color:#fff;">
+      <p>Hello, <%= @resource.full_name %> </p>
+      <p>You have just registered an account on <a href="http://traix.in">traix</a> as a trainer. Before you can use <a href="http://traix.in">traix</a> you must verify your account, please click on tab below to activate your account.</p>
+      <p style="text-align:center;"><%= link_to "Yes, Confirm Me",confirmation_url(@resource, confirmation_token: @token), :style=>"color: #fff; background-color: #5cb85c; border-color: #4cae4c;display: inline-block; margin-bottom: 0; font-weight: normal; text-align: center; vertical-align: middle; padding:10px; cursor: pointer; background-image: none; border: 1px solid transparent; white-space: nowrap; border-radius:8px;text-decoration:none;" %></p>
+      <p>This step is required the email you enter is valid. We need a valid email address to contact you if you forgot your password. You will never receive spam as a result of confirming your email. Please refer to our <a href="http://traix.in/privacy-policy" title="Privacy Policy">Privacy Policy</a> if you have any concerns.</p>
+      <p>If you received this email by mistake, simply delete it. You won't be able to access <a href="http://traix.in" title="traix.in">Traix</a> if you don't click the confirmation link above</p>
+      <br>
+      <p>For questions about this list, please contact:<br> hello@traix.in</p>
+    </div>
+  </div>
+  <%#<div class="col-x-12 col-sm-12 col-md-12" style="padding:20px;text-align:center">
+    <b>Available on</b><br>
+    <a href="#"><img src="http://traix.in/assets/icons/apple.png", width="3%"></a> &nbsp; | 
+    <a href="#"><img src="http://traix.in/assets/icons/android.png", width="3%"></a> &nbsp; | 
+    <a href="#"><img src="http://traix.in/assets/icons/windows.png", width="3%"></a>
+  </div>%>
+  <div class="col-x-12 col-sm-12 col-md-12" style="padding-left:60px;">
+    <span style="color:#4D90FE;font-size:12px;">
+      <p>Copyright(C) 2015 Ayam Skillcoaches Pvt. Ltd. All Rights reserved.</p>
+      <p>You received this mail because you opted in at our website www.traix.in</p>
+    </span>
+  </div>
+</div>
