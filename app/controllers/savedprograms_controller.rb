@@ -30,16 +30,21 @@ class SavedprogramsController < ApplicationController
     @program=Program.find(params[:program_id])
     #@sdprogram=@trainer.savedprograms.build(:program_id=>params[:program_id],:trainer_id=>params[:trainer_id])
     @savedprogram = Savedprogram.new(:program_id=>params[:program_id],:trainer_id=>current_trainer.id)
-
-    respond_to do |format|
-      if @savedprogram.save
-        format.html { redirect_to "/programs", notice: 'Program Added to Saved List' }
-        format.json { render :show, status: :created, location: @savedprogram }
-      else
-        format.json { render json: @savedprogram.errors, status: :unprocessable_entity }
-        redirect_to programs_path
-      end
-    end
+    begin
+        if @savedprogram.save
+          flash[:notice]='Program added to saved list.'
+          redirect_to programs_path
+          #format.html { redirect_to "/programs", notice: 'Program Added to Saved List' }
+          #format.json { render :show, status: :created, location: @savedprogram }
+        else
+          flash[:notice]='This program already exists in your saved list'
+          redirect_to programs_path
+        end
+    rescue ActiveRecord::RecordNotUnique => e
+      e.record.errors.details
+      flash[:notice]='Something went wrong, please try after sometime.'
+      redirect_to programs_path
+    end 
   end
 
   # PATCH/PUT /savedprograms/1
