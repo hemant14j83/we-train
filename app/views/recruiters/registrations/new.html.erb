@@ -1,7 +1,7 @@
+<div class="col-xs-12 col-md-12 col-sm-12 topmargin">
+    <%= render partial: "shared/flash_messages", flash: flash %> 
+</div>
 <div class="col-xs-12 col-sm-12 col-md-12 tcenter">
-  <div class="col-xs-12 col-md-12 col-sm-12 topmargin">
-      <%= render partial: "shared/flash_messages", flash: flash %> 
-  </div>
   <h3 class="heading orange">Sign up for Recruiters</h3><br>
   <%= link_to "in | Sign up with LinkedIn",trainer_omniauth_authorize_path(:linkedin), :class=>"btn btn-success bannerbtn" %><br>
   <h3>Or</h3>

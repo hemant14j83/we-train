@@ -1,4 +1,4 @@
-class RecruiterregistrationsController < Devise::RegistrationsController
+class Recruiters::RegistrationsController < Devise::RegistrationsController
 layout 'recruiters'
   def new
     super    

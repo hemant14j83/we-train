@@ -5,7 +5,7 @@ Rails.application.routes.draw do
     resources :jobskills
   end
 
-  devise_for :recruiters, controllers: {recruiterregistrations: "recruiterregistrations"}
+  devise_for :recruiters, controllers: {registrations: "recruiters/registrations"}
   devise_for :trainers, controllers: {registrations: "registrations",omniauth_callbacks: "trainers/omniauth_callbacks"}
 
   resources :qualifications
@@ -30,6 +30,7 @@ Rails.application.routes.draw do
   get 'recruiters/:id/update' => "recruiters/registrations#edit"
   get ":page" => "pages#show"
   get 'trainers/profile' => "trainers#show", as: :trainer_root
+  get 'trainers'=>"devise/registrations#create"
   get 'trainers-list' => "trainers#index"
   get 'programs.:id/update' => "programs#edit"
   get 'expertise-list' => "expertises#index"

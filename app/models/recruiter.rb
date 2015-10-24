@@ -3,6 +3,7 @@ class Recruiter < ActiveRecord::Base
 
   accepts_nested_attributes_for :programs
 
+  validates_uniqueness_of :email
   validates :firm_name,:email,:firm_type, :presence => true
 
   has_attached_file :image, styles: { small: "64x64", med: "100x100", large: "200x200" }
