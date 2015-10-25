@@ -30,6 +30,8 @@ class ContactusController < ApplicationController
       if @contactu.save
         format.html { redirect_to "/contact-us", notice: 'Message submitted successfully.' }
         format.json { render :show, status: :created, location: @contactu }
+        Notifier.newcontact(@contactu).deliver_now
+        Notifier.newcontact_by(@contactu).deliver_now
       else
         format.html { redirect_to "/contact-us", notice: @contactu.errors.full_messages }
         #format.json { render json: @contactu.errors, status: :unprocessable_entity }
