@@ -25,3 +25,14 @@ en:
     trainer:
      email: "Email address"
      full_name: "First name"
+
+  activerecord:
+   attributes:
+    program:
+     payment_detail: "Trainer fees"
+     duration: "Program duration"
+
+  activerecord:
+   attributes:
+    contactu:
+     phone: "Contact number"
