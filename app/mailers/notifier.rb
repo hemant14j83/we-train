@@ -21,6 +21,16 @@ class Notifier < ApplicationMailer
     mail to: "hemant14j83@gmail.com",  :subject => "New Program -#{@program.name}- added."
   end
 
+  def newcontact(contactu)
+    @contactu=contactu
+    mail to: "hemant14j83@gmail.com",  :subject => "New Message Recieved from contact us page."
+  end
+
+  def newcontact_by(contactu)
+    @contactu=contactu
+    mail to: @contactu.email,  :subject => "#{@contactu.subject} - Submitted by you"
+  end
+
   # Subject can be set in your I18n file at config/locales/en.yml
   # with the following lookup:
   #
