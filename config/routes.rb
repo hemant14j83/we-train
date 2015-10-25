@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
   
+  resources :contactus
+
   resources :careers do
     resources :functions
     resources :jobskills
@@ -28,16 +30,18 @@ Rails.application.routes.draw do
   get '/auth/:provider/callback', to: 'sessions#create', via: :get
   get 'recruiters/myaccount' => "recruiters#show", as: :recruiter_root
   get 'recruiters/:id/update' => "recruiters/registrations#edit"
-  get ":page" => "pages#show"
   get 'trainers/profile' => "trainers#show", as: :trainer_root
   get 'trainers'=>"devise/registrations#create"
   get 'trainers-list' => "trainers#index"
   get 'programs.:id/update' => "programs#edit"
   get 'expertise-list' => "expertises#index"
+  get 'contact-us' => "contactus#new"
+  #post 'contact-us',:to => "contactus#new"
   get 'trainers/:id/update' => "devise/registrations#edit"
   #get 'trainers' => "devise/registrations#edit"
   post 'savedprograms/:id'=>'savedprograms#savedlist'
   #get 'recruiters/:id/edit' => "programs#edit"
+  get ":page" => "pages#show"
   get "home/index"
   root 'home#index'
   # The priority is based upon order of creation: first created -> highest priority.

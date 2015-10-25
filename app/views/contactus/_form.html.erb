@@ -1,0 +1,52 @@
+<%= form_for(@contactu) do |f| %>
+  <% if @contactu.errors.any? %>
+    <div id="notice">
+      <h3><%= pluralize(@contactu.errors.count, "error") %> prohibited this from being saved:</h3>
+      <ul>
+      <% @contactu.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+  <div class="col-xs-12 col-md-12 col-sm-12">
+    <div class="col-xs-0 col-md-3 col-sm-0"></div>
+    <div class="col-xs-12 col-md-6 col-sm-12 form-horizontal">
+    <h3 class="orange lato tcenter">Contact Us</h3><hr>
+      <div class="form-group col-md-12">
+        <%= f.text_field :name,:placeholder=>"Name [Required]", :class=>'form-control' %>
+      </div>
+      <div class="form-group col-md-12">
+        <%= f.text_field :email,:placeholder=>"Email [Required]", :class=>'form-control' %>
+      </div>
+      <div class="form-group col-md-12">
+        <%= f.text_field :organisation,:placeholder=>"Your Organisation [Not Necessary]", :class=>'form-control' %>
+      </div>
+      <div class="form-group col-md-12">
+        <%= f.text_field :title, :placeholder=>"Your Job Title [Not Necessary]",:class=>'form-control' %>
+      </div>
+      <div class="form-group col-md-12">
+        <%= f.text_field :department, :placeholder=>"Your Department  [Not Necessary]",:class=>'form-control' %>
+      </div>
+      <div class="form-group col-md-12">
+        <%= f.text_field :phone, :placeholder=>"Your contact number  [Required]",:class=>'form-control' %>
+      </div>
+      <div class="form-group col-md-12">
+        <%= f.text_field :city, :placeholder=>"City [Not Necessary]",:class=>'form-control' %>
+      </div>
+      <div class="form-group col-md-4">
+        <%= f.select :contact_type,['Reason for Contact','General','Business'], :class=>'form-control' %>
+      </div>
+      <div class="form-group col-md-8" style="margin-left:1%">
+        <%= f.text_field :subject, :placeholder=>"Subject [Required]",:class=>'form-control' %>
+      </div>
+      <div class="form-group col-md-12">
+        <%= f.text_area :message, :placeholder=>"Tell us, we are listening",:rows=>"5",:class=>'form-control' %>
+      </div>
+      <div class="form-group col-md-6">
+        <%= f.submit "Submit", :class=>"btn btn-success btn-lg" %>
+      </div>
+    </div>
+    <div class="col-xs-0 col-md-3 col-sm-0"></div>
+  </div>
+<% end %>
