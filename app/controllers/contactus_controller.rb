@@ -1,5 +1,5 @@
 class ContactusController < ApplicationController
-  before_action :set_contactu, only: [:show, :edit, :update, :destroy]
+  before_action :set_contactu, only: [:show]#, :edit, :update, :destroy]
 
   # GET /contactus
   # GET /contactus.json
@@ -33,7 +33,7 @@ class ContactusController < ApplicationController
         Notifier.newcontact(@contactu).deliver_now
         Notifier.newcontact_by(@contactu).deliver_now
       else
-        format.html { redirect_to "/contact-us", notice: @contactu.errors.full_messages }
+        format.html { redirect_to "/contact-us", notice: @contactu.errors.full_messages.to_sentence }
         #format.json { render json: @contactu.errors, status: :unprocessable_entity }
       end
     end

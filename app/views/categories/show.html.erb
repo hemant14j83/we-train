@@ -1,0 +1,36 @@
+<%#<p id="notice"><%= notice</p> %>
+<div class="col-xs-12 col-md-3 col-sm-12">
+	<%#Links%>
+</div>
+<div class="col-xs-12 col-md-9 col-sm-12 lato">
+	<h3 class="heading orange">Category</h3><hr>
+	<table class="table table-bordered" style="width:auto;">
+		<tr>
+			<td><%= @category.name %></td>
+		</tr>
+	</table>
+	<% if @category.expertlist.size > 0 %>
+		<h4 class="orange">Expertise List</h4>
+	<%end%>
+	<% @category.expertlist.each do |el| %>
+		    <p><li><span class="lato justify" style="margin-left:20px;"><%= el.name %></span></li></p>
+	<% end %>
+</div>
+<div class="col-xs-12 col-md-3 col-sm-12"></div>
+<div class="col-xs-12 col-md-6 col-sm-12 lato">
+<% if trainer_signed_in? %>
+	<% if current_trainer.role =='admin' %>
+	<h4>Add Expertise to <%= @category.name %></h4>
+		<%= form_for([@category, @category.expertlist.build]) do |el| %>
+		  <p>
+		    <%= el.text_field :name, :placeholder=>'Expertise',:class=>'form-control' %>
+		  </p>
+		  <p>
+		    <%= el.submit "Add Expertise", :class=>"btn btn-success" %>
+		  </p>
+		<% end %>
+	<% end %>
+<%= link_to 'Edit', edit_category_path(@category) %> |
+<%= link_to 'Back', "/categories" %>
+<% end %>
+</div>

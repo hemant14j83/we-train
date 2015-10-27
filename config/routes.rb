@@ -1,6 +1,9 @@
 Rails.application.routes.draw do
   
   resources :contactus
+  resources :categories do
+    resources :expertlists
+  end
 
   resources :careers do
     resources :functions

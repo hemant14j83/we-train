@@ -28,7 +28,7 @@ class Notifier < ApplicationMailer
 
   def newcontact_by(contactu)
     @contactu=contactu
-    mail to: @contactu.email,  :subject => "#{@contactu.subject} - Submitted by you"
+    mail to: @contactu.email,  :subject => "#{@contactu.subject} - Traix.in"
   end
 
   # Subject can be set in your I18n file at config/locales/en.yml
