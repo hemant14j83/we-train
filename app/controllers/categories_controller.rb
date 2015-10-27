@@ -9,6 +9,7 @@ class CategoriesController < ApplicationController
 
 	def new
 		@category = Category.new
+		20.times{@category.expertlist.build}
 	end
 
 	def create
