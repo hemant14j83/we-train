@@ -4,7 +4,7 @@
 		<% @category.each do |category| %>
 			<tr>
 				<td><%= category.name %></td>
-				<td><%= link_to 'Show', category %></td>
+				<td><%= link_to 'Show / Add Expertise List', category %></td>
 				<td><%= link_to 'Edit', edit_category_path(category) %></td>
 				<td><%= link_to 'Remove', category, method: :delete, data: {confirm: 'Are you sure?'} %></td>
 			</tr>	

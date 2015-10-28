@@ -15,6 +15,10 @@ class Trainer < ActiveRecord::Base
          :recoverable, :confirmable, :rememberable, :trackable, :validatable
   devise :omniauthable
 
+  
+  def admin?
+    self.role == 'admin'
+  end
   def connect_to_linkedin(auth)
 	   self.uid = auth.uid
      self.email = auth.info.email
