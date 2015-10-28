@@ -1,4 +1,8 @@
 class CategoriesController < ApplicationController
+	before_filter :authenticate_trainer!
+	before_filter do
+		redirect_to "/" unless current_trainer && current_trainer.admin?
+	end
 	before_filter :set_category, only: [:show, :edit, :update, :destroy]
 	def index
 		@category = Category.all
@@ -15,7 +19,7 @@ class CategoriesController < ApplicationController
 	def create
 		@category = Category.new(category_params)
 		if @category.save
-			flash[:success]= "#{@category.name} added successfully."
+			flash[:success]= "New Category #{@category.name} added successfully."
 			redirect_to "/categories/new"
 		else
 			flash[:error]= @category.errors.full_messages.to_sentence
@@ -40,7 +44,7 @@ class CategoriesController < ApplicationController
 	def destroy
 		@category.destroy
 	    respond_to do |format|
-	      format.html { redirect_to category_url, notice: "#{@category.name} removed successfully."  }
+	      format.html { redirect_to '/categories', notice: "#{@category.name} removed successfully."  }
 	      format.json { head :no_content }
 	  	end
 	end
@@ -52,5 +56,8 @@ class CategoriesController < ApplicationController
 
 		def category_params
 			params.require(:category).permit(:name)
+		end
+		def admin?
+  			self.admin == true
 		end
 end
