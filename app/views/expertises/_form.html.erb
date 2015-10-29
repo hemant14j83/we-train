@@ -1,8 +1,9 @@
 <%= form_for([@trainer, @trainer.expertises.build]) do |f| %>
-	<div class="form-horizontal" id="addexpe">      
+	<div class="form-horizontal tcenter" id="addexpe">      
 		<span style="color:red;margin-left:20px;">* All Fields are mandatory.</span>  
 		<div class="col-xs-12 col-md-12 col-sm-12">
-        	<%= f.text_field :expertise_in,:placeholder=>"Expert In", :class=>"form-control" %>			
+			<%= f.collection_select(:expertise_in, Expertlist.all, :name, :name, {:prompt   => "Select Expertise"}) %> 
+        	<%#= f.text_field :expertise_in,:placeholder=>"Expert In", :class=>"form-control" %>			
 		</div>
 		<div class="col-xs-12 col-md-12 col-sm-12 topmargin">
 			<%= f.text_area :professional_expertise_info,:placeholder=>"Professional Experience Details for Mentioned Expertise", :class=>"form-control" %>			
