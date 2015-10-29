@@ -1,5 +1,8 @@
 module ApplicationHelper
-	def bootstrap_class_for flash_type
+	def javascript(*files)
+    content_for(:head){javascript_include_tag(*files)}
+  end
+  def bootstrap_class_for flash_type
     case flash_type
       when :success
         "alert-success"
