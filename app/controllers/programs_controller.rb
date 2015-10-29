@@ -8,8 +8,10 @@ class ProgramsController < ApplicationController
 
  def create
 	@recruiter=Recruiter.find(current_recruiter.id)
+  @category=Category.find(params[:program][:category])
+  params[:program][:category]=@category.name
 	
-	@program = @recruiter.programs.create(params[:program].permit(:category,:expertise,:name, :program_details, :duration, :duration_type, :payment_detail, :payment_type, :currency, :food_expense,:food_expense_conditions, :travel_expense,:travel_expense_conditions, :stay_expense, :stay_expense_conditions, :start_date, :end_date,:venue, :city, :state, :country, :expertise, :status, :category, :plan))
+	@program = @recruiter.programs.create(params[:program].permit(:expertise,:name, :program_details, :duration, :duration_type, :payment_detail, :payment_type, :currency, :food_expense,:food_expense_conditions, :travel_expense,:travel_expense_conditions, :stay_expense, :stay_expense_conditions, :start_date, :end_date,:venue, :city, :state, :country, :expertise, :status, :category, :plan))
   if @program.save
     flash[:notice]='Program Added Successfully.'
     Notifier.newprogram(@program).deliver_now

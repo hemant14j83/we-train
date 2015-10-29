@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
-  
+  #resources :javascripts
+  get ':controller/:action.:format'
   resources :contactus
   resources :categories do
     resources :expertlists
