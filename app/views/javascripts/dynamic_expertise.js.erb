@@ -1,0 +1,37 @@
+$(window.document).on('shown.bs.modal','.modal',function(){
+	$('#expertise_field').hide();
+		var category=document.getElementById('program_category');
+		$(category).change(function(){
+			$('#expertise_field').show();
+			var value=$(this).val();
+	/*var categoryid=$("program_category:selected").attr("name");
+			alert(categoryid);var expertlistarray=expertlists.split(',');
+			*/
+			var count;
+			var expertlists=get_category_content(value);			
+			removeOptions(document.getElementById('program_expertise'));
+			for(count=0;count<expertlists.length;count++){
+				var option = expertlists[count];
+				$('#program_expertise').append('<option value='+option[1]+'>'+option[1]+'</option>');
+			}			
+			
+	});
+
+function get_category_content(value){
+	var expertListsMap = {};
+	<% for expertlist in @expertlists %>
+		if(expertListsMap[<%= expertlist.category_id %>] == undefined)
+			expertListsMap[<%= expertlist.category_id %>] = new Array();
+		expertListsMap[<%= expertlist.category_id %>].push(new Array(<%= expertlist.category_id %>,'<%=h expertlist.name %>',<%=expertlist.id %>));
+	<% end %>
+	return expertListsMap[value];
+}
+function removeOptions(selectbox)
+{
+    var i;
+    for(i=selectbox.options.length-1;i>=0;i--)
+    {
+        selectbox.remove(i);
+    }
+}
+});
