@@ -6,7 +6,8 @@
 				What Expertise(Skill Set) you are looking for?
 				<br>
 				<%= f.collection_select(:category, Category.all, :id, :name, {:prompt   => "Select Category"}) %> 
-				<p id="expertise_field" style="margin-top:1%;">
+				<p id="expertise_field" style="margin-top:1%;font-size:16px;">
+					Select Expertise<br>
 					<%= f.select :expertise,:promt=>'Select Expertise'%> 
 				</p>
 				<%#= f.select :category, ['It','Social Networking','Marketing'], :class=>"form-control" %>

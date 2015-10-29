@@ -2,8 +2,13 @@ $(window.document).on('shown.bs.modal','.modal',function(){
 	$('#expertise_field').hide();
 		var category=document.getElementById('program_category');
 		$(category).change(function(){
-			$('#expertise_field').show();
 			var value=$(this).val();
+			if(value==0){
+				$('#expertise_field').hide();
+			}else{
+				$('#expertise_field').show();
+			}
+
 	/*var categoryid=$("program_category:selected").attr("name");
 			alert(categoryid);var expertlistarray=expertlists.split(',');
 			*/
