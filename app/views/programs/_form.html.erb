@@ -1,10 +1,15 @@
+<% javascript 'dynamic_expertlist' %>
 <%= form_for([@recruiter, @recruiter.programs.build]) do |f| %>
 	<div class="form-horizontal" id="addprog"> 	  
 		<div class="col-xs-12 col-md-12 col-sm-12">
 			<div class="col-xs-12 col-md-12 col-sm-12 tcenter">
 				What Expertise(Skill Set) you are looking for?
-				<br> 
-				<%= f.select :category, ['It','Social Networking','Marketing'], :class=>"form-control" %>
+				<br>
+				<%= f.collection_select(:category, Category.all, :id, :name, {:prompt   => "Select Category"}) %> 
+				<p id="expertise_field" style="margin-top:1%;">
+					<%= f.select :expertise,:promt=>'Select Expertise'%> 
+				</p>
+				<%#= f.select :category, ['It','Social Networking','Marketing'], :class=>"form-control" %>
 			</div>
 			<div class="col-xs-12 col-md-6 col-sm-12">
 				Program Type<br><%= f.text_field :name, :class=>"form-control" %>
