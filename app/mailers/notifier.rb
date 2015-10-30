@@ -31,6 +31,18 @@ class Notifier < ApplicationMailer
     mail to: @contactu.email,  :subject => "#{@contactu.subject} - Traix.in"
   end
 
+  def mailtotrainer(appliedprogram,program,trainer)
+    @appliedprogram=appliedprogram
+    @program=program
+    mail to: @appliedprogram.trainer.email, :subject=>"Your application for #{@program.name}."
+  end
+
+  def mailtorecruiter(appliedprogram,program,trainer)
+    @appliedprogram=appliedprogram
+    @program=program
+    mail to: @program.recruiter.email, :subject=>"Your application for #{@program.name}."
+  end
+
   # Subject can be set in your I18n file at config/locales/en.yml
   # with the following lookup:
   #
