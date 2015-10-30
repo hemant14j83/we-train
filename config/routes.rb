@@ -17,7 +17,8 @@ Rails.application.routes.draw do
   resources :qualifications
   resources :expertises
   resources :programs
-  resources :savedprograms 
+  resources :appliedprograms
+  resources :savedprograms
   
   resources :trainers do
 	 resources :qualifications
