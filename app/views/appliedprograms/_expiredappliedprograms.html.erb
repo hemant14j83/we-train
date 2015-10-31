@@ -1,0 +1,56 @@
+<div class="col-xs-12 col-md-12 col-sm-12">
+  <% if appliedprogram.program_id.nil? %>
+  	<div class="qbox">
+  		<h4>You haven't saved any program yet, please browse our listed <a href="/programs" title="training programs">programs</a>.</h4>
+  	</div>	
+  <% else %>
+  	<% if appliedprogram.status=='forwardedtorecruiter' && appliedprogram.program.start_date < Date.today %>    
+  	<div class="qbox">
+  		<table class="table lato">
+  			<tr>
+  				<th><b>Program Title</b></th>
+  				<th><b>Program Details</b></th>
+  				<th><b>Payment Details</b></th>
+  				<th><b>Status</b></th>
+  			</tr>
+  			<tr>
+  				<td width="15%"><%= appliedprogram.program.name %></td>
+  				<td width="60%">
+  					<p><%= appliedprogram.program.program_details %></p>
+  					<p class="orange"><u>Venue Details</u></p>
+  					<p><%#<%= appliedprogram.program.venue  <%= appliedprogram.program.state %><%= appliedprogram.program.city %>, <%= appliedprogram.program.country %></p>
+            <p><span class="orange">Starts From</span> : <%= appliedprogram.program.start_date %></p>
+  				</td>
+  				<td width="15%">
+  					<p><%= appliedprogram.program.currency %>. <%= appliedprogram.program.payment_detail %> / <%= appliedprogram.program.payment_type %></p>
+  					<% if appliedprogram.program.food_expense && appliedprogram.program.travel_expense && appliedprogram.program.stay_expense=='Yes' %> 
+  					<p class="orange"><u>Includes Following</u></p>
+  					<% if appliedprogram.program.food_expense=='Yes' %>
+  					<p>Food Expense</p>
+  					<%end%>
+  					<% if appliedprogram.program.travel_expense=='Yes' %>
+  					<p>Travel Expense</p>
+  					<%end%>
+  					<% if appliedprogram.program.stay_expense=='Yes' %>
+  					<p>Lodging Expense</p>
+  					<%end%>
+  					<% end -%>
+  				</td>
+  				<td>
+            <% if appliedprogram.program.status=='forwardedtorecruiter' %>
+              Application sent.
+              <%elsif appliedprogram.program.status=='rejected' %>
+                Sorry! your application was rejected.
+                <%else appliedprogram.program.status=='rejected' %>
+                  <a href="/contactus">Contact us</a> to know more.
+            <% end -%>
+          </td>
+  			</tr>
+  		</table>
+  		<div align="right">
+  			<%= link_to 'Remove', appliedprogram, method: :delete, data: { confirm: 'Are you sure?' }, :class=>"btn btn-danger btn-sm" %>
+  		</div>
+  	</div>
+  	<% end -%>
+  <%end%>
+</div>

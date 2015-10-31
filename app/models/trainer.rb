@@ -2,6 +2,7 @@ class Trainer < ActiveRecord::Base
   has_many :qualifications, :dependent => :destroy
   has_many :expertises, :dependent => :destroy
   has_many :savedprograms, :dependent => :destroy
+  has_many :appliedprograms, :dependent => :destroy
 
   validates_uniqueness_of :email
   validates :email, :full_name, :last_name, :presence=>true

@@ -5,6 +5,7 @@ class AppliedprogramsController < ApplicationController
   # GET /appliedprograms.json
   def index
     @appliedprograms = Appliedprogram.all
+    @expiredappliedprograms = Appliedprogram.all
     @trainer=Trainer.find(current_trainer.id)
     @program=Program.find(:program_id)
   end
