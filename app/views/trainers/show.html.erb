@@ -6,18 +6,32 @@
       $("#showprofilepage").addClass("active");
       $("#profilepage").show();
       $("#savedprogram").hide();
+      $("#appliedprogram").hide();
 
+      $("#showappliedprogram").click(function(){
+        $("#profilepage").hide();
+        $("#dashboard").hide();
+        $("#savedprogram").hide()
+        $("#appliedprogram").show()
+        $("#showprofilepage").removeClass("active");
+        $("#showsavedprogram").removeClass("active");
+        return false;
+      });
       $("#showprofilepage").click(function(){
         $("#profilepage").show();
         $("#dashboard").hide();
+        $("#appliedprogram").hide();
         $("#savedprogram").hide()
+        $("#showappliedprogram").removeClass("active");
         $("#showsavedprogram").removeClass("active");
         return false;
       });
       $("#showsavedprogram").click(function(){
         $("#profilepage").hide();
         $("#dashboard").hide();
+        $("#appliedprogram").hide();
         $("#savedprogram").show();
+        $("#showappliedprogram").removeClass("active");
         $("#showprofilepage").removeClass("active");
         return false;
       });
@@ -56,9 +70,10 @@ $(document).ready(function(){
 <div class="col-xs-12 col-md-12 col-sm-12">
     <ul class="nav navbar-nav profile-nav">
       <li><a href="#profilepage" id="showprofilepage" onclick="this.className='active'">My Profile</a></li>
-      <%#<li class="active"><a href="#dashboard">Dashboard</a></li>%>
-      <li><a href="#">Projects Applied</a></li>
+      <%#<li><a href="#dashboard" id="showdashboard" onclick="this.className='active'">Dashboard</a></li>%>
+      <li><a href="#appliedprogram" id="showappliedprogram" onclick="this.className='active'">Projects Applied</a></li>
       <li><a href="#savedprogram" id="showsavedprogram" onclick="this.className='active'">Saved Programs</a></li>
+      
       <%#<li><a href="#">Inbox</a></li>%>      
     </ul>    
   <span class="tright" style="margin-top:1%;">
@@ -69,6 +84,22 @@ $(document).ready(function(){
     <div class="col-xs-12 col-md-12 col-sm-12 topmargin">
         <%= render partial: "shared/flash_messages", flash: flash %> 
     </div>
+  <div class="col-xs-12 col-md-12 col-sm-12" id="appliedprogram" style="padding:10px;margin-top: 4%;margin-bottom:4%">         
+      <%= render @trainer.appliedprograms %>
+        &nbsp;
+      
+      <%#<div class="whitebg">
+        <table>
+          <tr>
+            <th>Project Title</th><th>Description</th><th>Date</th><th>Option</th>
+          </tr>
+        </table>
+      </div>%>
+  </div>
+  <%#<div class="col-xs-12 col-md-12 col-sm-12" id="appliedprogram" style="padding:10px;margin-top: 4%;margin-bottom:4%">    
+        <%= render @trainer.savedprograms %><%#
+        &nbsp;
+  </div>%>
   <div class="col-xs-12 col-md-12 col-sm-12" id="savedprogram" style="padding:10px;margin-top: 4%;margin-bottom:4%">    
         <%= render @trainer.savedprograms %>
         &nbsp;
