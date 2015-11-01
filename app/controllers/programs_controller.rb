@@ -42,7 +42,7 @@ class ProgramsController < ApplicationController
  end
 
  def index
- 	@program = Program.all
+ 	@program = Program.by_status('active').recent
   if @recruiter_signed_in
     @recruiter=Recruiter.find(current_recruiter.id)  
   end

@@ -4,7 +4,7 @@ class SavedprogramsController < ApplicationController
   # GET /savedprograms
   # GET /savedprograms.json
   def index
-    @savedprograms = Savedprogram.all
+    @savedprograms = Savedprogram.by_status('active').recent
     @trainer=Trainer.find(current_trainer.id)
     @program=Program.find(:program_id)
   end
@@ -64,16 +64,21 @@ class SavedprogramsController < ApplicationController
   # DELETE /savedprograms/1
   # DELETE /savedprograms/1.json
   def destroy
-    #@savedprogram.destroy
+    @savedprogram.destroy
     respond_to do |format|
-      if @savedprogram.update_attributes(:status=>'deleted')
-        format.html { redirect_to "/trainers/profile", notice: 'Removed from your saved list.' }
-        format.json { head :no_content }
-      else
-        format.json {render json: @savedprogram.errors, status: :unprocessable_entity}
-        redirect_to "/trainers/profile"
-      end
+      format.html { redirect_to "/trainers/profille", notice: 'Removed from your saved list.' }
+      format.json { head :no_content }
     end
+    #@savedprogram.destroy
+    #respond_to do |format|
+    #  if @savedprogram.update_attributes(:status=>'deleted')
+    #    format.html { redirect_to "/trainers/profile", notice: 'Removed from your saved list.' }
+    #    format.json { head :no_content }
+    #  else
+    #    format.json {render json: @savedprogram.errors, status: :unprocessable_entity}
+    #    redirect_to "/trainers/profile"
+    #  end
+    #end
   end
 
   def savedlist

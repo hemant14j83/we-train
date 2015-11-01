@@ -1,12 +1,12 @@
 <div class="col-xs-12 col-md-12 col-sm-12">
-  <% if savedprogram.program_id.nil? %>
-  	<div class="qbox">
+  <% if savedprogram.nil? %>
+  	<div class="qbox tcenter">
   		<h4>You haven't saved any program yet, please browse our listed <a href="/programs" title="training programs">programs</a>.</h4>
   	</div>	
   <% else %>
   	<% if savedprogram.status=='active' && savedprogram.program.start_date >= Date.today %>
   	<div class="qbox">
-  		<table class="table lato">
+      <table class="table lato">
   			<tr>
   				<th><b>Program Name</b></th>
   				<th><b>Program Details</b></th>
@@ -43,6 +43,48 @@
   			<%= link_to 'Remove', savedprogram, method: :delete, data: { confirm: 'Are you sure?' }, :class=>"btn btn-danger btn-sm" %>
   		</div>
   	</div>
+    <% elsif savedprogram.status=='active' && savedprogram.program.start_date <= Date.today %>
+    <div class="qbox">
+      <h4 class="expired">This program is Expired</h4>
+      <table class="table lato">
+        <tr>
+          <th><b>Program Name</b></th>
+          <th><b>Program Details</b></th>
+          <th><b>Payment Details</b></th>
+          <th><b>Action</b></th>
+        </tr>
+        <tr>
+          <td width="15%"><%= savedprogram.program.name %></td>
+          <td width="70%">
+            <p><%= savedprogram.program.program_details %></p>
+            <p class="orange"><u>Venue Details</u></p>
+            <p><%#<%= savedprogram.program.venue  <%= savedprogram.program.state %><%= savedprogram.program.city %>, <%= savedprogram.program.country %></p>
+            <p><span class="orange">Starts From</span> : <%= savedprogram.program.start_date %></p>
+          </td>
+          <td width="15%">
+            <p><%= savedprogram.program.currency %>. <%= savedprogram.program.payment_detail %> / <%= savedprogram.program.payment_type %></p>
+            <% if savedprogram.program.food_expense && savedprogram.program.travel_expense && savedprogram.program.stay_expense=='Yes' %> 
+            <p class="orange"><u>Includes Following</u></p>
+            <% if savedprogram.program.food_expense=='Yes' %>
+            <p>Food Expense</p>
+            <%end%>
+            <% if savedprogram.program.travel_expense=='Yes' %>
+            <p>Travel Expense</p>
+            <%end%>
+            <% if savedprogram.program.stay_expense=='Yes' %>
+            <p>Lodging Expense</p>
+            <%end%>
+            <% end -%>
+          </td>
+          <td>
+            It's Expired.
+          </td>
+        </tr>
+      </table>      
+      <div align="right">
+        <%= link_to 'Remove', savedprogram, method: :delete, data: { confirm: 'Are you sure?' }, :class=>"btn btn-danger btn-sm" %>
+      </div>
+    </div>
   	<% end -%>
   <%end%>
 </div>
