@@ -35,7 +35,7 @@ class AppliedprogramsController < ApplicationController
         if @appliedprogram.save
           flash[:notice]="Your application for #{@program.name} sent to recruiter." 
           Notifier.mailtotrainer(@appliedprogram,@program,@trainer).deliver_now
-          Notifier.mailtorecruiter(@appliedprogram,@program,@trainer).deliver_now
+          Notifier.mailtorecruiter(@appliedprogram,@program,@recruiter).deliver_now
           redirect_to programs_path
           #format.html { redirect_to "/programs", notice: 'Program Added to Saved List' }
           #format.json { render :show, status: :created, location: @savedprogram }
