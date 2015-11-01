@@ -1,7 +1,59 @@
-<p>Hello <%= @appliedprogram.trainer.full_name %>,</p>
-<p>Thanks for applying for <span color="orange"><%= @appliedprogram.program.name %></span></p><br>
-<p><b>Details</b></p>
-<table class="customtable">
-</table>
-<p>Regards,<p>
-<p>Traix</p>
+<style type="text/css">
+  table{
+    border-collapse: collapse;
+    border: 1px solid grey;
+    width: 100%;
+  }
+  table td{
+    border: 1px solid black;
+    padding:5px;
+  }  
+  table th{
+    border: 1px solid grey;
+    padding:5px;
+  }
+</style>
+<div class="col-xs-12 col-md-12 col-sm-12" style="background-color: #E5E5E5; padding:60px;">
+  <div class="col-xs-6 col-md-3 col-sm-6" style="padding-left:10px;">
+    <%= link_to(image_tag("http://traix.in/assets/logo.png", :width=>"25%"),"http://traix.in") %>
+  </div>
+  <div class="col-xs-12 col-md-12 col-sm-12">
+    <div style="margin-top:20px;font-family:lato;font-size:16px;padding:20px;background-color:#fff;">
+      <p>Hi <%= @appliedprogram.trainer.full_name %>,</p><br>
+      
+      <p>Thanks for applying to a program. We have forwarded your details to respective recruiter. We will notify you as soon as your profile is shortlisted.</p>
+      <br>
+      <div style="margin-left:auto;margin-right:auto;width:50em">
+        <table>
+          <tr style="background-color:#242A33;color:white;">
+            <th>Project Title</th>
+            <th>Project Description</th>
+            <th>Payment Details</th>
+          </tr>
+          <tr>
+            <td width="20%"><%= @appliedprogram.program.name %></td>
+            <td width="60%"><%= @appliedprogram.program.program_details %></td>
+            <td width="20%">
+              <%= @appliedprogram.program.currency %> - <%= @appliedprogram.program.payment_detail %> / <%= @appliedprogram.program.payment_type %>
+            </td>
+          </tr>
+        </table>
+      </div>
+      <p>For any further query, please contact:<br> hello@traix.in</p><br>
+      <p>Regards,</p>
+      <p>Traix Team.</p>
+    </div>
+  </div>
+  <%#<div class="col-x-12 col-sm-12 col-md-12" style="padding:20px;text-align:center">
+    <b>Available on</b><br>
+    <a href="#"><img src="http://traix.in/assets/icons/apple.png", width="3%"></a> &nbsp; | 
+    <a href="#"><img src="http://traix.in/assets/icons/android.png", width="3%"></a> &nbsp; | 
+    <a href="#"><img src="http://traix.in/assets/icons/windows.png", width="3%"></a>
+  </div>%>
+  <div class="col-x-12 col-sm-12 col-md-12" style="padding-left:0px;">
+    <span style="color:#4D90FE;font-size:12px;">
+      <p>Copyright(C) 2015 Ayam Skillcoaches Pvt. Ltd. All Rights reserved.</p>
+      <p>You received this mail because you opted in at our website www.traix.in</p>
+    </span>
+  </div>
+</div>

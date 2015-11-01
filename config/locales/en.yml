@@ -36,3 +36,8 @@ en:
    attributes:
     contactu:
      phone: "Contact number"
+
+  activerecord:
+   attributes:
+    category:
+     name: "Category"

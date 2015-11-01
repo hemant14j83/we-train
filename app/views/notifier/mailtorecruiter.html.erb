@@ -1,7 +1,33 @@
-<p>Hello <%= @appliedprogram.trainer.full_name %>,</p>
-<p>Thanks for applying for <span color="orange"><%= @appliedprogram.program.name %></span></p><br>
-<p><b>Details</b></p>
-<table class="customtable">
-</table>
-<p>Regards,<p>
-<p>Traix</p>
+<div class="col-xs-12 col-md-12 col-sm-12" style="background-color: #E5E5E5; padding:60px;">
+  <div class="col-xs-6 col-md-3 col-sm-6" style="padding-left:10px;">
+    <%= link_to(image_tag("http://traix.in/assets/logo.png", :width=>"25%"),"http://traix.in") %>
+  </div>
+  <div class="col-xs-12 col-md-12 col-sm-12">
+    <div style="margin-top:10px;font-family:lato;color:white;background-color:#242A33;text-align:center;padding:20px;">
+      <h2><b>Hire a Trainer to kickoff your <br>Program</b></h2>
+    </div>  
+    <div style="margin-top:20px;font-family:lato;font-size:16px;padding:20px;background-color:#fff;">
+      <p>Hello <%= @appliedprogram.trainer.full_name %>,</p>
+      
+      <p>Thanks for posting a program. Trainers are applying to work with you in the project you posted and it is now time to pick the best trainer for your program.</p>
+      <br>
+      <p style="text-align:center;"><%= link_to "View all applicants now","/", :style=>"color: #fff; background-color: #5cb85c; border-color: #4cae4c;display: inline-block; margin-bottom: 0; font-weight: normal; text-align: center; vertical-align: middle; padding:10px; cursor: pointer; background-image: none; border: 1px solid transparent; white-space: nowrap; border-radius:8px;text-decoration:none;" %></p>
+      <br>
+      <p>For any further query, please contact:<br> hello@traix.in</p><br>
+      <p>Regards,</p>
+      <p>Traix Team.</p>
+    </div>
+  </div>
+  <%#<div class="col-x-12 col-sm-12 col-md-12" style="padding:20px;text-align:center">
+    <b>Available on</b><br>
+    <a href="#"><img src="http://traix.in/assets/icons/apple.png", width="3%"></a> &nbsp; | 
+    <a href="#"><img src="http://traix.in/assets/icons/android.png", width="3%"></a> &nbsp; | 
+    <a href="#"><img src="http://traix.in/assets/icons/windows.png", width="3%"></a>
+  </div>%>
+  <div class="col-x-12 col-sm-12 col-md-12" style="padding-left:0px;">
+    <span style="color:#4D90FE;font-size:12px;">
+      <p>Copyright(C) 2015 Ayam Skillcoaches Pvt. Ltd. All Rights reserved.</p>
+      <p>You received this mail because you opted in at our website www.traix.in</p>
+    </span>
+  </div>
+</div>
