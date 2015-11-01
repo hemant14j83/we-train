@@ -84,7 +84,7 @@ $(document).ready(function(){
     <div class="col-xs-12 col-md-12 col-sm-12 topmargin">
         <%= render partial: "shared/flash_messages", flash: flash %> 
     </div>
-  <div class="col-xs-12 col-md-12 col-sm-12" id="appliedprogram" style="padding:10px;margin-top: 4%;margin-bottom:4%">         
+  <div class="col-xs-12 col-md-12 col-sm-12" id="appliedprogram" style="padding:10px;margin-top: 1%;margin-bottom:4%">          
       <%= render @trainer.appliedprograms %>
         &nbsp;
       
@@ -100,9 +100,7 @@ $(document).ready(function(){
         <%= render @trainer.savedprograms %><%#
         &nbsp;
   </div>%>
-  <div class="col-xs-12 col-md-12 col-sm-12" id="savedprogram" style="padding:10px;margin-top: 4%;margin-bottom:4%">    
-        <%= render @trainer.savedprograms %>
-        &nbsp;
+  <div class="col-xs-12 col-md-12 col-sm-12" id="savedprogram" style="padding:10px;margin-top: 1%;margin-bottom:4%">      <%= render @trainer.savedprograms %>      
   </div>
   <div class="col-xs-12 col-md-12 col-sm-12 whitebg" id="profilepage" style="padding:10px;margin-top: 4%;margin-bottom:4%">
     <div class="col-xs-6 col-md-3 col-sm-6" style="margin-top:-4%;">

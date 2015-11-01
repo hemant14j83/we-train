@@ -731,3 +731,9 @@ a{
     right: 1px;
     top: 1px;
 }
+.expired{
+    background-color: #D84831;
+    color:white;
+    font-family: lato;
+    padding:5px;
+}
