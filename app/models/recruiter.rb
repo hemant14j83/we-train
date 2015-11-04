@@ -1,5 +1,6 @@
 class Recruiter < ActiveRecord::Base	
   has_many :programs, inverse_of: :recruiter, :dependent => :destroy
+  has_many :appliedprograms, -> {group("program_id DESC")}
 
   accepts_nested_attributes_for :programs
 

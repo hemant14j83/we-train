@@ -29,6 +29,7 @@ Rails.application.routes.draw do
 
   resources :recruiters do
    resources :programs
+   resources :appliedprograms
    #resources :expertises
   end
 

@@ -29,8 +29,9 @@ class AppliedprogramsController < ApplicationController
   def create
     @trainer=Trainer.find(current_trainer.id)
     @program=Program.find(params[:program_id])
+    @recruiterid=@program.recruiter_id
     #@sdprogram=@trainer.appliedprograms.build(:program_id=>params[:program_id],:trainer_id=>params[:trainer_id])
-    @appliedprogram = Appliedprogram.new(:status=>'forwardedtorecruiter',:program_id=>params[:program_id],:trainer_id=>current_trainer.id)
+    @appliedprogram = Appliedprogram.new(:status=>'forwardedtorecruiter',:program_id=>params[:program_id],:trainer_id=>current_trainer.id,:recruiter_id=>@recruiterid)
     begin
         if @appliedprogram.save
           flash[:notice]="Your application for #{@program.name} sent to recruiter." 
@@ -71,6 +72,6 @@ class AppliedprogramsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def savedprogram_params
-      params.require(:appliedprogram).permit(:status,:program_id, :trainer_id, :status)
+      params.require(:appliedprogram).permit(:status,:program_id, :trainer_id, :status, :recruiter_id)
     end
 end
