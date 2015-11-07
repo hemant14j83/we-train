@@ -11,12 +11,13 @@
     border-radius: 50%;
 }
 .gifimage {
-    position: relative;
-    margin-top: 5%;
+    position: inherit;
+    margin-top: 5%; 
     margin-left: 1%;
     overflow: hidden;
-    width: 97%;
-    height: 77%;
+    width: 77%;
+    height: 58%;
+    float: left;
     /*width: 70%;
     height: 70%;
     position: relative;

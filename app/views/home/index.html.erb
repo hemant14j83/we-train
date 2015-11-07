@@ -120,7 +120,8 @@
 	 </div>
     <div class="col-xs-12 col-sm-12 col-md-12">
 		<% if recruiter_signed_in?  %>
-			<div class="hidden-xs hidden-sm col-md-6 feed-bg">
+			<div class="hidden-xs hidden-sm col-md-1"></div>
+			<div class="hidden-xs hidden-sm col-md-5 feed-bg">
 				<%= image_tag("howitworksrec.gif",:class=>"gifimage") %>
 			</div>
 			<div class="col-xs-12 col-sm-12 col-md-6">
@@ -142,9 +143,26 @@
 					<%= link_to "Post Project", new_program_path, :class=>"homebutton hbtn-lg" %>
 				</div>
 			</div>
+			<div class="col-xs-12 col-md-12 col-sm-12 tcenter" style="margin-top:1%;">
+				<div class="homesol">Want a complete training solution?? <a href="/contact-us">Contact Us</a></div>
+			</div>
+			<div class="col-xs-12 col-md-12 col-sm-12 tcenter" style="margin-top:2%;">
+				<div class="homefoot">
+					<table width="100%">
+						<tr>
+							<td><a href="/programs">Available Training Programs</a></td>
+							<td><a href="/privacy-policy">Privacy Policy</a></td>
+							<td><a href="/terms-conditions">Terms and Conditions</a></td>
+							<td><a href="/contact-us">Get in Touch</a></td>
+							<td><a href="/careers">Careers</a></td>
+						</tr>
+					</table>					
+				</div>
+			</div>
 		<%elsif trainer_signed_in? %>
-			<div class="hidden-xs hidden-sm col-md-6 feed-bg">
-				<%= image_tag("howitwork.gif",:class=>"gifimage") %>
+			<div class="hidden-xs hidden-sm col-md-1"></div>
+			<div class="hidden-xs hidden-sm col-md-5 feed-bg">
+				<%= image_tag("howitworksrec.gif",:class=>"gifimage") %>
 			</div>
 			<div class="col-xs-12 col-sm-12 col-md-6">
 				<div class="bannertext tleft" style="margin-top:1%">
@@ -163,13 +181,30 @@
 				<div style="margin-bottom:3%">
 					<%= link_to "Find Project", "/programs", :class=>"homebutton hbtn-lg" %>
 				</div>
+			</div>			
+			<div class="col-xs-12 col-md-12 col-sm-12 tcenter">
+				<div class="homesol">Want a complete training solution?? <a href="/contact-us">Contact Us</a></div>
+			</div>
+			<div class="col-xs-12 col-md-12 col-sm-12 tcenter">
+				<div class="homefoot">
+					<table width="100%">
+						<tr>
+							<td><a href="/programs">Available Training Programs</a></td>
+							<td><a href="/privacy-policy">Privacy Policy</a></td>
+							<td><a href="/terms-conditions">Terms and Conditions</a></td>
+							<td><a href="/contact-us">Get in Touch</a></td>
+							<td><a href="/careers">Careers</a></td>
+						</tr>
+					</table>					
+				</div>
 			</div>
 		<%else%>
 			<div id="buttons">				
 				<a class="btn btn-default bannerbtn transparent" id="workb">Work</a>
 				<a class="btn btn-default bannerbtn transparent selected">Hire</a>
 			</div>
-			<div class="hidden-xs hidden-sm col-md-6 feed-bg">
+			<div class="hidden-xs hidden-sm col-md-1"></div>
+			<div class="hidden-xs hidden-sm col-md-5 feed-bg">
 				<%= image_tag("howitworksrec.gif",:class=>"gifimage") %>
 			</div>
 			<div class="col-xs-12 col-sm-12 col-md-6">
@@ -191,14 +226,30 @@
 					<%= link_to "Post Project", new_program_path, :class=>"homebutton hbtn-lg" %>
 				</div>
 			</div>
+			<div class="col-xs-12 col-md-12 col-sm-12 tcenter">
+				<div class="homesol">Want a complete training solution?? <a href="/contact-us">Contact Us</a></div>
+			</div>
+			<div class="col-xs-12 col-md-12 col-sm-12 tcenter">
+				<div class="homefoot">
+					<table width="100%">
+						<tr>
+							<td><a href="/programs">Available Training Programs</a></td>
+							<td><a href="/privacy-policy">Privacy Policy</a></td>
+							<td><a href="/terms-conditions">Terms and Conditions</a></td>
+							<td><a href="/contact-us">Get in Touch</a></td>
+							<td><a href="/careers">Careers</a></td>
+						</tr>
+					</table>					
+				</div>
+			</div>
 		<%end%>		
 	</div>
 	</div>
-	<div id="how" class="col-md-12 col-xs-12 col-sm-12 tcenter">
+	<%#<div id="how" class="col-md-12 col-xs-12 col-sm-12 tcenter">
 
 		<h2 class="orange padding5"> List of trainers with expertise verified by our team. To hire the best trainer for your next program, post your project now.</h2>
 
-		<%#<div class="col-md-6 col-xs-12 col-sm-12">
+		<div class="col-md-6 col-xs-12 col-sm-12">
 			<h3 class="titletxt">Hire the best trainers for your next <br> program.</h3>
 			<div class="greytxt">
 				<ul style="list-style-type:dics">
@@ -212,7 +263,7 @@
 		</div>
 		<div class="col-md-6 col-sm-12 col-xs-12">
 			<%= image_tag("howitworksrec.gif",:class=>"gifimage") 
-		</div>%>
+		</div>
 	</div>
 	<div id="why" class="col-md-12 col-sm-12 col-xs-12 gradient">
 		<%#<div class="col-xs-12 col-sm-12 col-md-12 feed-heading tcenter">Most Seeked Trainers</div>
@@ -229,7 +280,7 @@
 				<div class="tcenter feeddetails">Trainer's First Name</div>
 				<div clas=""></div>
 			</div>
-		</div>%>
+		</div>
 		<div class="col-xs-2 col-md-2"></div>
 		<div class="col-xs-12 col-sm-12 col-md-8 tcenter">
 			<div class="feedbutton" style="margin-top:5%;">
@@ -244,7 +295,7 @@
 		<div class="tcenter greytxt">
 			<div class="homesol">Want a complete training solution?? <a href="/contact-us">Contact Us</a></div>
 		</div>
-	</div>
+	</div>%>
 </div>
 
 <div id="work">
@@ -285,8 +336,9 @@
 	  </div>
       <div class="col-xs-12 col-sm-12 col-md-12">
 		<% if trainer_signed_in? || recruiter_signed_in? %>
-			<div class="hidden-xs hidden-sm col-md-6 feed-bg">
-				<%= image_tag("howitwork.gif",:class=>"gifimage") %>
+			<div class="hidden-xs hidden-sm col-md-1"></div>
+			<div class="hidden-xs hidden-sm col-md-5 feed-bg">
+				<%= image_tag("howitworksrec.gif",:class=>"gifimage") %>
 			</div>
 			<div class="col-xs-12 col-sm-12 col-md-6">
 				<div class="bannertext tleft" style="margin-top:1%">
@@ -306,6 +358,22 @@
 					<%= link_to "Find Project", "/programs", :class=>"homebutton hbtn-lg" %>
 				</div>
 			</div>
+			<div class="col-xs-12 col-md-12 col-sm-12 tcenter" style="margin-top:1%;">
+				<div class="homesol"><div class="homesol">Want a complete training solution?? <a href="/contact-us">Contact Us</a></div>
+			</div>	
+			<div class="col-xs-12 col-md-12 col-sm-12 tcenter" style="margin-top:1%;">
+				<div class="homefoot">
+					<table width="100%">
+						<tr>
+							<td><a href="/programs">Available Training Programs</a></td>
+							<td><a href="/privacy-policy">Privacy Policy</a></td>
+							<td><a href="/terms-conditions">Terms and Conditions</a></td>
+							<td><a href="/contact-us">Get in Touch</a></td>
+							<td><a href="/careers">Careers</a></td>
+						</tr>
+					</table>					
+				</div>
+			</div>		
 			<%#<div class="bannertext" style="margin-top:10%">
 				Find the most suitable training <br>program matching your areas of <br>expertise. Apply Now.
 			</div>			
@@ -313,8 +381,9 @@
 				<%= link_to "Find Project", "/programs", :class=>"homebutton hbtn-lg" 
 			</div>%>
 		<%elsif recruiter_signed_in?  %>
-			<div class="hidden-xs hidden-sm col-md-6 feed-bg">
-				<%= image_tag("howitworkrec.gif",:class=>"gifimage") %>
+			<div class="hidden-xs hidden-sm col-md-1"></div>
+			<div class="hidden-xs hidden-sm col-md-5 feed-bg">
+				<%= image_tag("howitworksrec.gif",:class=>"gifimage") %>
 			</div>
 			<div class="col-xs-12 col-sm-12 col-md-6">
 				<div class="bannertext tleft" style="margin-top:1%">
@@ -334,14 +403,31 @@
 				<div style="margin-bottom:3%">
 					<%= link_to "Find Project", "/programs", :class=>"homebutton hbtn-lg" %>
 				</div>
-			</div>					
+			</div>
+			<div class="col-xs-12 col-md-12 col-sm-12 tcenter">
+				<div class="homesol">Want a complete training solution?? <a href="/contact-us">Contact Us</a></div>
+			</div>	
+			<div class="col-xs-12 col-md-12 col-sm-12 tcenter">
+				<div class="homefoot">
+					<table width="100%">
+						<tr>
+							<td><a href="/programs">Available Training Programs</a></td>
+							<td><a href="/privacy-policy">Privacy Policy</a></td>
+							<td><a href="/terms-conditions">Terms and Conditions</a></td>
+							<td><a href="/contact-us">Get in Touch</a></td>
+							<td><a href="/careers">Careers</a></td>
+						</tr>
+					</table>					
+				</div>
+			</div>				
 		<%else%>
 			<div id="buttons">
 				<a class="btn btn-default bannerbtn transparent selected" >Work</a>
 				<a class="btn btn-default bannerbtn transparent"  id="recruitbs">Hire</a>				
 			</div>
-			<div class="hidden-xs hidden-sm col-md-6 feed-bg">
-				<%= image_tag("howitwork.gif",:class=>"gifimage") %>
+			<div class="hidden-xs hidden-sm col-md-1"></div>
+			<div class="hidden-xs hidden-sm col-md-5 feed-bg">
+				<%= image_tag("howitworksrec.gif",:class=>"gifimage") %>
 			</div>
 			<div class="col-xs-12 col-sm-12 col-md-6">
 				<div class="bannertext tleft" style="margin-top:1%">
@@ -361,12 +447,28 @@
 					<%= link_to "Find Project", "/programs", :class=>"homebutton hbtn-lg" %>
 				</div>
 			</div>
+			<div class="col-xs-12 col-md-12 col-sm-12 tcenter">
+				<div class="homesol"><div class="homesol">Want a complete training solution?? <a href="/contact-us">Contact Us</a></div>
+			</div>
+			<div class="col-xs-12 col-md-12 col-sm-12 tcenter" style="margin-top:-1%">
+				<div class="homefoot">
+					<table width="100%">
+						<tr>
+							<td><a href="/programs">Available Training Programs</a></td>
+							<td><a href="/privacy-policy">Privacy Policy</a></td>
+							<td><a href="/terms-conditions">Terms and Conditions</a></td>
+							<td><a href="/contact-us">Get in Touch</a></td>
+							<td><a href="/careers">Careers</a></td>
+						</tr>
+					</table>					
+				</div>
+			</div>
 		<%end%>
 	</div>
 	</div>
-	<div id="how" class="col-xs-12 col-sm-12 col-md-12 tcenter">
+	<%#<div id="how" class="col-xs-12 col-sm-12 col-md-12 tcenter">
 		<h2 class="orange padding5"> Find the most suitable training program <br>matching your areas of expertise. <br>Apply now.</h2>
-		<%#<div class="col-xs-12 col-sm-12 col-md-6">
+		<div class="col-xs-12 col-sm-12 col-md-6">
 			<h3 class="titletxt">Work for leading companies /<br> colleges.</h3>
 			<div class="greytxt">
 				<ul style="list-style-type:dics">
@@ -379,7 +481,7 @@
 		</div>
 		<div class="col-xs-12 col-sm-12 col-md-6">
 			<%= image_tag("howitwork.gif",:class=>"gifimage") 
-		</div>%>
+		</div>
 	</div>
 	<div id="why" class="col-xs-12 col-sm-12 col-md-12 gradient">
 		<%#<div class="col-xs-12 col-sm-12 col-md-12 feed-heading tcenter">Latest Training Programs</div>
@@ -396,7 +498,7 @@
 				<div class="tcenter feeddetails">Trainer's First Name</div>
 				<div clas=""></div>
 			</div>
-		</div>%>
+		</div>
 		<div class="col-xs-2 col-md-2"></div>
 		<div class="col-xs-12 col-sm-12 col-md-8 tcenter">
 			<div class="feedbutton" style="margin-top:5%">
@@ -411,5 +513,5 @@
 		<div class="tcenter greytxt">
 			<div class="homesol">Want a complete training solution?? <a href="/contact-us">Contact Us</a></div>
 		</div>
-	</div>
+	</div>%>
 </div>
