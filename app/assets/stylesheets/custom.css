@@ -358,11 +358,11 @@ p{
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
 }
 .feed-bg{
-    background: url('banners/home/iscreen.png');
+    background: url('banners/home/iscreen400.png');
     text-align: center;
-    background-size: cover;
+    background-repeat: no-repeat;
     overflow: hidden;
-    height: 475px;
+    height: 400px;
     margin-top: 1%;
 } 
 .feeddetails{
@@ -393,17 +393,35 @@ p{
     font-size:26px;
     padding: 10px 50px 10px 50px;
 }
+.homefoot{
+    font-family: 'lato',arial;
+    letter-spacing: 2px;
+    font-size: 18px;
+    padding: 10px;
+    color:white;
+    font-style: italic;
+}
+.homefoot a{
+    font-family: 'lato',arial;
+    letter-spacing: 2px;
+    color:white;
+    padding: 10px;
+    font-style: italic;   
+    text-decoration: none;
+}
 .homesol{
     font-family: 'lato',arial;
     letter-spacing: 2px;
-    font-size: 20px;
+    font-size: 25px;
     padding: 10px;
+    color:white;
     font-style: italic;
 }
 .homesol a{
     font-family: 'lato',arial;
     letter-spacing: 2px;
-    font-size: 20px;
+    font-size: 25px;
+    color:white;
     padding: 10px;
     font-style: italic;   
     text-decoration: none;
@@ -447,7 +465,7 @@ a.homebutton:hover{
 .bannertext{
     font-family:'lato', arial, sans-serif;
     font-style: italic;
-    font-size:25px; 
+    font-size:22px; 
     font-weight:normal;
     letter-spacing: 2px;
     color:white;
