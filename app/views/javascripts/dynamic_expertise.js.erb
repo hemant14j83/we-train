@@ -1,6 +1,120 @@
 $(window.document).on('shown.bs.modal','.modal',function(){
+
+  //$('#new_program').submit(function(){
+  //    if (catselect.value==""){
+  //      alert("Please select category.");
+  //      catselect.focus();
+  //      submit.disabled=true;
+  //      return false;
+  //    }
+  //    else
+  //    {
+  //      return true;
+  //    }
+  //}
+    $('#ptype').hide();
+    $('#pcat').hide();
+    $('#pcity').hide();
+    $("#pbrief").hide();
+    $("#pduration").hide();
+    $("#pbrief").hide();
+    $("#ppaytype").hide();
+    $("#pdurtype").hide();
+    var catselect=document.getElementById("program_category");
+    var submit=document.getElementById("submitprog");
+    var progname=document.getElementById("program_name");
+    var progcity=document.getElementById("program_city");
+    var progbrief=document.getElementById("program_program_details");
+    var progdur=document.getElementById("program_duration");
+    var progdurtype=document.getElementById("program_duration_type");
+    var progfees=document.getElementById("program_payment_detail");
+    progfees.addEventListener("blur",checkfees,true);
+    function checkfees(){
+      if (progfees.value==""){
+        $('#ppaytype').show();
+        progfees.focus();
+        submit.disabled=true;
+      }else{$('#ppaytype').hide();}
+    }
+    progdur.addEventListener("blur",checkdur,true);
+    function checkdur(){
+      if (progdur.value==""){
+        $('#pduration').show();
+        progdur.focus();
+        submit.disabled=true;
+      }else{$('#pduration').hide();}
+    }
+    catselect.addEventListener("blur",checkcat,true);
+    function checkcat(){
+      if (catselect.value==""){
+        alert("Please select category.");
+        catselect.focus();
+        $('#pcat').show();
+        return false;
+        window.location="http://localhost:4000/recruiters/myaccont"
+        submit.disabled=true;
+      }
+      else{$('#pcat').hide();}
+    }
+    progname.addEventListener("blur",checkname,true);
+    function checkname(){
+      if (progname.value==""){
+        $('#ptype').show();
+        progname.focus();
+        submit.disabled=true;
+      }else{$('#ptype').hide();}
+    }    
+    progcity.addEventListener("blur",checkcity,true);
+    function checkcity(){
+      if (progcity.value==""){
+        $('#pcity').show();
+        progcity.focus();
+        submit.disabled=true;
+      }else{$('#pcity').hide();}
+    }
+    progbrief.addEventListener("blur",checkdetails,true);
+    function checkdetails(){
+      if (progbrief.value==""){
+        $('#pbrief').show();
+        progbrief.focus();
+        submit.disabled=true;
+      }else{$('#pbrief').hide();}
+    }
+
+	  var stdatefield=document.getElementById("program_start_date_1i");
+    $('#enddateerror').hide();
+	  $('#startdateerror').hide();
+	  var stdatefield=document.getElementById("program_start_date_1i");
+    stdatefield.addEventListener("blur",checkstDate,true);
+    function checkstDate(){
+      var today=new Date();
+    if (program_start_date_3i.value < today.getDate() || program_start_date_2i.value <= today.getMonth()+1 || program_start_date_1i.value <= today.getFullYear()){
+      if (program_start_date_3i.value < today.getDate() && program_start_date_2i.value <= today.getMonth()+1){
+        $('program_start_date_3i').css("bordercolor","red");
+        $('#enddateerror').show();
+        var submit=document.getElementById('submitprog');
+        submit.disabled=true;
+        }
+      }
+      else{$('#enddateerror').hide();}
+    }
+	  var datefield=document.getElementById("program_end_date_1i");
+    datefield.addEventListener("blur",checkDate,true);
+    function checkDate(){
+    var today=new Date();
+    if (program_end_date_3i.value < today.getDate() || program_end_date_2i.value <= today.getMonth()+1 || program_end_date_1i.value <= today.getFullYear()){
+      if (program_end_date_3i.value < today.getDate() && program_end_date_2i.value <= today.getMonth()+1){
+        $('program_end_date_3i').css("bordercolor","red");
+        $('#enddateerror').show();
+        var submit=document.getElementById('submitprog');
+        submit.disabled=true;
+        }
+      }
+      else{$('#enddateerror').hide();}
+    }
+
 	$('#expertise_field').hide();
-		var category=document.getElementById('program_category');
+		var category=document.getElementById('program_category');    
 		$(category).change(function(){
 			var value=$(this).val();
 			if(value==0){
@@ -39,4 +153,38 @@ function removeOptions(selectbox)
         selectbox.remove(i);
     }
 }
+$('#submitprog').on('click',function (){
+      if (catselect.value==""){
+        alert("Please select category.");
+        catselect.focus();
+        $('#pcat').show();
+        return false;
+        window.location="http://localhost:4000/recruiters/myaccont"
+        submit.disabled=true;
+      }
+      if(progname.value==""){
+        $('#ptype').show();
+        progname.focus();
+      }
+      if(progcity.value==""){
+        $('#pcity').show();
+        progcity.focus();
+      }
+      if(progbrief.value==""){
+        $("#pbrief").show();
+        progbrief.focus();
+      }
+      if(progdur.value==""){
+        $("#pduration").show();
+        progdur.focus();
+      }
+      if(progfees.value==""){
+        $("#ppaytype").show();
+        progfees.focus();
+      }
+      if(progdurtype.value==""){
+        $("#pdurtype").show();
+        progdurtype.focus(); 
+      }
+    });
 });
