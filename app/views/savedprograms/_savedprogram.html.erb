@@ -36,11 +36,14 @@
   					<%end%>
   					<% end -%>
   				</td>
-  				<td><%= link_to "Apply","#" %></td>
+  				<td>
+            <%= link_to image_tag("icons/apply.png",:width=>"85%"), appliedprograms_path(:program_id=>savedprogram.program_id, :trainer_id=>current_trainer.id),:method=>:post %><br>
+            <%= link_to 'Remove', savedprogram, method: :delete, data: { confirm: 'Are you sure?' }, :class=>"btn btn-danger btn-sm" %> 
+          </td>
   			</tr>
   		</table>
   		<div align="right">
-  			<%= link_to 'Remove', savedprogram, method: :delete, data: { confirm: 'Are you sure?' }, :class=>"btn btn-danger btn-sm" %>
+
   		</div>
   	</div>
     <% elsif savedprogram.status=='active' && savedprogram.program.start_date <= Date.today %>

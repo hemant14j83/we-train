@@ -5,6 +5,7 @@ class SavedprogramsController < ApplicationController
   # GET /savedprograms.json
   def index
     @savedprograms = Savedprogram.by_status('active').recent
+    @deletedprograms = Savedprogram.by_status('deleted').recent
     @trainer=Trainer.find(current_trainer.id)
     @program=Program.find(:program_id)
   end
@@ -26,20 +27,30 @@ class SavedprogramsController < ApplicationController
   # POST /savedprograms
   # POST /savedprograms.json
   def create
-    @trainer=Trainer.find(current_trainer.id)
+    @trainer=Trainer.find(current_trainer.id)    
     @program=Program.find(params[:program_id])
+    @t_expertise=Expertise.find_by(trainer_id: current_trainer.id,expertise_in: @program.expertise)
+    @appliedprogram=Appliedprogram.find_by(program_id: params[:program_id], trainer_id: current_trainer.id)
     #@sdprogram=@trainer.savedprograms.build(:program_id=>params[:program_id],:trainer_id=>params[:trainer_id])
     @savedprogram = Savedprogram.new(:program_id=>params[:program_id],:trainer_id=>current_trainer.id)
     begin
+      if @appliedprogram
+        flash[:notice]='You have already applied for this program.'
+        redirect_to programs_path
+      elsif @t_expertise
         if @savedprogram.save
           flash[:notice]='Program added to saved list.'
           redirect_to programs_path
           #format.html { redirect_to "/programs", notice: 'Program Added to Saved List' }
           #format.json { render :show, status: :created, location: @savedprogram }
         else
-          flash[:notice]='This program already exists in your saved list'
+          flash[:notice]='Program is exists in your saved list. You can apply for this program from your saved list.'
           redirect_to programs_path
-        end
+        end        
+      else
+        flash[:notice]='This program does not match your expertise.'
+        redirect_to programs_path
+      end
     rescue ActiveRecord::RecordNotUnique => e
       e.record.errors.details
       flash[:notice]='Something went wrong, please try after sometime.'

@@ -29,10 +29,13 @@ class AppliedprogramsController < ApplicationController
   def create
     @trainer=Trainer.find(current_trainer.id)
     @program=Program.find(params[:program_id])
+    @t_expertise=Expertise.find_by(trainer_id: current_trainer.id,expertise_in: @program.expertise)
+
     @recruiterid=@program.recruiter_id
     #@sdprogram=@trainer.appliedprograms.build(:program_id=>params[:program_id],:trainer_id=>params[:trainer_id])
     @appliedprogram = Appliedprogram.new(:status=>'forwardedtorecruiter',:program_id=>params[:program_id],:trainer_id=>current_trainer.id,:recruiter_id=>@recruiterid)
     begin
+      if @t_expertise
         if @appliedprogram.save
           flash[:notice]="Your application for #{@program.name} sent to recruiter." 
           Notifier.mailtotrainer(@appliedprogram,@program,@trainer).deliver_now
@@ -44,6 +47,10 @@ class AppliedprogramsController < ApplicationController
           flash[:notice]='You have already applied for this program, please wait for recruiters response.'
           redirect_to programs_path
         end
+      else
+        flash[:notice]='This program does not match your expertise.'
+          redirect_to programs_path
+      end
     rescue ActiveRecord::RecordNotUnique => e
       e.record.errors.details
       flash[:notice]='Something went wrong, please try after sometime.'
