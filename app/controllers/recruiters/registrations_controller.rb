@@ -32,6 +32,7 @@ layout 'recruiters'
     if needs_password?
       if @recruiter.update_with_password(account_update_params)
         set_flash_message :notice, :updated
+        Notifier.recaccountupdate(@recruiter).deliver_now
         sign_in @recruiter, :bypass=>true
         redirect_to recruiter_root_path
       else
@@ -45,6 +46,7 @@ layout 'recruiters'
       successfully_updated=@recruiter.update_attributes(account_update_params)
       if @recruiter.update_with_password(account_update_params)
         set_flash_message :notice, :updated
+        Notifier.recaccountupdate(@recruiter).deliver_now
         sign_in @recruiter, :bypass=>true
         redirect_to recruiter_root_path
       else

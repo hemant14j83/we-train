@@ -4,10 +4,11 @@
       $("#recprofilepage").hide();
       $("#postedprograms").hide();
       $("#appliedprograms").show();
+      $('#showappliedprograms').addClass("active");
       $("#showpostedprograms").click(function(){
         $("#recprofilepage").hide();
         $("#postedprograms").show();
-        $("#appliedprograms").hide();
+        $("#appliedprograms").hide();        
         $('#showrecprofilepage').removeClass("active");
         $('#showappliedprograms').removeClass("active");
         return false;
@@ -48,10 +49,11 @@ $(document).ready(function () {
 });
 </script>
 <div class="col-xs-12 col-md-12 col-sm-12">
+
     <ul class="nav navbar-nav profile-nav">
       <li><a href="#appliedprograms" id="showappliedprograms" onclick="this.className='active'">Dashboard</a></li>
       <li><a href="#recprofilepage" id="showrecprofilepage" onclick="this.className='active'">My Profile</a></li>
-      <li><a href="#postedprograms" id="showpostedprograms" onclick="this.className='active'">My Projects</a></li>      
+      <li><a href="#postedprograms" id="showpostedprograms" onclick="this.className='active'">My Programs</a></li>      
       <%#<li><a href="#">Inbox</a></li>%>      
     </ul>    
   <span class="tright" style="margin-top:1%;">

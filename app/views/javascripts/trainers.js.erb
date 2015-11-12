@@ -1,0 +1,11 @@
+$(document).ready(function(){
+	$("#niltpass").hide();
+	$('#tupprof').on('click',function (){
+      	var tpass=document.getElementById("trainer_current_password");
+      	if (tpass.value==""){
+       	 	$("#niltpass").show();
+       	 	tpass.focus();
+        	return false;
+      	}else{$("#niltpass").hide();}
+	});      
+});

@@ -332,7 +332,24 @@ p{
     text-align: center;
     background-size: cover;
     overflow: hidden;
-    height: 680px;
+    height: auto;    
+    height: 680px !important;
+}
+@media all and (orientation:portrait) {
+    .home-work {
+        height: auto;
+    }
+    .home-hire {
+        height: auto;
+    }
+}
+@media all and (orientation:landscape) {
+    .home-work {
+        height: auto;
+    }
+    .home-hire {
+        height: auto;
+    }
 }
 .home-hire{
     background: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)),url('banners/home/hirebg.jpg');
@@ -340,7 +357,8 @@ p{
     text-align: center;
     background-size: cover;
     overflow: hidden;
-    height: 680px;
+    height: auto;
+    height: 680px !important;
 } 
 .homebutton{
     background-color: #DE6B10;

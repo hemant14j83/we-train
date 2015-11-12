@@ -6,6 +6,10 @@ class Notifier < ApplicationMailer
   #
   #   en.notifier.verification.subject
   #
+  def recaccountupdate(recruiter)
+    @recruiter=recruiter
+    mail to:@recruiter.email,:subject=>"Account details updated - Traix.in"
+  end
   def newprogram(program)
     @program=program
     mail to: "hemant14j83@gmail.com",  :subject => "New Program -#{@program.name}- added."
