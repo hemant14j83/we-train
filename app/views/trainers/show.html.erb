@@ -71,7 +71,7 @@ $(document).ready(function(){
     <ul class="nav navbar-nav profile-nav">
       <li><a href="#profilepage" id="showprofilepage" onclick="this.className='active'">My Profile</a></li>
       <%#<li><a href="#dashboard" id="showdashboard" onclick="this.className='active'">Dashboard</a></li>%>
-      <li><a href="#appliedprogram" id="showappliedprogram" onclick="this.className='active'">Projects Applied</a></li>
+      <li><a href="#appliedprogram" id="showappliedprogram" onclick="this.className='active'">Applied Programs</a></li>
       <li><a href="#savedprogram" id="showsavedprogram" onclick="this.className='active'">Saved Programs</a></li>
       
       <%#<li><a href="#">Inbox</a></li>%>      
@@ -84,7 +84,8 @@ $(document).ready(function(){
     <div class="col-xs-12 col-md-12 col-sm-12 topmargin">
         <%= render partial: "shared/flash_messages", flash: flash %> 
     </div>
-  <div class="col-xs-12 col-md-12 col-sm-12" id="appliedprogram" style="padding:10px;margin-top: 1%;margin-bottom:4%">          
+  <div class="col-xs-12 col-md-12 col-sm-12" id="appliedprogram" style="padding:10px;margin-top: 1%;margin-bottom:4%">   
+      <h3 class="white" style="margin-left:2%">Applied Projects (<span style="color:lightgreen;font-size:14px;">only active programs shown here</span>)</h3>        
       <%= render @trainer.appliedprograms %>
         &nbsp;
       
@@ -100,7 +101,7 @@ $(document).ready(function(){
         <%= render @trainer.savedprograms %><%#
         &nbsp;
   </div>%>
-  <div class="col-xs-12 col-md-12 col-sm-12" id="savedprogram" style="padding:10px;margin-top: 1%;margin-bottom:4%">      <%= render @trainer.savedprograms %>      
+  <div class="col-xs-12 col-md-12 col-sm-12" id="savedprogram" style="padding:10px;margin-top: 1%;margin-bottom:4%">      <%= render @trainer.savedprograms %> 
   </div>
   <div class="col-xs-12 col-md-12 col-sm-12 whitebg" id="profilepage" style="padding:10px;margin-top: 4%;margin-bottom:4%">
     <div class="col-xs-6 col-md-3 col-sm-6" style="margin-top:-4%;">
@@ -123,8 +124,12 @@ $(document).ready(function(){
       <div class="col-md-2 col-xs-12 col-sm-6">
         <h4><b>List of Expertise</b></h4>
       </div>
-      <div class="col-md-2 col-xs-12 col-sm-6">
-        <%= link_to "Add More","#expertisemodal",:class=>"btn btn-success","data-toggle" => "modal",:id=>"addexpertise"%>
+      <div class="col-md-3 col-xs-12 col-sm-6">
+        <% if @trainer.expertises.count==5 %>
+          <%= link_to "Add More","#expertisemodal",:class=>"btn btn-success disabled","data-toggle" => "modal",:id=>"addexpertise"%><br><span style="color:red;font-size:12px;">Max five expertise allowed</span>
+        <%else%>
+          <%= link_to "Add More","#expertisemodal",:class=>"btn btn-success","data-toggle" => "modal",:id=>"addexpertise"%>
+        <%end%>
         <div id="expertisemodal" class="modal fade">
           <div class="modal-dialog">
               <div class="modal-content">
@@ -227,6 +232,6 @@ $(document).ready(function(){
     </div>    
   </div>
 </div>
-<div class="col-xs-12 col-md-12 col-sm-12 whitebg center lato">
+<%#<div class="col-xs-12 col-md-12 col-sm-12 whitebg center lato">
   <p class="orange"><font size="4px;">On our blog, you will find many resources which will help you to prepare for your <br>next training program in a better way. Lets get going.</font></p>
-</div>
+</div>%>

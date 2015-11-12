@@ -1,0 +1,11 @@
+$(document).ready(function(){
+	$("#nilpass").hide();
+	$('#profileupdate').on('click',function (){
+      	var pass=document.getElementById("recruiter_current_password");
+      	if (pass.value==""){
+       	 	$("#nilpass").show();
+       	 	pass.focus();
+        	return false;
+      	}else{$("#nilpass").hide();}
+	});      
+});

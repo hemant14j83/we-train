@@ -1,3 +1,13 @@
+<script type="text/javascript">
+  $(document).ready(function(){
+    $("#niltpass").hide();
+    $("#utpass").hide();
+
+    $("#utpassshow").click(function(){
+      $("#utpass").show();
+    });
+  });
+</script>
 <div class="col-xs-12 col-md-12 col-sm-12">
     <ul class="nav navbar-nav profile-nav">
       <li><a href="/trainers/profile">My Profile</a></li>
@@ -15,21 +25,36 @@
       <%= render partial: "shared/flash_messages", flash: flash %> 
   </div>
   <div class="col-xs-12 col-md-12 col-sm-12 whitebg" id="dash" style="padding:10px;margin-top: 4%;margin-bottom:4%;">
+  <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { multipart: true, method: :put }) do |f| %>
     <div class="col-xs-6 col-md-3 col-sm-6" style="margin-top:-4%;">
-      <%= image_tag(@trainer.image.url, :class => "profile_pic") %>
+      <% if @trainer.image.url=='/images/original/missing.png'%>
+        <%= image_tag("profile_pics/pic_def.png", :class => "profile_pic") %>
+      <% else %>
+        <%= image_tag(@trainer.image.url, :class => "profile_pic") %>
+      <% end %>
     </div>
     <div class="col-xs-6 col-md-9 col-sm-6">
         <h3><b><%= @trainer.full_name %></b></h3>
-        <%= @trainer.email %>         
-        <% if @trainer.profile_status=="pending" %>
-          <div class="col-xs-12 col-sm-12 col-md-12 topmargin lato label label-warning">
-              <span style="word-spacing:6px;"><font size="2px">Your profile is in "<font color="red">Pending</font>" state, please <a href="/">contact us</a> if you want it approved instantly.</font></span>
-          </div>
-      <% end -%>
+        <%= @trainer.email %><br>
+      <div class="col-xs-6 col-sm-6 col-md-3" style="margin-left:-15px;">
+          Current Password <span style="color:red">*</span>  
+          <%= f.password_field :current_password, :class=>"form-control" %>
+          <span id="niltpass" style="color:red">Password is Mandatory.</span>
+          <span id="utpassshow" style="font-size:14px;"><a href="#">Update Password</a></span>
+        </div>
+        <div class="col-xs-12 col-sm-12 col-md-6" style="margin-left:-15px;" id="utpass">
+          <table>
+            <tr><td>New Password</td><td>Confirm New Password</td></tr>
+            <tr><td><%= f.password_field :password, :class=>"form-control" %></td><td><%= f.password_field :password_confirmation, :class=>"form-control" %></td></tr>
+          </table>
+        </div>
     </div>    
-    <div class="col-xs-12 col-md-12 col-sm-12 topmargin">      
-      <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { multipart: true, method: :put }) do |f| %>
-        <%= render partial: "shared/flash_messages", flash: flash %> 
+      <% if @trainer.profile_status=="pending" %>
+        <div class="col-xs-12 col-sm-12 col-md-12 topmargin lato label label-warning">
+            <span style="word-spacing:6px;"><font size="2px">Your profile is in "<font color="red">Pending</font>" state, please <a href="/">contact us</a> if you want it approved instantly.</font></span>
+        </div>
+      <% end -%>
+    <div class="col-xs-12 col-md-12 col-sm-12 topmargin">            
         <div class="form-horizontal">
           <div class="col-xs-12 col-md-6 col-sm-12">
             <h3>Basic Details</h3>
@@ -57,11 +82,7 @@
             <div class="form-group col-xs-12 col-md-2 col-sm-12">
               <p class="lato"><b>Gender</b></p>
               <%= f.select :gender, ['Male','Female'], :class=>"form-control" %>              
-            </div>            
-            <div class="form-group col-xs-12 col-md-4 col-sm-12" style="margin-left:2%;">
-              <p class="lato"><b>Password</b><span class="orange"><b>*</b></span></p>
-              <%= f.password_field :current_password, :class=>"form-control" %>
-            </div>
+            </div>          
           </div>
           <div class="col-xs-12 col-md-6 col-sm-12">
             <h3>Address Details</h3>
@@ -98,7 +119,7 @@
           </div>%>
           <div class="col-xs-12 col-md-12 col-sm-12">
             <div class="form-group col-xs-6 col-md-3 col-sm-6">
-              <%= f.submit "Update Details", :class=>"form-control btn btn-success" %>
+              <%= f.button "Update Details",:id=>"tupprof", :class=>"form-control btn btn-success" %>
             </div>
             <div class="form-group col-xs-6 col-md-3 col-sm-6">
               <%= link_to "Cancel", 'profile', :class=>"form-control btn btn-warning" %>
