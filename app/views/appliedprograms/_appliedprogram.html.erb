@@ -90,8 +90,7 @@
       <h4>You haven't saved any program yet, please browse our listed <a href="/programs" title="training programs">programs</a>.</h4>
     </div>	
     <% else %>
-    <% if appliedprogram.status=='forwardedtorecruiter' && appliedprogram.program.start_date >= Date.today %>
-    <h3 class="white">Applied Projects (<span style="color:lightgreen;">Active</span>)</h3> 
+    <% if appliedprogram.status=='forwardedtorecruiter' && appliedprogram.program.start_date >= Date.today %>    
     <div class="qbox">
       <table class="table lato">
        <tr>
@@ -138,7 +137,7 @@
     			<%= link_to 'Remove', appliedprogram, method: :delete, data: { confirm: 'Are you sure?' }, :class=>"btn btn-danger btn-sm" 
     		</div>%>
     </div>
-    <% elsif appliedprogram.status=='forwardedtorecruiter' && appliedprogram.program.start_date < Date.today %>    
+    <% elsif appliedprogram.status=='notinlist' && appliedprogram.program.start_date < Date.today %>    
     <h3 class="white">Applied Projects (<span class="orange">Expired</span>)</h3>
     <div class="qbox">
         <table class="table lato">

@@ -1,7 +1,7 @@
 	<% if program.name!=nil %>
 	<div class="col-xs-12 col-sm-12 col-md-12 progbox" style="width:100%;">	
 		<div class="textheading">
-			<%= program.name %>, <% if program.category!="Select Category" %> posted in <%= program.category %> Category<%end%>
+			<%= program.name %> <%# if program.category!="Select Category"  posted in <%= program.category  Category<%end%>
 		</div>
 		<div class="col-xs-12 col-md-12 col-sm-12" style="padding:5px;">
 			<b><u>Program Details</u></b>
@@ -9,7 +9,7 @@
 				<b>Desired Expertise</b> : <%= program.category %>
 				<% if program.expertise? %>
 					<% if program.expertise != "Select Expertise" %>
-					,<%= program.expertise %>
+						, <%= program.expertise %>
 					<%end%>
 				<%end%>
 			</p>

@@ -15,10 +15,10 @@ class ProgramsController < ApplicationController
   if @program.save
     flash[:notice]='Program Added Successfully.'
     Notifier.newprogram(@program).deliver_now
-    redirect_to recruiter_root_path
+    redirect_to "/recruiters/myaccount"
   else
-    flash[:notice]='Something Went wrong, All fields are mandatory.'
-    redirect_to recruiter_root_path
+    flash[:notice]='Something Went wrong.'
+    redirect_to "/recruiters/myaccount"
   end
   #if @program.save
   #  case @program.plan
