@@ -1,0 +1,161 @@
+$(window.document).on('shown.bs.modal','.modal',function(){
+
+    $('#experr').hide();
+    $('#inferr').hide();
+    $('#refnmerr').hide();
+    $("#refnoerr").hide();
+    $("#refemerr").hide();
+    $('#refnmerr1').hide();
+    $("#refnoerr1").hide();
+    $("#refemerr1").hide();
+    var expselect=document.getElementById("expertise_expertise_in");
+    var expinfo=document.getElementById("expertise_professional_expertise_info");
+    var refnm=document.getElementById("expertise_reference_name");
+    var refno=document.getElementById("expertise_reference_number");
+    var refemail=document.getElementById("expertise_reference_email");
+    var refnm1=document.getElementById("expertise_reference_name1");
+    var refno1=document.getElementById("expertise_reference_number1");
+    var refemail1=document.getElementById("expertise_reference_email1");
+    var submit=document.getElementById("exp_sub");
+
+    expselect.addEventListener("blur",checkexp,true);
+    function checkexp(){
+      if (expselect.value==""){
+        alert("Please select expertise.");
+        expselect.focus();
+        $('#experr').show();
+        return false;
+        window.location="http://localhost:4000/recruiters/myaccont"
+        submit.disabled=true;
+      }
+      else{$('#pcat').hide();submit.disabled=false;}
+    }
+    expinfo.addEventListener("blur",checkexpinf,true);
+    function checkexpinf(){
+      if (expinfo.value==""){
+        $('#inferr').show();
+        expinfo.focus();
+        submit.disabled=true;
+      }else{
+        $('#inferr').hide();
+        submit.disabled=false;
+      }
+    }
+    refnm.addEventListener("blur",checkrefnm,true);
+    function checkrefnm(){
+      if (refnm.value==""){
+        $('#refnmerr').show();
+        refnm.focus();
+        submit.disabled=true;
+      }else{
+        $('#refnmerr').hide();
+        submit.disabled=false;
+      }
+    }
+    refnm1.addEventListener("blur",checkrefnm1,true);
+    function checkrefnm1(){
+      if (refnm1.value==""){
+        $('#refnmerr1').show();
+        refnm1.focus();
+        submit.disabled=true;
+      }else{
+        $('#refnmerr1').hide();
+        submit.disabled=false;
+      }
+    }
+    refno.addEventListener("blur",checkrefno,true);
+    function checkrefno(){
+      if (refno.value==""){
+        $('#refnoerr').show();
+        refno.focus();
+        submit.disabled=true;
+      }else{
+        $('#refnoerr').hide();
+        submit.disabled=false;
+      }
+    }
+    refno1.addEventListener("blur",checkrefno1,true);
+    function checkrefno1(){
+      if (refno1.value==""){
+        $('#refnoerr1').show();
+        refno1.focus();
+        submit.disabled=true;
+      }else{
+        $('#refnoerr1').hide();
+        submit.disabled=false;
+      }
+    }
+    refemail.addEventListener("blur",checkemail,true);
+    function checkemail(){
+      if (refemail.value==""){
+        $('#refemerr').show();
+        refemail.focus();
+        submit.disabled=true;
+      }else{
+        $('#refemerr').hide();
+        submit.disabled=false;
+      }
+    }
+    refemail1.addEventListener("blur",checkemail1,true);
+    function checkemail1(){
+      if (refemail1.value==""){
+        $('#refemerr1').show();
+        refemerr1.focus();
+        submit.disabled=true;
+      }else{
+        $('#refemerr1').hide();
+        submit.disabled=false;
+      }
+    }
+
+    expinfo.addEventListener("blur",checkinfo,true);
+    function checkinfo(){
+      if (expinfo.value==""){
+        $('#inferr').show();
+        expinfo.focus();
+        submit.disabled=true;
+      }else{
+        $('#inferr').hide();
+        submit.disabled=false;
+      }
+    }
+
+  $('#exp_sub').on('click',function (){
+      if (expselect.value==""){
+        alert("Please select category.");
+        expselect.focus();
+        $('#experr').show();
+        return false;
+        window.location="http://localhost:4000/recruiters/myaccont"
+        submit.disabled=true;
+      }
+      if(expinfo.value==""){
+        $('#inferr').show();
+        expinfo.focus();
+      }
+      if(refnm.value==""){
+        $('#refnmerr').show();
+        refnm.focus();
+      }
+      if(refno.value==""){
+        $("#refnoerr").show();
+        refno.focus();
+      }
+      if(refemail.value==""){
+        $("#refemerr").show();
+        refemail.focus();
+      }
+      if(refnm1.value==""){
+        $('#refnmerr1').show();
+        refnm1.focus();
+      }
+      if(refno1.value==""){
+        $("#refnoerr1").show();
+        refno1.focus();
+      }
+      if(refemail1.value==""){
+        $("#refemerr1").show();
+        refemail1.focus();
+      }
+    });
+});
