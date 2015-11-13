@@ -34,7 +34,7 @@ $(window.document).on('shown.bs.modal','.modal',function(){
         $('#ppaytype').show();
         progfees.focus();
         submit.disabled=true;
-      }else{$('#ppaytype').hide();}
+      }else{$('#ppaytype').hide();submit.disabled=false;}
     }
     progdur.addEventListener("blur",checkdur,true);
     function checkdur(){
@@ -42,7 +42,7 @@ $(window.document).on('shown.bs.modal','.modal',function(){
         $('#pduration').show();
         progdur.focus();
         submit.disabled=true;
-      }else{$('#pduration').hide();}
+      }else{$('#pduration').hide();submit.disabled=false;}
     }
     catselect.addEventListener("blur",checkcat,true);
     function checkcat(){
@@ -54,7 +54,7 @@ $(window.document).on('shown.bs.modal','.modal',function(){
         window.location="http://localhost:4000/recruiters/myaccont"
         submit.disabled=true;
       }
-      else{$('#pcat').hide();}
+      else{$('#pcat').hide();submit.disabled=false;}
     }
     progname.addEventListener("blur",checkname,true);
     function checkname(){
@@ -62,7 +62,7 @@ $(window.document).on('shown.bs.modal','.modal',function(){
         $('#ptype').show();
         progname.focus();
         submit.disabled=true;
-      }else{$('#ptype').hide();}
+      }else{$('#ptype').hide();submit.disabled=false;}
     }    
     progcity.addEventListener("blur",checkcity,true);
     function checkcity(){
@@ -70,7 +70,7 @@ $(window.document).on('shown.bs.modal','.modal',function(){
         $('#pcity').show();
         progcity.focus();
         submit.disabled=true;
-      }else{$('#pcity').hide();}
+      }else{$('#pcity').hide();submit.disabled=false;}
     }
     progbrief.addEventListener("blur",checkdetails,true);
     function checkdetails(){
@@ -78,7 +78,7 @@ $(window.document).on('shown.bs.modal','.modal',function(){
         $('#pbrief').show();
         progbrief.focus();
         submit.disabled=true;
-      }else{$('#pbrief').hide();}
+      }else{$('#pbrief').hide();submit.disabled=false;}
     }
 
 	  var stdatefield=document.getElementById("program_start_date_1i");
@@ -96,7 +96,7 @@ $(window.document).on('shown.bs.modal','.modal',function(){
         submit.disabled=true;
         }
       }
-      else{$('#enddateerror').hide();}
+      else{$('#enddateerror').hide();submit.disabled=false;}
     }
 	  var datefield=document.getElementById("program_end_date_1i");
     datefield.addEventListener("blur",checkDate,true);
@@ -110,7 +110,7 @@ $(window.document).on('shown.bs.modal','.modal',function(){
         submit.disabled=true;
         }
       }
-      else{$('#enddateerror').hide();}
+      else{$('#enddateerror').hide();submit.disabled=false;}
     }
 
 	$('#expertise_field').hide();

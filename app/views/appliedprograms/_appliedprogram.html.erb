@@ -17,11 +17,44 @@
             <th width="15%"><b>Action</b></th>
           </tr>
           <tr>
-            <td width="15%"><%= appliedprogram.trainer.full_name %> <%= appliedprogram.trainer.last_name %></td>
-            <td width="15%"><%= @trainer.qualifications %></td>
-            <td width="55%">
+            <td width="20%">
               <%= appliedprogram.program.name %><br>
               <b>Starts</b> : <%= appliedprogram.program.start_date %>
+            </td>
+            <td width="15%"><%= appliedprogram.trainer.full_name %> <%= appliedprogram.trainer.last_name %></td>
+            <td width="50%">
+              <div class="panel-group" id="accordion">
+                <div class="panel panel-warning">
+                  <div class="panel-heading">
+                    <h4 class="panel-title">
+                      <a data-toggle="collapse" data-parent="#accordion" href="#trqual">
+                        Trainer Qualifications
+                      </a>
+                    </h4>
+                  </div>
+                  <div id="trqual" class="panel-collapse collapse">
+                    <div class="panel-body">
+                      <%= render appliedprogram.trainer.qualifications %>  
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="panel-group" id="accordion">
+                <div class="panel panel-warning">
+                  <div class="panel-heading">
+                    <h4 class="panel-title">
+                      <a data-toggle="collapse" data-parent="#accordion" href="#trexp">
+                        Trainer Expertise
+                      </a>
+                    </h4>
+                  </div>
+                  <div id="trexp" class="panel-collapse collapse">
+                    <div class="panel-body">
+                      <%= render appliedprogram.trainer.expertises %>  
+                    </div>
+                  </div>
+                </div>
+              </div>              
             </td>
             <td width="15%"><a href="#">Select</a>/<a href="#">Reject</a></td>
           </tr>

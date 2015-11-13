@@ -1,3 +1,23 @@
+<script type="text/javascript">
+  function onlyNos(e, t) {
+            try {
+                if (window.event) {
+                    var charCode = window.event.keyCode;
+                }
+                else if (e) {
+                    var charCode = e.which;
+                }
+                else { return true; }
+                if (charCode > 31 && (charCode < 48 || charCode > 57)) {
+                    return false;
+                }
+                return true;
+            }
+            catch (err) {
+                alert(err.Description);
+            }
+        }
+</script>
 <script type="text/javascript">    
     $(document).ready(function(){
       $("#nilpass").hide();
@@ -96,7 +116,7 @@ $(document).ready(function(){
         <table class="table">
             <tr><td>Name:</td><td><%= f.text_field :firm_name, :class=>"form-control" %></td></tr>
             <tr><td>Type:</td><td><%= f.select :firm_type, ['','College','Company'], :class=>"form-control" %></td></tr>
-            <tr><td>Number</td><td><%= f.text_field :firm_number, :class=>"form-control" %></td></tr>
+            <tr><td>Number</td><td><%= f.text_field :firm_number,:onkeypress=>"return onlyNos(event,this);", :class=>"form-control" %></td></tr>
             <tr><td>Address</td><td><%= f.text_area(:firm_address, size: '50x4', :class=>"form-control")%></td></tr>
         </table>
         <table class="table">
@@ -112,7 +132,7 @@ $(document).ready(function(){
         <table class="table">
           <tr><td>Person Name</td><td><%= f.text_field :contact_person_name, :class=>"form-control" %></td></tr>
           <tr><td>Email:</td><td><%= f.email_field :contact_person_email, :class=>"form-control" %></td></tr>
-          <tr><td>Number:</td><td><%= f.text_field :contact_person_number, :class=>"form-control" %></td></tr>
+          <tr><td>Number:</td><td><%= f.text_field :contact_person_number,:onkeypress=>"return onlyNos(event,this);", :class=>"form-control" %></td></tr>
         </table>
       </div>
       <div class="col-xs-12 col-sm-12 col-md-6">                  
