@@ -1,3 +1,23 @@
+<script type="text/javascript">
+	function onlyNos(e, t) {
+            try {
+                if (window.event) {
+                    var charCode = window.event.keyCode;
+                }
+                else if (e) {
+                    var charCode = e.which;
+                }
+                else { return true; }
+                if (charCode > 31 && (charCode < 48 || charCode > 57)) {
+                    return false;
+                }
+                return true;
+            }
+            catch (err) {
+                alert(err.Description);
+            }
+        }
+</script>
 <% javascript 'dynamic_expertlist' %>
 <%= form_for([@recruiter, @recruiter.programs.build]) do |f| %>
 	<div class="form-horizontal" id="addprog"> 	  
@@ -38,7 +58,7 @@
 				<div class="col-md-1"></div>
 				<div class="col-xs-12 col-md-5 col-sm-12">
 					Duration<span id="pduration" style="color:red"> (Not valid.)</span><br>
-					<%= f.text_field :duration, :placeholder=>"Program Duration",:class=>"form-control" %>
+					<%= f.text_field :duration, :placeholder=>"Program Duration",:onkeypress=>"return onlyNos(event,this);",:maxlength=>"3",:class=>"form-control" %>
 				</div>
 				<div class="col-xs-12 col-md-4 col-sm-12 topmargin">
 					<%= f.select :duration_type,['Select Duration Type','Hours','Days','Weeks'], :class=>"form-control" %>
@@ -50,7 +70,7 @@
 				<div class="col-md-1"></div>
 				<div class="col-xs-12 col-md-5 col-sm-12">
 					Trainer Fees<span id="ppaytype" style="color:red"> (not valid)</span><br>
-					<%= f.text_field :payment_detail,:placeholder=>"Trainer Fees",:class=>"form-control" %>
+					<%= f.text_field :payment_detail,:maxlength=>"7",:placeholder=>"Trainer Fees",:onkeypress=>"return onlyNos(event,this);",:class=>"form-control" %>
 				</div>
 				<div class="col-xs-12 col-md-5 col-sm-12 topmargin"> 
 					per<%= f.select :payment_type,['Day','Hour'],:class=>"form-control" %>&nbsp;in&nbsp;<%= f.select :currency,['INR','USD'],:class=>"form-control" %>
