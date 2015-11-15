@@ -22,9 +22,11 @@
 					<td><%= qualification.grade %></td>
 				</tr>
 			</table>
-		    <div align="right">
-		    	<%= link_to 'Remove', qualification, method: :delete, data: { confirm: 'Are you sure?' }, :class=>"btn btn-danger btn-sm" %>
-		    </div>
+			<% if trainer_signed_in? %>
+			    <div align="right">
+			    	<%= link_to 'Remove', qualification, method: :delete, data: { confirm: 'Are you sure?' }, :class=>"btn btn-danger btn-sm" %>
+			    </div>
+			<%end%>
 	</div>
   <%end%>
 </div>
