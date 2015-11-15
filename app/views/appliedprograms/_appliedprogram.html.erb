@@ -7,7 +7,6 @@
     </div>
   <% else %>
     <% if appliedprogram.status=='selected' && appliedprogram.program.start_date >= Date.today %>
-      <h3 class="white">Selected Candidate(<span style="color:lightgreen;">Program Active</span>) </h3> 
       <div class="qbox">
         <table class="table lato">
           <tr>
@@ -61,7 +60,6 @@
         </table>        
       </div>
     <%elsif appliedprogram.status=='forwardedtorecruiter' && appliedprogram.program.start_date >= Date.today %>
-      <h3 class="white">List of Applicants(<span style="color:lightgreen;">Program Active</span>) </h3> 
       <div class="qbox">
         <table class="table lato">
           <tr>
