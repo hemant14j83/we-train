@@ -1,13 +1,14 @@
 class AppliedprogramsController < ApplicationController
-  before_action :set_appliedprogram, only: [:show, :edit, :update, :destroy]
-  before_filter :authenticate_trainer!
+  before_action :set_appliedprogram, only: [:select,:show, :edit, :update, :destroy]
+  before_filter :authenticate_trainer!,except: [:select,:reject]
   # GET /appliedprograms
   # GET /appliedprograms.json
   def index
-    @appliedprograms = Appliedprogram.all
-    @expiredappliedprograms = Appliedprogram.all
+    @appliedprograms = Appliedprogram.by_status('forwardedtorecruiter').recent
+    #@expiredappliedprograms = Appliedprogram.all
     @trainer=Trainer.find(current_trainer.id)
     @program=Program.find(:program_id)
+    #@recruiter=Recruiter.find_by_id(program.recruiter_id)
   end
 
   # GET /appliedprograms/1
@@ -63,6 +64,34 @@ class AppliedprogramsController < ApplicationController
   def update
   end
 
+  def select
+    respond_to do |format|      
+      @appliedprogram = Appliedprogram.find_by_id(params[:id])
+      @program=Program.find_by_id(@appliedprogram.program_id)
+      #@recruiter=Recruiter.find_by_id(params[:recruiter_id])
+      if @appliedprogram.update_attributes(:status=>'selected')
+        format.html { redirect_to recruiter_root_path, notice: 'Congrats, you have selected your candidate successfully.' }
+        Notifier.selectedmail(@appliedprogram,@program,@trainer,@recruiter).deliver_now
+        @program.update_attributes(:status=>'done')
+        format.json { render :show, status: :ok, location: @appliedprogram }
+      else
+        flash[:notice]='Something went wrong, please try again or contact us.'
+      end
+    end
+  end
+  
+  def reject
+    respond_to do |format|
+      @appliedprogram = Appliedprogram.find_by_id(params[:id])
+      if @appliedprogram.update_attributes(:status=>'rejected')
+        format.html { redirect_to recruiter_root_path, notice: 'Rejected candidate.' }
+        #Notifier.rejectedmail(@appliedprogram,@program,@trainer).deliver_now
+        format.json { render :show, status: :ok, location: @appliedprogram }
+      else
+        flash[:notice]='Something went wrong, please try again or contact us.'
+      end
+    end
+  end
   # DELETE /appliedprograms/1
   # DELETE /appliedprograms/1.json
   def destroy
@@ -74,11 +103,11 @@ class AppliedprogramsController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_appliedprogram
-      @appliedprogram = Aappliedprogram.find(params[:id])
+      @appliedprogram = Appliedprogram.find(params[:id])
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
-    def savedprogram_params
+    def appliedprogram_params
       params.require(:appliedprogram).permit(:status,:program_id, :trainer_id, :status, :recruiter_id)
     end
 end

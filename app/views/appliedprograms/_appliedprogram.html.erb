@@ -6,14 +6,14 @@
         </div>  
     </div>
   <% else %>
-    <% if appliedprogram.status=='forwardedtorecruiter' && appliedprogram.program.start_date >= Date.today %>
-      <h3 class="white">List of Applicants(<span style="color:lightgreen;">Program Active</span>) </h3> 
+    <% if appliedprogram.status=='selected' && appliedprogram.program.start_date >= Date.today %>
+      <h3 class="white">Selected Candidate(<span style="color:lightgreen;">Program Active</span>) </h3> 
       <div class="qbox">
         <table class="table lato">
           <tr>
+            <th width="20%"><b>Program Details</b>
             <th width="15%"><b>Trainer Name</b>
-            <th width="15%"><b>Qualification</b></th>
-            <th width="55%"><b>Program Name</b></th>
+            <th width="50%"><b>Qualification</b></th>
             <th width="15%"><b>Action</b></th>
           </tr>
           <tr>
@@ -56,7 +56,61 @@
                 </div>
               </div>              
             </td>
-            <td width="15%"><a href="#">Select</a>/<a href="#">Reject</a></td>
+            <td width="15%"><div class="label label-success">Selected</div></td>
+          </tr>
+        </table>        
+      </div>
+    <%elsif appliedprogram.status=='forwardedtorecruiter' && appliedprogram.program.start_date >= Date.today %>
+      <h3 class="white">List of Applicants(<span style="color:lightgreen;">Program Active</span>) </h3> 
+      <div class="qbox">
+        <table class="table lato">
+          <tr>
+            <th width="20%"><b>Program Details</b>
+            <th width="15%"><b>Trainer Name</b>
+            <th width="50%"><b>Qualification</b></th>
+            <th width="15%"><b>Action</b></th>
+          </tr>
+          <tr>
+            <td width="20%">
+              <%= appliedprogram.program.name %><br>
+              <b>Starts</b> : <%= appliedprogram.program.start_date %>
+            </td>
+            <td width="15%"><%= appliedprogram.trainer.full_name %> <%= appliedprogram.trainer.last_name %></td>
+            <td width="50%">
+              <div class="panel-group" id="accordion">
+                <div class="panel panel-warning">
+                  <div class="panel-heading">
+                    <h4 class="panel-title">
+                      <a data-toggle="collapse" data-parent="#accordion" href="#trqual">
+                        Trainer Qualifications
+                      </a>
+                    </h4>
+                  </div>
+                  <div id="trqual" class="panel-collapse collapse">
+                    <div class="panel-body">
+                      <%= render appliedprogram.trainer.qualifications %>  
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="panel-group" id="accordion">
+                <div class="panel panel-warning">
+                  <div class="panel-heading">
+                    <h4 class="panel-title">
+                      <a data-toggle="collapse" data-parent="#accordion" href="#trexp">
+                        Trainer Expertise
+                      </a>
+                    </h4>
+                  </div>
+                  <div id="trexp" class="panel-collapse collapse">
+                    <div class="panel-body">
+                      <%= render appliedprogram.trainer.expertises %>  
+                    </div>
+                  </div>
+                </div>
+              </div>              
+            </td>
+            <td width="15%"><%= link_to "Select",:controller=>"appliedprograms",:action=>"select",:id=>appliedprogram.id %> / <%= link_to "Reject",:controller=>"appliedprograms",:action=>"reject",:id=>appliedprogram.id %></td>
           </tr>
         </table>        
       </div>

@@ -193,22 +193,22 @@ $(document).ready(function(){
               <td>
                 <% if @trainer.profile_status=="pending" %>
                   <span class="label label-warning">Pending Approval</span><br>
-                  <div style="margin-top:5px;"><a href="">Here's Why</a>.</div>
+                  <div style="margin-top:5px;"><a href="#">Here's Why</a>.</div>
                 <%else%>
                   <%= @trainer.profile_status %>
                 <%end%>
               </td>
             </tr>
-            <tr>
+            <%#<tr>
               <td>Your Plan:</td>
               <td>
-                <% if @trainer.subscribed_plan=="trail" %>
+                <% if @trainer.subscribed_plan=="trail" %><%#
                   Trail, <a href="">Click</a> to Upgrade your Plan
-                <%else%>
-                  <%= @trainer.subscribed_plan %>
-                <%end%>
+                <%else%><%#
+                  <%= @trainer.subscribed_plan %><%#
+                <%end%><%#
               </td>
-            </tr>
+            </tr>%>
         </table>
       </div>
       <div class="col-xs-12 col-md-6 col-sm-12">

@@ -44,10 +44,25 @@ class Notifier < ApplicationMailer
   def mailtorecruiter(appliedprogram,program,recruiter)
     @appliedprogram=appliedprogram
     @program=program
+    @recruiter=recruiter
     mail to: @program.recruiter.email,
           :subject=>"Your application for #{@program.name}."
   end
 
+  def rejectedmail(appliedprogram,program,recruiter)
+    @appliedprogram=appliedprogram
+    @program=program
+    mail to: @program.trainer.email,
+          :subject=>"Recruiter has rejected your application for #{@program.name}."
+  end
+  
+  def selectedmail(appliedprogram,program,trainer,recruiter)
+    @appliedprogram=appliedprogram
+    @program=program
+    @recruiter=recruiter
+    mail to: @appliedprogram.trainer.email,
+          :subject=>"Congrats! you have been selected for #{@appliedprogram.program.name}."
+  end
   # Subject can be set in your I18n file at config/locales/en.yml
   # with the following lookup:
   #
