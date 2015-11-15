@@ -5,7 +5,7 @@ class Trainer < ActiveRecord::Base
   has_many :appliedprograms, :dependent => :destroy
 
   validates_uniqueness_of :email
-  validates :email, :full_name, :last_name, :presence=>true
+  validates :email, :full_name,:presence=>true
 
   has_attached_file :image, styles: { small: "64x64", med: "100x100", large: "200x200" }
   validates_attachment_content_type :image, content_type: /\Aimage\/.*\Z/
@@ -22,9 +22,12 @@ class Trainer < ActiveRecord::Base
   end
   def connect_to_linkedin(auth)
 	   self.uid = auth.uid
+     self.full_name=auth.info.name
      self.email = auth.info.email
      self.provider = auth.provider
-     self.image_file_name= auth.info.image
+     image= auth.info.image
+     self.social_image=process_images(image)
+     #self.image_file_name="social" 
      self.update!(
       provider: auth.provider
       )
@@ -43,24 +46,31 @@ class Trainer < ActiveRecord::Base
   data = auth.info
   trainer=Trainer.where(:provider=>data.provider,:email=>data.email).first
 
-  if trainer
-    return trainer
-  else
-    registered_trainer=Trainer.where(:email => data.email).first
-    if registered_trainer
-      return registered_trainer
-    else  
-      trainer=self.create!(
-          password: Devise.friendly_token[0,20],
-          email: data.email,
-          uid: auth.uid,
-          #image_file_name: data.image,
-          provider: auth.provider
-      )
-      trainer.save!
-      trainer
+    if trainer
+      return trainer
+    else
+      registered_trainer=Trainer.where(:email => data.email).first
+      if registered_trainer
+        return registered_trainer
+      else  
+        trainer=self.create!(
+            password: Devise.friendly_token[0,20],
+            email: data.email,
+            uid: auth.uid,
+            full_name: auth.info.name,
+            #image_file_name: data.image,
+            provider: auth.provider
+        )
+        trainer.save!
+        trainer.skip_confirmation!
+        trainer
+      end
     end
   end
-  
+  def process_images(raw_input)
+  return [] if raw_input.nil?
+  urls = raw_input.split('http')
+  urls.shift
+  urls.map { |url| "http#{url}".strip.split(/\s\,\;/)[0] }
   end
 end

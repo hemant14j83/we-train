@@ -20,7 +20,8 @@ class Trainers::OmniauthCallbacksController < Devise::OmniauthCallbacksControlle
   	@trainer = Trainer.find_for_linkedin_oauth(request.env["omniauth.auth"])
 	if @trainer
 		@trainer.connect_to_linkedin(request.env["omniauth.auth"])
-		sign_in_and_redirect @trainer, :event => :authentication
+		@trainer.skip_confirmation!
+		sign_in_and_redirect @trainer#, :event => :authentication
 		set_flash_message(:notice, :success, :kind => "LinkedIn") if is_navigational_format?
 	else
 		flash[:notice] = "Couldn't find a user connected to your LinkedIn account. Please sign in and then connect your account to LinkedIn."
