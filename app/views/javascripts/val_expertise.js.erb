@@ -28,7 +28,7 @@ $(window.document).on('shown.bs.modal','.modal',function(){
         window.location="http://localhost:4000/recruiters/myaccont"
         submit.disabled=true;
       }
-      else{$('#pcat').hide();submit.disabled=false;}
+      else{$('#experr').hide();submit.disabled=false;}
     }
     expinfo.addEventListener("blur",checkexpinf,true);
     function checkexpinf(){
@@ -122,7 +122,7 @@ $(window.document).on('shown.bs.modal','.modal',function(){
 
   $('#exp_sub').on('click',function (){
       if (expselect.value==""){
-        alert("Please select category.");
+        alert("Please select expertise.");
         expselect.focus();
         $('#experr').show();
         return false;

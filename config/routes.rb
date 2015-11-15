@@ -17,7 +17,12 @@ Rails.application.routes.draw do
   resources :qualifications
   resources :expertises
   resources :programs
-  resources :appliedprograms
+  resources :appliedprograms do
+    collection do
+      get 'select/:id', :action => :select
+      get 'reject/:id', :action => :reject
+    end 
+  end
   resources :savedprograms
   
   resources :trainers do
@@ -33,7 +38,8 @@ Rails.application.routes.draw do
    #resources :expertises
   end
 
-  
+  get 'appliedprograms/select/:id', to: 'appliedprograms#select', via: :get
+  get 'appliedprograms/reject/:id', to: 'appliedprograms#reject', via: :get
   get '/auth/:provider/callback', to: 'sessions#create', via: :get
   get 'recruiters/myaccount' => "recruiters#show", as: :recruiter_root
   get 'recruiters/:id/update' => "recruiters/registrations#edit"
