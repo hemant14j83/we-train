@@ -360,26 +360,13 @@ p{
     background: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)),url('banners/home/workbg.jpg');
     width:100%;
     text-align: center;
-    background-size: cover;
     overflow: hidden;
     height: auto;    
-    height: 680px !important;
-}
-@media all and (orientation:portrait) {
-    .home-work {
-        height: auto;
-    }
-    .home-hire {
-        height: auto;
-    }
-}
-@media all and (orientation:landscape) {
-    .home-work {
-        height: auto;
-    }
-    .home-hire {
-        height: auto;
-    }
+   /* height: 680px !important;*/
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
 }
 .home-hire{
     background: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)),url('banners/home/hirebg.jpg');
@@ -388,7 +375,11 @@ p{
     background-size: cover;
     overflow: hidden;
     height: auto;
-    height: 680px !important;
+    /*height: 680px !important;*/
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
 } 
 .homebutton{
     background-color: #DE6B10;
