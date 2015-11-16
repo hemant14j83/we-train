@@ -21,6 +21,15 @@
     $("#footer").css("position","absolute").css("bottom",0);
     }
     });
+    $(window).load(function(){
+      var html = document.getElementsByTagName('html')[0];
+      var removeLoading = function() {        
+        setTimeout(function() {
+          html.className = html.className.replace(/loading/, '');
+        });
+      };
+      removeLoading();    
+    });
 </script>
 </head>
 <body>
