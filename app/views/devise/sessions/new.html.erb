@@ -3,7 +3,7 @@
 </div>
 <div class="col-xs-12 col-md-12 col-sm-12 tcenter">
   <h3 class="heading orange">Sign in for Trainers</h3><br>
-  <%= link_to "in | Sign in with LinkedIn",trainer_omniauth_authorize_path(:linkedin), :class=>"btn btn-success bannerbtn" %><br>
+  <%= link_to "in | Sign in with LinkedIn",trainer_omniauth_authorize_path(:linkedin),:id=>"linkauth", :class=>"btn btn-success bannerbtn" %><br>
   <h3>Or</h3>
   <h4><b>Sign in with Email</b></h4><br>
    <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
@@ -23,7 +23,7 @@
           <%#<p class="orange smalltext">To find your next training opportunity.</p>%>
         </div>
         <div class="form-group">
-          <%= render "recruiters/shared/links" %>
+          <%= render "devise/shared/links" %>
         </div>
       </div>
   <%end%> 

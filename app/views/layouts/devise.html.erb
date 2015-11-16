@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html class="loading">
 <head>
   <title>Trainers My Account - Traix </title>
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
@@ -14,7 +14,21 @@
       setTimeout(function(){
       $("#notice").hide("slow");
      },10000);
-  });
+    
+      $('#linkauth').on('click',function(){
+        var html = document.getElementsByTagName('html')[0];
+        html.className = "loading";
+      });
+    });
+    $(window).load(function(){
+      var html = document.getElementsByTagName('html')[0];
+      var removeLoading = function() {        
+        setTimeout(function() {
+          html.className = html.className.replace(/loading/, '');
+        });
+      };
+      removeLoading();    
+    });
   </script>
   <script type="text/javascript">
     $(document).ready(function() {
