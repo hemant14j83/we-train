@@ -131,7 +131,7 @@ $(window.document).on('shown.bs.modal','.modal',function(){
 			removeOptions(document.getElementById('program_expertise'));
 			for(count=0;count<expertlists.length;count++){
 				var option = expertlists[count];
-				$('#program_expertise').append('<option value='+option[1]+'>'+option[1]+'</option>');
+				$('#program_expertise').append('<option value="'+option[1]+'">'+option[1]+'</option>');
 			}			
 			
 	});
