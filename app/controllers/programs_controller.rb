@@ -42,11 +42,11 @@ class ProgramsController < ApplicationController
  end
 
  def index
- 	@program = Program.by_status('active').recent  
+ 	@program = Program.paginate(:page=>params[:page],:per_page=>10).by_status('active').recent  
   if params[:search]
-    @program = Program.search(params[:search]).by_status('active').recent
+    @program = Program.paginate(:page=>params[:page],:per_page=>10).search(params[:search]).by_status('active').recent
   else
-    @program = Program.by_status('active').recent  
+    @program = Program.paginate(:page=>params[:page],:per_page=>10).by_status('active').recent  
   end
   if @recruiter_signed_in
     @recruiter=Recruiter.find(current_recruiter.id)  
