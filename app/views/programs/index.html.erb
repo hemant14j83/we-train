@@ -25,7 +25,7 @@ $(document).ready(function(){
     <div class="col-xs-10 col-md-10 col-sm-10">
       <%= text_field_tag :search, params[:search], placeholder: "Search Programs",:class=>"form-control" %>
       <% if @program.present? %>
-        <%if params[:search]=''%>
+        <%if params[:search].nil? %>
           <p>Showing all programs.</p>
         <%else%>
           <p>Showing result matching "<%= params[:search] %>".</p>
@@ -103,5 +103,8 @@ $(document).ready(function(){
           <div style="margin-bottom:5px;">&nbsp;</div>
         </tbody>
       </table>
+    </div>
+    <div class="col-xs-12 col-sm-12 col-md-12 pagination" style="text-align:right">
+      <%= will_paginate @program, renderer: BootstrapPagination::Rails %>
     </div>
 </div>
