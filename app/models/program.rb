@@ -15,6 +15,10 @@ class Program < ActiveRecord::Base
   validates :duration, length:{in: 1..2}
   validates :duration, :numericality =>  {:only_integer=>true, :message => ' is invalid.'}
 
+  def self.search(search)
+    where("name LIKE ?","%#{search}%")
+    where("program_details LIKE ?","%#{search}%")
+  end
   def validstartdate?
     if self.start_date.to_date < Date.today
       self.errors.add(:base,"Invalid Start Date")     
