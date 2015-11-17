@@ -31,6 +31,7 @@ class AppliedprogramsController < ApplicationController
     @trainer=Trainer.find(current_trainer.id)
     @program=Program.find(params[:program_id])
     @t_expertise=Expertise.find_by(trainer_id: current_trainer.id,expertise_in: @program.expertise)
+    @sp=Savedprogram.find_by(program_id: params[:program_id])
 
     @recruiterid=@program.recruiter_id
     #@sdprogram=@trainer.appliedprograms.build(:program_id=>params[:program_id],:trainer_id=>params[:trainer_id])
@@ -39,6 +40,7 @@ class AppliedprogramsController < ApplicationController
       if @t_expertise
         if @appliedprogram.save
           flash[:notice]="Your application for #{@program.name} sent to recruiter." 
+          @sp.update_attributes(:status=>'done')
           Notifier.mailtotrainer(@appliedprogram,@program,@trainer).deliver_now
           Notifier.mailtorecruiter(@appliedprogram,@program,@recruiter).deliver_now
           redirect_to programs_path
