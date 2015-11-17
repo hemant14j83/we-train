@@ -22,38 +22,42 @@ $(document).ready(function(){
         <%= render partial: "shared/flash_messages", flash: flash %> 
   </div>
   <%= form_tag(programs_path, :method => "get", id: "search-form") do %>
-    <div class="col-xs-8 col-md-8 col-sm-8">
+    <div class="col-xs-10 col-md-10 col-sm-10">
       <%= text_field_tag :search, params[:search], placeholder: "Search Programs",:class=>"form-control" %>
+      <% if @program.present? %>
+        <%if params[:search]=''%>
+          <p>Showing all programs.</p>
+        <%else%>
+          <p>Showing result matching "<%= params[:search] %>".</p>
+        <%end%>
+      <% else %>
+        <p>There are no programs containing the term(s) <%= params[:search] %>.</p>
+      <% end %>
     </div>
-    <div class="col-xs-4 col-md-4 col-sm-4">
+    <div class="col-xs-2 col-md-2 col-sm-2">
       <%= submit_tag "Search",:class=>"btn btn-success glyphicon glyphicon-search pull-left" %>
     </div>
-  <% end %>
-  <div class="col-xs-12 col-md-12 col-sm-12">
-    <% if @program.present? %>
-      <%if params[:search]=''%>
-        <p>Showing all programs.</p>
-      <%else%>
-        <p>Showing result matching "<%= params[:search] %>".</p>
-      <%end%>
-    <% else %>
-      <p>There are no programs containing the term(s) <%= params[:search] %>.</p>
-    <% end %>
-  </div>
-  <h4 class="orange"><b>Available Training Programs</b></h4>
-  <% @program.each do |program| %>
-    <div class="col-xs-12 col-sm-12 col-md-12 progbox">
-      <table class="table">
+  <% end %>    
+  <div class="col-xs-12 col-sm-12 col-md-12 lato table-responsive">
+    <h4 class="orange"><b>Available Training Programs</b></h4>  
+      <table class="table table-hover">
         <thead>
           <tr class="textheading">
-            <th>Project Title</th><th>Project Details</th><th>Dates</th><th>Option</th>
+            <th width="15%">Listed Date</th>
+            <th width="60%">Project Details</th>
+            <th width="15%">Dates</th>
+            <th width="10%">Option</th>
           </tr>
         </thead>
-        <tbody class="orange">
-          <tr>
-            <td width="15%"><%= program.name %></td>
-            <td width="65%">
-              <%= program.program_details %>
+        <tbody>
+        <% @program.each do |program| %>
+          <tr class="">
+            <td width="15%"><%= program.created_at.to_date %></td>
+            <td width="60%">
+              <span class="orange"><%= program.name %></span><br>
+              <%= program.program_details %><br><br>
+              <u>Expertise</u><br>
+              <span class="orange"><%= program.expertise %></span>
               <%#<hr>
               <table width="100%">
                 <tr>
@@ -76,7 +80,7 @@ $(document).ready(function(){
                 </tr>
               </table>%>
             </td>
-            <td width="10%">
+            <td width="15%">
               <span class="center"><%= program.start_date %><br>to<br><%= program.end_date %></span>
             </td>
             <% if trainer_signed_in? %> 
@@ -94,9 +98,10 @@ $(document).ready(function(){
                 <%= link_to image_tag("icons/apply.png",:width=>"40%"), appliedprograms_path(:program_id=>program),:method=>:post %>
               </td>
             <%end%>
-          </tr>
+          </tr>          
+          <%end%>
+          <div style="margin-bottom:5px;">&nbsp;</div>
         </tbody>
       </table>
     </div>
-  <%end%>
 </div>

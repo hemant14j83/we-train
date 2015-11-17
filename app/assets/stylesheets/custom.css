@@ -547,6 +547,12 @@ a.homebutton:hover{
     color: black;
     font-weight: bold;
 }
+.progheading{
+    display: block;
+    width: 100%;
+    height: auto;
+    position: relative;   
+}
 .progbox {
     margin: 5px auto;
     display: block;
