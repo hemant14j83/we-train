@@ -61,7 +61,7 @@ $(document).ready(function(){
               <span class="orange"><%= program.expertise %></span>
             </td>
             <td width="20%">
-              <% if program.food_expense =='No' || program.travel_expense == 'No' || program.stay_expense == 'No' %>
+              <% if program.food_expense =='No' && program.travel_expense == 'No' && program.stay_expense == 'No' %>
                 <span class="glyphicon glyphicon-remove orange"></span>
                 <span class="orange"> Expenses not included</span>
               <%else%>
