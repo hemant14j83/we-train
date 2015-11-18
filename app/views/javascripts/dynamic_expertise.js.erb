@@ -91,7 +91,7 @@ $(window.document).on('shown.bs.modal','.modal',function(){
     if (program_start_date_3i.value < today.getDate() || program_start_date_2i.value <= today.getMonth()+1 || program_start_date_1i.value <= today.getFullYear()){
       if (program_start_date_3i.value < today.getDate() && program_start_date_2i.value <= today.getMonth()+1){
         $('program_start_date_3i').css("bordercolor","red");
-        $('#enddateerror').show();
+        $('#startdateerror').show();
         var submit=document.getElementById('submitprog');
         submit.disabled=true;
         }
@@ -154,6 +154,8 @@ function removeOptions(selectbox)
     }
 }
 $('#submitprog').on('click',function (){
+      checkstDate();
+      checkDate();
       if (catselect.value==""){
         alert("Please select category.");
         catselect.focus();
