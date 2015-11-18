@@ -46,13 +46,16 @@
 				</div>
 				<div class="col-md-1"></div>
 			</div>
-			<div class="col-xs-12 col-md-12 col-sm-12">
-				Program Dates<br>
-				<%= f.date_select :start_date,:start_year => Date.today.year, order:[:day,:month,:year],:class=>"form-control" %>
-				&nbsp;to&nbsp;				
-				<%= f.date_select :end_date,:start_year => Date.today.year, order:[:day,:month,:year],:class=>"form-control" %>
-				<span id='startdateerror' style="color:red;font-size:12px;">Error : Invalid Start Date<br></span>
-				<span id='enddateerror' style="color:red;font-size:12px;">Error : Invalid End Date<br></span>
+			<div class="col-xs-12 col-md-6 col-sm-12 right">
+				Start Date<br>
+				<%= f.date_select :start_date,:start_year => Date.today.year, order:[:day,:month,:year],:use_short_month=>true,:class=>"form-control" %>
+					
+				<span id='startdateerror' style="color:red;font-size:12px;"><br>Error : Invalid Start Date</span>
+			</div>
+			<div class="col-xs-12 col-md-6 col-sm-12">
+				End Date<br>
+					<%= f.date_select :end_date,:start_year => Date.today.year, order:[:day,:month,:year],:use_short_month=>true,:class=>"form-control" %>
+				<span id='enddateerror' style="color:red;font-size:12px;"><br>Error : Invalid End Date</span>
 			</div>
 			<div class="col-xs-12 col-md-12 col-sm-12 topmargin">
 				<div class="col-md-1"></div>
@@ -76,18 +79,18 @@
 					per<%= f.select :payment_type,['Day','Hour'],:class=>"form-control" %>&nbsp;in&nbsp;<%= f.select :currency,['INR','USD'],:class=>"form-control" %>
 				</div>
 			</div>
-			<%#<div class="col-xs-12 col-md-12 col-sm-12 tcenter topmargin">
+			<div class="col-xs-12 col-md-12 col-sm-12 tcenter topmargin">
 				<p>Along With</p>
 				<div class="col-md-4 col-xs-12 col-sm-12">
-					<%= f.check_box :travel_expense %><%# Travel Expenses
+					<%= f.check_box :travel_expense %> Travel Expenses
 				</div>
-				<div class="col-md-4 col-xs-12 col-sm-12"> 
-					<%= f.check_box :food_expense %> <%#Food Expenses
+				<div class="col-md-4 col-xs-12 col-sm-12"> Food Expenses
+					<%= f.check_box :food_expense %>
 				</div>
 				<div class="col-md-4 col-xs-12 col-sm-12">
-					<%= f.check_box :stay_expense %> <%#Travel Expenses
+					<%= f.check_box :stay_expense %> Stay Expenses
 				</div>
-			</div>%>
+			</div>
 		</div>		
 		<div class="col-xs-12 col-md-12 col-sm-12 topmargin" style="margin-bottom:10px;">
 			<table>

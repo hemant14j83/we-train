@@ -44,7 +44,8 @@ $(document).ready(function(){
         <thead>
           <tr class="textheading">
             <th width="15%">Listed Date</th>
-            <th width="60%">Project Details</th>
+            <th width="40%">Project Details</th>
+            <th width="20%">Covered Expenses</th>
             <th width="15%">Dates</th>
             <th width="10%">Option</th>
           </tr>
@@ -53,33 +54,31 @@ $(document).ready(function(){
         <% @program.each do |program| %>
           <tr class="">
             <td width="15%"><%= program.created_at.to_date %></td>
-            <td width="60%">
+            <td width="40%">
               <span class="orange"><%= program.name %></span><br>
               <%= program.program_details %><br><br>
               <u>Expertise</u><br>
               <span class="orange"><%= program.expertise %></span>
-              <%#<hr>
-              <table width="100%">
-                <tr>
-                  <td width="15%"><b><u>Location</u></b><br><%= program.city %><%#</td>
-                  <td><b><u>Payment</u></b><br> <%= program.payment_detail%><%# <%= program.currency%><%# <%= program.payment_type %><%#</td>
-                  <% if program.food_expense !='No' || program.travel_expense != 'No' || program.stay_expense != 'No' %><%#
-                  <td width="50%">
-                    <b><u>Other Inc Expenses</u></b><br>
-                    <% if program.food_expense != 'No' %><%#
-                      Food Expenses,
-                    <%end%><%#
-                    <% if program.travel_expense != 'No' %><%#
-                      Travelling Expenses,
-                    <%end%><%#
-                    <% if program.stay_expense != 'No' %><%#
-                      Lodging Expenses.
-                    <%end%><%#
-                  </td>
-                  <%end%><%#
-                </tr>
-              </table>%>
             </td>
+            <td width="20%">
+              <% if program.food_expense =='No' || program.travel_expense == 'No' || program.stay_expense == 'No' %>
+                <span class="glyphicon glyphicon-remove orange"></span>
+                <span class="orange"> Expenses not included</span>
+              <%else%>
+                <% if program.food_expense =='Yes' %>
+                  <span class="glyphicon glyphicon-ok" style="color:#2C8E00;"></span>
+                  <span style="color:#2C8E00;margin-bottom:5px;"> Food expenses included.<br></span>
+                <%end%>
+                <% if program.travel_expense =='Yes' %>
+                  <span class="glyphicon glyphicon-ok" style="color:#2C8E00;"></span>
+                  <span style="color:#2C8E00;margin-bottom:5px;"> Travel expenses included.<br></span>
+                <%end%>
+                <% if program.stay_expense =='Yes' %>
+                  <span class="glyphicon glyphicon-ok" style="color:#2C8E00;"></span>
+                  <span style="color:#2C8E00;margin-bottom:5px;"> Stay expenses included.<br></span>
+                <%end%>
+              <%end%>
+            </td>            
             <td width="15%">
               <span class="center"><%= program.start_date %><br>to<br><%= program.end_date %></span>
             </td>
