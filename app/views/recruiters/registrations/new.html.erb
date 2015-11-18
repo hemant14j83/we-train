@@ -1,3 +1,18 @@
+<script type="text/javascript">
+function checkPasswordMatch() {
+    var password = $("#rpass").val();
+    var confirmPassword = $("#rcpass").val();
+
+    if (password != confirmPassword)
+        $("#divCheckPasswordMatch").html("Passwords do not match!");
+    else
+        $("#divCheckPasswordMatch").html("Passwords match.");
+}
+
+$(document).ready(function () {
+   $("#txtConfirmPassword").keyup(checkPasswordMatch);
+});  
+</script>
 <div class="col-xs-12 col-md-12 col-sm-12 topmargin">
     <%= render partial: "shared/flash_messages", flash: flash %> 
 </div>
@@ -19,14 +34,17 @@
         </div>
         <div class="col-xs-12 col-m2-12 col-sm-12">
           <div class="form-group col-md-6 col-xs-12 col-sm-12" style="float:left;">
-            <%= f.password_field :password, autocomplete: "off", :placeholder => "Password", :class=>"form-control" %>
+            <%= f.password_field :password, autocomplete: "off",:id=>"rpass", :placeholder => "Password", :class=>"form-control" %>
           </div> 
           <div class="form-group col-md-6 col-xs-12 col-sm-12" style="margin-left:-3%;">
-            <%= f.password_field :password_confirmation, autocomplete: "off", :placeholder => "Confirm Password", :class=>"form-control" %>
+            <%= f.password_field :password_confirmation, autocomplete: "off",:id=>"rcpass",:onChange=>"checkPasswordMatch();", :placeholder => "Confirm Password", :class=>"form-control" %>
+          </div>
+          <div class="form-group col-md-6 col-xs-12 col-sm-12" style="margin-left:-3%;">
+            <div class="registrationFormAlert" id="divCheckPasswordMatch">
           </div>
         </div>
         <div class="form-group col-md-12 col-xs-12 col-sm-12">
-          <%= f.submit "Sign up", :class=>"btn btn-success" %>
+          <%= f.button "Sign up",:onClick=>"checkPasswordMatch();", :class=>"btn btn-success" %>
           <p class="orange smalltext">To find suitable trainer for your next training program.</p>
         </div>        
         <div class="form-group col-md-12 col-xs-12 col-sm-12">
