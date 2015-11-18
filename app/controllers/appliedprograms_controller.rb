@@ -51,7 +51,7 @@ class AppliedprogramsController < ApplicationController
           redirect_to programs_path
         end
       else
-        flash[:notice]='This program does not match your expertise.'
+        flash[:notice]="This program does not match your expertise. #{view_context.link_to('Edit Your Expertise','/trainers/profile#showexpert')}"
           redirect_to programs_path
       end
     rescue ActiveRecord::RecordNotUnique => e
