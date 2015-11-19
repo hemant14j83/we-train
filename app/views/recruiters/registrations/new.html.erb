@@ -3,10 +3,12 @@ function checkPasswordMatch() {
     var password = $("#rpass").val();
     var confirmPassword = $("#rcpass").val();
 
-    if (password != confirmPassword)
-        $("#divCheckPasswordMatch").html("Passwords do not match!");
-    else
-        $("#divCheckPasswordMatch").html("Passwords match.");
+    if (password != confirmPassword){
+        $("#divCheckPasswordMatch").html("<span style='color:red;'>Passwords do not match!</span>");
+      }
+    else{
+        $("#divCheckPasswordMatch").html("<span style='color:#30AD23;'>Passwords match.</span>");
+      }
 }
 
 $(document).ready(function () {
@@ -40,7 +42,7 @@ $(document).ready(function () {
             <%= f.password_field :password_confirmation, autocomplete: "off",:id=>"rcpass",:onChange=>"checkPasswordMatch();", :placeholder => "Confirm Password", :class=>"form-control" %>
           </div>
           <div class="form-group col-md-6 col-xs-12 col-sm-12" style="margin-left:-3%;">
-            <div class="registrationFormAlert" id="divCheckPasswordMatch">
+            <div class="registrationFormAlert" id="divCheckPasswordMatch"></div>
           </div>
         </div>
         <div class="form-group col-md-12 col-xs-12 col-sm-12">
