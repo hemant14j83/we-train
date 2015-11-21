@@ -735,7 +735,7 @@ a{
 .lato{
     font-family: 'lato',arial;
     font-weight: normal;
-    display: block;
+    /*display: block;*/
 }
 .active{
     background-color: #e7e7e7;

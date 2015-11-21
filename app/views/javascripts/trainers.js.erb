@@ -9,3 +9,72 @@ $(document).ready(function(){
       	}else{$("#niltpass").hide();}
 	});      
 });
+$(window.document).on('shown.bs.modal','.modal',function(){
+  $('#exprefnmerr').hide();
+  $('#exprefnoerr').hide();
+  $('#exprefemerr').hide();
+  $('#exprefnmerr1').hide();
+  $('#exprefnoerr1').hide();
+  $('#exprefemerr1').hide();
+
+  var submit=document.getElementById("expupdate");
+  var profexp=document.getElementById("expertise_professional_expertise_info");
+  var exprefnm=document.getElementById("refname");
+  var exprefno=document.getElementById("refnumber");
+  var exprefem=document.getElementById("refemail");
+  var exprefnm1=document.getElementById("refname1");
+  var exprefno1=document.getElementById("refnumber1");
+  var exprefem1=document.getElementById("refemail1");
+
+  exprefnm.addEventListener("blur",checkname,true);
+    function checkname(){
+    	if(exprefnm.value==""){
+	        $('#exprefnmerr').show();
+	        exprefnm.focus();
+	        submit.disabled=true;
+  		}else{$('#exprefnmerr').hide();submit.disabled=false;;}	
+    }
+  exprefno.addEventListener("blur",checkno,true);
+    function checkno(){
+    	if(exprefno.value==""){
+	        $('#exprefnoerr').show();
+	        exprefno.focus();
+	        submit.disabled=true;
+  		}else{$('#exprefnoerr').hide();submit.disabled=false;;}	
+    }
+  exprefem.addEventListener("blur",checkem,true);
+    function checkem(){
+    	if(exprefem.value==""){
+	        $('#exprefemerr').show();
+	        exprefem.focus();
+	        submit.disabled=true;
+  		}else{$('#exprefemerr').hide();submit.disabled=false;;}	
+    }
+  exprefnm1.addEventListener("blur",checkname1,true);
+    function checkname1(){
+    	if(exprefnm1.value==""){
+	        $('#exprefnmerr1').show();
+	        exprefnm1.focus();
+	        submit.disabled=true;
+  		}else{$('#exprefnmerr1').hide();submit.disabled=false;;}	
+    }
+  exprefno1.addEventListener("blur",checkno1,true);
+    function checkno1(){
+    	if(exprefno1.value==""){
+	        $('#exprefnoerr1').show();
+	        exprefno1.focus();
+	        submit.disabled=true;
+  		}else{$('#exprefnoerr1').hide();submit.disabled=false;;}	
+    }
+  exprefem1.addEventListener("blur",checkem1,true);
+    function checkem1(){
+    	if(exprefem1.value==""){
+	        $('#exprefemerr1').show();
+	        exprefem1.focus();
+	        submit.disabled=true;
+  		}else{$('#exprefemerr1').hide();submit.disabled=false;;}	
+    }
+  $("#expupdate").on('click',function(){  	
+	checkname();checkem();checkno();checkname1();checkno1();checkem1();	
+  });
+});
