@@ -1,6 +1,6 @@
 class Trainer < ActiveRecord::Base
   has_many :qualifications, :dependent => :destroy
-  has_many :expertises, :dependent => :destroy
+  has_many :expertises,->{order "created_at DESC"}, :dependent => :destroy
   has_many :savedprograms,->{order "created_at DESC"},:dependent => :destroy
   has_many :appliedprograms, :dependent => :destroy
 

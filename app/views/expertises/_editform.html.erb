@@ -1,0 +1,75 @@
+<script type="text/javascript">
+  function onlyNos(e, t) {
+            try {
+                if (window.event) {
+                    var charCode = window.event.keyCode;
+                }
+                else if (e) {
+                    var charCode = e.which;
+                }
+                else { return true; }
+                if (charCode > 31 && (charCode < 48 || charCode > 57)) {
+                    return false;
+                }
+                return true;
+            }
+            catch (err) {
+                alert(err.Description);
+            }
+        }
+</script>
+<%= form_for(expertise) do |f| %>
+    <div class="col-xs-12 col-sm-12 col-md-12">
+      <table class="table table-bordered">
+        <tr>
+          <td>Expertise</td>
+          <td><%= f.text_field :expertise_in, :disabled=>true, :class=>"form-control col-xs-6" %></td>
+        </tr>
+        <tr>
+          <td>Professional</td>
+          <td><%= f.text_field :professional_expertise_info, :class=>"form-control col-xs-6" %></td>
+        </tr>
+      </table>
+      <p><b>Reference Details</b></p>
+      <table class="table table-bordered">
+        <tr>
+          <th>Name</th><th>Number</th><th>Email</th>
+        </tr>
+        <tr>
+          <td>
+            <%= f.text_field :reference_name,:id=>"refname", :class=>"form-control" %>
+            <span style="color:red;font-size:12px;" id="exprefnmerr">Reference Name is Required.</span>
+          </td>
+          <td>
+            <%= f.text_field :reference_number, :id=>"refnumber",:onkeypress=>"return onlyNos(event,this);",:class=>"form-control" %>
+            <span style="color:red;font-size:12px;" id="exprefnoerr">Number is Required.</span>
+          </td>
+          <td>
+            <%= f.text_field :reference_email, :id=>"refemail",:class=>"form-control" %>
+            <span style="color:red;font-size:12px;" id="exprefemerr">Email is Required.</span>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <%= f.text_field :reference_name1, :id=>"refname1",:class=>"form-control" %>
+            <span style="color:red;font-size:12px;" id="exprefnmerr1">Reference Name is Required.</span>
+          </td>
+          <td>
+            <%= f.text_field :reference_number1, :id=>"refnumber1",:onkeypress=>"return onlyNos(event,this);",:class=>"form-control" %>
+            <span style="color:red;font-size:12px;" id="exprefnoerr1">Number is Required.</span>
+          </td>
+          <td>
+            <%= f.text_field :reference_email1, :id=>"refemail1",:class=>"form-control" %>
+            <span style="color:red;font-size:12px;" id="exprefemerr1">Email is Required.</span>
+          </td>
+        </tr>
+      </table>
+      <table width="100%">
+        <tr>
+          <td><%= f.submit :"Update Details",:id=>"expupdate", :onClick=>"checkform();",:class=> 'btn btn-success col-xs-11' %></td>
+          <td><%= f.submit :"Cancel", :class=> 'btn btn-warning col-xs-11' %></td>
+        </tr>
+      </table>
+    <div style="height:10px;"></div>
+  </div>
+<%end%>

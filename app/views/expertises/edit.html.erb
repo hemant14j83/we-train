@@ -1,37 +1,103 @@
-<div class="col-xs-12">
-	<div class="panel panel-success">
+<style>
+  div.dialog {
+    width: 95%;
+    max-width: 33em;
+    margin: 4em auto 0;
+  }
+
+  div.dialog > div {
+    border: 1px solid #CCC;
+    border-right-color: #999;
+    border-left-color: #999;
+    border-bottom-color: #BBB;
+    border-top: #B00100 solid 4px;
+    border-top-left-radius: 9px;
+    border-top-right-radius: 9px;
+    background-color: white;
+    padding: 7px 12% 0;
+    box-shadow: 0 3px 8px rgba(50, 50, 50, 0.17);
+  }
+
+  h1 {
+    font-size: 100%;
+    color: #730E15;
+    line-height: 1.5em;
+  }
+
+  div.dialog > p {
+    margin: 0 0 1em;
+    padding: 1em;
+    background-color: #F7F7F7;
+    border: 1px solid #CCC;
+    border-right-color: #999;
+    border-left-color: #999;
+    border-bottom-color: #999;
+    border-bottom-left-radius: 4px;
+    border-bottom-right-radius: 4px;
+    border-top-color: #DADADA;
+    color: #666;
+    box-shadow: 0 3px 8px rgba(50, 50, 50, 0.17);
+  }
+</style>
+<div class="col-xs-12 col-sm-12 col-md-12">
+	<div class="panel panel-success"></div>
+  <% if @trainer.role=='trainer'%>      
+    <div class="dialog">
+      <div>
+        <h1>The page you were looking for doesn't exist.</h1>
+        <p>You may have mistyped the address or the page may have moved.</p>
+      </div>
+      <p>If you are the application owner check the logs for more information.</p>
+    </div>
+    
+  <%elsif @trainer.role=='admin'%>
+    <div class="panel panel-success">
       <div class="panel-heading">
         <h3 class="panel-title"><b>Approve / Reject Expertise</b></h3>
        </div>
      </div>
-
-<%= form_for(@expertise) do |f| %>
-<div class="col-xs-12">
-  <table class="table table-bordered">
-    <tr><td>Expertise</td><td><%= f.text_field :expertise_in, :disabled=>true, :class=>"form-control col-xs-6" %></td></tr>
-    <tr><td>Professional</td><td><%= f.text_field :professional_expertise_info, :disabled=>true, :class=>"form-control col-xs-6" %></td></tr>
-    <tr><td>Reference Name</td><td><%= f.text_field :reference_name, :disabled=>true, :class=>"form-control" %></td></tr>
-    <tr><td>Reference Number</td><td><%= f.text_field :reference_number, :disabled=>true, :class=>"form-control" %></td></tr>
-    <tr><td>Reference Email</td><td><%= f.text_field :reference_email, :disabled=>true, :class=>"form-control" %></td></tr>
-    <tr>
-      <td>Verified Status</td>
-      <td><%= f.select :expertise_verified_status,['UnVerified','Verified'], :class=>"form-control" %></td>
-    </tr>
-    <tr>
-      <td>Select Comments</td>
-      <td>
-        <%= f.select :comments,['Call Not Received','Wrong Details','Positive','Negative','Asked to call back'], :class=>"form-control" %>
-      </td>
-    </tr>
-  </table>
-
-  <table width="100%">
-      <tr>
-        <td><%= f.submit :"Update Details", :class=> 'btn btn-success col-xs-11' %></td>
-        <td><%= f.submit :"Cancel", :class=> 'btn btn-warning col-xs-11' %></td>
-      </tr>
-  </table>
-  <div style="height:10px;"></div>
+  <%= form_for(@expertise) do |f| %>
+    <div class="col-xs-12 col-sm-12 col-md-12">
+      <table class="table table-bordered">
+        <tr>
+          <td>Expertise</td>
+          <td><%= f.text_field :expertise_in, :disabled=>true, :class=>"form-control col-xs-6" %></td>
+        </tr>
+        <tr>
+          <td>Professional</td>
+          <td><%= f.text_field :professional_expertise_info, :disabled=>true, :class=>"form-control col-xs-6" %></td>
+        </tr>
+        <tr>
+          <td>Reference Name</td>
+          <td><%= f.text_field :reference_name, :disabled=>true, :class=>"form-control" %></td>
+        </tr>
+        <tr>
+          <td>Reference Number</td>
+          <td><%= f.text_field :reference_number, :disabled=>true, :class=>"form-control" %></td>
+        </tr>
+        <tr>
+          <td>Reference Email</td>
+          <td><%= f.text_field :reference_email, :disabled=>true, :class=>"form-control" %></td>
+        </tr>
+        <tr>
+          <td>Verified Status</td>
+          <td><%= f.select :expertise_verified_status,['UnVerified','Verified'], :class=>"form-control" %></td>
+        </tr>
+        <tr>
+          <td>Select Comments</td>
+          <td>
+            <%= f.select :comments,['Call Not Received','Wrong Details','Positive','Negative','Asked to call back'], :class=>"form-control" %>
+          </td>
+        </tr>
+      </table>
+      <table width="100%">
+        <tr>
+          <td><%= f.submit :"Update Details", :class=> 'btn btn-success col-xs-11' %></td>
+          <td><%= f.submit :"Cancel", :class=> 'btn btn-warning col-xs-11' %></td>
+        </tr>
+      </table>
+    <div style="height:10px;"></div>
+    <%end%>
   <%end%>
   </div>
 </div>
