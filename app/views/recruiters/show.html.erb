@@ -5,6 +5,7 @@
       $("#postedprograms").hide();
       $("#appliedprograms").show();
       $('#showappliedprograms').addClass("active");
+
       $("#showpostedprograms").click(function(){
         $("#recprofilepage").hide();
         $("#postedprograms").show();
@@ -34,8 +35,14 @@
         $("#recprofile").show();
         $("#recdash").hide();
       });
-      }
-  );
+
+
+      if(window.location.hash){
+        var id=window.location.hash;
+        $(id).click();
+      }else{$("#showappliedprograms").click()}
+
+    });
 $(document).ready(function(){
       setTimeout(function(){
       $("#notice").hide("slow");
