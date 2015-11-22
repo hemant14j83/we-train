@@ -36,10 +36,10 @@
 		</div>
 		<div class="col-xs-12 col-md-12 col-sm-12">
 			<div class="col-xs-12 col-md-6 col-sm-12">
-				<%= f.label :start_date, "Course Start Date" %> <br> <%= f.date_select :start_date,:start_year=>1980,:class=>"form-control" %>
+				<%= f.label :start_date, "Course Start Date" %> <br> <%= f.date_select :start_date,:start_year=>1980,:use_short_month=>true,:class=>"form-control" %>
 			</div>
 			<div class="col-xs-12 col-md-6 col-sm-12">
-				<%= f.label :end_date, "Course End Date" %> <br> <%= f.date_select :end_date,:start_year=>1980,:end_year=>Date.today.year,:class=>"form-control" %>
+				<%= f.label :end_date, "Course End Date" %> <br> <%= f.date_select :end_date,:start_year=>1980,:end_year=>Date.today.year,:use_short_month=>true,:class=>"form-control" %>
 			</div>
 			<div class="col-xs-12 col-md-6 col-sm-12">
 				<%= f.label :duration, "Duration" %> : <%= f.text_field :duration,:placeholder=>"In Months",:maxlength=>"3",:onkeypress=>"return onlyNos(event,this);",:class=>"form-control" %>

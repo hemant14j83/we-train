@@ -1,0 +1,88 @@
+<script type="text/javascript">
+  function onlyNos(e, t) {
+            try {
+                if (window.event) {
+                    var charCode = window.event.keyCode;
+                }
+                else if (e) {
+                    var charCode = e.which;
+                }
+                else { return true; }
+                if (charCode > 31 && (charCode < 48 || charCode > 57)) {
+                    return false;
+                }
+                return true;
+            }
+            catch (err) {
+                alert(err.Description);
+            }
+        }
+</script>
+<%= form_for(qualification) do |f| %>
+    <div class="col-xs-12 col-sm-12 col-md-12">
+      <table class="table table-bordered">
+        <tr>
+          <td>Course Name</td>
+          <td>
+            <%= f.text_field :course_name,:id=>"qualcourse", :class=>"form-control col-xs-6" %>
+            <span style="color:red;font-size:12px;" class="hidden" id="course_err">Course Name is Required</span>
+          </td>
+        </tr>
+        <tr>
+          <td>Course Type</td>
+          <td>
+            <%= f.select :course_type, ['Graduation','Post Graduation','Diploma','Others'],:class=>"form-control col-xs-6" %>
+          </td>
+        </tr>
+        <tr>
+          <td>College/University</td>
+          <td>
+            <%= f.text_field :completed_from,:id=>"coluni", :class=>"form-control col-xs-6" %>
+            <span style="color:red;font-size:12px;" class="hidden" id="colunierr">College/University Name is Required</span>
+          </td>
+        </tr>
+        <tr>
+          <td>Start Date</td>
+          <td>
+            <%= f.date_select :start_date,:start_year=>1980, :class=>"form-control" %>
+            <span style="color:red;font-size:12px;" class="hidden" id="exprefnmerr">Reference Name is Required.</span>
+          </td>
+        </tr>
+        <tr>
+          <td>End Date</td>
+          <td>
+            <%= f.date_select :end_date,:start_year=>1980,:end_year=>Date.today.year,:class=>"form-control" %>
+            <span style="color:red;font-size:12px;" class="hidden" id="exprefnoerr">Number is Required.</span>
+          </td>
+        </tr>
+        <tr>
+          <td>Percentage</td>
+          <td>
+            <%= f.text_field :percentage,:id=>"qualper", :onkeypress=>"return onlyNos(event,this);",:class=>"form-control",:maxlength=>"3" %>
+            <span style="color:red;font-size:12px;" class="hidden" id="percenterr">Please mention percentage</span>
+          </td>
+        </tr>
+        <tr>
+          <td>Grade</td>
+          <td>
+            <%= f.text_field :grade,:id=>"qualgrade",:class=>"form-control" %>
+            <span style="color:red;font-size:12px;" class="hidden" id="grade_err">Please mention grade.</span>
+          </td>
+        </tr>
+        <tr>
+          <td>Description</td>
+          <td>
+            <%= f.text_area :course_description, :id=>"qualdesc",:class=>"form-control" %>
+            <span style="color:red;font-size:12px;" class="hidden" id="qualerr">Reference Name is Required.</span>
+          </td>
+        </tr>
+      </table>
+      <table width="100%">
+        <tr>
+          <td><%= f.submit :"Update Details",:id=>"qualupdate", :onClick=>"",:class=> 'btn btn-success col-xs-11' %></td>
+          <td><%= f.submit :"Cancel", :class=> 'btn btn-warning col-xs-11' %></td>
+        </tr>
+      </table>
+    <div style="height:10px;"></div>
+  </div>
+<%end%>
