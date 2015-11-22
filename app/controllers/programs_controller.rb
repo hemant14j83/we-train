@@ -63,16 +63,25 @@ class ProgramsController < ApplicationController
     @program = Program.paginate(:page=>params[:page],:per_page=>10).by_status('active').recent  
   end
   if @recruiter_signed_in
-    @recruiter=Recruiter.find(current_recruiter.id)  
+    @recruiter=Recruiter.find(current_recruiter.id)      
   end
  end
 
  def edit
+  @program=Program.find(params[:id])
+  @status=Appliedprogram.find_by(program_id: @program)
+  render '404'
+  #if @status=params[:id]
+    #render partial: 'naprogram'
+  #  flash[:notice]="Trainers have applied for this program, updation not allowed now."
+  #  redirect_to "/recruiters/myaccount#showpostedprograms"
+  #else
+  #  render partial: 'program'
+  #end
  end
 
  def update
   @program=Program.find(params[:id])
-
     respond_to do |format|
       if @program.update(program_params)
         format.html { redirect_to recruiter_root_path, notice: 'Details updated successfully.' }
@@ -81,7 +90,7 @@ class ProgramsController < ApplicationController
         format.html { render :edit }
         format.json { render json: @program.errors, status: :unprocessable_entity }
       end
-    end
+    end  
  end
 
  def approved
