@@ -10,12 +10,73 @@ $(document).ready(function(){
 	});      
 });
 $(window.document).on('shown.bs.modal','.modal',function(){
-  $('#exprefnmerr').hide();
-  $('#exprefnoerr').hide();
-  $('#exprefemerr').hide();
-  $('#exprefnmerr1').hide();
-  $('#exprefnoerr1').hide();
-  $('#exprefemerr1').hide();
+
+//Edit qualification form validation
+  var qualcourse=document.getElementById("qualcourse");
+  var coluni=document.getElementById("coluni");
+  var qualgrade=document.getElementById("qualgrade");
+  var qualper=document.getElementById("qualper");
+  var qualdesc=document.getElementById("qualdesc");
+  var qualupdate=document.getElementById("qualupdate");
+
+  qualcourse.addEventListener("blur",checkcourse,true);
+  coluni.addEventListener("blur",checkuni,true);
+  qualgrade.addEventListener("blur",checkgrade,true);
+  qualper.addEventListener("blur",checkper,true);
+  
+  function checkcourse(){
+  	if(qualcourse.value==""){
+  		$("#course_err").removeClass("hidden");
+  		$("#course_err").addClass("show");
+  		qualcourse.focus();
+  		qualupdate.disabled=true;
+  	}else{
+  		$("#course_err").removeClass("show");
+  		$("#course_err").addClass("hidden");
+  		qualupdate.disabled=false;
+  	}
+  }
+
+  function checkuni(){
+  	if(coluni.value==""){
+  		$("#colunierr").removeClass("hidden");
+  		$("#colunierr").addClass("show");
+  		coluni.focus();
+  		qualupdate.disabled=true;
+  	}else{
+  		$("#colunierr").removeClass("show");
+  		$("#colunierr").addClass("hidden");
+  		qualupdate.disabled=false;
+  	}
+  }
+
+  function checkgrade(){
+  	if(qualgrade.value==""){
+  		$("#grade_err").removeClass("hidden");
+  		$("#grade_err").addClass("show");
+  		qualgrade.focus();
+  		qualupdate.disabled=true;
+  	}else{
+  		$("#grade_err").removeClass("show");
+  		$("#grade_err").addClass("hidden");
+  		qualupdate.disabled=false;
+  	}
+  }
+
+  function checkper(){
+  	if(qualper.value==""){
+  		$("#percenterr").removeClass("hidden");
+  		$("#percenterr").addClass("show");
+  		qualper.focus();
+  		qualupdate.disabled=true;
+  	}else{
+  		$("#percenterr").removeClass("show");
+  		$("#percenterr").addClass("hidden");
+  		qualupdate.disabled=false;
+  	}
+  }
+
+ //Edit Expertise form validation
 
   var submit=document.getElementById("expupdate");
   var profexp=document.getElementById("expertise_professional_expertise_info");
@@ -29,50 +90,81 @@ $(window.document).on('shown.bs.modal','.modal',function(){
   exprefnm.addEventListener("blur",checkname,true);
     function checkname(){
     	if(exprefnm.value==""){
-	        $('#exprefnmerr').show();
+	        //$('#exprefnmerr').show();
+	        $("#exprefnmerr").removeClass("hidden");
+	        $("#exprefnmerr").addClass("show");
 	        exprefnm.focus();
 	        submit.disabled=true;
-  		}else{$('#exprefnmerr').hide();submit.disabled=false;;}	
+  		}else{
+  			$("#exprefnmerr").removeClass("show");
+	        $("#exprefnmerr").addClass("hidden");
+	        submit.disabled=false;
+  		}	
     }
   exprefno.addEventListener("blur",checkno,true);
     function checkno(){
     	if(exprefno.value==""){
-	        $('#exprefnoerr').show();
+	        $("#exprefnoerr").removeClass("hidden");
+	        $("#exprefnoerr").addClass("show");
 	        exprefno.focus();
 	        submit.disabled=true;
-  		}else{$('#exprefnoerr').hide();submit.disabled=false;;}	
+  		}else{
+  			$("#exprefnoerr").removeClass("show");
+  			$("#exprefnoerr").addClass("hidden");
+  			submit.disabled=false;
+  		}	
     }
   exprefem.addEventListener("blur",checkem,true);
     function checkem(){
     	if(exprefem.value==""){
-	        $('#exprefemerr').show();
+	        $('#exprefemerr').removeClass("hidden");
+	        $('#exprefemerr').addClass("show");
 	        exprefem.focus();
 	        submit.disabled=true;
-  		}else{$('#exprefemerr').hide();submit.disabled=false;;}	
+  		}else{
+  			$('#exprefemerr').removeClass("show");
+  			$('#exprefemerr').addClass("hidden");
+  			submit.disabled=false;
+  		}	
     }
   exprefnm1.addEventListener("blur",checkname1,true);
     function checkname1(){
     	if(exprefnm1.value==""){
-	        $('#exprefnmerr1').show();
+	        $('#exprefnmerr1').removeClass("hidden");
+	        $('#exprefnmerr1').addClass("show");
 	        exprefnm1.focus();
 	        submit.disabled=true;
-  		}else{$('#exprefnmerr1').hide();submit.disabled=false;;}	
+  		}else{
+  			$('#exprefnmerr1').removeClass("show");
+  			$('#exprefnmerr1').addClass("hidden");
+  			submit.disabled=false;
+  		}	
     }
   exprefno1.addEventListener("blur",checkno1,true);
     function checkno1(){
     	if(exprefno1.value==""){
-	        $('#exprefnoerr1').show();
+	        $('#exprefnoerr1').removeClass("hidden");
+	        $('#exprefnoerr1').addClass("show");
 	        exprefno1.focus();
 	        submit.disabled=true;
-  		}else{$('#exprefnoerr1').hide();submit.disabled=false;;}	
+  		}else{
+  			$('#exprefnoerr1').removeClass("show");
+  			$('#exprefnoerr1').addClass("hidden");
+  			submit.disabled=false;
+  		}	
     }
   exprefem1.addEventListener("blur",checkem1,true);
     function checkem1(){
     	if(exprefem1.value==""){
-	        $('#exprefemerr1').show();
+	        $('#exprefemerr1').removeClass("hidden");
+	        $('#exprefemerr1').addClass("show");
 	        exprefem1.focus();
 	        submit.disabled=true;
-  		}else{$('#exprefemerr1').hide();submit.disabled=false;;}	
+  		}else{
+  			$('#exprefemerr1').removeClass("show");
+  			$('#exprefemerr1').addClass("show");
+  			submit.disabled=false;
+  		}	
     }
   $("#expupdate").on('click',function(){  	
 	checkname();checkem();checkno();checkname1();checkno1();checkem1();	
