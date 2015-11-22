@@ -35,6 +35,12 @@ html.loading body {
     transition: opacity 0;
 }
 /*end*/
+.hidden{
+    display: none;
+}
+.show{
+    display: inline-block;
+}
 .header{
 
 }
