@@ -81,9 +81,8 @@ $(window.document).on('shown.bs.modal','.modal',function(){
         $('#startdateerror').show();
         var submit=document.getElementById('submitprog');
         submit.disabled=true;
-        }
-      }
-      else{$('#enddateerror').hide();submit.disabled=false;}
+        }else{$('#startdateerror').hide();submit.disabled=false;}
+      }      
     }
 	  var datefield=document.getElementById("program_end_date_1i");
     datefield.addEventListener("blur",checkDate,true);
@@ -95,9 +94,8 @@ $(window.document).on('shown.bs.modal','.modal',function(){
         $('#enddateerror').show();
         var submit=document.getElementById('submitprog');
         submit.disabled=true;
-        }
-      }
-      else{$('#enddateerror').hide();submit.disabled=false;}
+        }else{$('#enddateerror').hide();submit.disabled=false;}
+      }      
     }
 
 	$('#expertise_field').hide();
