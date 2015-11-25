@@ -76,7 +76,7 @@ $(window.document).on('shown.bs.modal','.modal',function(){
     function checkstDate(){
       var today=new Date();
     if (program_start_date_3i.value < today.getDate() || program_start_date_2i.value <= today.getMonth()+1 || program_start_date_1i.value <= today.getFullYear()){
-      if (program_start_date_3i.value < today.getDate() && program_start_date_2i.value <= today.getMonth()+1){
+      if (program_start_date_3i.value < today.getDate() && program_start_date_2i.value <= today.getMonth()+1 && program_start_date_1i.value <= today.getFullYear()){
         $('program_start_date_3i').css("bordercolor","red");
         $('#startdateerror').show();
         var submit=document.getElementById('submitprog');
@@ -90,7 +90,7 @@ $(window.document).on('shown.bs.modal','.modal',function(){
     function checkDate(){
     var today=new Date();
     if (program_end_date_3i.value < today.getDate() || program_end_date_2i.value <= today.getMonth()+1 || program_end_date_1i.value <= today.getFullYear()){
-      if (program_end_date_3i.value < today.getDate() && program_end_date_2i.value <= today.getMonth()+1){
+      if (program_end_date_3i.value < today.getDate() && program_end_date_2i.value <= today.getMonth()+1 && program_end_date_1i.value <= today.getFullYear()){
         $('program_end_date_3i').css("bordercolor","red");
         $('#enddateerror').show();
         var submit=document.getElementById('submitprog');

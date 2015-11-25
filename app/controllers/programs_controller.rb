@@ -10,17 +10,17 @@ class ProgramsController < ApplicationController
 	@recruiter=Recruiter.find(current_recruiter.id)
   @category=Category.find(params[:program][:category])
   params[:program][:category]=@category.name
-	if params[:program][:travel_expense]=1
+	if params[:program][:travel_expense]==1
     params[:program][:travel_expense]="Yes"
   else
     params[:program][:travel_expense]="No"
   end
-  if params[:program][:stay_expense]=1
+  if params[:program][:stay_expense]==1
     params[:program][:stay_expense]="Yes"
   else
     params[:program][:stay_expense]="No"
   end
-  if params[:program][:food_expense]=1
+  if params[:program][:food_expense]==1
     params[:program][:food_expense]="Yes"
   else
     params[:program][:food_expense]="No"
@@ -29,10 +29,10 @@ class ProgramsController < ApplicationController
   if @program.save
     flash[:notice]='Program Added Successfully.'
     Notifier.newprogram(@program).deliver_now
-    redirect_to "/recruiters/myaccount"
+    redirect_to "/recruiters/myaccount#showpostedprograms"
   else
     flash[:notice]='Something Went wrong.'
-    redirect_to "/recruiters/myaccount"
+    redirect_to "/recruiters/myaccount#showpostedprograms"
   end
   #if @program.save
   #  case @program.plan
