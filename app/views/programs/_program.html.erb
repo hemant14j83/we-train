@@ -1,4 +1,5 @@
-	<% if program.name!=nil %>
+<% if program.name!=nil %>
+	<% if program.status=='active'%>
 	<div class="col-xs-12 col-sm-12 col-md-12 progbox" style="width:100%;">	
 		<div class="textheading">
 			<%= program.name %> <%# if program.category!="Select Category"  posted in <%= program.category  Category<%end%>
@@ -40,17 +41,17 @@
 				<% if program.food_expense!='No' || program.travel_expense!='No' ||  program.stay_expense!='No' %>
 				<p>
 					<% if program.food_expense!='No' %>
-					<ul><li>Food Expense Included</li></ul
-						<%end%>
-						<% if program.travel_expense!='No' %>
+						<ul><li>Food Expense Included</li></ul>
+					<%end%>
+					<% if program.travel_expense!='No' %>
 						<ul><li>Travel Expense Included</li></ul>
-						<%end%>
-						<% if program.stay_expense!='No' %>
+					<%end%>
+					<% if program.stay_expense!='No' %>
 						<ul><li>Lodging Expense Included</li></ul>
-						<%end%>
-					</p>
+					<%end%>
+				</p>
 					<%else%>
-					<p class="orange">Additional Expenses not Covered.</p>
+				<p class="orange">Additional Expenses not Covered.</p>
 
 					<%end%>
 				</div>
@@ -62,3 +63,4 @@
 			</div>
 		</div>
 	<%end%>
+<%end%>
