@@ -808,3 +808,7 @@ a{
     font-family: lato;
     padding:5px;
 }
+.spacing{
+    letter-spacing: 1px;
+    word-spacing: 5px;
+}

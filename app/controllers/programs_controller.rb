@@ -70,7 +70,7 @@ class ProgramsController < ApplicationController
  def edit
   @program=Program.find(params[:id])
   @status=Appliedprogram.find_by(program_id: @program)
-  render '404'
+  render 'shared/404'
   #if @status=params[:id]
     #render partial: 'naprogram'
   #  flash[:notice]="Trainers have applied for this program, updation not allowed now."
