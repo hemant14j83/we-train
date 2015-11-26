@@ -53,14 +53,14 @@
   <script type="text/javascript">
 	$(document).ready(function(){
 			$("#work").hide();
-			$("#workb").click(function(){
+			$("#trainer").click(function(){
 				$("#work").show();
 				$("#recruit").hide();
 			});
 		  }
 	);
 	$(document).ready(function(){
-			$("#recruitbs").click(function(){
+			$("#recruiter").click(function(){
 				$("#work").hide();
 				$("#recruit").show();
 			});
@@ -79,6 +79,11 @@
     		$("#recruit").hide();
     		$("#work").show();
     	<%end%>
+
+    	if(window.location.hash){
+        	var id=window.location.hash;
+        	$(id).click();
+      	}else{$("#showprofilepage").click()}
     });
   </script>
 
@@ -200,7 +205,7 @@
 			</div>
 		<%else%>
 			<div id="buttons">				
-				<a class="btn btn-default bannerbtn transparent" id="workb">Work</a>
+				<a class="btn btn-default bannerbtn transparent" id="trainer">Work</a>
 				<a class="btn btn-default bannerbtn transparent selected">Hire</a>
 			</div>
 			<div class="hidden-xs hidden-sm col-md-1"></div>
@@ -423,7 +428,7 @@
 		<%else%>
 			<div id="buttons">
 				<a class="btn btn-default bannerbtn transparent selected" >Work</a>
-				<a class="btn btn-default bannerbtn transparent"  id="recruitbs">Hire</a>				
+				<a class="btn btn-default bannerbtn transparent"  id="recruiter">Hire</a>				
 			</div>
 			<div class="hidden-xs hidden-sm col-md-1"></div>
 			<div class="hidden-xs hidden-sm col-md-5 feed-bg">

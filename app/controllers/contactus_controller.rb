@@ -5,6 +5,7 @@ class ContactusController < ApplicationController
   # GET /contactus.json
   def index
     @contactus = Contactu.all
+    render 'shared/404'
   end
 
   # GET /contactus/1
@@ -19,6 +20,7 @@ class ContactusController < ApplicationController
 
   # GET /contactus/1/edit
   def edit
+    render 'shared/404'
   end
 
   # POST /contactus

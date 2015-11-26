@@ -20,16 +20,16 @@ before_filter :authenticate_trainer!
   @trainer=Trainer.find(current_trainer.id)
   if @trainer.role=='admin'
     @expertise = Expertise.find_by(trainer_id: params[:current_trainer_id])
-    render '404'
+    render 'shared/404'
   end
  end
 
  def show
- 	render '404'
+ 	render 'shared/404'
  end
 
  def edit
- 	render '404'
+ 	render 'shared/404'
  end
 
  def update

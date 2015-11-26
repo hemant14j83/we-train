@@ -10,7 +10,7 @@
         $("#recprofilepage").hide();
         $("#postedprograms").show();
         $("#appliedprograms").hide();        
-        $('#showrecprofilepage').removeClass("active");
+        $('#profile').removeClass("active");
         $('#showappliedprograms').removeClass("active");
         return false;
       });
@@ -18,11 +18,11 @@
         $("#recprofilepage").hide();
         $("#postedprograms").hide();
         $("#appliedprograms").show();
-        $('#showrecprofilepage').removeClass("active");
+        $('#profile').removeClass("active");
         $('#showpostedprograms').removeClass("active");
         return false;
       });
-      $("#showrecprofilepage").click(function(){
+      $("#profile").click(function(){
         $("#recprofilepage").show();
         $("#appliedprograms").hide();
         $("#postedprograms").hide();
@@ -59,7 +59,7 @@ $(document).ready(function () {
 
     <ul class="nav navbar-nav profile-nav">
       <li><a href="#appliedprograms" id="showappliedprograms" onclick="this.className='active'">Dashboard</a></li>
-      <li><a href="#recprofilepage" id="showrecprofilepage" onclick="this.className='active'">My Profile</a></li>
+      <li><a href="#recprofilepage" id="profile" onclick="this.className='active'">My Profile</a></li>
       <li><a href="#postedprograms" id="showpostedprograms" onclick="this.className='active'">My Programs</a></li>      
       <%#<li><a href="#">Inbox</a></li>%>      
     </ul>    
