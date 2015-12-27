@@ -1,4 +1,6 @@
-<p id="notice"><%= notice %></p>
+<div class="col-xs-12 col-md-12 col-sm-12 topmargin">
+        <%= render partial: "shared/flash_messages", flash: flash %> 
+</div>
 
 <h3 class="heading">List of Registered Trainers (<font color="blue"><b>Admin View</b></font>)</h3>
 
@@ -50,7 +52,10 @@
         <% end %>
         <td><%= trainer.subscribed_plan %></td>        
         <td><%= trainer.created_at.to_date %></td>
-        <td><%= link_to 'Approve / Reject', edit_trainer_registration_path, :class=>"label label-success" %></td>
+        <td>
+          <%= link_to 'Approve', approve_trainer_path(trainer.id),method: 'get', :class=>"label label-success" %>
+          <%= link_to 'Reject', reject_trainer_path(trainer.id),method: 'get', :class=>"label label-danger" %>
+        </td>
       </tr>
     <% end %>
   </tbody>

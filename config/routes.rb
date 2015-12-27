@@ -30,6 +30,8 @@ Rails.application.routes.draw do
    resources :expertises
    resources :savedprograms
    resources :appliedprograms
+   get 'approve', on: :member
+   get 'reject', on: :member
   end
 
   resources :recruiters do
