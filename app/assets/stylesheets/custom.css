@@ -812,12 +812,3 @@ a{
     letter-spacing: 1px;
     word-spacing: 5px;
 }
-.filters{
-    /*border:1px grey solid; */
-    padding: 0px 5px 0px 5px;
-}
-.filterheading{
-    text-align: center;
-    font-weight: bold;
-    font-family: lato, arial;
-}

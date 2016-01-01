@@ -15,15 +15,9 @@ class Program < ActiveRecord::Base
   validates :duration, length:{in: 1..2}
   validates :duration, :numericality =>  {:only_integer=>true, :message => ' is invalid.'}
 
-  searchable do
-    text :name, :boost => 2
-    string :category
-    string :expertise
-    string :city
+  def self.search(search)
+    where("name LIKE'%#{search}%' OR expertise LIKE '%#{search}%' OR program_details LIKE '%#{search}%'")    
   end
-  #def self.search(search)
-  #  where("name LIKE'%#{search}%' OR expertise LIKE '%#{search}%' OR program_details LIKE '%#{search}%'")    
-  #end
   def validstartdate?
     if self.start_date.to_date < Date.today
       self.errors.add(:base,"Invalid Start Date")     
