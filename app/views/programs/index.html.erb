@@ -21,73 +21,30 @@ $(document).ready(function(){
   <div class="col-xs-12 col-md-12 col-sm-12 topmargin">
         <%= render partial: "shared/flash_messages", flash: flash %> 
   </div>
-  <div class="col-md-3 col-sm-12 col-xs-12">
-    <div class="filters" style="margin-top:9%;">
-      <div class="form-inline" style="margin-bottom:2%;">
-        <%= form_tag(programs_path, :method => "get", id: "search-form") do %>
-          <div class="form-group">
-            <%= text_field_tag :search, params[:search], placeholder: "Search Programs",:class=>"form-control",:size=>24 %>
-          </div>
-          <div class="form-group">
-            <%= submit_tag " Search ",:class=>"btn btn-success btn-large glyphicon glyphicon-search pull-left",:style=>"margin-left:0px;" %>
-          </div>
+  <%= form_tag(programs_path, :method => "get", id: "search-form") do %>
+    <div class="col-xs-10 col-md-10 col-sm-10">
+      <%= text_field_tag :search, params[:search], placeholder: "Search Programs",:class=>"form-control" %>
+      <% if @program.present? %>
+        <%if params[:search].nil? %>
+          <p>Showing all programs.</p>
+        <%else%>
+          <p>Showing result matching "<%= params[:search] %>".</p>
         <%end%>
-      </div>
-      <div class="panel panel-default">
-        <div class="panel-success">
-             <h4 class="panel-heading" style="margin-top:0px;"><b>Category</b></h4>  
-        </div>
-        <div class="panel-body">
-          <% for row in @query.facet(:category).rows %>
-            <li style="list-style:none;margin-bottom:5px;">
-                <% if params[:category].blank? %>
-                    <%= link_to row.value, :category => row.value %> (<%= row.count %>)
-                <% else %>
-                    <%= row.value %> (<%= link_to "X", :category => nil %>)
-                <% end %>
-            </li>
-          <% end %>
-        </div>
-      </div>
-      <div class="panel panel-default">
-        <div class="panel-success">
-          <h4 class="panel-heading" style="margin-top:0px;"><b>Expertise</b></h4>  
-        </div>
-        <div class="panel-body">
-        <% for row in @query.facet(:expertise).rows %>
-            <li style="list-style:none;margin-bottom:5px;">
-                <% if params[:expertise].blank? %>
-                    <%= link_to row.value, :expertise => row.value%> (<%= row.count %>)
-                <% else %>
-                    <%= row.value %> (<%= link_to "X", :expertise => nil %>)
-                <% end %>
-            </li>
-        <% end %>
-        </div>
-      </div>
-      <div class="panel panel-default">
-        <div class="panel-success">
-          <h4 class="panel-heading" style="margin-top:0px;"><b>City</b></h4>  
-        </div>
-        <div class="panel-body">
-        <% for row in @query.facet(:city).rows %>
-            <li style="list-style:none;margin-bottom:5px;">
-                <% if params[:city].blank? %>
-                    <%= link_to row.value, :city => row.value%> (<%= row.count %>)
-                <% else %>
-                    <%= row.value %> (<%= link_to "X", :city => nil %>)
-                <% end %>
-            </li>
-        <% end %>
-        </div>
-      </div>
+      <% else %>
+        <p>There are no programs containing the term(s) <%= params[:search] %>.</p>
+      <% end %>
     </div>
-  </div>  
-  <div class="col-xs-12 col-sm-12 col-md-9 lato table-responsive">
-    <table class="table table-hover">
+    <div class="col-xs-2 col-md-2 col-sm-2">
+      <%= submit_tag "Search",:class=>"btn btn-success glyphicon glyphicon-search pull-left" %>
+    </div>
+  <% end %>    
+  <div class="col-xs-12 col-sm-12 col-md-12 lato table-responsive">
+    <h4 class="orange"><b>Available Training Programs</b></h4>  
+      <table class="table table-hover">
         <thead>
           <tr class="textheading">
-            <th width="55%">Project Details</th>
+            <th width="15%">Listed Date</th>
+            <th width="40%">Project Details</th>
             <th width="20%">Covered Expenses</th>
             <th width="15%">Dates</th>
             <th width="10%">Option</th>
@@ -96,7 +53,8 @@ $(document).ready(function(){
         <tbody>
         <% @program.each do |program| %>
           <tr class="">
-            <td width="55%">
+            <td width="15%"><%= program.created_at.to_date %></td>
+            <td width="40%">
               <span class="orange"><%= program.name %></span><br>
               <%= program.program_details %><br><br>
               <u>Expertise</u><br>
