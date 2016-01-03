@@ -1,0 +1,53 @@
+<div class="topmargin">
+<table class="table table-bordered">
+  <thead>
+    <tr>
+      <th>Trainer Id</th>
+      <th>Email</th>
+      <th width="10%">Last Login</th>
+      <th>Login Type</th>
+      <th>Name</th>
+      <th>Number</th>
+      <th>D.O.B</th>
+      <th>Gender</th>
+      <th>Address</th>
+      <th>Created At</th>
+      <th>Action</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @trainer.each do |trainer| %>
+      <% if trainer.profile_status=="Approved" || trainer.profile_status=="approved"%>
+      <tr>
+        <td><%= trainer.id %></td>
+        <td><%= trainer.email %></td>
+        <td><%= trainer.current_sign_in_at %></td>
+        <td><%= trainer.login_type %></td>
+        <% if trainer.address? %>
+          <td><%= trainer.full_name %></td>
+        <% else %>
+          <td><font color="red">Blank</font></td>
+        <% end %>
+        <td><%= trainer.primary_number %></td>
+        <td><%= trainer.birth_date %></td>
+        <% if trainer.gender =="not selected" %>
+          <td><font color="red">Blank</font></td>
+        <% else %>
+          <td><%= trainer.gender %></td>
+        <% end %>
+        <% if trainer.address? %>
+          <td><%= trainer.address %>,<br><%= trainer.city %>, <%= trainer.state %>,<%= trainer.country %></td>
+        <% else %>
+          <td><font color="red">Blank</font></td>
+        <% end %>
+        <td><%= trainer.created_at.to_date %></td>
+        <td>
+          <%= link_to 'Approve', approve_trainer_path(trainer.id),method: 'get', :class=>"label label-success" %>
+        </td>
+      </tr>
+      <%end%>
+    <% end %>
+  </tbody>
+</table>
+</div>

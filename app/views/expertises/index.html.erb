@@ -1,51 +1,54 @@
+<div class="col-sm-12 col-md-12 col-lg-12 center" style="margin-top:20px;">
+  <h3 class="heading">
+    List of expertises (<span class="small-text">Oldest first</span>)
+  </h3>
+</div>
 <p id="notice"><%= notice %></p>
-
-<h3 class="heading">List of expertises (<font color="blue"><b>Admin View</b></font>)</h3>
-
+<div class="col-sm-12 col-md-12 col-lg-12 center table-responsive" style="margin-top:20px;">
 <table class="table table-bordered">
   <thead>
     <tr>
       <th>Trainer Email</th>
-      <th>Trainer Name</th>
+      <th>Name</th>
       <th>Expertise</th>
       <th>Professional Expertise Info</th>
       <th>Reference Name</th>
       <th>Reference Email</th>
       <th>Reference Number</th>
       <th>Verified Status</th>
-      <th>Comments</th>
+      <th>Action</th>
     </tr>
   </thead>
 
   <tbody>
     <% @expertise.each do |expertise| %>
-      <% if expertise.expertise_verified_status=="Verified" %>
-        <tr class="success">
-      <%else%>
-        <tr class="warning">
-      <%end%>
+      <tr>
         <td><%= expertise.trainer.email %></td>
-        <td>
-          <%= expertise.trainer.full_name %><br>
-          <% if expertise.expertise_verified_status=="Verified" %>
-            <%= link_to 'Delete', expertise, method: :delete, data: { confirm: 'Are you sure?' }, :class=>"label label-danger" %>
-          <%else%>
-            <%= link_to 'Approve / Reject', edit_expertise_path(expertise),:class=>"label label-success" %>
-            <%= link_to 'Delete', expertise, method: :delete, data: { confirm: 'Are you sure?' }, :class=>"label label-danger" %>
-          <%end%>
-        </td>
+        <td><%= expertise.trainer.full_name %></td>
         <td><%= expertise.expertise_in %></td>
         <td><%= expertise.professional_expertise_info %></td>
         <td><%= expertise.reference_name %></td>
         <td><%= expertise.reference_email %></td>
         <td><%= expertise.reference_number %></td>
-        <td><%= expertise.expertise_verified_status %></td>
-        <% if expertise.comments? %>
-          <td><%= expertise.comments %></td>
-        <%else%>
-          <td><font color="red">Please verify</font></td>
-        <%end%>
+        <td>
+          <%= expertise.expertise_verified_status %>
+          <% if expertise.comments? %>
+            <%= expertise.comments %> 
+          <%end%>
+        </td>
+        <td>
+          <% if expertise.expertise_verified_status=="Verified" %>
+            <%= link_to 'Delete', expertise, method: :delete, data: { confirm: 'Are you sure?' }, :class=>"label label-danger" %>
+          <%else%>
+            <%= link_to 'Approve / Reject', edit_expertise_path(expertise),:class=>"label label-success" %><br>
+            <%= link_to 'Delete', expertise, method: :delete, data: { confirm: 'Are you sure?' }, :class=>"label label-danger" %>
+          <%end%>
+        </td>
       </tr>
     <% end %>
   </tbody>
 </table>
+</div>
+<div class="col-sm-12 col-md-12 col-lg-12">
+  <%=link_to "<< Back","/admpanel"%> to Admin Panel.
+</div>
