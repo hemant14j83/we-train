@@ -1,7 +1,7 @@
 class TrainersController < ApplicationController
 before_filter :authenticate_trainer!  
  def index
- 	@trainer=Trainer.all
+ 	@trainer=Trainer.all            
  end
  
  def show
@@ -24,7 +24,7 @@ before_filter :authenticate_trainer!
  def reject
     @trainer=Trainer.find(params[:id])
     
-    if @trainer.update_attributes(:profile_status=>'pending')
+    if @trainer.update_attributes(:profile_status=>'rejected')
     	flash[:notice]='Rejected Record'
     	#sign_in @trainer, :bypass=>true
     	redirect_to trainers_path

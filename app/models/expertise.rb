@@ -10,6 +10,10 @@ class Expertise < ActiveRecord::Base
 	validates :reference_number1, :numericality => {:only_integer=>true, :message => ' is not valid'}
 	validates_length_of :reference_number, is: 10, message: 'Please enter valid mobile number.'
 
+	scope :by_status, -> status{ where(expertise_verified_status: status)}
+  	scope :recent, -> {order("programs.created_at DESC")}
+  	scope :old, -> {order("created_at ASC")}
+
 	def expertise_count
 		trainer=Trainer.find(trainer_id)
 		errors.add(:base, "Maximum 5 Expertise Allowed.") if trainer.expertises.count >= 5

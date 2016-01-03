@@ -14,10 +14,10 @@ class ExpertisesController < ApplicationController
 	#redirect_to edit_trainer_registration_path
  end
 
- def index 	
+ def index
   @trainer=Trainer.find(current_trainer.id)
   if @trainer.role=='admin'
-    @expertise = Expertise.all
+    @expertise = Expertise.by_status('UnVerified').old
   elsif @trainer.role=='trainer'
     @expertise = Expertise.find_by(trainer_id: params[:current_trainer_id])
     render 'trainerindex'
