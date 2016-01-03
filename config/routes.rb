@@ -2,6 +2,7 @@ Rails.application.routes.draw do
   #resources :javascripts
   get ':controller/:action.:format'
   resources :contactus
+  resources :admpanel
   resources :categories do
     resources :expertlists
   end

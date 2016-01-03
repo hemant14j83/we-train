@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Admin Panel - Traix</title>
+  <meta name="robots" content="noodp"/>
+  <meta name="robots" content="noindex, follow"/>
+  <meta property="og:site_name" content="Traix"/>
+  <link rel="canonical" href="http://www.traix.in/contact-us/"/>
+  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <%= csrf_meta_tags %>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+  <script type="text/javascript">
+    $(document).ready(function(){
+      setTimeout(function(){
+      $("#notice").hide("slow");
+     },10000);
+  });
+  </script>
+  <script type="text/javascript">
+    $(document).ready(function() {
+    var bodyHeight = $("body").height();
+    var vwptHeight = $(window).height();
+    if (vwptHeight > bodyHeight) {
+    $("#footer").css("position","absolute").css("bottom",0);
+    }
+    });
+    $(window).load(function(){
+      var html = document.getElementsByTagName('html')[0];
+      var removeLoading = function() {        
+        setTimeout(function() {
+          html.className = html.className.replace(/loading/, '');
+        });
+      };
+      removeLoading();    
+    });
+</script>
+</head>
+<body>
+  <div id="main-container" class="container-fluid">
+      <div class="row">
+        <%= render "layouts/header" %>
+      </div>
+      <div class="row">        
+        <div id="content" style="margin-top:20px;">
+          <%= yield %>
+        </div>
+      </div>
+      <div class="row">
+        <div id="footer" class="col-xs-12 col-md-12 col-sm-12">
+          <%= render "layouts/footer" %>
+        </div>
+      </div>
+  </div>
+
+</body>
+</html>
