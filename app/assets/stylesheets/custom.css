@@ -6,7 +6,7 @@ html{
 html, body {
     /* For the loading indicator to be vertically centered ensure */
     /* the html and body elements take up the full viewport */
-    min-height: 100%;
+    height: 100%;
 }
 html.loading {
     /* Replace #333 with the background-color of your choice */
@@ -367,8 +367,8 @@ p{
     width:100%;
     text-align: center;
     overflow: hidden;
-    height: auto;    
-   /* height: 680px !important;*/
+    height: auto;
+    /*height: 680px !important;*/
     -webkit-background-size: cover;
     -moz-background-size: cover;
     -o-background-size: cover;
@@ -403,12 +403,13 @@ p{
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
 }
 .feed-bg{
-    background: url('banners/home/iscreen400.png');
+    /*background: url('banners/home/iscreen400.png');
+    height: 400px;
+    margin-top: 1%;
+    */
     text-align: center;
     background-repeat: no-repeat;
     overflow: hidden;
-    height: 400px;
-    margin-top: 1%;
 } 
 .feeddetails{
     margin-top:15%;
@@ -458,6 +459,7 @@ p{
     font-family: 'lato',arial;
     letter-spacing: 2px;
     font-size: 25px;
+    margin-top: 0%;
     padding: 10px;
     color:white;
     font-style: italic;
@@ -519,7 +521,7 @@ a.homebutton:hover{
     padding: 15px;
 }
 #buttons{
-    text-align:left;
+    text-align:center;
     padding: 10px;
     margin-left:3%;
     margin-top:0%;
@@ -528,9 +530,9 @@ a.homebutton:hover{
     font-family: 'lato',arial;
     font-weight:bold;
     font-size:20px;
-    width: auto;
+    width: 150px;
     padding: 10px;;
-    text-align: left;
+    text-align: center;
     color: white;
 }
 .bannerbtntext{
