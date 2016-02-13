@@ -13,12 +13,14 @@
 .gifimage {
     position: inherit;
     margin-top: 5%; 
-    margin-left: 1%;
     overflow: hidden;
     width: 77%;
     height: 58%;
-    float: left;
+    border: 6px solid black;
+    border-radius: 10px;
     /*width: 70%;
+    margin-left: 1%;
+    float: left;
     height: 70%;
     position: relative;
     margin-top: 2%;
