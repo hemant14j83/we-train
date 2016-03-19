@@ -5,7 +5,7 @@ source 'https://rubygems.org'
 gem 'rails', '4.2.0'
 # Use sqlite3 as the database for Active Record
 #gem 'sqlite3'
-gem 'mysql2'
+gem 'mysql2', "~>0.3.11"
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 5.0'
 # Use Uglifier as compressor for JavaScript assets
@@ -19,10 +19,33 @@ gem 'coffee-rails', '~> 4.1.0'
 gem 'bootstrap-sass', '~> 3.2.0'
 gem 'autoprefixer-rails'
 
-#PaperClip
-gem "paperclip", git: "git://github.com/thoughtbot/paperclip.git"
+#pagination
+gem "will_paginate"
+gem "will_paginate-bootstrap"
 
-#Devise
+#Material design
+gem 'materialize-sass'
+gem 'rails_utils'
+
+source 'https://rails-assets.org' do
+  gem 'rails-assets-materialize'
+end
+
+#PaperClip
+gem "paperclip"
+
+#omniauth
+gem 'omniauth'
+gem 'omniauth-linkedin'
+
+#progress_bar
+gem 'progress_bar'
+
+#sunspot_solr
+gem 'sunspot_rails'
+gem 'sunspot_solr'
+
+#Deviseforuser
 gem 'devise'
 #font-awesome
 gem "font-awesome-rails"
