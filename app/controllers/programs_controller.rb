@@ -2,6 +2,36 @@ class ProgramsController < ApplicationController
 	before_filter :authenticate_recruiter!, :except=>:index
   before_action :set_program, only: [:show, :edit, :update, :destroy]
 
+ def index
+  #@program = Program.paginate(:page=>params[:page],:per_page=>10).by_status('active').recent  
+  #if params[:search]
+  #  @program = Program.paginate(:page=>params[:page],:per_page=>10).search(params[:search]).by_status('active').recent
+  #else
+  #  @program = Program.paginate(:page=>params[:page],:per_page=>10).by_status('active').recent  
+  #end
+  #------------------------------------------------------------
+  begin
+    @query = Program.search do
+      fulltext params[:search]
+  #  s.paginate :page => params[:page], :per_page => 10
+      facet :category
+      with(:category,params[:category]) if params[:category].present?
+      facet :expertise      
+      with(:expertise,params[:expertise]) if params[:expertise].present?
+      facet :city
+      with(:city,params[:city]) if params[:city].present?
+    end
+    @program = @query.results
+  #------------------------------------------------------------
+    if @recruiter_signed_in
+      @recruiter=Recruiter.find(current_recruiter.id)      
+    end
+  rescue Errno::ECONNREFUSED, Timeout::Error => e
+    render 'shared/502'
+    #logger.error message
+  end
+ end
+
  def new
   redirect_to '/recruiters/profile#programmodal'
  end
@@ -53,18 +83,6 @@ class ProgramsController < ApplicationController
   #    redirect_to recruiter_root_path
   #  end
   #end	
- end
-
- def index
- 	@program = Program.paginate(:page=>params[:page],:per_page=>10).by_status('active').recent  
-  if params[:search]
-    @program = Program.paginate(:page=>params[:page],:per_page=>10).search(params[:search]).by_status('active').recent
-  else
-    @program = Program.paginate(:page=>params[:page],:per_page=>10).by_status('active').recent  
-  end
-  if @recruiter_signed_in
-    @recruiter=Recruiter.find(current_recruiter.id)      
-  end
  end
 
  def edit

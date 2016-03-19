@@ -815,3 +815,12 @@ a{
     word-spacing: 5px;
 }
 .small-text{font-size: 12px;}
+.filters{
+    /*border:1px grey solid; */
+    padding: 0px 5px 0px 5px;
+}
+.filterheading{
+    text-align: center;
+    font-weight: bold;
+    font-family: lato, arial;
+}
