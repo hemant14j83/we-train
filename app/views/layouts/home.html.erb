@@ -42,21 +42,20 @@
 </script>
 </head>
 <body>
-  <div id="main-container" class="container-fluid">
-      <%#<div class="row">
-        <%= render "layouts/header" %>
-      <%#</div>
-      <hr>%>
+  <div id="main-container" class="">
+      <div class="row" style="margin-bottom:none;">
+        <%= render "layouts/testheader" %>
+      </div>
       <div class="row">        
-        <div id="content">
+        <div id="contents">
           <%= yield %>
         </div>
       </div>
-      <%#<div class="row">
-        <div id="footer" class="col-xs-12">
-          <%= render "layouts/footer" 
+      <div class="row">
+        <div id="newfooter">
+          <%= render "layouts/testfooter" %> 
         </div>
-      </div>%>
+      </div>
   </div>
 
 </body>

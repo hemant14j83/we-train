@@ -59,7 +59,13 @@ Rails.application.routes.draw do
   #get 'recruiters/:id/edit' => "programs#edit"
   get ":page" => "pages#show"
   get "home/index"
-  root 'home#index'
+  #root 'home#index'
+
+  #Temporary homepage
+  get "home/testhome"
+  root 'home#testhome'
+  #Temporary homepage
+  
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
