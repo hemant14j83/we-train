@@ -1,0 +1,65 @@
+body{
+	font-family: "Gotham",Helvetica,Arial,sans-serif;
+    font-size: 16px;
+    line-height: 1.42857;
+    font-weight: 100;
+    line-height: 1.5;
+    color: #494949;
+    background-color: #fff;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+.nav{
+	color: #494949;
+	background-color: transparent;
+}
+.nav a{color:#494949;}
+
+.logo{
+	position: absolute;
+    color: #494949;
+    display: inline-block;
+    font-size: 2.1rem;
+    padding: 0;
+    padding-left: 5%;
+    white-space: nowrap;
+}
+
+/*@media (min-width: 768px)*/
+@media(min-width:768px){
+.herobanner {
+    background-image: url("hero.jpg");
+}
+}
+.herobanner {
+    min-height: 26.90909rem;
+    padding-top: 6.5rem;
+    padding-bottom: 3rem;
+    background-color: #fff;
+    background-repeat: no-repeat;
+    background-position: top;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    -webkit-background-size: cover;
+    background-size: cover;
+    margin-top: -19px;
+}
+.text-dark-grey {
+    color: #494949;
+}
+.landing-hero h1 {
+    font-size: 3.54545rem;
+    line-height: 1;
+}
+.font-gotham-bold, .logo, .body-content a, .accordion .content h4 {
+    font-weight: bold;
+}
+.text-primary {
+    color: #5bbc2e;
+}
+.lead {
+    margin-bottom: 22px;
+    font-size: 18px;
+    font-weight: 300;
+    line-height: 1.4;
+}
