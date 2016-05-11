@@ -41,6 +41,10 @@ Rails.application.routes.draw do
    #resources :expertises
   end
 
+  ################################### REDIRECTION TO NEW PAGES ####################################
+  
+  ################################### REDIRECTION TO NEW PAGES ####################################
+
   get 'appliedprograms/select/:id', to: 'appliedprograms#select', via: :get
   get 'appliedprograms/reject/:id', to: 'appliedprograms#reject', via: :get
   get '/auth/:provider/callback', to: 'sessions#create', via: :get
