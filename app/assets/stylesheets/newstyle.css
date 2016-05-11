@@ -95,3 +95,13 @@ form .active{background-color: transparent;}
     padding: 1px;
     border: 1px solid black;
 }
+.input-field select{
+    width: 100%;
+    /*padding: 4px;*/
+    font-size: 14px;
+    background-color: transparent;
+    display: block;
+    margin-top:0px;
+    border: 1px solid #9E9E9E;
+    height: 3rem;
+}
