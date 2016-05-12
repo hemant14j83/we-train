@@ -7,6 +7,7 @@
   <meta name="robots" content="noindex, follow"/>
   <meta property="og:site_name" content="Traix"/>
   <link rel="canonical" href="http://www.traix.in/programs/"/>
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
@@ -39,9 +40,10 @@
 </script>
 </head>
 <body>
-  <div id="main-container" class="container-fluid">
+  <div id="main-container" class="">
       <div class="row">
-        <%= render "layouts/header" %>
+        <%#= render "layouts/header" %>
+        <%= render "layouts/newheader" %>
       </div>
       <div class="row">        
         <div id="content" class="col-xs-12 col-md-12 col-sm-12">
@@ -49,7 +51,7 @@
         </div>
       </div>
       <div class="row" style="margin-top:1%">
-        <div id="footer" class="col-xs-12 col-md-12 col-sm-12">
+        <div id="footer" class="">
           <%= render "layouts/footer" %>
         </div>
       </div>
