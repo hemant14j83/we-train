@@ -17,25 +17,29 @@ $(document).ready(function(){
       <%end%><%#
   </div>
 </div>%>
-<div class="col-xs-12 col-md-12 col-sm-12">
-  <div class="col-xs-12 col-md-12 col-sm-12 topmargin">
+<div class="col s12 l12 m12">
+  <div class="col s12 m12 l12 topmargin">
         <%= render partial: "shared/flash_messages", flash: flash %> 
   </div>
-  <div class="col-md-3 col-sm-12 col-xs-12">
-    <div class="filters" style="margin-top:9%;">
+  <div class="col m3 s12 l3">
+    <div class="filters">
       <div class="form-inline" style="margin-bottom:2%;">
         <%= form_tag(programs_path, :method => "get", id: "search-form") do %>
           <div class="form-group">
             <%= text_field_tag :search, params[:search], placeholder: "Search Programs",:class=>"form-control",:size=>24 %>
           </div>
+          <!--i class="material-icons">search</i-->
           <div class="form-group">
-            <%= submit_tag " Search ",:class=>"btn btn-success btn-large glyphicon glyphicon-search pull-left",:style=>"margin-left:0px;" %>
+            <%= button_tag( :class =>"btn btn-success") do %>
+              <i class="material-icons">search</i>
+            <% end %>
+            <%#= submit_tag " Search ",:class=>"btn btn-success",:style=>"margin-left:0px;" %>
           </div>
         <%end%>
       </div>
       <div class="panel panel-default">
         <div class="panel-success">
-             <h4 class="panel-heading" style="margin-top:0px;"><b>Category</b></h4>  
+             <h5 class="panel-heading" style="margin-top:0px;"><b>Category</b></h5>  
         </div>
         <div class="panel-body">
           <% for row in @query.facet(:category).rows %>
@@ -51,7 +55,7 @@ $(document).ready(function(){
       </div>
       <div class="panel panel-default">
         <div class="panel-success">
-          <h4 class="panel-heading" style="margin-top:0px;"><b>Expertise</b></h4>  
+          <h5 class="panel-heading" style="margin-top:0px;"><b>Expertise</b></h5>  
         </div>
         <div class="panel-body">
         <% for row in @query.facet(:expertise).rows %>
@@ -67,7 +71,7 @@ $(document).ready(function(){
       </div>
       <div class="panel panel-default">
         <div class="panel-success">
-          <h4 class="panel-heading" style="margin-top:0px;"><b>City</b></h4>  
+          <h5 class="panel-heading" style="margin-top:0px;"><b>City</b></h5>  
         </div>
         <div class="panel-body">
         <% for row in @query.facet(:city).rows %>
@@ -83,69 +87,66 @@ $(document).ready(function(){
       </div>
     </div>
   </div>  
-  <div class="col-xs-12 col-sm-12 col-md-9 lato table-responsive">
-    <table class="table table-hover">
-        <thead>
-          <tr class="textheading">
-            <th width="55%">Project Details</th>
-            <th width="20%">Covered Expenses</th>
-            <th width="15%">Dates</th>
-            <th width="10%">Option</th>
-          </tr>
-        </thead>
-        <tbody>
-        <% @program.each do |program| %>
-          <tr class="">
-            <td width="55%">
-              <span class="orange"><%= program.name %></span><br>
-              <%= program.program_details %><br><br>
-              <u>Expertise</u><br>
-              <span class="orange"><%= program.expertise %></span>
-            </td>
-            <td width="20%">
-              <% if program.food_expense =='No' && program.travel_expense == 'No' && program.stay_expense == 'No' %>
-                <span class="glyphicon glyphicon-remove orange"></span>
-                <span class="orange"> Expenses not included</span>
-              <%else%>
-                <% if program.food_expense =='Yes' %>
-                  <span class="glyphicon glyphicon-ok" style="color:#2C8E00;"></span>
-                  <span style="color:#2C8E00;margin-bottom:5px;"> Food expenses included.<br></span>
-                <%end%>
-                <% if program.travel_expense =='Yes' %>
-                  <span class="glyphicon glyphicon-ok" style="color:#2C8E00;"></span>
-                  <span style="color:#2C8E00;margin-bottom:5px;"> Travel expenses included.<br></span>
-                <%end%>
-                <% if program.stay_expense =='Yes' %>
-                  <span class="glyphicon glyphicon-ok" style="color:#2C8E00;"></span>
-                  <span style="color:#2C8E00;margin-bottom:5px;"> Stay expenses included.<br></span>
-                <%end%>
+  <div class="col s12 m9 l9">
+    <% @program.each do |program| %>
+      <ul class="collection" style="background-color:#fff;font-size:0.9em;font:'Arimo',sans-serif;">
+        <li a href="#!" class="collection-item">
+          <div class="col s12 m6 l6">
+            <ul>
+              <li><span style="color:#e37343;"><b>Program Name</b>: <%= program.name %></span></li>
+              <li><b>Category</b>: <%= program.category %></li>
+              <% if program.expertise %>
+                <li><b>Expertise Required</b>
+                  <ul>
+                    <li style="list-style:disc;margin-left:4%;"><%= program.expertise %></li>
+                  </ul>
+                </li>
               <%end%>
-            </td>            
-            <td width="15%">
-              <span class="center"><%= program.start_date %><br>to<br><%= program.end_date %></span>
-            </td>
-            <% if trainer_signed_in? %> 
-              <td width="10%">
-                  <%= link_to image_tag("icons/save.png",:width=>"40%"), savedprograms_path(:program_id=>program, :trainer_id=>current_trainer.id),:method=>:post %>
-                  <%= link_to image_tag("icons/apply.png",:width=>"40%"), appliedprograms_path(:program_id=>program, :trainer_id=>current_trainer.id),:method=>:post %>
-              </td>  
-            <%elsif recruiter_signed_in? %>
-              <td width="10%">
-                <p>Only Trainers can Apply</p>
-              </td>
+              <li>
+                <b>Start Date</b>: <%= program.start_date %>
+              </li>
+              <li>
+                <b>End Date</b>: <%= program.end_date %>
+              </li>
+              <li style="margin-bottom:3%;"><b>Program Details</b>:<br> <%= program.program_details %></li>
+            </ul>
+          </div>
+          <div class="col s12 m4 l4">
+            <% if program.food_expense =='No' && program.travel_expense == 'No' && program.stay_expense == 'No' %>
+              <span class="glyphicon glyphicon-remove"></span>
+              <span class="red-text lighten-1"> Expenses not included</span>
             <%else%>
-              <td width="10%">
-                <%= link_to image_tag("icons/save.png",:width=>"40%"), savedprograms_path(:program_id=>program),:method=>:post %>
-                <%= link_to image_tag("icons/apply.png",:width=>"40%"), appliedprograms_path(:program_id=>program),:method=>:post %>
-              </td>
+              <% if program.food_expense =='Yes' %>
+                <span class="glyphicon glyphicon-ok" style="color:#2C8E00;"></span>
+                <span style="color:#2C8E00;margin-bottom:5px;"> Food expenses included.<br></span>
+              <%end%>
+              <% if program.travel_expense =='Yes' %>
+                <span class="glyphicon glyphicon-ok" style="color:#2C8E00;"></span>
+                <span style="color:#2C8E00;margin-bottom:5px;"> Travel expenses included.<br></span>
+              <%end%>
+              <% if program.stay_expense =='Yes' %>
+                <span class="glyphicon glyphicon-ok" style="color:#2C8E00;"></span>
+                <span style="color:#2C8E00;margin-bottom:5px;"> Stay expenses included.<br></span>
+              <%end%>
             <%end%>
-          </tr>          
-          <%end%>
-          <div style="margin-bottom:5px;">&nbsp;</div>
-        </tbody>
-      </table>
-    </div>
-    <div class="col-xs-12 col-sm-12 col-md-12 pagination" style="text-align:right">
-      <%= will_paginate @program, renderer: BootstrapPagination::Rails %>
-    </div>
+          </div>
+          <div class="col s12 m2 l2">
+            <% if trainer_signed_in? %>
+              <%= link_to image_tag("icons/save.png",:width=>"40%",:title=>"Save Program"), savedprograms_path(:program_id=>program, :trainer_id=>current_trainer.id),:method=>:post %>
+              <%= link_to image_tag("icons/apply.png",:width=>"40%",:title=>"Apply"), appliedprograms_path(:program_id=>program, :trainer_id=>current_trainer.id),:method=>:post %>
+            <%elsif recruiter_signed_in? %>
+                <p>Only Trainers can Apply</p>
+            <%else%>
+                <%= link_to image_tag("icons/save.png",:width=>"40%",:title=>"Save Program"), savedprograms_path(:program_id=>program),:method=>:post %>
+                <%= link_to image_tag("icons/apply.png",:width=>"40%",:title=>"Apply"), appliedprograms_path(:program_id=>program),:method=>:post %>
+            <%end%>
+          </div>    
+        </li>
+      </ul>
+    <%end%>
+  </div>
+  <div class="col s12 m12 l12 pagination" style="text-align:right">
+    <%= will_paginate @program, renderer: BootstrapPagination::Rails %>
+  </div>
 </div>
+
