@@ -115,6 +115,16 @@ form .active{background-color: transparent;}
     border: 1px solid #9E9E9E;
     height: 3rem;
 }
+.collectionselect{
+    width: 95%;
+    /*padding: 4px;*/
+    font-size: 14px;
+    background-color: transparent;
+    display: block;
+    margin-top:0px;
+    border: 1px solid #9E9E9E;
+    height: 3rem;
+}
 .dropbtn {
     padding: 16px;
     font-size: 16px;
@@ -159,3 +169,64 @@ form .active{background-color: transparent;}
 .ddmenu:hover .dropbtn {
     background-color: #3e8e41;
 }*/
+.profile-pic{
+    position: relative;
+    overflow: hidden;
+    margin: auto;
+    text-align: center;
+}
+.profile-pic-img{
+    display: inline-block;
+    max-width: 140px;
+    max-height: 130px;
+    border: 1px solid #e2e2e2;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    border-radius: 50%;
+    text-align: center;
+}
+.profile-header{
+    position: relative;
+    min-height: 117px;
+    display: block;
+}
+.profile-name{
+    font-size: 19px;
+    letter-spacing: -0.5px;
+    line-height: 1.25;
+    font-weight: bold;
+    font-size: 28px;
+    letter-spacing: -1px;
+}
+.profile-sidebar{
+    background-color: #fff;
+    padding: 10px;
+    min-height: 200px;
+}
+.profile-mainbar{
+    background-color: #fff;
+    padding: 10px;
+    min-height: 200px;
+}
+.hd{
+    font-size: 16px;
+    font-weight: 600;
+}
+.profile-body{
+    font-size: 14px;
+}
+.profile-body table td{
+    padding: 5px 10px;
+    display: table-cell;
+    text-align: left;
+    vertical-align: middle;
+    border-radius: 2px;
+}
+.collection-hd{
+    background-color: #fff;
+    line-height: 1.5rem;
+    padding: 0px 20px;
+    margin: 0;
+    border-bottom: 1px solid #e0e0e0;
+}

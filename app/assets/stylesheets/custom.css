@@ -51,6 +51,7 @@ select{
 }
 .alert{
     border:1px solid grey;
+    text-align: center;
 }
 p{
     font-family: lato;
