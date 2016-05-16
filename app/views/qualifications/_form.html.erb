@@ -1,4 +1,12 @@
 <script type="text/javascript">
+  $( document ).ready(function() {
+       $('.datepicker').pickadate({
+    selectMonths: true, // Creates a dropdown to control month
+    selectYears: 3 // Creates a dropdown of 15 years to control year
+  });
+}); 
+</script>
+<script type="text/javascript">
   function onlyNos(e, t) {
             try {
                 if (window.event) {
@@ -20,38 +28,48 @@
 </script>
 <%= form_for([@trainer, @trainer.qualifications.build]) do |f| %>
 	<div class="form-horizontal" id="addqual">        
-		<div class="col-xs-12 col-md-12 col-sm-12">
-        	<div class="col-xs-12 col-md-6 col-sm-12">
-				<%= f.text_field :course_name,:placeholder=>"Course Name", :class=>"form-control" %>
+		<div class="col s12 m12 l12">
+        	<div class="col s12 m6 l6 input-field">
+				<%= f.label :course_name, "Course Name" %>
+				<%= f.text_field :course_name, :class=>"form-control" %>
 			</div>
-			<div class="col-xs-12 col-md-6 col-sm-12">
-				<%= f.text_field :completed_from,:placeholder=>"University/College", :class=>"form-control" %>
+			<div class="col s12 m6 l6 input-field">
+				<%= f.label :completed_from, "Name of University/College" %>
+				<%= f.text_field :completed_from, :class=>"form-control" %>
 			</div>
-			<div class="col-xs-12 col-md-6 col-sm-12">
-				<%= f.label :course_type, "Select Course Type" %> <br> <%= f.select :course_type, ['Graduation','Post Graduation','Diploma','Others'], :class=>"form-control" %>
+			<div class="col s12 m6 l6 input-field">
+				<%= f.select :course_type, ['Graduation','Post Graduation','Diploma','Others'], :class=>"form-control" %>
 			</div>
-			<div class="col-xs-12 col-md-6 col-sm-12">
-				<%= f.label :percentage, "Percentage" %> : <%= f.text_field :percentage,:onkeypress=>"return onlyNos(event,this);",:maxlength=>"3",:class=>"form-control" %>
+			<div class="col s12 m6 l6 input-field">
+				<%= f.label :percentage, "Percentage" %>
+				<%= f.text_field :percentage,:onkeypress=>"return onlyNos(event,this);",:maxlength=>"3",:class=>"form-control" %>
 			</div>
 		</div>
-		<div class="col-xs-12 col-md-12 col-sm-12">
-			<div class="col-xs-12 col-md-6 col-sm-12">
-				<%= f.label :start_date, "Course Start Date" %> <br> <%= f.date_select :start_date,:start_year=>1980,:use_short_month=>true,:class=>"form-control" %>
+		<div class="col s12 m12 l12">
+			<div class="col s12 m6 l6 input-field">
+				<%= f.label :start_date, "Course Start Date" %> <br> 
+				<%= f.text_field :start_date, :class=>"datepicker" %>
+				<%#= f.date_select :start_date,:start_year=>1980,:use_short_month=>true,:class=>"form-control" %>
 			</div>
-			<div class="col-xs-12 col-md-6 col-sm-12">
-				<%= f.label :end_date, "Course End Date" %> <br> <%= f.date_select :end_date,:start_year=>1980,:end_year=>Date.today.year,:use_short_month=>true,:class=>"form-control" %>
+			<div class="col s12 m6 l6 input-field">
+				<%= f.label :end_date, "Course End Date" %> <br> 
+				<%= f.text_field :start_date, :class=>"datepicker" %>
+				<%#= f.date_select :end_date,:start_year=>1980,:end_year=>Date.today.year,:use_short_month=>true,:class=>"form-control" %>
 			</div>
-			<div class="col-xs-12 col-md-6 col-sm-12">
-				<%= f.label :duration, "Duration" %> : <%= f.text_field :duration,:placeholder=>"In Months",:maxlength=>"3",:onkeypress=>"return onlyNos(event,this);",:class=>"form-control" %>
+			<div class="col s12 m6 l6 input-field">
+				<%= f.label :duration, "Course Duration in Months" %>
+				<%= f.text_field :duration,:maxlength=>"3",:onkeypress=>"return onlyNos(event,this);",:class=>"form-control" %>
 			</div>			
-			<div class="col-xs-12 col-md-6 col-sm-12">
-				<%= f.label :grade, "Your Grade" %> : <%= f.text_field :grade,:maxlength=>"3",:class=>"form-control" %>
+			<div class="col s12 m6 l6 input-field">
+				<%= f.label :grade, "Your Grade" %>
+				<%= f.text_field :grade,:maxlength=>"3",:class=>"form-control" %>
 			</div>
-			<div class="col-xs-12 col-md-12 col-sm-12">
-				<%= f.label :course_description, "Brief Description" %> : <%= f.text_area :course_description,:class=>"form-control",:placeholder => "Mention area of specializations", size: '40x6' %>
+			<div class="col s12 m12 l12 input-field">
+				<%= f.label :course_description, "Brief Description" %>
+				<%= f.text_area :course_description,:class=>"materialize-textarea",:placeholder => "For eg: subjects covered, projects finished etc." %>
 			</div>
 		</div>
-		<div class="col-xs-12 col-md-12 col-sm-12 topmargin" style="margin-bottom:10px;">
+		<div class="col s12 m12 l12 topmargin text-center">
 			<%= f.submit "Add Qualification", :class=>"btn btn-success" %>
 		</div>
 	</div>

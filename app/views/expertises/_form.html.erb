@@ -19,50 +19,57 @@
         }
 </script>
 <%= form_for([@trainer, @trainer.expertises.build]) do |f| %>
-	<div class="form-horizontal tcenter" id="addexpe">      
-		<span style="color:red;margin-left:20px;">* All Fields are mandatory.</span>  
-		<div class="col-xs-12 col-md-12 col-sm-12">
-			<%= f.collection_select(:expertise_in, Expertlist.all, :name, :name, {:prompt   => "Select Expertise"}) %>
-			<span id="experr" style="color:red;font-size:12px;"><br>Please select Expertise.</span>
-        	<%#= f.text_field :expertise_in,:placeholder=>"Expert In", :class=>"form-control" %>			
+	<div class="form-horizontal tcenter" id="addexpe">
+		<div class="input-field col s12 m12 l12">
+			<%#= f.label :expertise_in, "Select Expertise"%>
+			<%= f.collection_select(:expertise_in, Expertlist.all, :name, :name, {:prompt   => "Select Expertise"},{:class=>"collectionselect"}) %>
+			<!--span id="experr" style="color:red;font-size:12px;"><br>Please select Expertise.</span-->
+        	<%#= f.text_field :expertise_in,:placeholder=>"Expert In", :class=>"form-control" %>	
 		</div>
-		<div class="col-xs-12 col-md-12 col-sm-12 topmargin">
-			<%= f.text_area :professional_expertise_info,:placeholder=>"Professional Experience Details for Mentioned Expertise", :class=>"form-control" %>
+		<div class="input-field col s12 m12 l12 topmargin">
+			<%= f.label :professional_expertise_info, "Brief Description" %>
+			<%= f.text_area :professional_expertise_info,:placeholder=>"Professional Experience Details for Mentioned Expertise", :class=>"materialize-textarea" %>
 			<span id="inferr" style="color:red;font-size:12px;">Professional experience is mandatory.</span>
 		</div>
 		<hr>
-		<div class="col-xs-12 col-md-12 col-sm-12">
-			<h4>References (For verification)</h4>
+		<div class="col s12 m12 l12">
+			<h5>References (For verification)</h5>
 			<div style="text-align:left"><b># 1</b></div>
-			<div class="form-group col-xs-12 col-md-4 col-sm-12">
-				<%= f.text_field :reference_name,:placeholder=>"Reference Name", :class=>"form-control" %>
+			<div class="input-field col s12 m4 l4">
+				<%= f.label :reference_name, "Name of Person" %>
+				<%= f.text_field :reference_name, :class=>"form-control" %>
 				<span id="refnmerr" style="color:red;font-size:12px;">Name is required</span>
 			</div>
-			<div class="form-group col-xs-12 col-md-4 col-sm-12">				
-				<%= f.text_field :reference_number,:placeholder=>"Contact Number",:maxlength=>"12",:onkeypress=>"return onlyNos(event,this);",:class=>"form-control" %>
+			<div class="input-field col s12 m4 l4">				
+				<%= f.label :reference_number, "Contact Number" %>
+				<%= f.text_field :reference_number,:maxlength=>"12",:onkeypress=>"return onlyNos(event,this);",:class=>"form-control" %>
 				<span id="refnoerr" style="color:red;font-size:12px;">Number is required for verification</span>
 			</div>
-			<div class="form-group col-xs-12 col-md-4 col-sm-12">
-				<%= f.email_field :reference_email,:placeholder=>"Email Id",:class=>"form-control" %>
+			<div class="input-field col s12 m4 l4">
+				<%= f.label :reference_email, "Email Address" %>
+				<%= f.email_field :reference_email,:class=>"form-control" %>
 				<span id="refemerr" style="color:red;font-size:12px;">Email is required for verification.</span>
 			</div>
 		</div>
-		<div class="col-xs-12 col-md-12 col-sm-12">
+		<div class="col s12 m12 l12">
 			<div style="text-align:left"><b># 2</b></div>
-			<div class="form-group col-xs-12 col-md-4 col-sm-12">
-				<%= f.text_field :reference_name1,:placeholder=>"Reference Name", :class=>"form-control"%>
+			<div class="input-field col s12 m4 l4">
+				<%= f.label :reference_name1, "Name of Person" %>
+				<%= f.text_field :reference_name1, :class=>"form-control"%>
 				<span id="refnmerr1" style="color:red;font-size:12px;">Name is required</span>
 			</div>
-			<div class="form-group col-xs-12 col-md-4 col-sm-12">
-				<%= f.text_field :reference_number1,:placeholder=>"Contact Number",:maxlength=>"12",:onkeypress=>"return onlyNos(event,this);",:class=>"form-control" %>
+			<div class="input-field col s4 m4 l4">
+				<%= f.label :reference_number1, "Contact Number" %>
+				<%= f.text_field :reference_number1,:maxlength=>"12",:onkeypress=>"return onlyNos(event,this);",:class=>"form-control" %>
 				<span id="refnoerr1" style="color:red;font-size:12px;">Number is required for verification</span>
 			</div>
-			<div class="form-group col-xs-12 col-md-4 col-sm-12">
-				<%= f.email_field :reference_email1,:placeholder=>"Email Id",:class=>"form-control" %>
+			<div class="input-field col s4 m4 l4">
+				<%= f.label :reference_email1, "Email Address" %>
+				<%= f.email_field :reference_email1,:class=>"form-control" %>
 				<span id="refemerr1" style="color:red;font-size:12px;">Email is required for verification.</span>
 			</div>
 		</div>
-		<div class="form-group col-xs-12 col-md-6 col-sm-12" style="margin-bottom:10px;">
+		<div class="form-group col s12 m12 l12" style="margin-bottom:10px;">
 			<%= f.submit "Add Expertise",:id=>"exp_sub", :class=>"btn btn-success" %>
 		</div>
 	</div>
