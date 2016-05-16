@@ -1,4 +1,12 @@
 <script type="text/javascript">
+  $( document ).ready(function() {
+       $('.datepicker').pickadate({
+    selectMonths: true, // Creates a dropdown to control month
+    selectYears: 3 // Creates a dropdown of 15 years to control year
+  });
+}); 
+</script>
+<script type="text/javascript">
   function onlyNos(e, t) {
             try {
                 if (window.event) {
@@ -28,128 +36,127 @@
     });
   });
 </script>
-<div class="col-xs-12 col-md-12 col-sm-12">
-    <ul class="nav navbar-nav profile-nav">
-      <li><a href="/trainers/profile">My Profile</a></li>
-      <li><a href="/trainers/profile">Projects Applied</a></li>
-      <li><a href="/trainers/profile">Saved Programs</a></li>
-      <%#<li><a href="#">Inbox</a></li>%>
-      
-    </ul>    
-  <span class="tright" style="margin-top:1%;">
-    <%= link_to 'Find Project', "/programs", :class=>"homebutton" %>
-  </span>
-</div>
-<div class="col-xs-12 col-md-12 col-sm-12 gradient">
-  <div class="col-xs-12 col-md-12 col-sm-12 topmargin">
+<div class="col hide-on-small m1 l1">&nbsp;</div>
+<div class="col s12 m10 l10">
+  <div class="col s12 m12 l12 topmargin">
       <%= render partial: "shared/flash_messages", flash: flash %> 
   </div>
-  <div class="col-xs-12 col-md-12 col-sm-12 whitebg" id="dash" style="padding:10px;margin-top: 4%;margin-bottom:4%;">
-  <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { multipart: true, method: :put }) do |f| %>
-    <div class="col-xs-6 col-md-3 col-sm-6" style="margin-top:-4%;">
+  <div class="col s12 m3 l3"><!--    Profile side bar -->
+    <div class="profile-pic">
       <% if @trainer.image.url=='/images/original/missing.png'%>
-        <%= image_tag("profile_pics/pic_def.png", :class => "profile_pic") %>
-      <% else %>
-        <%= image_tag(@trainer.image.url, :class => "profile_pic") %>
-      <% end %>
-    </div>
-    <div class="col-xs-6 col-md-9 col-sm-6">
-        <h3><b><%= @trainer.full_name %></b></h3>
-        <%= @trainer.email %><br>
-      <div class="col-xs-6 col-sm-6 col-md-3" style="margin-left:-15px;">
-          Current Password <span style="color:red">*</span>  
-          <%= f.password_field :current_password, :class=>"form-control" %>
-          <span id="niltpass" style="color:red">Password is Mandatory.</span>
-          <span id="utpassshow" style="font-size:14px;"><a href="#">Update Password</a></span>
-        </div>
-        <div class="col-xs-12 col-sm-12 col-md-6" style="margin-left:-15px;" id="utpass">
-          <table>
-            <tr><td>New Password</td><td>Confirm New Password</td></tr>
-            <tr><td><%= f.password_field :password, :class=>"form-control" %></td><td><%= f.password_field :password_confirmation, :class=>"form-control" %></td></tr>
-          </table>
-        </div>
-    </div>    
-      <% if @trainer.profile_status=="pending" %>
-        <div class="col-xs-12 col-sm-12 col-md-12 topmargin lato label label-warning">
-            <span style="word-spacing:6px;"><font size="2px">Your profile is in "<font color="red">Pending</font>" state, please <a href="/">contact us</a> if you want it approved instantly.</font></span>
-        </div>
-      <% end -%>
-    <div class="col-xs-12 col-md-12 col-sm-12 topmargin">            
-        <div class="form-horizontal">
-          <div class="col-xs-12 col-md-6 col-sm-12">
-            <h3>Basic Details</h3>
-            <hr>
-            <div class="form-group col-xs-12 col-md-6 col-sm-12">
-              <p class="lato"><b>First Name</b></p>
-              <%= f.text_field :full_name, :class=>"form-control" %>
-            </div>
-            <div class="form-group col-xs-12 col-md-6 col-sm-12">
-              <p class="lato"><b>Last Name</b></p>
-              <%= f.text_field :last_name, :class=>"form-control" %>
-            </div>
-            <div class="form-group col-xs-12 col-md-6 col-sm-12">
-              <p class="lato"><b>Update Pic</b></p>
-              <%= f.file_field :image, :class=>"form-control" %>
-            </div>
-            <div class="form-group col-xs-12 col-md-6 col-sm-12">
-              <p class="lato"><b>Primary Number</b></p>
-              <%= f.text_field :primary_number, :maxlength=>"12",:onkeypress=>"return onlyNos(event,this);",:class=>"form-control" %>
-            </div>
-            <div class="form-group col-xs-12 col-md-6 col-sm-12">
-              <p class="lato"><b>Date of Birth</b></p>
-              <%= f.date_select :birth_date, :start_year=>1930, :end_year=>2005, :class=>"form-control" %>
-            </div>
-            <div class="form-group col-xs-12 col-md-2 col-sm-12">
-              <p class="lato"><b>Gender</b></p>
-              <%= f.select :gender, ['Male','Female'], :class=>"form-control" %>              
-            </div>          
-          </div>
-          <div class="col-xs-12 col-md-6 col-sm-12">
-            <h3>Address Details</h3>
-            <hr>       
-            <div class="form-group col-xs-12 col-md-12 col-sm-12">
-              <p class="lato"><b>Addres</b></p>
-              <%= f.text_area(:address, size: '50x4', :class=>"form-control")%>
-            </div>
-            <div class="form-group col-xs-12 col-md-4 col-sm-12">
-              <p class="lato"><b>City</b></p>
-              <%= f.text_field :city, :class=>"form-control" %>
-            </div>
-            <div class="form-group col-xs-12 col-md-4 col-sm-12">
-              <p class="lato"><b>State</b></p>
-              <%= f.text_field :state, :class=>"form-control" %>
-            </div>
-            <div class="form-group col-xs-12 col-md-4 col-sm-12">
-              <p class="lato"><b>Country</b></p>
-              <%= f.select :country, ['India'], :class=>"form-control" %>
-            </div>
-          </div>
-          <%#<div class="col-xs-12 col-md-12 col-sm-12">
-            <h5><b>Other Details</b></h5>
-            <div class="otherbox">
-              <div class="form-group col-xs-12 col-md-6 col-sm-6">
-                <%= f.label :busy_from %><%#
-                <%= f.date_select :busy_from, :start_year=>2015, :end_year=>2015, :class=>"form-control" %><%#
-              </div>
-              <div class="form-group col-xs-12 col-md-6 col-sm-6">
-                <%= f.label :busy_till %><%#
-                <%= f.date_select :busy_till, :start_year=>2015, :end_year=>2016,  :class=>"form-control" %><%#
-              </div>
-            </div>
-          </div>%>
-          <div class="col-xs-12 col-md-12 col-sm-12">
-            <div class="form-group col-xs-6 col-md-3 col-sm-6">
-              <%= f.button "Update Details",:id=>"tupprof", :class=>"form-control btn btn-success" %>
-            </div>
-            <div class="form-group col-xs-6 col-md-3 col-sm-6">
-              <%= link_to "Cancel", 'profile', :class=>"form-control btn btn-warning" %>
-            </div>
-          </div>
-        </div>
+        <%= image_tag("profile_pics/pic_def.png", :class => "profile-pic-img") %>
+      <%else%>
+        <%= image_tag(@trainer.image.url, :class => "profile-pic-img") %>
       <%end%>
+    </div>
+    <div class="profile-sidebar">
+      <ul class="collection">
+        <li class="collection-item">
+          <a href="/trainers/profile" id="">My Profile</a> <!--onclick="this.className='active'"-->
+        </li>
+        <li class="collection-item">
+          <a href="#appliedprogram" id="showappliedprogram" onclick="this.className='active'">Applied Programs</a>
+        </li>
+        <li class="collection-item">
+          <a href="#savedprogram" id="showsavedprogram" onclick="this.className='active'">Saved Programs</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+  <div class="col s12 m9 l9">
+    <div class="profile-header">
+      <div class="profile-name">
+        <h5><%= @trainer.full_name %></h5>        
+      </div>
+      <div>
+        <%= @trainer.email %></span><br>
+        Active since : <%= @trainer.created_at.to_date %>
+      </div>
+    </div>
+    <div class="profile-mainbar" id="editprofilepage" style="background-color:#fff;">
+    <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { multipart: true, method: :put }) do |f| %>
+      <div class="col s12 m6 l6 topmargin">
+        <div class="hd">About You</div>
+        <div class="profile-body">
+          <div class="input-field col s12 m12 l12">
+            <span style="color:#e37343;">Current Password</span><br>
+            <%#= f.label :current_password,"Current Password"%>  
+            <%= f.password_field :current_password, :class=>"form-control" %>
+            <span id="niltpass" style="color:red">Password is Mandatory.</span>
+            <!--span id="utpassshow" style="font-size:14px;"><a href="#">Update Password</a></span-->
+          </div>
+          <div class="input-field col s12 m6 l6">
+            <%#= f.label :full_name,"First Name" %>
+            <span style="color:#e37343;">First Name</span><br>
+            <%= f.text_field :full_name,:class=>"form-control" %> 
+          </div>
+          <div class="input-field col s12 m6 l6">
+            <%#= f.label :last_name,"Last Name" %>
+            <span style="color:#e37343;">Last Name</span><br>
+            <%= f.text_field :last_name,:class=>"form-control" %>
+          </div>
+          <div class="input-field col s12 m4 l4">
+            <label><span style="color:#e37343;">Update Pic</label>
+          </div>
+          <div class="input-field col s12 m8 l8">
+            <br>
+            <%= f.file_field :image, :class=>"form-control" %>
+          </div>
+          <div class="input-field col s12 m6 l6">
+            <%#= f.label :birth_date,"Date of Birth" %>
+            <span style="color:#e37343;">Date of Birth</span><br>
+            <%= f.text_field :birth_date, :class=>"datepicker" %>
+          </div>
+          <div class="input-field col s12 m6 l6">
+            <span style="color:#e37343;">Gender</span><br>
+            <%= f.select :gender, ["Male","Female","Others"],:class=>"form-control" %>
+          </div>
+        </div>
+      </div>
+      <div class="col s12 m6 l6 topmargin">
+        <div class="hd">Contact Details</div>
+        <div class="profile-body">
+          <div class="input-field col s12 m12 l12">
+            <%#= f.label :primary_number,"Contact Number" %>
+            <span style="color:#e37343;">Phone/Mobile Number</span><br>
+            <%= f.text_field :primary_number, :maxlength=>"12",:onkeypress=>"return onlyNos(event,this);",:class=>"form-control" %>
+          </div>
+          <div class="input-field col s12 m12 l12">
+            <%#= f.label :address,"Mailing Address" %>
+            <span style="color:#e37343;">Mailing Address</span><br>
+            <%= f.text_field :address, :class=>"marerialize-textarea" %>
+          </div>
+          <div class="input-field col s4 m4 l4">
+            <%#= f.label :city, "City"%>
+            <span style="color:#e37343;">City</span><br>
+            <%= f.text_field :city,:class=>"form-control"%>
+          </div>
+          <div class="input-field col s4 m4 l4">
+            <%#= f.label :state, "State"%>
+            <span style="color:#e37343;">State</span><br>
+            <%= f.text_field :state,:class=>"form-control"%>
+          </div>
+          <div class="input-field col s4 m4 l4">
+            <%#= f.label :country, "Country"%>
+            <span style="color:#e37343;">Country</span><br>
+            <%= f.text_field :country,:class=>"form-control"%>
+          </div>
+        </div>
+      </div>
+      <div class="input-field col s12 m12 l12">
+        <table width="50%;">
+          <tr>
+            <td>
+              <%= f.button "Update Details",:id=>"tupprof", :class=>"form-control btn" %>
+            </td>
+            <td>
+              <%= link_to "Cancel", 'profile', :class=>"form-control btn btn light-red-3" %>
+            </td>
+          </tr>
+        </table>
+      </div>
+    <%end%>
     </div>
   </div>
 </div>
-<div class="col-xs-12 col-md-12 col-sm-12 whitebg center lato">
-  <p class="orange"><font size="4px;">On our blog, you will find many resources which will help you to prepare for your <br>next training program in a better way. Lets get going.</font></p>
-</div>
+<div class="col hide-on-small m1 l1">&nbsp;</div>
