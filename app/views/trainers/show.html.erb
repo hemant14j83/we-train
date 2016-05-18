@@ -149,49 +149,72 @@ $(document).ready(function(){
           </table>
         </div>
       </div>
+      <div class="col s12 m12 l12 spacediv">
+        
+      </div>
+      <div class="profile-mainbar">
+        <div class="">
+          <ul class="tabs">
+            <li class="tab col s6 m6 l6"><a href="#exprt">Expertise</a></li>
+            <li class="tab col s6 m6 l6"><a href="#qual">Qualification</a></li>
+          </ul>
+        </div>
+        <div id="exprt" class="topmargin">
+          <% if @trainer.expertises.count<=0 %>
+            <%= link_to "Add Expertise","#newmodal",:class=>"btn btn-success modal-trigger",:id=>"addexpertise"%>
+          <% elsif @trainer.expertises.count==5%>
+            <%= link_to "Add Expertise","#newmodal",:class=>"btn btn-success modal-trigger disabled",:id=>"addexpertise"%>
+          <% else %>
+            <%= link_to "Add More Expertise","#newmodal",:class=>"btn btn-success modal-trigger",:id=>"addexpertise"%>
+          <% end %>
+          <div id="newmodal" class="modal">
+            <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title text-center">
+                    Add Expertise<br> <span style="color:red;margin-left:10px;font-size:12px;">* All Fields are mandatory.</span>
+                  </h5>
+                  <%= render "expertises/form" %>
+                  &nbsp;
+                </div>
+            </div>
+          </div>
+          <%= render @trainer.expertises %>
+        </div>
+        <div id="qual" class="topmargin">
+          <%= link_to "Add Qualification","#newqualmodal",:class=>"btn btn-success modal-trigger",:id=>"addnewqual"%>
+          <div id="newqualmodal" class="modal">
+            <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title text-center">
+                    Add Qualification<br> <!--span style="color:red;margin-left:10px;font-size:12px;">* All Fields are mandatory.</span-->
+                  </h5>
+                  <%= render "qualifications/form" %>
+                  &nbsp;
+                </div>
+            </div>
+          </div>
+          <%= render @trainer.qualifications %>
+        </div>
+      </div>
     </div>
-    <div class="col s12 m12 l12 profile-mainbar">
-      <div class="col s12 m12 l12">
-        <ul class="tabs">
-          <li class="tab col s6 m6 l6"><a href="#exprt">Expertise</a></li>
-          <li class="tab col s6 m6 l6"><a href="#qual">Qualification</a></li>
-        </ul>
+    <div class="profile-mainbar" id="appliedprogram">
+      <div class="topmargin">
+        <div class="hd">Applied Programs</div>
+        <% if @trainer.appliedprograms.exists? %>
+          <%= render @trainer.appliedprograms %>
+        <%else%>
+          <%= render 'appliedprograms/noprograms' %>
+        <%end%>
       </div>
-      <div id="exprt" class="col s12 m12 l12 topmargin">
-        <% if @trainer.expertises.count<=0 %>
-          <%= link_to "Add Expertise","#newmodal",:class=>"btn btn-success modal-trigger",:id=>"addexpertise"%>
-        <% elsif @trainer.expertises.count==5%>
-          <%= link_to "Add Expertise","#newmodal",:class=>"btn btn-success modal-trigger disabled",:id=>"addexpertise"%>
-        <% else %>
-          <%= link_to "Add More Expertise","#newmodal",:class=>"btn btn-success modal-trigger",:id=>"addexpertise"%>
-        <% end %>
-        <div id="newmodal" class="modal">
-          <div class="modal-content">
-              <div class="modal-header">
-                <h5 class="modal-title text-center">
-                  Add Expertise<br> <span style="color:red;margin-left:10px;font-size:12px;">* All Fields are mandatory.</span>
-                </h5>
-                <%= render "expertises/form" %>
-                &nbsp;
-              </div>
-          </div>
-        </div>
-        <%= render @trainer.expertises %>
-      </div>
-      <div id="qual" class="col s12 m12 l12 topmargin">
-        <%= link_to "Add Qualification","#newqualmodal",:class=>"btn btn-success modal-trigger",:id=>"addnewqual"%>
-        <div id="newqualmodal" class="modal">
-          <div class="modal-content">
-              <div class="modal-header">
-                <h5 class="modal-title text-center">
-                  Add Qualification<br> <!--span style="color:red;margin-left:10px;font-size:12px;">* All Fields are mandatory.</span-->
-                </h5>
-                <%= render "qualifications/form" %>
-                &nbsp;
-              </div>
-          </div>
-        </div>
-        <%= render @trainer.qualifications %>
+    </div>
+    <div class="profile-mainbar" id="savedprogram">
+      <div class="topmargin">
+        <div class="hd">Saved Programs</div>
+        <% if @trainer.savedprograms.exists? %>
+          <%= render @trainer.savedprograms %>
+        <%else%>
+          <%= render 'savedprograms/noprograms' %>
+        <%end%>
       </div>
     </div>
   </div>
