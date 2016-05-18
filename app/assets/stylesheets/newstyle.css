@@ -9,7 +9,8 @@ body{
     font-weight: 100;
     line-height: 1.5;
     color: #494949;
-    background-color: #fafafa;
+    background-color: #E9E9E9;
+    /*background-color: #fafafa;*/
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     display: flex;
@@ -229,4 +230,13 @@ form .active{background-color: transparent;}
     padding: 0px 20px;
     margin: 0;
     border-bottom: 1px solid #e0e0e0;
+}
+.spacediv{
+    margin-bottom:2%;margin-top:2%;
+}
+.noresult{
+    border: 1px solid #e53935;
+    padding: 10px;
+    margin-top: 2%;
+    font-size: 14px;
 }
