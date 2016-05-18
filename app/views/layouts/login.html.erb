@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html class="loading">
+<head>
+  <title>Hire Trainer &amp; Find Project, Jobs Online - Traix</title>
+  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <%#= csrf_meta_tags %>
+  <meta name="robots" content="noodp"/>
+  <meta name="robots" content="index, follow"/>
+  <meta property="og:site_name" content="Traix"/>
+  <link rel="canonical" href="http://www.traix.in/"/>
+  <meta name="description" content="Hire freelance trainers, web developers, designers, data entry operators."/>
+  <meta name="keywords" content="freelance trainers, best training programs, hire trainers, apply for programs, jobs"/>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+  <%#<script type="text/javascript">
+    $(document).ready(function(){
+      setTimeout(function(){
+      $("#notice").hide("slow");
+     },1000);
+  });
+  </script>%>
+    <script type="text/javascript">
+    $(window).load(function(){
+      var html = document.getElementsByTagName('html')[0];
+      var removeLoading = function() {
+        // In a production application you would remove the loading class when your
+        // application is initialized and ready to go.  Here we just artificially wait
+        // 3 seconds before removing the class.
+        setTimeout(function() {
+          html.className = html.className.replace(/loading/, '');
+        });
+      };
+      removeLoading();    
+    });
+    $(document).ready(function() {
+    var bodyHeight = $("body").height();
+    var vwptHeight = $(window).height();
+    if (vwptHeight > bodyHeight) {
+    $("#footer").css("position","absolute").css("bottom",0);
+    }
+    });
+</script>
+</head>
+<body>
+  <div id="main-container" class="">
+      <div class="row" style="margin-bottom:none;">
+        <%= render "layouts/newheader" %>
+      </div>
+      <div class="row">        
+        <div id="contents">
+          <%= yield %>
+        </div>
+      </div>
+      <div class="row">
+        <div id="newfooter">
+          <%= render "layouts/testfooter" %> 
+        </div>
+      </div>
+  </div>
+
+</body>
+</html>

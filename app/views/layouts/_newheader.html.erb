@@ -1,0 +1,49 @@
+<div class="navbar-fixed">
+<nav role="navigation" class="nav font-gotham-medium">
+  <ul class="site-links list-inline pull-left">
+  <a href="/" class="logo">Demo</a>
+  </ul>
+
+  <ul class="user-links list-inline pull-right">
+    <% if trainer_signed_in? %>
+      <% if current_trainer.full_name? %>
+        <li><%= current_trainer.full_name %></li>
+        <li><%= link_to "My Account", "/trainers/profile", :class=>"" %></li>
+        <li><%= link_to "Sign out", destroy_trainer_session_path, :class=>"" %></li>
+      <%elsif current_trainer.email? %>
+        <li><%= current_trainer.email %></li>
+        <li><%= link_to "My Account", "/trainers/profile", :class=>"" %></li>
+        <li><%= link_to "Sign out", destroy_trainer_session_path, :class=>"" %></li>
+      <%end%>
+    <% elsif recruiter_signed_in? %>
+        <% if current_recruiter.firm_name? %>
+          <li><%= current_recruiter.firm_name %></b></li>
+          <li><%= link_to "My Account", "/recruiters/profile", :class=>"label label-success" %></li>
+          <li><%= link_to "Sign out", destroy_recruiter_session_path, :class=>"label label-warning" %></li>
+        <%elsif current_recruiter.email? %>
+          <li><%= current_recruiter.email %></b></li>
+          <li><%= link_to "My Account", "/recruiters/profile", :class=>"label label-success" %></li>
+          <li><%= link_to "Sign out", destroy_recruiter_session_path, :class=>"label label-warning" %></li>
+        <%end%>
+    <%else%>
+      <li class="ddmenu">
+        <span class="dropbtn text-uppercase">Signup</span>
+        <div class="ddmenu-content">
+          <a href="/trainers/sign_up">Trainers</a>
+          <a href="/recruiters/sign_up">Recruiters</a>
+        </div>
+      </li>
+      <li class="ddmenu">
+        <span class="dropbtn text-uppercase">Signin</span>
+        <div class="ddmenu-content">
+          <a href="/trainers/sign_in">Trainers</a>
+          <a href="/recruiters/sign_in">Recruiters</a>
+        </div>
+      </li>
+      <li>
+        <a class="btn btn-default header-cta-feh" href="/howitworks/freelancer/">Become a Freelancer</a>
+      </li>
+    <%end%>
+  </ul>
+</nav>
+</div>
