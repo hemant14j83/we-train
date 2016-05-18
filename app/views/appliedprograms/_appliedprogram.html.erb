@@ -1,273 +1,163 @@
-<% if recruiter_signed_in? %>  
-    <% if appliedprogram.program_id.nil? %>
-      <div class="col-xs-12 col-md-12 col-sm-12">
-        <div class="qbox">
-          <h4>You haven't saved any program yet, please browse our listed <a href="/programs" title="training programs">programs</a>.</h4>
-        </div>  
-    </div>
-  <% else %>
-    <% if appliedprogram.status=='selected' && appliedprogram.program.start_date >= Date.today %>
-      <div class="qbox">
-        <table class="table lato">
-          <tr>
-            <th width="20%"><b>Program Details</b>
-            <th width="15%"><b>Trainer Name</b>
-            <th width="50%"><b>Qualification</b></th>
-            <th width="15%"><b>Action</b></th>
-          </tr>
-          <tr>
-            <td width="20%">
-              <%= appliedprogram.program.name %><br>
-              <b>Starts</b> : <%= appliedprogram.program.start_date %>
-            </td>
-            <td width="15%"><%= appliedprogram.trainer.full_name %> <%= appliedprogram.trainer.last_name %></td>
-            <td width="50%">
-              <div class="panel-group" id="accordion">
-                <div class="panel panel-warning">
-                  <div class="panel-heading">
-                    <h4 class="panel-title">
-                      <a data-toggle="collapse" data-parent="#accordion" href="#trqual">
-                        Trainer Qualifications
-                      </a>
-                    </h4>
-                  </div>
-                  <div id="trqual" class="panel-collapse collapse">
-                    <div class="panel-body">
-                      <%= render appliedprogram.trainer.qualifications %>  
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div class="panel-group" id="accordion">
-                <div class="panel panel-warning">
-                  <div class="panel-heading">
-                    <h4 class="panel-title">
-                      <a data-toggle="collapse" data-parent="#accordion" href="#trexp">
-                        Trainer Expertise
-                      </a>
-                    </h4>
-                  </div>
-                  <div id="trexp" class="panel-collapse collapse">
-                    <div class="panel-body">
-                      <%= render appliedprogram.trainer.expertises %>  
-                    </div>
-                  </div>
-                </div>
-              </div>              
-            </td>
-            <td width="15%"><div class="label label-success">Selected</div></td>
-          </tr>
-        </table>        
-      </div>
-    <%elsif appliedprogram.status=='forwardedtorecruiter' && appliedprogram.program.start_date >= Date.today %>
-      <div class="qbox">
-        <table class="table lato">
-          <tr>
-            <th width="20%"><b>Program Details</b>
-            <th width="15%"><b>Trainer Name</b>
-            <th width="50%"><b>Qualification</b></th>
-            <th width="15%"><b>Action</b></th>
-          </tr>
-          <tr>
-            <td width="20%">
-              <%= appliedprogram.program.name %><br>
-              <b>Starts</b> : <%= appliedprogram.program.start_date %>
-            </td>
-            <td width="15%"><%= appliedprogram.trainer.full_name %> <%= appliedprogram.trainer.last_name %></td>
-            <td width="50%">
-              <div class="panel-group" id="accordion">
-                <div class="panel panel-warning">
-                  <div class="panel-heading">
-                    <h4 class="panel-title">
-                      <a data-toggle="collapse" data-parent="#accordion" href="#trqual">
-                        Trainer Qualifications
-                      </a>
-                    </h4>
-                  </div>
-                  <div id="trqual" class="panel-collapse collapse">
-                    <div class="panel-body">
-                      <%= render appliedprogram.trainer.qualifications %>  
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div class="panel-group" id="accordion">
-                <div class="panel panel-warning">
-                  <div class="panel-heading">
-                    <h4 class="panel-title">
-                      <a data-toggle="collapse" data-parent="#accordion" href="#trexp">
-                        Trainer Expertise
-                      </a>
-                    </h4>
-                  </div>
-                  <div id="trexp" class="panel-collapse collapse">
-                    <div class="panel-body">
-                      <%= render appliedprogram.trainer.expertises %>  
-                    </div>
-                  </div>
-                </div>
-              </div>              
-            </td>
-            <td width="15%"><%= link_to "Select",:controller=>"appliedprograms",:action=>"select",:id=>appliedprogram.id %> / <%= link_to "Reject",:controller=>"appliedprograms",:action=>"reject",:id=>appliedprogram.id %></td>
-          </tr>
-        </table>        
-      </div>
-    <%elsif appliedprogram.status=='forwardedtorecruiter' && appliedprogram.program.start_date <= Date.today %>
-      <h3 class="white">List of Applicants(<span style="color:orange;">Program Expired</span>)</h3> 
-      <div class="qbox">
-        <table class="table lato">
-          <tr>
-            <th><b>Program Detail</b>
-            <th><b>Trainer Name</b></th>
-            <th><b>Trainer Details</b></th>
-            <th><b>Action</b></th>
-          </tr>
-          <tr>
-            <td width="20%">
-              <%= appliedprogram.program.name %><br>
-              <b>Starts</b> : <%= appliedprogram.program.start_date %>
-            </td>
-            <td width="15%"><%= appliedprogram.trainer.full_name %> <%= appliedprogram.trainer.last_name %></td>
-            <td width="50%">
-              <div class="panel-group" id="accordion">
-                <div class="panel panel-warning">
-                  <div class="panel-heading">
-                    <h4 class="panel-title">
-                      <a data-toggle="collapse" data-parent="#accordion" href="#trqual">
-                        Trainer Qualifications
-                      </a>
-                    </h4>
-                  </div>
-                  <div id="trqual" class="panel-collapse collapse">
-                    <div class="panel-body">
-                      <%= render appliedprogram.trainer.qualifications %>  
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div class="panel-group" id="accordion">
-                <div class="panel panel-warning">
-                  <div class="panel-heading">
-                    <h4 class="panel-title">
-                      <a data-toggle="collapse" data-parent="#accordion" href="#trexp">
-                        Trainer Expertise
-                      </a>
-                    </h4>
-                  </div>
-                  <div id="trexp" class="panel-collapse collapse">
-                    <div class="panel-body">
-                      <%= render appliedprogram.trainer.expertises %>  
-                    </div>
-                  </div>
-                </div>
-              </div>              
-            </td>
-            <td width="15%"><a href="#">Select</a>/<a href="#">Reject</a></td>
-          </tr>
-        </table>        
-      </div>
-    <%end%>
-  <%end%>
-<%else trainer_signed_in? %>
-  <div class="col-xs-12 col-md-12 col-sm-12">
-    <% if appliedprogram.program_id.nil? %>
-    <div class="qbox">
-      <h4>You haven't saved any program yet, please browse our listed <a href="/programs" title="training programs">programs</a>.</h4>
-    </div>	
-    <% else %>
-    <% if appliedprogram.status=='forwardedtorecruiter' && appliedprogram.program.start_date >= Date.today %>    
-    <div class="qbox">
-      <table class="table lato">
-       <tr>
-        <th><b>Program Title</b></th>
-        <th><b>Program Details</b></th>
-        <th><b>Payment Details</b></th>
-        <th><b>Status</b></th>
-      </tr>
-      <tr>
-        <td width="15%"><%= appliedprogram.program.name %></td>
-        <td width="60%">
-         <p><%= appliedprogram.program.program_details %></p>
-         <p class="orange"><u>Venue Details</u></p>
-         <p><%#<%= appliedprogram.program.venue  <%= appliedprogram.program.state %><%= appliedprogram.program.city %>, <%= appliedprogram.program.country %></p>
-         <p><span class="orange">Starts From</span> : <%= appliedprogram.program.start_date %></p>
-         <p><span class="orange">Expertise</span> : <%= appliedprogram.program.expertise %></p>
-       </td>
-       <td width="15%">
-         <p><%= appliedprogram.program.currency %>. <%= appliedprogram.program.payment_detail %> / <%= appliedprogram.program.payment_type %></p>
-         <% if appliedprogram.program.food_expense && appliedprogram.program.travel_expense && appliedprogram.program.stay_expense=='Yes' %> 
-         <p class="orange"><u>Includes Following</u></p>
-         <% if appliedprogram.program.food_expense=='Yes' %>
-         <p>Food Expense</p>
-         <%end%>
-         <% if appliedprogram.program.travel_expense=='Yes' %>
-         <p>Travel Expense</p>
-         <%end%>
-         <% if appliedprogram.program.stay_expense=='Yes' %>
-         <p>Lodging Expense</p>
-         <%end%>
-         <% end -%>
-       </td>
-       <td>
-        <% if appliedprogram.status=='forwardedtorecruiter' %>
-        <b>Application sent.</b>
-        <%elsif appliedprogram.status=='rejected' %>
-        Sorry! your application was rejected.
-        <%else %>
-        <a href="/contactus">Contact us</a> to know more.
-        <% end -%>
-       </td>
-      </tr>
-     </table>
-    		<%#<div align="right">
-    			<%= link_to 'Remove', appliedprogram, method: :delete, data: { confirm: 'Are you sure?' }, :class=>"btn btn-danger btn-sm" 
-    		</div>%>
-    </div>
-    <% elsif appliedprogram.status=='notinlist' && appliedprogram.program.start_date < Date.today %>    
-    <h3 class="white">Applied Projects (<span class="orange">Expired</span>)</h3>
-    <div class="qbox">
-        <table class="table lato">
-          <tr>
-            <th><b>Program Title</b></th>
-            <th><b>Program Details</b></th>
-            <th><b>Payment Details</b></th>
-            <th><b>Status</b></th>
-          </tr>
-          <tr>
-            <td width="15%"><%= appliedprogram.program.name %></td>
-            <td width="60%">
-              <p><%= appliedprogram.program.program_details %></p>
-              <p class="orange"><u>Venue Details</u></p>
-              <p><%#<%= appliedprogram.program.venue  <%= appliedprogram.program.state %><%= appliedprogram.program.city %>, <%= appliedprogram.program.country %></p>
-              <p><span class="orange">Starts From</span> : <%= appliedprogram.program.start_date %></p>
-            </td>
-            <td width="15%">
-              <p><%= appliedprogram.program.currency %>. <%= appliedprogram.program.payment_detail %> / <%= appliedprogram.program.payment_type %></p>
+<% if trainer_signed_in? %>
+  <% if appliedprogram.status=='forwardedtorecruiter' && appliedprogram.program.start_date >= Date.today %>
+    <ul class="collection" style="background-color:#fff;font-size:0.9em;font:'Arimo',sans-serif;">
+     <li class="collection-item">
+      <div class="col s12 m6 l6">
+        <ul>
+          <li>
+            <b><span style="color:#e37343;">Program Name</span></b>: <br>
+            <ol>
+              <li><%= appliedprogram.program.name %></li>
+            </ol>
+          </li>
+          <li>
+            <b><span style="color:#e37343;">Payment Details</span></b>: <br>
+            <ol>
+              <li><%= appliedprogram.program.currency %>. <%= appliedprogram.program.payment_detail %> / <%= appliedprogram.program.payment_type %></li>
               <% if appliedprogram.program.food_expense && appliedprogram.program.travel_expense && appliedprogram.program.stay_expense=='Yes' %> 
-              <p class="orange"><u>Includes Following</u></p>
-              <% if appliedprogram.program.food_expense=='Yes' %>
-              <p>Food Expense</p>
+                <li>
+                  <span style="color:#e37343;">Includes Following</span>
+                  <ol>
+                    <% if appliedprogram.program.food_expense=='Yes' %>
+                      <li>Food Expense</li>
+                    <%end%>
+                    <% if appliedprogram.program.travel_expense=='Yes' %>
+                      <li>Travel Expense</li>
+                    <%end%>
+                    <% if appliedprogram.program.stay_expense=='Yes' %>
+                      <li>Lodging Expense</li>
+                    <%end%>
+                  </ol>
+                </li>
               <%end%>
-              <% if appliedprogram.program.travel_expense=='Yes' %>
-              <p>Travel Expense</p>
-              <%end%>
-              <% if appliedprogram.program.stay_expense=='Yes' %>
-              <p>Lodging Expense</p>
-              <%end%>
-              <% end -%>
-            </td>
-            <td>
-              <a href="/contactus">Contact us</a> to know more.            
-            </td>
-          </tr>
-        </table>
-      <div align="right">
-        <%= link_to 'Remove', appliedprogram, method: :delete, data: { confirm: 'Are you sure?' }, :class=>"btn btn-danger btn-sm" %>
+            </ol>
+          </li>          
+          <li>
+            <b><span style="color:#e37343;">Venue Details</span></b>: <br>
+            <ol>
+              <li><%= appliedprogram.program.venue %></li>
+              <li>
+                <% if appliedprogram.program.city!='not mentioned' %>
+                  <%= appliedprogram.program.city %>,
+                <% end %> 
+                <% if appliedprogram.program.state!='not mentioned' %>
+                  <%= appliedprogram.program.state %>,
+                <% end -%>
+                <% if appliedprogram.program.country %>
+                  <%= appliedprogram.program.country %>
+                <%end%>
+              </li>
+            </ol>
+          </li>
+        </ul>
       </div>
-    </div>
-      <% end -%>
-      <%end%>
-    </div>
-  <%#else%>
-  <%#= render :text => "404 Not Found", :status => 404 %>
-<%end%>
+      <div clas="col s12 m6 l6">
+          <ul>
+            <li>
+              <b><span style="color:#e37343;">Dates</span></b>:
+              <ol>
+                <li><%= appliedprogram.program.start_date %> to <%= appliedprogram.program.end_date %></li>
+              </ol>
+            </li>
+            <li>
+              <b>
+                <span style="color:#e37343;">Program Details</span>
+              </b>:<br>
+              <span class="justify">
+                <%= appliedprogram.program.program_details %>
+              </span>
+            </li>
+          </ul>
+      </div>
+      <div class="col s12 m12 l12" style="margin-bottom:2%;">
+        <div align="right">
+          <% if appliedprogram.status=='forwardedtorecruiter' %>
+            <b>Application sent.</b>
+          <%elsif appliedprogram.status=='rejected' %>
+            Sorry! your application was rejected.
+          <%else %>
+            <a href="/contactus">Contact us</a> to know more.
+          <% end -%>
+        </div>
+      </div>
+    </li>
+    </ul>
+  <% elsif appliedprogram.status=='notinlist' || appliedprogram.program.start_date < Date.today %>
+    <ul class="collection" style="border: 1px solid #e53935;background-color:#fff;font-size:0.9em;font:'Arimo',sans-serif;">
+     <li class="collection-item">
+      <div class="col s12 m6 l6">
+        <ul>
+          <li>
+            <b><span style="color:#e37343;">Program Name</span></b>: <br>
+            <ol>
+              <li><%= appliedprogram.program.name %></li>
+            </ol>
+          </li>
+          <li>
+            <b><span style="color:#e37343;">Payment Details</span></b>: <br>
+            <ol>
+              <li><%= appliedprogram.program.currency %>. <%= appliedprogram.program.payment_detail %> / <%= appliedprogram.program.payment_type %></li>
+              <% if appliedprogram.program.food_expense && appliedprogram.program.travel_expense && appliedprogram.program.stay_expense=='Yes' %> 
+                <li>
+                  <span style="color:#e37343;">Includes Following</span>
+                  <ol>
+                    <% if appliedprogram.program.food_expense=='Yes' %>
+                      <li>Food Expense</li>
+                    <%end%>
+                    <% if appliedprogram.program.travel_expense=='Yes' %>
+                      <li>Travel Expense</li>
+                    <%end%>
+                    <% if appliedprogram.program.stay_expense=='Yes' %>
+                      <li>Lodging Expense</li>
+                    <%end%>
+                  </ol>
+                </li>
+              <%end%>
+            </ol>
+          </li>          
+          <li>
+            <b><span style="color:#e37343;">Venue Details</span></b>: <br>
+            <ol>
+              <li><%= appliedprogram.program.venue %></li>
+              <li>
+                <% if appliedprogram.program.city!='not mentioned' %>
+                  <%= appliedprogram.program.city %>,
+                <% end %> 
+                <% if appliedprogram.program.state!='not mentioned' %>
+                  <%= appliedprogram.program.state %>,
+                <% end -%>
+                <% if appliedprogram.program.country %>
+                  <%= appliedprogram.program.country %>
+                <%end%>
+              </li>
+            </ol>
+          </li>
+        </ul>
+      </div>
+      <div clas="col s12 m6 l6">
+          <ul>
+            <li>
+              <b><span style="color:#e37343;">Dates</span></b>:
+              <ol>
+                <li><%= appliedprogram.program.start_date %> to <%= appliedprogram.program.end_date %></li>
+              </ol>
+            </li>
+            <li>
+              <b>
+                <span style="color:#e37343;">Program Details</span>
+              </b>:<br>
+              <span class="justify">
+                <%= appliedprogram.program.program_details %>
+              </span>
+            </li>
+          </ul>
+      </div>
+      <div class="col s12 m12 l12" style="margin-bottom:2%;">
+        <div align="right">
+          <%= link_to 'Remove', appliedprogram, method: :delete, data: { confirm: 'Are you sure?' }, :class=>"btn red lighten-3" %> 
+        </div>
+      </div>
+    </li>
+  </ul>
+  <%end%>
+<% end %>
