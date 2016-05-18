@@ -77,7 +77,7 @@ class SavedprogramsController < ApplicationController
   def destroy
     @savedprogram.destroy
     respond_to do |format|
-      format.html { redirect_to "/trainers/profille", notice: 'Removed from your saved list.' }
+      format.html { redirect_to "/trainers/profile", notice: 'Removed from your saved list.' }
       format.json { head :no_content }
     end
     #@savedprogram.destroy
