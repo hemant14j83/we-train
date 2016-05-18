@@ -55,10 +55,10 @@
           <a href="/trainers/profile" id="">My Profile</a> <!--onclick="this.className='active'"-->
         </li>
         <li class="collection-item">
-          <a href="#appliedprogram" id="showappliedprogram" onclick="this.className='active'">Applied Programs</a>
+          <a href="/trainers/profile#appliedprogram" id="showappliedprogram" onclick="this.className='active'">Applied Programs</a>
         </li>
         <li class="collection-item">
-          <a href="#savedprogram" id="showsavedprogram" onclick="this.className='active'">Saved Programs</a>
+          <a href="/trainers/profile#savedprogram" id="showsavedprogram" onclick="this.className='active'">Saved Programs</a>
         </li>
       </ul>
     </div>
@@ -73,7 +73,7 @@
         Active since : <%= @trainer.created_at.to_date %>
       </div>
     </div>
-    <div class="profile-mainbar" id="editprofilepage" style="background-color:#fff;">
+    <div class="profile-mainbar" id="editprofilepage" style="min-height:500px;">
     <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { multipart: true, method: :put }) do |f| %>
       <div class="col s12 m6 l6 topmargin">
         <div class="hd">About You</div>
