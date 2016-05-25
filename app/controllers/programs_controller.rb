@@ -40,25 +40,25 @@ class ProgramsController < ApplicationController
 	@recruiter=Recruiter.find(current_recruiter.id)
   @category=Category.find(params[:program][:category])
   params[:program][:category]=@category.name
-	if params[:program][:travel_expense]==1
-    params[:program][:travel_expense]="Yes"
-  else
+	if params[:program][:travel_expense]=="0"
     params[:program][:travel_expense]="No"
-  end
-  if params[:program][:stay_expense]==1
-    params[:program][:stay_expense]="Yes"
   else
+    params[:program][:travel_expense]="Yes"
+  end
+  if params[:program][:stay_expense]=="0"
     params[:program][:stay_expense]="No"
-  end
-  if params[:program][:food_expense]==1
-    params[:program][:food_expense]="Yes"
   else
+    params[:program][:stay_expense]="Yes"
+  end
+  if params[:program][:food_expense]=="0"
     params[:program][:food_expense]="No"
+  else
+    params[:program][:food_expense]="Yes"
   end
 	@program = @recruiter.programs.create(params[:program].permit(:name, :program_details, :duration, :duration_type, :payment_detail, :payment_type, :currency, :food_expense,:food_expense_conditions, :travel_expense,:travel_expense_conditions, :stay_expense, :stay_expense_conditions, :start_date, :end_date,:venue, :city, :state, :country, :expertise, :status, :category, :plan))
   if @program.save
     flash[:notice]='Program Added Successfully.'
-    Notifier.newprogram(@program).deliver_now
+    #Notifier.newprogram(@program).deliver_now
     redirect_to "/recruiters/myaccount#showpostedprograms"
   else
     flash[:notice]='Something Went wrong.'

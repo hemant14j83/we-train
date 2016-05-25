@@ -1,4 +1,4 @@
-$(window.document).on('shown.bs.modal','.modal',function(){
+$( document ).ready(function(){
     $('#ptype').hide();
     $('#pcat').hide();
     $('#pcity').hide();
@@ -6,7 +6,48 @@ $(window.document).on('shown.bs.modal','.modal',function(){
     $("#pduration").hide();
     $("#pbrief").hide();
     $("#ppaytype").hide();
+    $('#expertise_field').hide();
     $("#pdurtype").hide();
+    var category=document.getElementById('program_category');    
+    $(category).change(function(){
+      var value=$(this).val();
+      if(value==0){
+        $('#expertise_field').hide();
+      }else{
+        $('#expertise_field').show();
+      }
+
+  /*var categoryid=$("program_category:selected").attr("name");
+      alert(categoryid);var expertlistarray=expertlists.split(',');
+      */
+      var count;
+      var expertlists=get_category_content(value);      
+      removeOptions(document.getElementById('program_expertise'));
+      for(count=0;count<expertlists.length;count++){
+        var option = expertlists[count];
+        $('#program_expertise').append('<option value="'+option[1]+'">'+option[1]+'</option>');
+      }     
+      
+    });
+
+    function get_category_content(value){
+      var expertListsMap = {};
+      <% for expertlist in @expertlists %>
+        if(expertListsMap[<%= expertlist.category_id %>] == undefined)
+          expertListsMap[<%= expertlist.category_id %>] = new Array();
+        expertListsMap[<%= expertlist.category_id %>].push(new Array(<%= expertlist.category_id %>,'<%=h expertlist.name %>',<%=expertlist.id %>));
+      <% end %>
+      return expertListsMap[value];
+    }
+    function removeOptions(selectbox)
+    {
+        var i;
+        for(i=selectbox.options.length-1;i>=0;i--)
+        {
+            selectbox.remove(i);
+        }
+    }
+
     var catselect=document.getElementById("program_category");
     var submit=document.getElementById("submitprog");
     var progname=document.getElementById("program_name");
@@ -99,45 +140,7 @@ $(window.document).on('shown.bs.modal','.modal',function(){
     }
 
 	$('#expertise_field').hide();
-		var category=document.getElementById('program_category');    
-		$(category).change(function(){
-			var value=$(this).val();
-			if(value==0){
-				$('#expertise_field').hide();
-			}else{
-				$('#expertise_field').show();
-			}
-
-	/*var categoryid=$("program_category:selected").attr("name");
-			alert(categoryid);var expertlistarray=expertlists.split(',');
-			*/
-			var count;
-			var expertlists=get_category_content(value);			
-			removeOptions(document.getElementById('program_expertise'));
-			for(count=0;count<expertlists.length;count++){
-				var option = expertlists[count];
-				$('#program_expertise').append('<option value="'+option[1]+'">'+option[1]+'</option>');
-			}			
-			
-	});
-
-function get_category_content(value){
-	var expertListsMap = {};
-	<% for expertlist in @expertlists %>
-		if(expertListsMap[<%= expertlist.category_id %>] == undefined)
-			expertListsMap[<%= expertlist.category_id %>] = new Array();
-		expertListsMap[<%= expertlist.category_id %>].push(new Array(<%= expertlist.category_id %>,'<%=h expertlist.name %>',<%=expertlist.id %>));
-	<% end %>
-	return expertListsMap[value];
-}
-function removeOptions(selectbox)
-{
-    var i;
-    for(i=selectbox.options.length-1;i>=0;i--)
-    {
-        selectbox.remove(i);
-    }
-}
+		
 $('#submitprog').on('click',function (){
       checkstDate();
       checkDate();
@@ -146,7 +149,7 @@ $('#submitprog').on('click',function (){
         catselect.focus();
         $('#pcat').show();
         return false;
-        window.location="http://localhost:4000/recruiters/myaccont"
+        window.location="http://localhost:4001/recruiters/myaccont"
         submit.disabled=true;
       }
       if(progname.value==""){

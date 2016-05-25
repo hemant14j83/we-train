@@ -1,66 +1,84 @@
 <% if program.name!=nil %>
-	<% if program.status=='active'%>
-	<div class="col-xs-12 col-sm-12 col-md-12 progbox" style="width:100%;">	
-		<div class="textheading">
-			<%= program.name %> <%# if program.category!="Select Category"  posted in <%= program.category  Category<%end%>
-		</div>
-		<div class="col-xs-12 col-md-12 col-sm-12" style="padding:5px;">
-			<b><u>Program Details</u></b>
-			<p>
-				<b>Desired Expertise</b> : <%= program.category %>
-				<% if program.expertise? %>
-					<% if program.expertise != "Select Expertise" %>
-						, <%= program.expertise %>
-					<%end%>
-				<%end%>
-			</p>
-			<p><%= program.program_details %></p>
-			<hr>
-			<div class="col-xs-6 col-sm-6 col-md-3">
-				<b>Venue Details</b>
-				<p><%= program.city%><%#<%= program.venue , , <%=program.state, <%= program.country %></p>
-				<p><span class="orange"><%= program.start_date %></span> to <span class="orange"><%= program.end_date %></span></p>
-			</div>				
-			<div class="col-xs-6 col-sm-6 col-md-3">
-				<b>Program Duration</b>
-				<p>
-					<%= program.duration %> 
-					<% if program.duration_type=="Select Duration Type" %>
-					Not Mentioned
-					<%else%>
-					<%= program.duration_type %>
-					<%end%>
-				</p>
-			</div>
-			<div class="col-xs-6 col-sm-6 col-md-3">
-				<b>Payment Details</b>
-				<p><%= program.payment_detail %> <%= program.currency %> <%= program.payment_type %></p>
-			</div>				
-			<div class="col-xs-6 col-sm-6 col-md-3">
-				<b>Included Expenses</b>
-				<% if program.food_expense!='No' || program.travel_expense!='No' ||  program.stay_expense!='No' %>
-				<p>
-					<% if program.food_expense!='No' %>
-						<ul><li>Food Expense Included</li></ul>
-					<%end%>
-					<% if program.travel_expense!='No' %>
-						<ul><li>Travel Expense Included</li></ul>
-					<%end%>
-					<% if program.stay_expense!='No' %>
-						<ul><li>Lodging Expense Included</li></ul>
-					<%end%>
-				</p>
-					<%else%>
-				<p class="orange">Additional Expenses not Covered.</p>
-
-					<%end%>
-				</div>
-				<hr>
-			</div>
-			<div align="right">
-				<%#= link_to 'Edit', edit_program_path(id), :class=>"btn btn-success btn-sm" %>
-				<%= link_to 'Remove', program, method: :delete, data: { confirm: 'Are you sure?' }, :class=>"btn btn-danger btn-sm" %>
-			</div>
-		</div>
-	<%end%>
+	<ul class="collection" style="background-color:#fff;font-size:0.9em;font:'Arimo',sans-serif;">
+    <li class="collection-item">
+      <div class="col s12 m6 l6">
+        <ul>
+          <li>
+            <b><span style="color:#e37343;">Program Name</span></b>: <br>
+            <ol>
+              <li><%= program.name %></li>
+            </ol>
+          </li>
+          <li>
+            <b><span style="color:#e37343;">Payment Details</span></b>: <br>
+            <ol>
+              <li><%= program.currency %>. <%= program.payment_detail %> / <%= program.payment_type %></li>
+              <% if program.food_expense=='Yes' || program.travel_expense=='Yes' || program.stay_expense=='Yes' %> 
+                <li>
+                  <span style="color:#e37343;">Includes Following</span>
+                  <ol>
+                    <% if program.food_expense=='Yes' %>
+                      <li>Food Expense</li>
+                    <%end%>
+                    <% if program.travel_expense=='Yes' %>
+                      <li>Travel Expense</li>
+                    <%end%>
+                    <% if program.stay_expense=='Yes' %>
+                      <li>Lodging Expense</li>
+                    <%end%>
+                  </ol>
+                </li>
+              <%end%>
+            </ol>
+          </li>          
+          <li>
+            <b><span style="color:#e37343;">Venue Details</span></b>: <br>
+            <ol>
+              <li><%= program.venue %></li>
+              <li>
+                <% if program.city!='not mentioned' %>
+                  <%= program.city %>,
+                <% end %> 
+                <% if program.state!='not mentioned' %>
+                  <%= program.state %>,
+                <% end -%>
+                <% if program.country %>
+                  <%= program.country %>
+                <%end%>
+              </li>
+            </ol>
+          </li>
+        </ul>
+      </div>
+      <div clas="col s12 m6 l6">
+          <ul>
+            <li>
+              <b><span style="color:#e37343;">Schedule</span></b>:
+              <ol>
+                <li><%= program.start_date %> To <%= program.end_date %></li>
+              </ol>
+            </li>
+            <li>
+              <b>
+                <span style="color:#e37343;">Program Details</span></b>:<br>
+	            <span class="justify">
+	              <%= program.program_details %>
+	            </span>
+            </li>
+            <li>
+              <b>
+                <span style="color:#e37343;">Posted On</span></b>:<br>
+	              <ol>
+	                <li><%= DateTime.parse(program.created_at.to_s).strftime("%m-%d-%Y") %></li>
+	              </ol>
+            </li>
+          </ul>
+      </div>
+      <div class="col s12 m12 l12" style="margin-bottom:2%;">
+        <div align="right">
+          <%= link_to 'Remove', program, method: :delete, data: { confirm: 'Are you sure?' }, :class=>"btn red lighten-3" %> 
+        </div>
+      </div>
+    </li>
+  </ul>
 <%end%>
