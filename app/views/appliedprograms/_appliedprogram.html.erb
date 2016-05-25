@@ -1,3 +1,120 @@
+<% if recruiter_signed_in? %>
+  <% if appliedprogram.status=='forwardedtorecruiter' && appliedprogram.program.start_date >= Date.today %>
+    <ul class="collection" style="background-color:#fff;font-size:0.9em;font:'Arimo',sans-serif;">
+     <li class="collection-item">
+      <div class="col s12 m6 l6">
+        <ul>
+          <li>
+            <b><span style="color:#e37343;">Program Details</span></b>: <br>
+            <ol>
+              <li>
+                <b><%= appliedprogram.program.name %></b><br>
+                <span class="justify"><%= appliedprogram.program.program_details %></span>
+              </li>
+            </ol>
+          </li>
+          <li>
+            <b><span style="color:#e37343;">Payment Details</span></b>: <br>
+            <ol>
+              <li>
+                <%= appliedprogram.program.currency %>. <%= appliedprogram.program.payment_detail %> / <%= appliedprogram.program.payment_type %>
+              </li>
+              <% if appliedprogram.program.food_expense=='Yes' || appliedprogram.program.travel_expense=='Yes' || appliedprogram.program.stay_expense=='Yes' %> 
+                <li>
+                  <span style="color:#e37343;">Includes Following</span>
+                  <ol>
+                    <% if appliedprogram.program.food_expense=='Yes' %>
+                      <li>Food Expense</li>
+                    <%end%>
+                    <% if appliedprogram.program.travel_expense=='Yes' %>
+                      <li>Travel Expense</li>
+                    <%end%>
+                    <% if appliedprogram.program.stay_expense=='Yes' %>
+                      <li>Lodging Expense</li>
+                    <%end%>
+                  </ol>
+                </li>
+              <%end%>
+            </ol>
+          </li>          
+          <li>
+            <b><span style="color:#e37343;">Venue Details</span></b>: <br>
+            <ol>
+              <li><%= appliedprogram.program.venue %></li>
+              <li>
+                <% if appliedprogram.program.city!='not mentioned' %>
+                  <%= appliedprogram.program.city %>,
+                <% end %> 
+                <% if appliedprogram.program.state!='not mentioned' %>
+                  <%= appliedprogram.program.state %>,
+                <% end -%>
+                <% if appliedprogram.program.country %>
+                  <%= appliedprogram.program.country %>
+                <%end%>
+              </li>
+            </ol>
+          </li>
+        </ul>
+      </div>
+      <div clas="col s12 m6 l6">
+          <ul>
+            <li>
+              <b><span style="color:#e37343;">Trainer Details</span></b>:
+              <ol>
+                <li>
+                  <%= appliedprogram.trainer.full_name %> <%= appliedprogram.trainer.last_name %>
+                </li>
+              </ol>
+            </li>
+            <li>
+              <span style="color:#e37343;">
+                <%= link_to "Check Qualification","#showtrqual",:class=>"modal-trigger",:id=>"trqual"%>
+              </span>              
+              <div id="showtrqual" class="modal">
+                <div class="modal-content">
+                    <div class="modal-header">
+                      <h5 class="modal-title text-center">
+                        Qualification Details
+                      </h5>
+                      <%= render appliedprogram.trainer.qualifications %>
+                    </div>
+                    <div class="modal-footer">
+                      <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat">Close</a>
+                    </div>
+                </div>
+              </div>
+            </li>
+            <li>
+              <span style="color:#e37343;">
+                <%= link_to "Check Expertise","#showtrexpert",:class=>"modal-trigger",:id=>"trexpert"%>
+              </span>              
+              <div id="showtrexpert" class="modal">
+                <div class="modal-content">
+                    <div class="modal-header">
+                      <h5 class="modal-title text-center">
+                        Expertises Details
+                      </h5>
+                      <%= render appliedprogram.trainer.expertises %>
+                    </div>
+                    <div class="modal-footer">
+                      <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat">Close</a>
+                    </div>
+                </div>
+              </div>
+            </li>
+          </ul>
+      </div>
+      <div class="col s12 m12 l12" style="margin-bottom:2%;">
+        <div align="right">
+          <%= link_to "Select",:controller=>"appliedprograms",:action=>"select",:id=>appliedprogram.id %> / <%= link_to "Reject",:controller=>"appliedprograms",:action=>"reject",:id=>appliedprogram.id %>
+          <!--span class="hd green lighten-4"><b>Selected</b></span-->
+        </div>
+      </div>
+    </li>
+   </ul>
+   <% elsif appliedprogram.status=='forwardedtorecruiter' && appliedprogram.program.start_date >= Date.today %>
+   <%end%>
+  <%end%>
 <% if trainer_signed_in? %>
   <% if appliedprogram.status=='forwardedtorecruiter' && appliedprogram.program.start_date >= Date.today %>
     <ul class="collection" style="background-color:#fff;font-size:0.9em;font:'Arimo',sans-serif;">
