@@ -3,7 +3,7 @@
 </head>
 <script type="text/javascript">
     $(document).ready(function(){
-      
+
       $("#expertise").hide();
       $("#qualification").hide();
       //$("#profile").show();
@@ -11,6 +11,21 @@
       $("#profilepage").show();
       $("#savedprogram").hide();
       $("#appliedprogram").hide();
+      $(function(){
+         if (window.location.hash){
+            var hash = window.location.hash.substring(1);
+            if (hash == "appliedprogram"){
+               $("#showappliedprogram").click();
+            }
+            else if(hash == "savedprogram"){
+               $("#showsavedprogram").click();
+            }
+            else{
+               $("#showprofilepage").click();
+            }
+         }
+
+      });
 
       $("#showappliedprogram").click(function(){
         $("#profilepage").hide();
@@ -108,7 +123,7 @@ $(document).ready(function(){
       </div>
       <div>
         <%= @trainer.email %><br>
-        Active since : <%= @trainer.created_at.to_date %>
+        Active since : <%= DateTime.parse(@recruiter.created_at.to_s).strftime("%m-%d-%Y") %>
       </div>
     </div>
     <div class="profile-mainbar" id="profilepage">
