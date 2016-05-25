@@ -1,9 +1,9 @@
-<div class="col s12 m12 l12">
-      <%= render partial: "shared/flash_messages", flash: flash %> 
-</div>
 <div id="login" class="col s12 m12 l12 text-center">
   <div class="col hide-on-small m3 l3">&nbsp;</div>
   <div id="login" class="col s12 m6 l6">    
+    <div class="col s12 m12 l12">
+      <%= render partial: "shared/flash_messages", flash: flash %> 
+    </div>
     <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
       <div class=""> <!--box-title s12 m12 l12 light-blue"-->
         <h5>Recruiters Login</h5>

@@ -1,187 +1,203 @@
+<head>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.2/js/materialize.min.js"></script>
+  <% javascript 'dynamic_expertlist' %>
+</head>
 <script type="text/javascript">
-    $(document).ready(function(){
-      $("#recdash").show();
-      $("#recprofilepage").hide();
-      $("#postedprograms").hide();
-      $("#appliedprograms").show();
-      $('#showappliedprograms').addClass("active");
-
-      $("#showpostedprograms").click(function(){
-        $("#recprofilepage").hide();
-        $("#postedprograms").show();
-        $("#appliedprograms").hide();        
-        $('#profile').removeClass("active");
-        $('#showappliedprograms').removeClass("active");
-        return false;
-      });
-      $("#showappliedprograms").click(function(){
-        $("#recprofilepage").hide();
-        $("#postedprograms").hide();
-        $("#appliedprograms").show();
-        $('#profile').removeClass("active");
-        $('#showpostedprograms').removeClass("active");
-        return false;
-      });
-      $("#profile").click(function(){
-        $("#recprofilepage").show();
-        $("#appliedprograms").hide();
-        $("#postedprograms").hide();
-        $('#showpostedprograms').removeClass("active");
-        $('#showappliedprograms').removeClass("active");
-        return false;
-      });
-
-      $("#recprofile-l").click(function(){
-        $("#recprofile").show();
-        $("#recdash").hide();
-      });
-
-
-      if(window.location.hash){
-        var id=window.location.hash;
-        $(id).click();
-      }else{$("#showappliedprograms").click()}
-
-    });
-$(document).ready(function(){
-      setTimeout(function(){
-      $("#notice").hide("slow");
-     },2000);
-  });
-$(document).ready(function () {
+  $(document).ready(function () {
     if (window.location.href.indexOf("programmodal") != -1) {
         $("#recprofilepage").hide();
         $("#postedprograms").show();
     }
-});
-</script>
-<div class="col-xs-12 col-md-12 col-sm-12">
+  });
+  $(document).ready(function(){
+      setTimeout(function(){
+      $("#notice").hide("slow");
+     },2000);
+  });
+  $(document).ready(function(){
+    $("#recdash").hide();
+    $("#recprofilepage").show();
+    $("#postedprograms").hide();
+    $("#appliedprograms").hide();
+    $('#profile').addClass("active");
+    
+    $(function(){
+     if (window.location.hash){
+        var hash = window.location.hash.substring(1);
+        if (hash == "appliedprogram"){
+           $("#showappliedprogram").click();
+        }
+        else if(hash == "postedprograms"){
+           $("#showpostedprograms").click();
+        }
+        else{
+           $("#profile").click();
+        }
+     }
+    });
 
-    <ul class="nav navbar-nav profile-nav">
-      <li><a href="#appliedprograms" id="showappliedprograms" onclick="this.className='active'">Dashboard</a></li>
-      <li><a href="#recprofilepage" id="profile" onclick="this.className='active'">My Profile</a></li>
-      <li><a href="#postedprograms" id="showpostedprograms" onclick="this.className='active'">My Programs</a></li>      
-      <%#<li><a href="#">Inbox</a></li>%>      
-    </ul>    
-  <span class="tright" style="margin-top:1%;">
-    <% if @recruiter.programs.blank? %>
-      <%= link_to "Post Project","#programmodal",:class=>"homebutton","data-toggle" => "modal",:id=>"addprogram"%>
-    <%else%>
-      <%= link_to "Post Another Project","#programmodal",:class=>"homebutton","data-toggle" => "modal",:id=>"addprogram"%>
-    <%end%>
-  </span>
-  <div id="programmodal" class="modal fade">
-    <div class="modal-dialog">
-      <div class="modal-content">
-        <div class="modal-header">
-          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-          <h4 class="modal-title">Add New Program</h4>
-        </div>
-        <div class="modal-body">
-          <%= render "programs/form" %>
-          &nbsp;
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-<div class="col-xs-12 col-md-12 col-sm-12 gradient">
-  <div class="col-xs-12 col-md-12 col-sm-12 topmargin">
+    $("#showpostedprograms").click(function(){
+      $("#recprofilepage").hide();
+      $("#postedprograms").show();
+      $("#appliedprograms").hide();        
+      $('#profile').removeClass("active");
+      $('#showappliedprograms').removeClass("active");
+      return false;
+    });
+    $("#showappliedprograms").click(function(){
+      $("#recprofilepage").hide();
+      $("#postedprograms").hide();
+      $("#appliedprograms").show();
+      $('#profile').removeClass("active");
+      $('#showpostedprograms').removeClass("active");
+      return false;
+    });
+    $("#profile").click(function(){
+      $("#recprofilepage").show();
+      $("#appliedprograms").hide();
+      $("#postedprograms").hide();
+      $('#showpostedprograms').removeClass("active");
+      $('#showappliedprograms').removeClass("active");
+      return false;
+    });
+    $("#recprofile-l").click(function(){
+        $("#recprofile").show();
+        $("#recdash").hide();
+      });
+  });
+</script>
+<div class="col hide-on-small m1 l1">&nbsp;</div>
+<div class="col s10 m10 l10">
+  <div class="col s12 m12 l12 topmargin">
       <%= render partial: "shared/flash_messages", flash: flash %> 
   </div>
-  <div class="col-xs-12 col-md-12 col-sm-12 whitebg" id="recprofilepage" style="padding: 10px;margin-top: 4%;margin-bottom:4%">
-    <div class="col-xs-6 col-md-3 col-sm-6" style="margin-top:-4%;">
+  <div class="col s12 m3 l3"><!--    Profile side bar -->
+    <div class="profile-pic">
       <% if @recruiter.image.url=='/images/original/missing.png'%>
-        <%= image_tag("profile_pics/pic_def.png", :class => "profile_pic") %>
-      <% else %>
-        <%= image_tag(@recruiter.image.url, :class => "profile_pic") %>
-      <% end %>
+        <%= image_tag("profile_pics/pic_def.png", :class => "profile-pic-img") %>
+      <%else%>
+        <%= image_tag(@recruiter.image.url, :class => "profile-pic-img") %>
+      <%end%>
     </div>
-    <div class="col-xs-6 col-md-9 col-sm-6">
-        <h3>
-          <% if @recruiter.firm_name? %>
-            <b><%= @recruiter.firm_name %></b>
-          <%else%>
-            <b>Welcome</b>
-          <% end -%>  
-        </h3>
-        <%= @recruiter.email %>
-    </div>
-    <div class="col-xs-12 col-md-12 col-sm-12 topmargin lato" id="profile">
-      <%= link_to raw('<span class="tright glyphicon glyphicon-pencil orange"></span>'), edit_recruiter_registration_path %>
-      <div class="col-xs-12 col-md-6 col-sm-12" style="margin-top:15px;">
-        <h3>Firm Details</h3>
-        <table class="table">
-            <tr><td>Name:</td><td><%= @recruiter.firm_name %></td></tr>
-            <tr>
-              <% if @recruiter.firm_type =="not selected" %>
-                <td>Type</td>
-                <td><%= link_to "Select Firm Type", edit_recruiter_registration_path %></td>
-              <% else %>
-                <td>Type</td><td><%= @recruiter.firm_type %></td>
-              <% end %>
-            </tr>
-            <tr><td>Contact Number</td><td><%= @recruiter.firm_number %></td></tr>
-            <% if @recruiter.firm_address? %>
-              <tr>
-                <td>Address</td>
-                <td>
-                    <%= @recruiter.firm_address %>,<%= @recruiter.city %><br>
-                    <%= @recruiter.state %>, <%= @recruiter.country %>
-                </td>
-              </tr>
-            <%else%>
-              <tr>
-                  <td>Address</td>
-                  <td><%= link_to "Add Address", edit_recruiter_registration_path %></td>
-              </tr>
-            <%end%>            
-        </table>
-      </div>
-      <div class="col-xs-12 col-md-6 col-sm-12">
-        <h3>Authorised Person Contact Details</h3>
-        <table class="table">
-          <tr><td>Person Name</td><td><%= @recruiter.contact_person_name %></td></tr>
-          <tr><td>Email:</td><td><%= @recruiter.contact_person_email %></td></tr>
-          <tr><td>Number:</td><td><%= @recruiter.contact_person_number %></td></tr>
-        </table>
-      </div>
+    <div class="profile-sidebar">
+      <ul class="collection">
+        <li class="collection-item">
+          <a href="#recprofilepage" id="profile" onclick="this.className='active'">My Profile</a> (<span style="align:right;font-size:13px;"><%= link_to 'Edit', edit_recruiter_registration_path %></span>)
+        </li>
+        <li class="collection-item">
+          <a href="#postedprograms" id="showpostedprograms" onclick="this.className='active'">My Programs</a>
+        </li>
+        <li class="collection-item">
+          <a href="#appliedprograms" id="showappliedprograms" onclick="this.className='active'">Applications</a>
+        </li>
+      </ul>
     </div>
   </div>
-  <div class="col-xs-12 col-md-12 col-sm-12" id="postedprograms" style="padding: 10px;margin-top: 4%;margin-bottom:4%">
-    <div class="col-xs-12 col-md-12 col-sm-12 lato">      
-      <%#<div class="col-md-3 col-xs-12 col-sm-6 whitebg">
-        <h4><b>Your Posted Programs</b></h4>
+  <div class="col s12 m9 l9"><!--    Profile main bar -->
+    <div class="profile-header">
+      <div class="profile-name">
+        <h5><%= @recruiter.firm_name %></h5>
       </div>
-      <div class="col-md-3 col-xs-12 col-sm-6" style="margin-top:5px;">
-        <%= link_to "Add More","#programmodal",:class=>"homebutton","data-toggle" => "modal",:id=>"addprogram"%>
-        <%#<div id="programmodal" class="modal fade">
-          <div class="modal-dialog">
-              <div class="modal-content">
-                  <div class="modal-header">
-                      <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                      <h4 class="modal-title">Add New Program</h4>
-                  </div>
-                  <div class="modal-body gradient">
-                    <%= render "programs/form" %><%#
-                    &nbsp;
-                  </div>
-              </div>
-          </div>
+      <div>
+        <%= @recruiter.email %><br>
+        Active since : <%= DateTime.parse(@recruiter.created_at.to_s).strftime("%m-%d-%Y") %>
+      </div>
+      <div>
+        <%= link_to "Add Programs","#recprogmodal",:class=>"modal-trigger",:id=>"postprogrammodal"%>
+      </div>
+      <div id="recprogmodal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title text-center">
+                Add Programs<br> <span style="color:red;margin-left:10px;font-size:12px;">* All Fields are mandatory.</span>
+              </h5>
+              <%= render "programs/form" %>
+                &nbsp;
+            </div>
         </div>
-      </div>%>
-        <%= render @recruiter.programs %>
+      </div>
     </div>
-      
-  </div>
-  <div class="col-xs-12 col-md-12 col-sm-12" id="appliedprograms" style="padding: 10px;margin-top: 4%;margin-bottom:4%">
-    <div class="col-xs-12 col-md-12 col-sm-12 lato">
-        <h3 class="white">List of Applicants</h3> 
-        <%= render @recruiter.appliedprograms %>
+    <div class="profile-mainbar" id="recprofilepage">
+      <div class="col s12 m6 l6 topmargin">
+        <div class="hd">Firm Details</div>
+        <div class="profile-body">
+          <table>
+            <tr>
+              <td class="pdt">Firm Name</td><td><%= @recruiter.firm_name %></td>
+            </tr>
+            <tr>
+              <td class="pdt">Firm Type</td>
+              <td>
+                <% if @recruiter.firm_type =="not selected" %>
+                  <%= link_to "Select Firm Type", edit_recruiter_registration_path %>
+                <% else %>
+                  <%= @recruiter.firm_type %>
+                <% end %>
+              </td>
+            </tr>
+            <tr>
+              <td class="pdt">Firm Address</td>
+              <td>
+                <% if @recruiter.firm_address %>
+                  <%= @recruiter.firm_address %>,<br>
+                  <% if @recruiter.city %>
+                    <%= @recruiter.city %>
+                  <%end%>
+                  <% if @recruiter.state %>
+                    ,<%= @recruiter.state %>,<br>
+                  <%end%>
+                  <% if @recruiter.country %>
+                    <%= @recruiter.country %>
+                  <%end%>
+                <%else%>
+                  <%= link_to "Add Address", edit_recruiter_registration_path %>
+                <%end%>                
+              </td>
+            </tr>
+          </table>
+        </div>
+      </div>
+      <div class="col s12 m6 l6 topmargin">
+        <div class="hd">Authorised Person Details</div>
+        <div class="profile-body">
+          <table>
+            <tr>
+              <td style="width:35%;">Person Name</td><td><%= @recruiter.contact_person_name %></td>
+            </tr>
+            <tr><td>Email</td><td><%= @recruiter.contact_person_email %></td></tr>
+            <tr><td>Number</td><td><%= @recruiter.contact_person_number %></td></tr>
+          </table>
+        </div>
+      </div>
     </div>
-      
-  </div>
+    <div class="profile-mainbar" id="postedprograms">
+      <div class="topmargin">
+        <div class="hd">My Programs</div>
+        <% if @recruiter.programs.exists? %>
+          <%= render @recruiter.programs %>
+        <%else%>
+          <%= render 'programs/noprograms' %>
+        <%end%>
+      </div>
+    </div>
+    <div class="profile-mainbar" id="appliedprograms">
+      <div class="topmargin">
+        <div class="hd">Application Received on</div>
+        <% if @recruiter.appliedprograms.exists? %>
+          <%= render @recruiter.appliedprograms %>
+        <%else%>
+          <%= render 'appliedprograms/noprograms' %>
+        <%end%>
+      </div>
+    </div>
 </div>
-<%#<div class="col-xs-12 col-md-12 col-sm-12 whitebg center lato">
-  <p class="orange"><font size="4px;">Need better results? Upgrade the plan for the project to get more enquiries or <br>get in <a href="/contact-us">touch</a> with us.</font></p>
-</div>%>
+<div class="col hide-on-small m1 l1">&nbsp;</div>
+
+<script>
+
+  $(document).ready(function () {
+      // the "href" attribute of .modal-trigger must specify the modal ID that wants to be triggered
+      $('.modal-trigger').leanModal();
+
+  });
+</script>

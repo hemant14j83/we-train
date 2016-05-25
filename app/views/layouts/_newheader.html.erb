@@ -18,12 +18,12 @@
     <% elsif recruiter_signed_in? %>
         <% if current_recruiter.firm_name? %>
           <li><%= current_recruiter.firm_name %></b></li>
-          <li><%= link_to "My Account", "/recruiters/profile", :class=>"label label-success" %></li>
-          <li><%= link_to "Sign out", destroy_recruiter_session_path, :class=>"label label-warning" %></li>
+          <li><%= link_to "My Account", "/recruiters/profile", :class=>"" %></li>
+          <li><%= link_to "Sign out", destroy_recruiter_session_path, :class=>"" %></li>
         <%elsif current_recruiter.email? %>
           <li><%= current_recruiter.email %></b></li>
-          <li><%= link_to "My Account", "/recruiters/profile", :class=>"label label-success" %></li>
-          <li><%= link_to "Sign out", destroy_recruiter_session_path, :class=>"label label-warning" %></li>
+          <li><%= link_to "My Account", "/recruiters/profile", :class=>"" %></li>
+          <li><%= link_to "Sign out", destroy_recruiter_session_path, :class=>"" %></li>
         <%end%>
     <%else%>
       <li class="ddmenu">
