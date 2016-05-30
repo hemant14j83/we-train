@@ -1,4 +1,12 @@
 <script type="text/javascript">
+  $( document ).ready(function() {
+       $('.datepicker').pickadate({
+    selectMonths: true, // Creates a dropdown to control month
+    selectYears: 3 // Creates a dropdown of 15 years to control year
+  });
+}); 
+</script>
+<script type="text/javascript">
   function onlyNos(e, t) {
             try {
                 if (window.event) {
@@ -18,132 +26,135 @@
             }
         }
 </script>
-<script type="text/javascript">    
-    $(document).ready(function(){
-      $("#nilpass").hide();
-      $("#upass").hide();
-      $("#recdash").show();
-      $("#recprofilepage").show();
-      $("#postedprograms").hide();
-      $("#showpostedprograms").click(function(){
-        $("#recprofilepage").hide();
-        $("#postedprograms").show();
-        $('#showpostedprograms').removeClass("active");
-        return false;
-      });
-      $("#showrecprofilepage").click(function(){
-        $("#recprofilepage").show();
-        $("#postedprograms").hide();
-        $('#showrecprofilepage').removeClass("active");
-        return false;
-      });
-      $("#upassshow").click(function(){
-        $("#upass").show();
-      });
-      $("#recprofile-l").click(function(){
-        $("#recprofile").show();
-        $("#recdash").hide();
-      });
-      }
-  );
-$(document).ready(function(){
-      setTimeout(function(){
-      $("#notice").hide("slow");
-     },2000);
+<script type="text/javascript">
+  $(document).ready(function(){
+    $("#niltpass").hide();
+    $("#utpass").hide();
+
+    $("#utpassshow").click(function(){
+      $("#utpass").show();
+    });
   });
 </script>
-<div class="col-xs-12 col-md-12 col-sm-12">
-    <ul class="nav navbar-nav profile-nav">
-      <li><a href="/recruiters/myaccount">My Profile</a></li>
-      <li><a href="/recruiters/myaccount#programs">My Projects</a></li>
-    </ul>    
-  <span class="tright" style="margin-top:1%;">
-    <%= link_to "Post Project","#programmodal",:class=>"homebutton","data-toggle" => "modal",:id=>"addprogram"%>
-  </span>
-  <div id="programmodal" class="modal fade">
-    <div class="modal-dialog">
-      <div class="modal-content">
-        <div class="modal-header">
-          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-          <h4 class="modal-title">Add New Program</h4>
-        </div>
-        <div class="modal-body">
-          <%= render "programs/form" %>
-          &nbsp;
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-<div class="col-xs-12 col-md-12 col-sm-12 gradient">
-  <div class="col-xs-12 col-md-12 col-sm-12 topmargin">
+<div class="col hide-on-small m1 l1">&nbsp;</div>
+<div class="col s12 m10 l10">
+  <div class="col s12 m12 l12 topmargin">
       <%= render partial: "shared/flash_messages", flash: flash %> 
   </div>
-  <div class="col-xs-12 col-md-12 col-sm-12 whitebg" id="recprofilepage" style="padding: 10px;margin-top: 4%;margin-bottom:4%">
-  <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { multipart: true, method: :put }) do |f| %>
-    <div class="col-xs-6 col-md-3 col-sm-6" style="margin-top:-4%;">
+  <div class="col s12 m3 l3"><!--    Profile side bar -->
+    <div class="profile-pic">
       <% if @recruiter.image.url=='/images/original/missing.png'%>
-        <%= image_tag("profile_pics/pic_def.png", :class => "profile_pic") %>
-      <% else %>
-        <%= image_tag(@recruiter.image.url, :class => "profile_pic") %>
-      <% end %>
+        <%= image_tag("profile_pics/pic_def.png", :class => "profile-pic-img") %>
+      <%else%>
+        <%= image_tag(@recruiter.image.url, :class => "profile-pic-img") %>
+      <%end%>
     </div>
-    <div class="col-xs-6 col-md-9 col-sm-6">
-      <h3>
-          <% if @recruiter.firm_name? %>
-            <b><%= @recruiter.firm_name %></b>
-          <%else%>
-            <b>Welcome</b>
-          <% end -%>  
-        </h3>
+    <div class="profile-sidebar">
+      <ul class="collection">
+        <li class="collection-item">
+          <a href="/recruiter/myaccout" id="profile" onclick="this.className='active'">My Profile</a> (<span style="align:right;font-size:13px;"><%= link_to 'Edit', edit_recruiter_registration_path %></span>)
+        </li>
+        <li class="collection-item">
+          <a href="/recruiters/myaccount#postedprograms" id="showpostedprograms" onclick="this.className='active'">My Programs</a>
+        </li>
+        <li class="collection-item">
+          <a href="/recruiters/myaccount#appliedprograms" id="showappliedprograms" onclick="this.className='active'">Applications</a>
+        </li>
+      </ul>
+      </ul>
+    </div>
+  </div>
+  <div class="col s12 m9 l9">
+    <div class="profile-header">
+      <div class="profile-name">
+        <h5><%= @recruiter.firm_name %></h5>
+      </div>
+      <div>
         <%= @recruiter.email %><br>
-        <div class="col-xs-6 col-sm-6 col-md-3" style="margin-left:-15px;">
-          Current Password <span style="color:red">*</span>  
-          <%= f.password_field :current_password, :class=>"form-control" %>
-          <span id="nilpass" style="color:red">Password is Mandatory.</span>
-          <span id="upassshow" style="font-size:14px;"><a href="#">Update Password</a></span>
-        </div>
-        <div class="col-xs-12 col-sm-12 col-md-6" style="margin-left:-15px;" id="upass">
-          <table>
-            <tr><td>New Password</td><td>Confirm New Password</td></tr>
-            <tr><td><%= f.password_field :password, :class=>"form-control" %></td><td><%= f.password_field :password_confirmation, :class=>"form-control" %></td></tr>
-          </table>
-        </div>
+        Active since : <%= DateTime.parse(@recruiter.created_at.to_s).strftime("%m-%d-%Y") %>
+      </div>
+      <div>
+        <%= link_to "Add Programs","#recprogmodal",:class=>"modal-trigger",:id=>"postprogrammodal"%>
+      </div>
     </div>
-    <div class="col-xs-12 col-md-12 col-sm-12 topmargin lato" id="profile">      
-      <div class="col-xs-12 col-md-6 col-sm-12">
-        <h3>Firm Details</h3>
-        <table class="table">
-            <tr><td>Name:</td><td><%= f.text_field :firm_name, :class=>"form-control" %></td></tr>
-            <tr><td>Type:</td><td><%= f.select :firm_type, ['','College','Company'], :class=>"form-control" %></td></tr>
-            <tr><td>Number</td><td><%= f.text_field :firm_number,:onkeypress=>"return onlyNos(event,this);", :class=>"form-control" %></td></tr>
-            <tr><td>Address</td><td><%= f.text_area(:firm_address, size: '50x4', :class=>"form-control")%></td></tr>
-        </table>
-        <table class="table">
+    <div class="profile-mainbar" id="editprofilepage" style="min-height:500px;">
+    <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { multipart: true, method: :put }) do |f| %>
+      <div class="col s12 m6 l6 topmargin">
+        <div class="hd">About You</div>
+        <div class="profile-body">
+          <div class="input-field col s12 m12 l12">
+            <span style="color:#e37343;">Current Password</span><br>
+            <%#= f.label :current_password,"Current Password"%>  
+            <%= f.password_field :current_password, :class=>"form-control" %>
+            <span id="niltpass" style="color:red">Password is Mandatory.</span>
+            <!--span id="utpassshow" style="font-size:14px;"><a href="#">Update Password</a></span-->
+          </div>
+          <div class="input-field col s12 m12 l12">
+            <%#= f.label :full_name,"First Name" %>
+            <span style="color:#e37343;">Firm Name</span><br>
+            <%= f.text_field :firm_name,:class=>"form-control" %> 
+          </div>
+          <div class="input-field col s12 m12 l12">
+            <%#= f.label :last_name,"Last Name" %>
+            <%= f.select :firm_type, ["Company","Collage","Others"],:class=>"form-control" %>
+          </div>
+          <div class="input-field col s12 m12 l12">
+            <label><span style="color:#e37343;">Update Pic</label>
+          </div>
+          <div class="input-field col s12 m8 l8">
+            <br>
+            <%= f.file_field :image, :class=>"form-control" %>
+          </div>
+          <div class="input-field col s12 m12 l12">
+            <%#= f.label :birth_date,"Date of Birth" %>
+            <span style="color:#e37343;">Address</span><br>
+            <%= f.text_area :firm_address, :class=>"marerialize-textarea" %>
+          </div>
+          <div class="input-field col s12 m4 l4">
+            <span style="color:#e37343;">City</span><br>
+            <%= f.text_field :city, :class=>"form-control" %>
+          </div>
+          <div class="input-field col s12 m4 l4">
+            <span style="color:#e37343;">State</span><br>
+            <%= f.text_field :state, :class=>"form-control" %>
+          </div>
+          <div class="input-field col s12 m4 l4">
+            <span style="color:#e37343;">Country</span><br>
+            <%= f.text_field :country, :class=>"form-control" %>
+          </div>
+        </div>
+      </div>
+      <div class="col s12 m6 l6 topmargin">
+        <div class="hd">Authorised Person Details</div>
+        <div class="profile-body">
+          <div class="input-field col s12 m12 l12">
+            <span style="color:#e37343;">Name</span><br>
+            <%= f.text_field :contact_person_name, :class=>"form-control" %>
+          </div>
+          <div class="input-field col s12 m12 l12">
+            <span style="color:#e37343;">Number</span><br>
+            <%= f.text_field :contact_person_number, :maxlength=>"12",:onkeypress=>"return onlyNos(event,this);",:class=>"form-control"  %>
+          </div>
+          <div class="input-field col s12 m12 l12">
+            <span style="color:#e37343;">Email</span><br>
+            <%= f.email_field :contact_person_name, :class=>"form-control" %>
+          </div>
+        </div>
+      </div>
+      <div class="input-field col s12 m12 l12">
+        <table width="50%;">
           <tr>
-            <td>City: </td><td><%= f.text_field :city, :class=>"form-control" %></td>
-            <td>State: </td><td><%= f.text_field :state, :class=>"form-control" %></td>
-            <td>Country: </td><td><%= f.select :country, ['Select Country','India'], :class=>"form-control" %></td>
+            <td>
+              <%= f.button "Update Details",:id=>"tupprof", :class=>"form-control btn" %>
+            </td>
+            <td>
+              <%= link_to "Cancel", 'profile', :class=>"form-control btn btn light-red-3" %>
+            </td>
           </tr>
         </table>
       </div>
-      <div class="col-xs-12 col-md-6 col-sm-12">
-        <h3>Authorised Person Contact Details</h3>
-        <table class="table">
-          <tr><td>Person Name</td><td><%= f.text_field :contact_person_name, :class=>"form-control" %></td></tr>
-          <tr><td>Email:</td><td><%= f.email_field :contact_person_email, :class=>"form-control" %></td></tr>
-          <tr><td>Number:</td><td><%= f.text_field :contact_person_number,:onkeypress=>"return onlyNos(event,this);", :class=>"form-control" %></td></tr>
-        </table>
-      </div>
-      <div class="col-xs-12 col-sm-12 col-md-6">                  
-          <div class="form-group col-xs-3">
-            <%= f.button "Update Details",:id=>"profileupdate",:class=>"form-control btn btn-success" %>
-          </div>
-          <div class="form-group col-xs-3">
-            <%= link_to "Cancel",'profile', :class=>"form-control btn btn-warning" %>
-          </div>
-      </div>
-      <%end%>
+    <%end%>
     </div>
   </div>
 </div>
+<div class="col hide-on-small m1 l1">&nbsp;</div>
