@@ -52,7 +52,7 @@
     <div class="profile-sidebar">
       <ul class="collection">
         <li class="collection-item">
-          <a href="/recruiter/myaccout" id="profile" onclick="this.className='active'">My Profile</a> (<span style="align:right;font-size:13px;"><%= link_to 'Edit', edit_recruiter_registration_path %></span>)
+          <a href="/recruiters/myaccout" id="profile" onclick="this.className='active'">My Profile</a> (<span style="align:right;font-size:13px;"><%= link_to 'Edit', edit_recruiter_registration_path %></span>)
         </li>
         <li class="collection-item">
           <a href="/recruiters/myaccount#postedprograms" id="showpostedprograms" onclick="this.className='active'">My Programs</a>
@@ -82,30 +82,28 @@
       <div class="col s12 m6 l6 topmargin">
         <div class="hd">About You</div>
         <div class="profile-body">
-          <div class="input-field col s12 m12 l12">
+          <div class="input-field">
             <span style="color:#e37343;">Current Password</span><br>
             <%#= f.label :current_password,"Current Password"%>  
             <%= f.password_field :current_password, :class=>"form-control" %>
             <span id="niltpass" style="color:red">Password is Mandatory.</span>
             <!--span id="utpassshow" style="font-size:14px;"><a href="#">Update Password</a></span-->
           </div>
-          <div class="input-field col s12 m12 l12">
+          <div class="input-field">
             <%#= f.label :full_name,"First Name" %>
             <span style="color:#e37343;">Firm Name</span><br>
             <%= f.text_field :firm_name,:class=>"form-control" %> 
           </div>
-          <div class="input-field col s12 m12 l12">
+          <div class="input-field">
             <%#= f.label :last_name,"Last Name" %>
             <%= f.select :firm_type, ["Company","Collage","Others"],:class=>"form-control" %>
           </div>
-          <div class="input-field col s12 m12 l12">
-            <label><span style="color:#e37343;">Update Pic</label>
-          </div>
-          <div class="input-field col s12 m8 l8">
+          <div class="input-field">
+            <span style="color:#e37343;">Update Pic</span>
             <br>
             <%= f.file_field :image, :class=>"form-control" %>
           </div>
-          <div class="input-field col s12 m12 l12">
+          <div class="input-field">
             <%#= f.label :birth_date,"Date of Birth" %>
             <span style="color:#e37343;">Address</span><br>
             <%= f.text_area :firm_address, :class=>"marerialize-textarea" %>
@@ -137,7 +135,7 @@
           </div>
           <div class="input-field col s12 m12 l12">
             <span style="color:#e37343;">Email</span><br>
-            <%= f.email_field :contact_person_name, :class=>"form-control" %>
+            <%= f.email_field :contact_person_email, :class=>"form-control" %>
           </div>
         </div>
       </div>
